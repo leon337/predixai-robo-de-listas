@@ -8,9 +8,7 @@ ICON_SOURCE="$ROOT_DIR/assets/logo_predixai.svg"
 ICON_DIR="$HOME/.local/share/icons/hicolor/scalable/apps"
 APPLICATIONS_DIR="$HOME/.local/share/applications"
 
-if [[ ! -x "$ROOT_DIR/run.sh" ]]; then
-  chmod +x "$ROOT_DIR/run.sh"
-fi
+chmod +x "$ROOT_DIR/run.sh" "$ROOT_DIR/install.sh" "$ROOT_DIR/install_desktop.sh" 2>/dev/null || true
 
 if [[ ! -f "$ICON_SOURCE" ]]; then
   echo "Logo não encontrada: $ICON_SOURCE" >&2
@@ -24,8 +22,8 @@ DESKTOP_CONTENT="[Desktop Entry]
 Type=Application
 Version=1.0
 Name=$APP_NAME
-Comment=Agenda e execução controlada de sinais locais
-Exec=$ROOT_DIR/run.sh
+Comment=Perfis, listas datadas e execução controlada
+Exec=/usr/bin/env bash $ROOT_DIR/run.sh
 Icon=$ICON_DIR/predixai-robo-de-listas.svg
 Path=$ROOT_DIR
 Terminal=false
