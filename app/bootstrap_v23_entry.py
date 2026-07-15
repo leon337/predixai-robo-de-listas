@@ -8,6 +8,7 @@ import bootstrap_v23
 import bootstrap_v231
 import bootstrap_v232
 import bootstrap_v233
+import bootstrap_v233_runtime
 
 
 def install() -> None:
@@ -16,6 +17,7 @@ def install() -> None:
     bootstrap_v231.install_patch()
     bootstrap_v232.install_patch()
     bootstrap_v233.install_patch()
+    bootstrap_v233_runtime.install_patch()
 
 
 if __name__ == "__main__":
