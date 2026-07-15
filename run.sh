@@ -10,4 +10,4 @@ if [[ ! -x .venv/bin/python ]]; then
 fi
 
 source .venv/bin/activate
-exec python app/bootstrap_v22_entry.py
+exec python app/bootstrap_v23_entry.py
