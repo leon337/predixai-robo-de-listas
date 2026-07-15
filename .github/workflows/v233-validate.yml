@@ -1,0 +1,29 @@
+name: Validar V2.3.3
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar sintaxe Python
+        run: |
+          python -m py_compile app/version_info.py app/bootstrap_v233.py app/bootstrap_v23_entry.py tests/test_version_info.py
+      - name: Executar testes de versão
+        run: python -m unittest tests/test_version_info.py
+      - name: Validar versão publicada
+        run: test "$(tr -d '\n' < VERSION)" = "2.3.3"
+      - name: Validar cabeçalho e histórico
+        run: |
+          grep -q "Versão instalada:" app/bootstrap_v233.py
+          grep -q "History.Treeview" app/bootstrap_v233.py
+          grep -q "bootstrap_v233.install_patch" app/bootstrap_v23_entry.py
