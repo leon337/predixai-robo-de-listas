@@ -15,14 +15,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Instalar dependências
+        run: python -m pip install -r requirements.txt
       - name: Validar sintaxe Python
         run: |
-          python -m py_compile app/config_safety.py app/bootstrap_v242.py app/bootstrap_v23_entry.py tests/test_config_safety.py
+          python -m py_compile app/config_safety.py app/bootstrap_v242.py app/bootstrap_v23_entry.py tests/test_config_safety.py tests/test_v242_patch_chain.py
       - name: Executar testes de configuração
-        run: python -m unittest tests/test_config_safety.py
+        run: python -m unittest tests/test_config_safety.py tests/test_v242_patch_chain.py
       - name: Validar integração
         run: |
           grep -q "bootstrap_v242.install_patch" app/bootstrap_v23_entry.py
-          grep -q "ConfigSafetyManager" app/bootstrap_v242.py
+          grep -q "_PREVIOUS_LOAD = cls._load_config" app/bootstrap_v242.py
+          grep -q "_PREVIOUS_SAVE = cls._save_config" app/bootstrap_v242.py
       - name: Validar versão publicada
         run: test "$(tr -d '\n' < VERSION)" = "2.4.2"
