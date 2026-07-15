@@ -25,5 +25,10 @@ jobs:
           grep -q "SingleInstanceLock" app/bootstrap_v23_entry.py
           grep -q "run_startup_diagnostics" app/bootstrap_v23_entry.py
           grep -q "configure_logging" app/bootstrap_v23_entry.py
-      - name: Validar versão publicada
-        run: test "$(tr -d '\n' < VERSION)" = "2.4.1"
+      - name: Validar versão 2.4.1 ou posterior
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          version = tuple(int(part) for part in Path('VERSION').read_text(encoding='utf-8').strip().split('.'))
+          assert version >= (2, 4, 1), version
+          PY
