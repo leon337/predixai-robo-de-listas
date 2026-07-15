@@ -1,0 +1,37 @@
+name: Validar V2.2
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar sintaxe Python
+        run: |
+          python -m py_compile app/main.py
+          python -m py_compile app/bootstrap_v22.py
+          python -m py_compile app/bootstrap_v22_entry.py
+      - name: Validar scripts shell
+        run: bash -n run.sh install.sh install_desktop.sh
+      - name: Validar versão
+        run: |
+          test "$(cat VERSION)" = "2.2.0"
+      - name: Validar configuração de exemplo
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('config/config_predixai_robo_listas.json')
+          if path.exists():
+              json.loads(path.read_text(encoding='utf-8'))
+          print('VALIDATION=PASS')
+          PY
