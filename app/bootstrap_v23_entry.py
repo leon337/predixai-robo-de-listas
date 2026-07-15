@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Entrada da aplicação com proteções de runtime da V2.4.2."""
+"""Entrada da aplicação com proteções de runtime da V2.4.3."""
 from __future__ import annotations
 
 import logging
@@ -14,6 +14,7 @@ import bootstrap_v232
 import bootstrap_v233
 import bootstrap_v233_runtime
 import bootstrap_v242
+import bootstrap_v243
 from runtime_guard import SingleInstanceLock, configure_logging, run_startup_diagnostics
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -29,6 +30,7 @@ def install() -> None:
     bootstrap_v233.install_patch()
     bootstrap_v233_runtime.install_patch()
     bootstrap_v242.install_patch()
+    bootstrap_v243.install_patch()
 
 
 def run() -> int:
