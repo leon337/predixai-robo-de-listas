@@ -31,8 +31,8 @@ sudo apt install -y python3-venv python3-tk
 git clone https://github.com/leon337/predixai-robo-de-listas.git
 cd predixai-robo-de-listas
 
-./install.sh
-./run.sh
+bash install.sh
+bash run.sh
 ```
 
 ## Execução manual
