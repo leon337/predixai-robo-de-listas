@@ -1,0 +1,30 @@
+name: Validar V2.4.3
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar sintaxe Python
+        run: |
+          python -m py_compile app/diagnostics_tools.py app/bootstrap_v243.py app/bootstrap_v23_entry.py tests/test_diagnostics_tools.py
+      - name: Executar testes de diagnóstico
+        run: python -m unittest tests/test_diagnostics_tools.py
+      - name: Validar integração
+        run: |
+          grep -q "bootstrap_v243.install_patch" app/bootstrap_v23_entry.py
+          grep -q "def show_tools" app/bootstrap_v243.py
+          grep -q "def show_about" app/bootstrap_v243.py
+          grep -q "def export_diagnostic_report" app/diagnostics_tools.py
+      - name: Validar versão publicada
+        run: test "$(tr -d '\n' < VERSION)" = "2.4.3"
