@@ -2,6 +2,21 @@
 
 Todas as mudanças relevantes do PredixAI Robô de Listas serão registradas neste arquivo.
 
+## [2.3.3] — 2026-07-15
+
+### Adicionado
+
+- versão instalada visível ao lado do nome da aplicação e no canto direito do cabeçalho;
+- leitura centralizada do arquivo `VERSION`, evitando números de versão fixos na interface;
+- tabela estruturada de eventos no histórico por sessão;
+- seleção de sessão em largura total, adequada à janela compacta.
+
+### Corrigido
+
+- painel de detalhes do histórico não fica mais comprimido em uma coluna estreita;
+- filtro do histórico passa a incluir sessões `EXPIRADA`;
+- sessão selecionada permanece ativa ao trocar o filtro, quando ainda for compatível.
+
 ## [2.2.0] — 2026-07-15
 
 ### Adicionado
