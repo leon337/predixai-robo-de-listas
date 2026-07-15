@@ -20,8 +20,12 @@ jobs:
           python -m py_compile app/main.py app/bootstrap_v22.py app/bootstrap_v22_entry.py app/bootstrap_v23.py app/bootstrap_v23_entry.py
       - name: Validar scripts shell
         run: bash -n run.sh install_desktop.sh
-      - name: Validar versão
-        run: test "$(tr -d '\n' < VERSION)" = "2.3.0"
+      - name: Validar versão V2.3 ou posterior
+        run: |
+          python - <<'PY'
+          version = tuple(int(part) for part in open('VERSION', encoding='utf-8').read().strip().split('.'))
+          assert version >= (2, 3, 0), version
+          PY
       - name: Validar marcadores V2.3
         run: |
           grep -q "▲ PARA CIMA" app/bootstrap_v23.py
