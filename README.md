@@ -4,7 +4,7 @@ Aplicação desktop em Python para calibração de coordenadas globais, criaçã
 
 ## Estado
 
-- **Versão:** V1
+- **Versão:** 1.0.0
 - **Status:** publicada e pronta para clonagem/teste
 - **Plataforma alvo:** Linux Mint / X11
 
@@ -35,6 +35,24 @@ bash install.sh
 bash run.sh
 ```
 
+## Criar ícone no menu e na área de trabalho
+
+Depois da instalação normal, execute uma vez:
+
+```bash
+bash install_desktop.sh
+```
+
+O instalador:
+
+- registra o PredixAI no menu de aplicativos;
+- usa a logomarca existente em `assets/`;
+- cria um atalho na área de trabalho quando a pasta é localizada;
+- abre a aplicação por `run.sh`;
+- usa `Terminal=false`, sem abrir o terminal durante o uso normal.
+
+Depois disso, abra **PredixAI Robô de Listas** pelo menu ou por dois cliques no ícone da área de trabalho.
+
 ## Execução manual
 
 ```bash
@@ -48,10 +66,15 @@ python app/main.py
 app/main.py
 assets/logo_predixai.svg
 config/
+docs/history/
+docs/roadmap/
 tests/test_smoke.py
 requirements.txt
 install.sh
+install_desktop.sh
 run.sh
+VERSION
+CHANGELOG.md
 ```
 
 ## Segurança
