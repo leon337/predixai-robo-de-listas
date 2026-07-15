@@ -11,18 +11,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validar sintaxe
+
+      - name: Validar sintaxe Python
         run: python -m py_compile app/main.py
-      - name: Validar JSON de exemplo
-        run: python - <<'PY'
+
+      - name: Validar JSON de configuração
+        shell: bash
+        run: |
+          python - <<'PY'
           import json
           from pathlib import Path
-          path = Path('config/config_predixai_robo_listas.json')
+
+          path = Path("config/config_predixai_robo_listas.json")
           if path.exists():
-              json.loads(path.read_text(encoding='utf-8'))
-          print('VALIDATION=PASS')
+              json.loads(path.read_text(encoding="utf-8"))
+          print("VALIDATION=PASS")
           PY
