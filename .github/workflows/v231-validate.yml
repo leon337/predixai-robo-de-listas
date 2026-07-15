@@ -1,0 +1,28 @@
+name: Validar V2.3.1
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar sintaxe Python
+        run: |
+          python -m py_compile app/main.py app/bootstrap_v22.py app/bootstrap_v22_entry.py app/bootstrap_v23.py app/bootstrap_v231.py app/bootstrap_v23_entry.py
+      - name: Validar versão
+        run: test "$(tr -d '\n' < VERSION)" = "2.3.1"
+      - name: Validar controle de execução
+        run: |
+          grep -q "execution_stop_event" app/bootstrap_v231.py
+          grep -q "execution_pause_event" app/bootstrap_v231.py
+          grep -q "Cancelar execução" app/bootstrap_v231.py
+          grep -q "Retomar" app/bootstrap_v231.py
