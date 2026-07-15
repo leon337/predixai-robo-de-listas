@@ -20,8 +20,12 @@ jobs:
           python -m py_compile app/execution_preflight.py app/bootstrap_v232.py app/bootstrap_v23_entry.py tests/test_execution_preflight.py
       - name: Executar testes de preflight
         run: python -m unittest tests/test_execution_preflight.py
-      - name: Validar versão
-        run: test "$(tr -d '\n' < VERSION)" = "2.3.2"
+      - name: Validar versão V2.3.2 ou posterior
+        run: |
+          python - <<'PY'
+          version = tuple(int(part) for part in open('VERSION', encoding='utf-8').read().strip().split('.'))
+          assert version >= (2, 3, 2), version
+          PY
       - name: Validar marcadores de sessão
         run: |
           grep -q "LISTA EXPIRADA" app/bootstrap_v232.py
