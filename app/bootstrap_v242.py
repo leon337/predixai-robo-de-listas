@@ -6,8 +6,12 @@ import logging
 from pathlib import Path
 from typing import Callable
 
-import main as app_main
-from config_safety import ConfigSafetyManager
+try:
+    import main as app_main
+    from config_safety import ConfigSafetyManager
+except ModuleNotFoundError:
+    from app import main as app_main
+    from app.config_safety import ConfigSafetyManager
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 BACKUP_DIR = ROOT_DIR / "backups" / "config"
