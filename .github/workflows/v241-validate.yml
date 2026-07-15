@@ -25,5 +25,5 @@ jobs:
           grep -q "SingleInstanceLock" app/bootstrap_v23_entry.py
           grep -q "run_startup_diagnostics" app/bootstrap_v23_entry.py
           grep -q "configure_logging" app/bootstrap_v23_entry.py
-      - name: Validar versão preservada
-        run: test "$(tr -d '\n' < VERSION)" = "2.3.3"
+      - name: Validar versão publicada
+        run: test "$(tr -d '\n' < VERSION)" = "2.4.1"
