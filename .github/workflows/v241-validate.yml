@@ -1,0 +1,29 @@
+name: Validar V2.4.1
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar sintaxe Python
+        run: |
+          python -m py_compile app/runtime_guard.py app/bootstrap_v23_entry.py tests/test_runtime_guard.py
+      - name: Executar testes de runtime
+        run: python -m unittest tests/test_runtime_guard.py
+      - name: Validar integração do entrypoint
+        run: |
+          grep -q "SingleInstanceLock" app/bootstrap_v23_entry.py
+          grep -q "run_startup_diagnostics" app/bootstrap_v23_entry.py
+          grep -q "configure_logging" app/bootstrap_v23_entry.py
+      - name: Validar versão preservada
+        run: test "$(tr -d '\n' < VERSION)" = "2.3.3"
