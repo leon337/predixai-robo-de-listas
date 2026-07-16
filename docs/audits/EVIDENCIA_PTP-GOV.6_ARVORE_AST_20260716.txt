@@ -1,19 +1,13 @@
-PREDIXAI ROBÔ DE LISTAS — MANIFESTO DE EVIDÊNCIA
-
-PROJECT=PredixAI Robô de Listas
-REPOSITORY=leon337/predixai-robo-de-listas
-SOURCE_BRANCH=main
-SOURCE_COMMIT=0e2d7e98d863769be32a8bcb8b93684a61674aa3
-AUDIT_BRANCH=docs/ptp-gov-6-anexo-a
-LINEAR_ISSUE=LEA-7
-DRAFT_PR=29
-RAW_REPORT_FILENAME=PREDIXAI_PTP-GOV.6_ARVORE_AST_20260716.txt
-RAW_REPORT_SHA256=ac70a6bd4acfeb5b35bbfdbf15a7212247db9a8be438191463c54f4912b19428
-RAW_REPORT_SIZE_BYTES=36842
-RAW_REPORT_LINE_COUNT=512
-COLLECTION_METHOD=GIT_OBJECT_DATABASE
+PREDIXAI ROBÔ DE LISTAS — RELATÓRIO SOMENTE LEITURA
 GENERATED_AT=2026-07-16T15:46:39.099358-03:00
+SOURCE_COMMIT=0e2d7e98d863769be32a8bcb8b93684a61674aa3
+COLLECTION_METHOD=GIT_OBJECT_DATABASE
+APPLICATION_EXECUTED=NO
+REAL_CLICK_EXECUTED=NO
+CHECKOUT_EXECUTED=NO
+TEMPORARY_WORKTREE_CREATED=NO
 
+=== RESUMO ===
 TRACKED_FILE_COUNT=82
 PYTHON_FILE_COUNT=24
 AST_CLASS_COUNT=18
@@ -23,15 +17,492 @@ AST_NESTED_FUNCTION_COUNT=15
 AST_PARSE_ERROR_COUNT=0
 COMMIT_HISTORY_COUNT=158
 
-ROOT_FILE_COUNT=11
-APP_FILE_COUNT=17
-TEST_FILE_COUNT=7
-WORKFLOW_FILE_COUNT=9
-DOCUMENTATION_FILE_COUNT=41
-DOCS_DIRECTORY_FILE_COUNT=36
-ASSET_FILE_COUNT=1
-CONFIG_FILE_COUNT=1
+=== ARQUIVOS VERSIONADOS ===
+.github/workflows/v21-validate.yml
+.github/workflows/v22-validate.yml
+.github/workflows/v23-validate.yml
+.github/workflows/v231-validate.yml
+.github/workflows/v232-validate.yml
+.github/workflows/v233-validate.yml
+.github/workflows/v241-validate.yml
+.github/workflows/v242-validate.yml
+.github/workflows/v243-validate.yml
+.gitignore
+CHANGELOG.md
+PREDIXAI_ROBO_LISTAS_PROJECT_INSTRUCTIONS.md
+PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md
+PROJECT_STATE.md
+README.md
+VERSION
+app/bootstrap_v21.py
+app/bootstrap_v22.py
+app/bootstrap_v22_entry.py
+app/bootstrap_v23.py
+app/bootstrap_v231.py
+app/bootstrap_v232.py
+app/bootstrap_v233.py
+app/bootstrap_v233_runtime.py
+app/bootstrap_v23_entry.py
+app/bootstrap_v242.py
+app/bootstrap_v243.py
+app/config_safety.py
+app/diagnostics_tools.py
+app/execution_preflight.py
+app/main.py
+app/runtime_guard.py
+app/version_info.py
+assets/logo_predixai.svg
+config/.gitkeep
+docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md
+docs/history/20260715_V1_DESKTOP_E_MEMORIA.md
+docs/history/20260715_V2.1_LISTAS_DATAS_ESTABILIDADE.md
+docs/history/20260715_V2.2_LISTAS_INDEPENDENTES_HISTORICO.md
+docs/history/20260715_V2.3.1_CONTROLE_EXECUCAO.md
+docs/history/20260715_V2.3.2_EXPIRADOS_E_SESSAO.md
+docs/history/20260715_V2.3.3_VERSAO_CABECALHO_HISTORICO.md
+docs/history/20260715_V2.3_UX_LISTAS_HISTORICO.md
+docs/history/ptp/ANEXO_CONTRATOS_PTM_SCHEMA_PTP-GOV.5_20260716.md
+docs/history/ptp/CHECKPOINT_FINAL_MIGRACAO_PROJETO_LIMPO_20260716.md
+docs/history/ptp/CHECKPOINT_HISTORICO_COMPLETO_PTP-GOV.5_ARQUITETURA_V2.5_V2.7_20260716.md
+docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md
+docs/history/ptp/FECHAMENTO_LEA-11_RUNTIME_R1_R6_20260716.md
+docs/history/ptp/PTP-GOV.5.1_PROTOCOLO_ACESSO_RECONSTRUCAO_20260716.md
+docs/history/ptp/PTP-GOV.5.2_GATE_AMBIENTE_E_PROTOCOLO_MEMORIA_20260716.md
+docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md
+docs/history/reviews/REVISAO_COMPLETUDE_HISTORICO_PTP-GOV.5_20260716.md
+docs/history/reviews/REVISAO_CRITICA_MELHORIAS_OPERACIONAIS_LEVES_20260716.md
+docs/history/reviews/REVISAO_CRITICA_MIGRACAO_PROJETO_LIMPO_20260716.md
+docs/history/reviews/REVISAO_CRITICA_VALIDACAO_ESTATICA_PROTOCOLOS_20260716.md
+docs/history/tests/CLEAN_PROJECT_ACCEPTANCE_RESULTADO_20260716.md
+docs/history/tests/MEMORY_CONTINUITY_TEST_C_RESULTADO_20260716.md
+docs/history/tests/MEMORY_GATES_0_A_B_RESULTADOS_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R6_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R7_RESULTADO_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_STATUS_20260716.md
+docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md
+docs/history/tests/TESTE_001_RESULTADO_20260716.md
+docs/protocols/PREDIXAI_ROBO_LISTAS_RESPONSE_MODEL.md
+docs/protocols/PREDIXAI_ROBO_LISTAS_RUNTIME_TEST_PLAN.md
+docs/protocols/PREDIXAI_ROBO_LISTAS_SKILLS.md
+docs/roadmap/V2_UI_COMPACTA.md
+install.sh
+install_desktop.sh
+requirements.txt
+run.sh
+tests/test_config_safety.py
+tests/test_diagnostics_tools.py
+tests/test_execution_preflight.py
+tests/test_runtime_guard.py
+tests/test_smoke.py
+tests/test_v242_patch_chain.py
+tests/test_version_info.py
 
+=== CONTAGEM POR DIRETÓRIO PRINCIPAL ===
+.github=9
+[raiz]=11
+app=17
+assets=1
+config=1
+docs=36
+tests=7
+
+=== CONTAGEM POR EXTENSÃO ===
+.md=41
+.py=24
+.sh=3
+.svg=1
+.txt=1
+.yml=9
+[sem_extensao]=3
+
+=== ÍNDICE AST PYTHON ===
+FUNCTION|app/bootstrap_v21.py|_format_list_label|LINE=8
+FUNCTION|app/bootstrap_v21.py|_build_list_choices|LINE=12
+FUNCTION|app/bootstrap_v21.py|_active_list_label|LINE=31
+FUNCTION|app/bootstrap_v21.py|show_home|LINE=41
+FUNCTION|app/bootstrap_v21.py|select_list_by_name|LINE=103
+FUNCTION|app/bootstrap_v21.py|install_patch|LINE=120
+FUNCTION|app/bootstrap_v22.py|list_label|LINE=22
+FUNCTION|app/bootstrap_v22.py|list_status|LINE=26
+FUNCTION|app/bootstrap_v22.py|build_choices|LINE=38
+FUNCTION|app/bootstrap_v22.py|active_label|LINE=52
+FUNCTION|app/bootstrap_v22.py|active_list|LINE=59
+FUNCTION|app/bootstrap_v22.py|schedule_from_dict|LINE=63
+FUNCTION|app/bootstrap_v22.py|schedule_to_dict|LINE=75
+FUNCTION|app/bootstrap_v22.py|load_config|LINE=88
+FUNCTION|app/bootstrap_v22.py|save_config|LINE=131
+FUNCTION|app/bootstrap_v22.py|show_home|LINE=152
+FUNCTION|app/bootstrap_v22.py|select_profile|LINE=184
+FUNCTION|app/bootstrap_v22.py|select_list|LINE=194
+FUNCTION|app/bootstrap_v22.py|show_lists|LINE=205
+FUNCTION|app/bootstrap_v22.py|list_dialog|LINE=242
+NESTED_FUNCTION|app/bootstrap_v22.py|list_dialog.save|LINE=273
+FUNCTION|app/bootstrap_v22.py|activate_list|LINE=312
+FUNCTION|app/bootstrap_v22.py|delete_list|LINE=322
+FUNCTION|app/bootstrap_v22.py|archive_list|LINE=338
+FUNCTION|app/bootstrap_v22.py|prepare_session|LINE=351
+FUNCTION|app/bootstrap_v22.py|start_execution|LINE=377
+FUNCTION|app/bootstrap_v22.py|append_history|LINE=396
+FUNCTION|app/bootstrap_v22.py|close_current_session|LINE=405
+FUNCTION|app/bootstrap_v22.py|finish_execution|LINE=415
+FUNCTION|app/bootstrap_v22.py|stop_execution|LINE=420
+FUNCTION|app/bootstrap_v22.py|handle_error|LINE=427
+FUNCTION|app/bootstrap_v22.py|show_history|LINE=432
+NESTED_FUNCTION|app/bootstrap_v22.py|show_history.render|LINE=443
+FUNCTION|app/bootstrap_v22.py|export_history|LINE=473
+FUNCTION|app/bootstrap_v22.py|clear_history|LINE=490
+FUNCTION|app/bootstrap_v22.py|install_patch|LINE=501
+FUNCTION|app/bootstrap_v22_entry.py|activate_profile|LINE=9
+FUNCTION|app/bootstrap_v22_entry.py|delete_profile|LINE=19
+FUNCTION|app/bootstrap_v22_entry.py|show_profiles|LINE=36
+FUNCTION|app/bootstrap_v22_entry.py|install|LINE=62
+FUNCTION|app/bootstrap_v23.py|init_v23|LINE=14
+FUNCTION|app/bootstrap_v23.py|_set_direction|LINE=21
+FUNCTION|app/bootstrap_v23.py|show_schedule|LINE=36
+FUNCTION|app/bootstrap_v23.py|_select_list_card|LINE=117
+FUNCTION|app/bootstrap_v23.py|show_lists|LINE=126
+FUNCTION|app/bootstrap_v23.py|_session_label|LINE=186
+FUNCTION|app/bootstrap_v23.py|show_history|LINE=193
+NESTED_FUNCTION|app/bootstrap_v23.py|show_history.render_choices|LINE=225
+NESTED_FUNCTION|app/bootstrap_v23.py|show_history.render_detail|LINE=246
+FUNCTION|app/bootstrap_v23.py|install_patch|LINE=281
+FUNCTION|app/bootstrap_v231.py|init_v231|LINE=16
+FUNCTION|app/bootstrap_v231.py|start_execution|LINE=25
+FUNCTION|app/bootstrap_v231.py|refresh_execution_controls|LINE=34
+FUNCTION|app/bootstrap_v231.py|show_execution|LINE=42
+FUNCTION|app/bootstrap_v231.py|toggle_pause|LINE=76
+FUNCTION|app/bootstrap_v231.py|stop_execution|LINE=91
+FUNCTION|app/bootstrap_v231.py|execution_loop|LINE=110
+FUNCTION|app/bootstrap_v231.py|install_patch|LINE=172
+FUNCTION|app/bootstrap_v232.py|_session_payload|LINE=21
+FUNCTION|app/bootstrap_v232.py|init_v232|LINE=36
+FUNCTION|app/bootstrap_v232.py|_validate_start|LINE=41
+FUNCTION|app/bootstrap_v232.py|_record_expired_attempt|LINE=54
+FUNCTION|app/bootstrap_v232.py|start_execution|LINE=71
+FUNCTION|app/bootstrap_v232.py|stop_execution|LINE=119
+FUNCTION|app/bootstrap_v232.py|_walk|LINE=126
+FUNCTION|app/bootstrap_v232.py|show_history|LINE=132
+FUNCTION|app/bootstrap_v232.py|install_patch|LINE=142
+FUNCTION|app/bootstrap_v233.py|build_shell|LINE=10
+FUNCTION|app/bootstrap_v233.py|session_label|LINE=115
+FUNCTION|app/bootstrap_v233.py|show_history|LINE=122
+NESTED_FUNCTION|app/bootstrap_v233.py|show_history.render_detail|LINE=169
+NESTED_FUNCTION|app/bootstrap_v233.py|show_history.render_choices|LINE=248
+FUNCTION|app/bootstrap_v233.py|install_patch|LINE=282
+FUNCTION|app/bootstrap_v233_runtime.py|init_v233|LINE=11
+FUNCTION|app/bootstrap_v233_runtime.py|install_patch|LINE=17
+FUNCTION|app/bootstrap_v23_entry.py|install|LINE=25
+FUNCTION|app/bootstrap_v23_entry.py|run|LINE=36
+FUNCTION|app/bootstrap_v242.py|_safe_save|LINE=24
+FUNCTION|app/bootstrap_v242.py|_safe_load|LINE=36
+FUNCTION|app/bootstrap_v242.py|install_patch|LINE=54
+FUNCTION|app/bootstrap_v243.py|_add_card|LINE=24
+FUNCTION|app/bootstrap_v243.py|_open_external_folder|LINE=31
+FUNCTION|app/bootstrap_v243.py|show_tools|LINE=47
+NESTED_FUNCTION|app/bootstrap_v243.py|show_tools.open_logs|LINE=62
+NESTED_FUNCTION|app/bootstrap_v243.py|show_tools.open_backups|LINE=65
+NESTED_FUNCTION|app/bootstrap_v243.py|show_tools.export_report|LINE=68
+NESTED_FUNCTION|app/bootstrap_v243.py|show_tools.repair_installation|LINE=76
+FUNCTION|app/bootstrap_v243.py|show_about|LINE=124
+FUNCTION|app/bootstrap_v243.py|_build_shell_v243|LINE=136
+FUNCTION|app/bootstrap_v243.py|install_patch|LINE=161
+CLASS|app/config_safety.py|ConfigSafetyManager|LINE=13
+METHOD|app/config_safety.py|ConfigSafetyManager.__init__|LINE=14
+METHOD|app/config_safety.py|ConfigSafetyManager.is_valid_json|LINE=19
+METHOD|app/config_safety.py|ConfigSafetyManager.backup_current|LINE=28
+METHOD|app/config_safety.py|ConfigSafetyManager.write_json|LINE=40
+METHOD|app/config_safety.py|ConfigSafetyManager.recover_if_needed|LINE=54
+METHOD|app/config_safety.py|ConfigSafetyManager._prune_backups|LINE=75
+CLASS|app/diagnostics_tools.py|DiagnosticItem|LINE=17
+FUNCTION|app/diagnostics_tools.py|read_version|LINE=23
+FUNCTION|app/diagnostics_tools.py|collect_diagnostics|LINE=30
+FUNCTION|app/diagnostics_tools.py|diagnostic_summary|LINE=55
+FUNCTION|app/diagnostics_tools.py|export_diagnostic_report|LINE=65
+FUNCTION|app/diagnostics_tools.py|open_path|LINE=81
+FUNCTION|app/diagnostics_tools.py|run_installer|LINE=89
+FUNCTION|app/diagnostics_tools.py|diagnostics_as_json|LINE=103
+CLASS|app/execution_preflight.py|ScheduledSignal|LINE=9
+METHOD|app/execution_preflight.py|ScheduledSignal.scheduled_at|LINE=11
+FUNCTION|app/execution_preflight.py|split_signals_by_time|LINE=17
+CLASS|app/main.py|Signal|LINE=25
+METHOD|app/main.py|Signal.scheduled_at|LINE=33
+CLASS|app/main.py|ScheduleList|LINE=38
+CLASS|app/main.py|CoordinateProfile|LINE=47
+CLASS|app/main.py|PredixAIRoboListas|LINE=60
+METHOD|app/main.py|PredixAIRoboListas.__init__|LINE=61
+METHOD|app/main.py|PredixAIRoboListas.active_profile|LINE=101
+METHOD|app/main.py|PredixAIRoboListas.active_list|LINE=105
+METHOD|app/main.py|PredixAIRoboListas.coords|LINE=110
+METHOD|app/main.py|PredixAIRoboListas._screen_signature|LINE=113
+METHOD|app/main.py|PredixAIRoboListas._configure_style|LINE=121
+METHOD|app/main.py|PredixAIRoboListas._build_shell|LINE=147
+METHOD|app/main.py|PredixAIRoboListas._set_page|LINE=174
+METHOD|app/main.py|PredixAIRoboListas._clear|LINE=178
+METHOD|app/main.py|PredixAIRoboListas._panel|LINE=182
+METHOD|app/main.py|PredixAIRoboListas.show_home|LINE=189
+METHOD|app/main.py|PredixAIRoboListas._profile_compatibility_text|LINE=217
+METHOD|app/main.py|PredixAIRoboListas._select_profile_by_name|LINE=227
+METHOD|app/main.py|PredixAIRoboListas._select_list_by_name|LINE=235
+METHOD|app/main.py|PredixAIRoboListas._prepare_session|LINE=243
+METHOD|app/main.py|PredixAIRoboListas.show_profiles|LINE=265
+METHOD|app/main.py|PredixAIRoboListas._profile_dialog|LINE=285
+NESTED_FUNCTION|app/main.py|PredixAIRoboListas._profile_dialog.save|LINE=305
+METHOD|app/main.py|PredixAIRoboListas._activate_profile|LINE=328
+METHOD|app/main.py|PredixAIRoboListas._delete_profile|LINE=339
+METHOD|app/main.py|PredixAIRoboListas._open_profile_calibration|LINE=357
+METHOD|app/main.py|PredixAIRoboListas._capture_coordinate|LINE=384
+NESTED_FUNCTION|app/main.py|PredixAIRoboListas._capture_coordinate.on_click|LINE=390
+METHOD|app/main.py|PredixAIRoboListas._poll_capture|LINE=402
+METHOD|app/main.py|PredixAIRoboListas._coord_text|LINE=413
+METHOD|app/main.py|PredixAIRoboListas._preview_coordinates|LINE=417
+METHOD|app/main.py|PredixAIRoboListas._test_both_coordinates|LINE=426
+METHOD|app/main.py|PredixAIRoboListas._confirm_profile|LINE=442
+METHOD|app/main.py|PredixAIRoboListas.show_lists|LINE=451
+METHOD|app/main.py|PredixAIRoboListas._list_dialog|LINE=474
+NESTED_FUNCTION|app/main.py|PredixAIRoboListas._list_dialog.save|LINE=490
+METHOD|app/main.py|PredixAIRoboListas._activate_list|LINE=516
+METHOD|app/main.py|PredixAIRoboListas._delete_list|LINE=524
+METHOD|app/main.py|PredixAIRoboListas.show_schedule|LINE=537
+METHOD|app/main.py|PredixAIRoboListas._normalize_time_var|LINE=568
+METHOD|app/main.py|PredixAIRoboListas._add_signal|LINE=573
+METHOD|app/main.py|PredixAIRoboListas._sync_session_from_list|LINE=591
+METHOD|app/main.py|PredixAIRoboListas._render_signal_list|LINE=596
+METHOD|app/main.py|PredixAIRoboListas._remove_signal|LINE=608
+METHOD|app/main.py|PredixAIRoboListas._clear_schedule|LINE=614
+METHOD|app/main.py|PredixAIRoboListas._update_summary|LINE=621
+METHOD|app/main.py|PredixAIRoboListas._start_execution|LINE=626
+METHOD|app/main.py|PredixAIRoboListas.show_execution|LINE=644
+METHOD|app/main.py|PredixAIRoboListas._render_execution_list|LINE=657
+METHOD|app/main.py|PredixAIRoboListas._execution_loop|LINE=665
+METHOD|app/main.py|PredixAIRoboListas._handle_execution_error|LINE=697
+METHOD|app/main.py|PredixAIRoboListas._toggle_pause|LINE=700
+METHOD|app/main.py|PredixAIRoboListas._stop_execution|LINE=706
+METHOD|app/main.py|PredixAIRoboListas._finish_execution|LINE=713
+METHOD|app/main.py|PredixAIRoboListas.show_history|LINE=717
+METHOD|app/main.py|PredixAIRoboListas._append_history|LINE=724
+METHOD|app/main.py|PredixAIRoboListas._tick_clock|LINE=727
+METHOD|app/main.py|PredixAIRoboListas._format_date|LINE=730
+METHOD|app/main.py|PredixAIRoboListas._save_config|LINE=734
+METHOD|app/main.py|PredixAIRoboListas._load_config|LINE=739
+METHOD|app/main.py|PredixAIRoboListas._profile_from_dict|LINE=760
+METHOD|app/main.py|PredixAIRoboListas._migrate_v2_profile|LINE=764
+METHOD|app/main.py|PredixAIRoboListas._migrate_v1|LINE=767
+METHOD|app/main.py|PredixAIRoboListas._on_close|LINE=774
+FUNCTION|app/main.py|main|LINE=780
+CLASS|app/runtime_guard.py|DiagnosticResult|LINE=20
+CLASS|app/runtime_guard.py|SingleInstanceLock|LINE=25
+METHOD|app/runtime_guard.py|SingleInstanceLock.__init__|LINE=28
+METHOD|app/runtime_guard.py|SingleInstanceLock.acquire|LINE=32
+METHOD|app/runtime_guard.py|SingleInstanceLock.release|LINE=48
+METHOD|app/runtime_guard.py|SingleInstanceLock.__enter__|LINE=61
+METHOD|app/runtime_guard.py|SingleInstanceLock.__exit__|LINE=66
+FUNCTION|app/runtime_guard.py|configure_logging|LINE=70
+FUNCTION|app/runtime_guard.py|run_startup_diagnostics|LINE=89
+FUNCTION|app/version_info.py|read_app_version|LINE=8
+CLASS|tests/test_config_safety.py|ConfigSafetyTests|LINE=11
+METHOD|tests/test_config_safety.py|ConfigSafetyTests.test_atomic_write_creates_backup|LINE=12
+METHOD|tests/test_config_safety.py|ConfigSafetyTests.test_corrupt_config_recovers_latest_valid_backup|LINE=27
+METHOD|tests/test_config_safety.py|ConfigSafetyTests.test_invalid_config_without_backup_is_preserved_for_diagnostics|LINE=51
+METHOD|tests/test_config_safety.py|ConfigSafetyTests.test_backup_rotation_keeps_limit|LINE=64
+CLASS|tests/test_diagnostics_tools.py|DiagnosticsToolsTests|LINE=15
+METHOD|tests/test_diagnostics_tools.py|DiagnosticsToolsTests.test_read_version|LINE=16
+METHOD|tests/test_diagnostics_tools.py|DiagnosticsToolsTests.test_collect_diagnostics_reports_missing_files|LINE=22
+METHOD|tests/test_diagnostics_tools.py|DiagnosticsToolsTests.test_export_report|LINE=30
+CLASS|tests/test_execution_preflight.py|FakeSignal|LINE=16
+CLASS|tests/test_execution_preflight.py|ExecutionPreflightTest|LINE=20
+METHOD|tests/test_execution_preflight.py|ExecutionPreflightTest.test_separa_expirados_e_futuros|LINE=21
+METHOD|tests/test_execution_preflight.py|ExecutionPreflightTest.test_lista_totalmente_expirada|LINE=32
+CLASS|tests/test_runtime_guard.py|RuntimeGuardTests|LINE=11
+METHOD|tests/test_runtime_guard.py|RuntimeGuardTests.test_single_instance_lock_blocks_second_instance|LINE=12
+METHOD|tests/test_runtime_guard.py|RuntimeGuardTests.test_configure_logging_creates_rotating_log|LINE=25
+METHOD|tests/test_runtime_guard.py|RuntimeGuardTests.test_startup_diagnostics_passes_with_required_structure|LINE=41
+METHOD|tests/test_runtime_guard.py|RuntimeGuardTests.test_startup_diagnostics_reports_missing_paths|LINE=54
+FUNCTION|tests/test_smoke.py|test_main_exists|LINE=4
+FUNCTION|tests/test_smoke.py|test_requirements_declares_pynput|LINE=9
+CLASS|tests/test_v242_patch_chain.py|DummyPredixAIRoboListas|LINE=15
+METHOD|tests/test_v242_patch_chain.py|DummyPredixAIRoboListas._load_config|LINE=16
+METHOD|tests/test_v242_patch_chain.py|DummyPredixAIRoboListas._save_config|LINE=19
+CLASS|tests/test_v242_patch_chain.py|DummyApp|LINE=23
+METHOD|tests/test_v242_patch_chain.py|DummyApp.__init__|LINE=24
+FUNCTION|tests/test_v242_patch_chain.py|load_bootstrap_module|LINE=29
+CLASS|tests/test_v242_patch_chain.py|V242PatchChainTests|LINE=49
+METHOD|tests/test_v242_patch_chain.py|V242PatchChainTests.test_safe_load_delegates_to_previous_loader|LINE=50
+NESTED_FUNCTION|tests/test_v242_patch_chain.py|V242PatchChainTests.test_safe_load_delegates_to_previous_loader.previous_load|LINE=53
+METHOD|tests/test_v242_patch_chain.py|V242PatchChainTests.test_safe_save_preserves_previous_serializer|LINE=67
+NESTED_FUNCTION|tests/test_v242_patch_chain.py|V242PatchChainTests.test_safe_save_preserves_previous_serializer.previous_save|LINE=70
+CLASS|tests/test_version_info.py|VersionInfoTests|LINE=12
+METHOD|tests/test_version_info.py|VersionInfoTests.test_reads_version_file|LINE=13
+METHOD|tests/test_version_info.py|VersionInfoTests.test_missing_version_file_uses_fallback|LINE=19
+METHOD|tests/test_version_info.py|VersionInfoTests.test_empty_version_file_uses_fallback|LINE=23
+
+=== ERROS AST ===
+NONE
+
+=== HISTÓRICO COMPLETO DE COMMITS ===
+4eb79db76596aed1b258c09396574ba0a4ca78de|2026-07-15T13:09:56-03:00|V1: iniciar repositório e documentação
+9dbd463ce15c226d5b3becc342c401ba00b9f9ea|2026-07-15T13:11:20-03:00|V1: publicar aplicação desktop funcional
+c1ec95e261eb79ce71bfd422958ba089817f90b3|2026-07-15T13:11:36-03:00|V1: adicionar dependências
+4ed36f116a3f33168fb89ccdbe7aedf8714da017|2026-07-15T13:11:47-03:00|V1: proteger arquivos locais e credenciais
+802968f9526d1ac4a4b10de73a0a6dce3c19aeba|2026-07-15T13:12:04-03:00|V1: adicionar instalador Linux
+f4eb5f44dda0605ae724107a1ce3d9ac39707adc|2026-07-15T13:12:16-03:00|V1: adicionar executor Linux
+acfebdc40938d332ef677286a6bbaeac8b0bc3cd|2026-07-15T13:12:28-03:00|V1: criar diretório de configuração
+5f3fd09553bf2ffef842843b8d5da1b528af9ed8|2026-07-15T13:12:44-03:00|V1: adicionar testes mínimos
+db3d6ebbbdcb1b3e13e32f133c50b2d896ff17d0|2026-07-15T13:13:04-03:00|V1: adicionar identidade visual vetorial
+20be73843c7b4a4bc9589a91458e229d6654049e|2026-07-15T13:13:41-03:00|V1: corrigir instruções de execução no Linux
+25e0e6e4548bde1be3873e862179d1820d6c9e8e|2026-07-15T14:21:20-03:00|V1: adicionar atalho desktop e memória técnica
+4bf84fe56ba2a627ef896a0fed9df22569ee7489|2026-07-15T14:55:30-03:00|V2: perfis de coordenadas e sessão limpa
+134ac89276f8673452ff566dcfef8ab95514382c|2026-07-15T15:57:17-03:00|V2.1: listas datadas, estados robustos e correções visuais
+9baa8d24bddd9de1044b94633e33bb9d9ecbe0f4|2026-07-15T17:16:54-03:00|V2.2 implementar listas independentes e histórico por sessão
+fc18231278df527fc9488cc32a899cc6f6b14a14|2026-07-15T17:17:19-03:00|V2.2 iniciar bootstrap de listas independentes
+28c78ee22a9ae1e930682ab39bd1c1fb596bccd1|2026-07-15T17:17:37-03:00|V2.2 consolidar entrada e perfis independentes das listas
+858d8610c7224dc11f231c05c05542428ccc638a|2026-07-15T17:17:57-03:00|V2.2 atualizar versão
+6c9ef59585d4a0a1c4b9fe799caebf9eda428cf9|2026-07-15T17:18:08-03:00|V2.2 registrar listas independentes e histórico
+3549079f44c704f2df3b6fd5a9028c8f83ec4c87|2026-07-15T17:18:19-03:00|V2.2 adicionar validação automática
+307d7566829b9fde40031210feeec0790eaab4d5|2026-07-15T17:18:33-03:00|V2.2 documentar listas independentes e histórico
+ea9de9e155ea7a9f7b1c2504e098871e13d4c4bc|2026-07-15T17:20:02-03:00|V2.2 tornar atalho resiliente à permissão do run.sh
+f4b870958f5bc8d1fc9c4cbb09e44e4d5f99d415|2026-07-15T17:20:38-03:00|V2.2: listas independentes e histórico estruturado
+07282555cbfd1b8312f95386c82ac9d04850786e|2026-07-15T17:52:40-03:00|V2.3 implementar direção por estado, listas contextuais e histórico por sessão
+9a22c8150207eed0489c355262e2953bc7f3e130|2026-07-15T17:52:53-03:00|V2.3 criar entrada integrada sobre V2.2
+979a84a80cfc9c4eef19bf0386b5a8afa234f035|2026-07-15T17:53:07-03:00|V2.3 ativar nova entrada
+0f9041a5620d5fe2826b1445107aed4a89d328b9|2026-07-15T17:53:24-03:00|V2.3 atualizar versão
+71c4b74a8e26ebcd1b366d1d30a22abb60a26c19|2026-07-15T17:53:34-03:00|V2.3 adicionar validação automática
+f97e92bcb4ca9ef54156382dd173ae0c42454833|2026-07-15T17:53:47-03:00|V2.3 documentar UX de listas e histórico
+856bc0190b836b308f21b9339e64d6e9dda251cf|2026-07-15T17:54:28-03:00|CI: tornar validação V2.2 compatível com versões posteriores
+79a6264c117ca809df45e970168b3a3c00277a67|2026-07-15T17:55:16-03:00|V2.3: UX de direção, listas contextuais e histórico por sessão
+c740b108d453e9284dc3c55fcef46e302e93ddcc|2026-07-15T18:10:04-03:00|V2.3.1 corrigir pausa e cancelamento da execução
+6234d5b8006d01a89c05d8393798c3462b06aa50|2026-07-15T18:10:23-03:00|V2.3.1 ativar controle de execução corrigido
+1a2551bb0b30073c8d627cb3728fbe7c93a62823|2026-07-15T18:10:39-03:00|V2.3.1 atualizar versão
+2a8351d60a051fabd1c19668b4cb740771659fb6|2026-07-15T18:10:57-03:00|V2.3.1 tornar validação V2.3 compatível
+30b12429c9be58c1b8476f66b89a8581e9bd8b95|2026-07-15T18:11:08-03:00|V2.3.1 adicionar validação de pausa e cancelamento
+681badce6381d6da96ca9db37033db6dd645aec3|2026-07-15T18:11:22-03:00|V2.3.1 documentar correção de pausa e cancelamento
+c8e6f8d1271e6488bc071a431d94ead4a244e9c2|2026-07-15T18:12:14-03:00|Merge pull request #6 from leon337/feature/v2.3.1-controle-execucao
+fbd492a5567f4ee677d74d945e80a1259f703580|2026-07-15T18:27:18-03:00|adicionar preflight temporal da execução
+c4f66b41e194ab4a4fe8c3aec40dfbe8d948f22d|2026-07-15T18:27:54-03:00|corrigir preflight e ciclo de sessão
+c6fefb2b52368b56fc307aa1c15d450a6eebbde2|2026-07-15T18:28:05-03:00|ativar camada V2.3.2
+2e0c6f46eb33eaa4cb359cd2341a2663bc652655|2026-07-15T18:28:21-03:00|atualizar versão para 2.3.2
+ee391322a38665a87118c675e0c5b4f6a46d2b86|2026-07-15T18:28:33-03:00|testar classificação temporal de sinais
+7bc460b4e2e33919723a0eb23db8df933ad3c713|2026-07-15T18:28:44-03:00|permitir versões posteriores na validação V2.3.1
+ef6bd6e49c098adc48568f2c7029022b1ff6fa85|2026-07-15T18:28:55-03:00|adicionar validação V2.3.2
+98000523a6867308207082012251e47b2c78bd14|2026-07-15T18:29:13-03:00|documentar correção V2.3.2
+4d199fa3481e631f1afce31e6801616e3c5c4464|2026-07-15T18:30:28-03:00|V2.3.2: corrigir lista expirada e ciclo de sessão
+2fd4baae8261a278fbd2ead4457dbf7243e3c77b|2026-07-15T18:40:01-03:00|adicionar leitura centralizada da versão
+f370c8a67c3d9a63c559bb8efdd21464ec8f275d|2026-07-15T18:40:57-03:00|adicionar versão no cabeçalho e refinar histórico
+02da44c5f5dc42eb1ddef6ea571f7c752b3dbd7c|2026-07-15T18:41:09-03:00|ativar camada V2.3.3
+ae11f88545c7d5da409794a4e88f3ecf12b44e3a|2026-07-15T18:41:24-03:00|atualizar versão para 2.3.3
+8d41276e09057ef0fa3f0fd52f061365f684e7ec|2026-07-15T18:41:36-03:00|permitir validação V2.3.2 em versões posteriores
+e45e41a1aebd0d9bccee88dcb0cc8c2d2f3a8b3f|2026-07-15T18:41:47-03:00|testar leitura da versão exibida
+6ff39e7eee65ef6d8a6c4af73fe63e3081a7dc0d|2026-07-15T18:41:57-03:00|adicionar validação V2.3.3
+8080d7aca868e307c12d55af00208e00e568c61c|2026-07-15T18:42:11-03:00|registrar mudanças da V2.3.3
+bb104f6615756170c78a16a406bdeb7afd04dd70|2026-07-15T18:42:23-03:00|documentar V2.3.3
+7cbe841ed41451bdc451d0e1a1a968d521c245b2|2026-07-15T18:43:13-03:00|sincronizar título da janela com VERSION
+e7438be97255f8b5a5ad9b89e9c6e7c20cc3bb50|2026-07-15T18:43:28-03:00|finalizar inicialização V2.3.3
+46fe23d8c2a6148f5c7bff528dbda78f938a6f4a|2026-07-15T18:43:48-03:00|validar inicialização final da V2.3.3
+6dba12ccddc73752fc8ef815b1912c04c75e25cd|2026-07-15T18:45:02-03:00|V2.3.3: versão no cabeçalho e histórico responsivo
+bb846500fbb6429240b771c465a0faa0edc9f3e3|2026-07-15T19:39:32-03:00|V2.4.1 — robustez de inicialização e instância única
+35bac48756cf64cc8ab3fa1e3b31d276865b6f45|2026-07-15T19:43:14-03:00|V2.4.2 — backup e recuperação da configuração
+ae005f9323b00a599cdaf4cb6532820f9b5c2857|2026-07-15T19:58:28-03:00|V2.4.2-R1 preservar cadeia de load e save
+c6648ce9c484a1199cf1eff68e7e8c6357cfabaf|2026-07-15T19:58:41-03:00|V2.4.2-R1 adicionar teste da cadeia de patches
+369e240d3f5ad9dbc1d030510f6517f882021084|2026-07-15T19:58:54-03:00|V2.4.2-R1 validar cadeia de patches
+e86e4d8e4e950ff4196f20bbc07e0acafaf0972a|2026-07-15T20:04:02-03:00|V2.4.2-R1 corrigir importação em runtime e CI
+cf70ff8e041a4ac027ebc262ea9ded7b6e4eebd0|2026-07-15T20:09:42-03:00|corrigir CI da V2.4.2-R1 com dependências reais
+dd83131d247d2130dc3d0d8c0aec4b922e6efbd4|2026-07-15T20:10:35-03:00|isolar teste V2.4.2-R1 da interface gráfica
+60b0136a43e046f5250e75f9db0d3f625574aaeb|2026-07-15T20:11:26-03:00|V2.4.2-R1 — corrigir cadeia de configuração
+da6fca369a47a349a100cec3133a0645d66d42d3|2026-07-15T20:43:36-03:00|feat(v2.4.3): adicionar serviço de diagnóstico e ferramentas
+5d14040bc66068f7e0d0adcd4c92154a3e7a235f|2026-07-15T20:44:00-03:00|feat(v2.4.3): adicionar tela de ferramentas e diagnóstico
+3736ac3c6f7bbed92f446cd068e987aee250190c|2026-07-15T20:44:20-03:00|feat(v2.4.3): integrar ferramentas ao entrypoint
+a3fdf79e24ed774f44beb771639563b6d86fa538|2026-07-15T20:44:30-03:00|chore(v2.4.3): atualizar versão publicada
+94968b49020a3944e5ad052455a8b85ff9017454|2026-07-15T20:44:48-03:00|ci: permitir versões posteriores à V2.4.2
+334c60a129cc5e3bcba6e7d18542e2f78ff21259|2026-07-15T20:45:01-03:00|test(v2.4.3): cobrir diagnóstico e relatório
+72e457f7690feaf86fb3e5a986af59fcec1f112f|2026-07-15T20:45:10-03:00|ci(v2.4.3): adicionar validação de diagnóstico e ferramentas
+f1a7dce86279949f93665eea1a641243fcaa4e58|2026-07-15T20:45:46-03:00|Merge pull request #12 from leon337/feat/v2.4.3-diagnostics-tools
+01096a69d88f30b9fb271177ce12b4286d3a3359|2026-07-15T20:51:23-03:00|noop
+c8f505e38a7184c5d52526c667ac353f5963aa80|2026-07-15T20:51:42-03:00|chore: remover arquivo temporário acidental
+c5f2756c2ef42a503fc844b4d87fb512306ed2c3|2026-07-15T20:51:49-03:00|chore: iniciar hotfix V2.4.3-R1
+761aca22312de3ebf9d317fb272b77ec50359ae1|2026-07-15T20:51:59-03:00|chore: remover marcador temporário
+30a479cca5016a486941c85064e6527d54373d39|2026-07-15T20:53:09-03:00|fix(v2.4.3-r1): tornar botões de ferramentas visíveis e responsivos
+1c35534ee82d91ba34a6eab098eacf586a286b93|2026-07-15T21:02:17-03:00|Merge V2.4.3-R1 — corrigir botões da aba Ferramentas
+6710b265a76b06994c76638562b01bb5482b0502|2026-07-16T01:23:08-03:00|docs(gov): criar estado oficial autossuficiente do projeto
+e8fce748424b81e5020a282bf91484ab730c481e|2026-07-16T01:23:42-03:00|docs(gov): definir testes objetivos de memória do projeto
+978c8a735ef1013369bdf39e37b543d7df951d9c|2026-07-16T01:24:32-03:00|docs(history): registrar engenharia, decisões e falhas da sessão
+efb98e17de3909926f210db52d278149868e0edb|2026-07-16T01:35:56-03:00|docs(governança): implantar memória GitHub testável (#14)
+fb266496ac1ab37eed193b2f2d530c0b79f1b609|2026-07-16T01:44:58-03:00|docs(governança): registrar falha de acesso no Teste 001
+96736e904991ca5a62ed1f50fdc7a145ed3abbb5|2026-07-16T01:46:01-03:00|docs(governança): separar testes de acesso e reconstrução
+13dd8dddbd67bbce9d2b8560f206e12d062774ea|2026-07-16T01:46:24-03:00|docs(governança): registrar PTP-GOV.5.1 acesso antes da reconstrução
+e02fa5f098065cdaab693cb700950a85a82ef762|2026-07-16T01:46:58-03:00|docs(governança): atualizar estado após falha de acesso
+5e4e387e988ca0f1ddf572e03a2c0d4d61adb07f|2026-07-16T01:47:27-03:00|Merge pull request #15 from leon337/docs/ptp-gov-5-teste-acesso-reconstrucao
+58973dcee5e0bbfe4445c96b8fd268cb866c373e|2026-07-16T01:57:50-03:00|docs(history): registrar histórico integral da arquitetura V2.5–V2.7
+35dca0aaea25d6816396e74fa2cb146d510cf6b3|2026-07-16T01:59:26-03:00|docs(history): adicionar anexo de contratos, PTM e schema conceitual
+f6d5503a65b8c44c946e3ed05b08879b876cc805|2026-07-16T01:59:56-03:00|docs(review): revisar completude do histórico integral PTP-GOV.5
+578b770cc30c2317b28b5747c958af5c9f26cd08|2026-07-16T03:13:31-03:00|docs(governance): alinhar Etapa 0 e causa raiz do Teste 001
+14af574c14b30a3337e48335b04160027ce5bd0e|2026-07-16T03:14:21-03:00|docs(governance): definir Etapa 0 e unificar Teste A
+0889f3fd70c588f440dd3612dc027deec850ad51|2026-07-16T03:14:46-03:00|docs(test): corrigir causa raiz do Teste 001
+4047bdf4333ef1e233c2184612ad68b6fdef9d22|2026-07-16T03:15:11-03:00|docs(ptp): adicionar PTP-GOV.5.2 gate de ambiente
+6b1d7aea88e20f67b4109b2d8313275859d661fd|2026-07-16T03:16:11-03:00|Merge PR #16: histórico integral e protocolo de memória alinhado
+17b0484645ddce2076b5390e3d10516c15cad4e6|2026-07-16T03:42:59-03:00|docs(test): registrar Etapa 0 e Testes A/B aprovados
+b051eb2b40ffa40a986b9d79c5fb2834f38516fa|2026-07-16T03:43:36-03:00|docs(state): registrar gates 0 A B como aprovados
+a173148bc9683280c275585607e1c6c2d4cabe9e|2026-07-16T03:44:03-03:00|docs(ptp): atualizar PTP-GOV.5.2 com gates aprovados
+089c5307ca5b5ff02605e6432c34881bfaabc657|2026-07-16T03:44:41-03:00|docs(memory): registrar gates 0 A B aprovados
+cb30276419bf35e97648b4e2cdbfd7f8c583f8f6|2026-07-16T03:52:04-03:00|docs(memory): registrar PASS do Teste C
+13771c28a908450667df73b14b4139f522f329eb|2026-07-16T03:52:39-03:00|docs(memory): liberar Auditoria Mestra após Teste C
+e8e539042b3db0224726796ad0fe1d679087c912|2026-07-16T03:53:11-03:00|docs(memory): concluir PTP-GOV.5.2 após Teste C
+97ccd213997739c8fe0cc47f481338a78d9b0c7e|2026-07-16T03:53:40-03:00|docs(memory): registrar PASS do Teste C
+ef0e1c00afff1a9c23782723283cdb9dd230db82|2026-07-16T04:24:02-03:00|docs(governance): adicionar instruções oficiais do projeto
+db14fbf908d4a973d881c1958a4a35eead9c2529|2026-07-16T04:24:36-03:00|docs(governance): adicionar tronco multichat oficial
+9fef811609d14fc04b73be4a3c26924356481450|2026-07-16T04:25:04-03:00|docs(review): publicar revisão crítica da migração
+fe4474083c18036190f1ae34cbc273e179f39a41|2026-07-16T04:25:33-03:00|docs(history): adicionar checkpoint final de migração
+eecd849204eb955037c8b63c0704217226d9759e|2026-07-16T04:26:19-03:00|docs(state): alinhar estado e roadmap da migração
+ccdb070c7ecb2d6900194c9413e25f93ec5928ba|2026-07-16T04:27:05-03:00|docs(governance): concluir pacote de migração para projeto limpo
+2399f25b08665236cf936d3aa4e070551fd3821f|2026-07-16T12:34:14-03:00|docs(governance): incorporar comportamento sênior e modelo operacional leve
+5658b61e9f50b42e15dfa8137ce3be7ed8085b6d|2026-07-16T12:34:38-03:00|docs(protocols): criar Skills oficiais do Robô de Listas
+5fd3fd81fa956ebc057c816c7db8b498938fb0a1|2026-07-16T12:35:11-03:00|docs(protocols): criar modelo oficial de resposta UI UX LX
+6ae5d8d05f957fce7936931b8852464ca8976228|2026-07-16T12:35:43-03:00|docs(review): registrar revisão crítica das melhorias operacionais leves
+4992ce624e762fc084e28ee53b520fd7b3f34c87|2026-07-16T12:36:13-03:00|docs(state): registrar governança operacional leve e testes pendentes
+f4f7826381cf3c43a3c0f60f3b6ea48f73add893|2026-07-16T12:36:46-03:00|Merge pull request #20 from leon337/docs/revisao-melhorias-operacionais-leves
+d08a4d569b3a6bcefb055de77d5a2e9fbcec6179|2026-07-16T12:46:16-03:00|docs(tests): registrar validação estática dos protocolos
+1d3e6fe3b867288ee8ecc518cc4ff1d28fd2a886|2026-07-16T12:47:00-03:00|docs(state): corrigir estado após PR 20 e início da validação
+a8989fb59f84d9fad742e19a81d94fe92960b259|2026-07-16T12:47:22-03:00|docs(protocols): adicionar plano de testes runtime
+a71fcc3230b621c8d3ebbc6fffd21276b952b0be|2026-07-16T12:47:33-03:00|docs(tests): registrar estado inicial da validação runtime
+27a73a929ba8ae16b7a3a7ff4866548d08b755f8|2026-07-16T12:47:45-03:00|docs(review): registrar revisão crítica da validação estática
+beb0fd41d191e254094ae95ac318f8a2f53a37fb|2026-07-16T12:48:17-03:00|Merge pull request #21 from leon337/docs/revisao-melhorias-operacionais-leves
+f5b22f9b5db7a70ac49725e82f3f4ae0c961859d|2026-07-16T12:59:12-03:00|docs(state): registrar PASS runtime R1 e R2
+8ed8c0c8e99c058a3d04e3dac90c00b32bf71bfe|2026-07-16T12:59:46-03:00|docs(trunk): alinhar bloqueio da Auditoria Mestra
+42f4c431edc0279e4a449f10bde5be3c02aceb14|2026-07-16T13:00:02-03:00|docs(tests): atualizar status runtime R1 e R2
+6f68dfde9397570aa54c1a1cd9067e43182b21cb|2026-07-16T13:00:21-03:00|docs(tests): registrar resultado runtime R1 e R2
+94e00ff36e0045df861605c9a525aeb87f35546c|2026-07-16T13:00:58-03:00|Merge pull request #22 from leon337/docs/registrar-runtime-r1-r2
+f68bff69aee5c7ab3141762b26c8971d31a62dc2|2026-07-16T13:08:01-03:00|docs(tests): registrar PASS runtime R3
+a34df20a237e240c52b73512e83518a375f9f3aa|2026-07-16T13:08:26-03:00|docs(tests): atualizar estado runtime após R3
+e3a19895bf6cf2ce35169a54817bf189f989dbf7|2026-07-16T13:13:51-03:00|docs(tests): registrar PASS runtime R4 no estado acumulado
+47930c0158d78f1e4beb10b1d02ecce861527439|2026-07-16T13:14:10-03:00|docs(tests): adicionar evidência runtime R4
+dac3dd2b29b05b76718f2d19064984e964a85d35|2026-07-16T13:14:31-03:00|Merge pull request #23 from leon337/docs/registrar-runtime-r4
+09aaff7704a1cbdc78cfdeecee5810a9a7088de1|2026-07-16T13:17:26-03:00|docs(checkpoint): registrar continuidade runtime R1-R5
+8d8d8b7990dd901cbbdba5ea53c10032f743b671|2026-07-16T13:17:39-03:00|docs(tests): registrar PASS runtime R5 checkpoint
+ffc9e2cf51977c112ac8bd264a50f86a60bf1d2a|2026-07-16T13:17:52-03:00|docs(tests): atualizar estado runtime após R5
+a33d14beab95c1e0a48f5c6e5d0038a516a13ff2|2026-07-16T13:18:26-03:00|docs(state): registrar checkpoint runtime R5
+2fbe13de536a28203b781cf3a71e17bfd93675c3|2026-07-16T13:18:54-03:00|docs/trunk): registrar checkpoint runtime R5
+3578321878fab1b4f7ca47fe044440aa61905d7c|2026-07-16T13:19:16-03:00|docs(checkpoint): registrar PASS runtime R5
+a2dc11d1e2d7a7227d0c5a0ddccfb992709bf692|2026-07-16T13:26:31-03:00|docs(tests): registrar resultado runtime R6
+1df649d6f5593902709e68f33db77a26c885b4a0|2026-07-16T13:26:45-03:00|docs(ptp): registrar fechamento e handoff R6 para R7
+b5f846cd92265d0aa104d59d8c5db019142ddb3b|2026-07-16T13:27:04-03:00|docs(tests): atualizar estado runtime após R6
+cd7cf07cc3cc45a2dc29432fc4ca85b41aeddca0|2026-07-16T13:27:36-03:00|docs(state): registrar fechamento runtime R6
+c054ffde2dfa516ce4b0136f01150e8d7a22f2db|2026-07-16T13:28:05-03:00|docs(trunk): registrar fechamento R6 e handoff R7
+8631e14f6e896e835825015e2103b5655337e365|2026-07-16T13:28:36-03:00|Merge pull request #25 from leon337/docs/runtime-r6-fechamento-20260716
+b8afdce6c488626e3cd7ebc981e8fdd98b957417|2026-07-16T13:29:23-03:00|docs(tests): consolidar gates finais do R6
+113253939bbd1a733df2493c72529f2beb4bd964|2026-07-16T13:29:38-03:00|docs(ptp): consolidar fechamento final R6
+103ff553c2d6c2041250d3a6998f34e3a0fee0b6|2026-07-16T13:29:57-03:00|Merge pull request #26 from leon337/docs/runtime-r6-finalizacao-20260716
+af87c2eb51bcf431b9e5263bb9f5772d1d546dd9|2026-07-16T13:38:42-03:00|docs(tests): registrar PASS runtime R7
+506113bfa75de1551301036e0480c9f3a112e927|2026-07-16T13:39:15-03:00|docs(tests): registrar aceitação final da pasta limpa
+c94a3eb4fe6d5cdb00680d106cb812d989486425|2026-07-16T13:39:28-03:00|docs(tests): concluir estado runtime e aceitação final
+5122b4f8490cb75810a89495d8b30f180af32c87|2026-07-16T13:39:58-03:00|docs(state): liberar Auditoria Mestra após aceitação final
+65fe591a772f60d69a4d43ab1c2ef5882b2dab64|2026-07-16T13:40:26-03:00|docs(trunk): concluir validação e ativar PTP-GOV.6
+cc0807e765bae959016313fad6d318415bb38f50|2026-07-16T13:40:50-03:00|Merge pull request #27 from leon337/docs/finalizar-runtime-r7
+6d36fc5592b6f241ab737d076dfcd94011de83aa|2026-07-16T13:42:02-03:00|docs(state): alinhar conclusão da LEA-11 no Linear
+0e2d7e98d863769be32a8bcb8b93684a61674aa3|2026-07-16T13:42:20-03:00|Merge pull request #28 from leon337/docs/alinhar-linear-pos-r7
+
+=== VALIDAÇÃO DO REPOSITÓRIO LOCAL ===
 LOCAL_HEAD_BEFORE=1c35534ee82d91ba34a6eab098eacf586a286b93
 LOCAL_HEAD_AFTER=1c35534ee82d91ba34a6eab098eacf586a286b93
 LOCAL_HEAD_UNCHANGED=YES
@@ -39,13 +510,3 @@ WORKTREE_STATUS_PRESERVED=YES
 CODE_CHANGED_BY_AUDIT=NO
 APPLICATION_EXECUTED=NO
 REAL_CLICK_EXECUTED=NO
-CHECKOUT_EXECUTED=NO
-TEMPORARY_WORKTREE_CREATED=NO
-
-FULL_RECURSIVE_TREE_RECONCILIATION=PASS
-FULL_ROOT_DIRECTORY_ENUMERATION=PASS
-ALL_METHODS_AND_NESTED_FUNCTIONS_COUNT=PASS
-COMMIT_HISTORY_EXHAUSTIVE_ENUMERATION=PASS
-EVIDENCE_INTEGRITY=PASS_WITH_SHA256
-
-Observação: o relatório bruto foi recebido e validado nesta execução. Este manifesto registra sua identidade criptográfica e os resultados necessários à rastreabilidade permanente no GitHub.
