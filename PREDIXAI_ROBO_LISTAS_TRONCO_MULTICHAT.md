@@ -15,8 +15,12 @@ CHECKPOINT_PROTOCOL_RUNTIME=PASS
 CLOSING_PROTOCOL_RUNTIME=PASS
 MULTICHAT_CONTINUITY_RUNTIME=PASS
 CLEAN_PROJECT_ACCEPTANCE=PASS
-LEA_11=READY_FOR_DONE_AFTER_SYNC
-AUDITORIA_MESTRA=READY
+LEA_11=DONE
+LEA_7=DONE
+LEA_10=DONE_AFTER_FINAL_SYNC
+AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS
+AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
+PTM_V2_5=READY
 IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ```
 
@@ -37,11 +41,11 @@ IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ✅ Runtime R6 — fechar com sincronização
 ✅ Runtime R7 — continuidade multichat
 ✅ Validação final da pasta limpa
+✅ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
+✅ Anexo A — Inventário factual do legado
+✅ PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A
 
-🟧 PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
-⬜ Anexo A — Inventário factual do legado
-⬜ PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A
-⬜ PTM V2.5 — Reconciliação com o legado
+🟧 PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC — Revisão crítica
 ⬜ PTM V2.6 — Observação, extração, análise e sinais
 ⬜ PTM V2.6-RC — Revisão crítica
@@ -70,49 +74,107 @@ R5_CHECKPOINT=PASS
 R6_FECHAR=PASS
 R7_MULTICHAT_CONTINUITY=PASS
 CLEAN_PROJECT_ACCEPTANCE=PASS
+LEA_11=DONE
 ```
-
-Saída: `LEA_11=DONE_AFTER_LINEAR_SYNC`.
 
 ## CHAT 01 — PTP-GOV.6 — Auditoria Mestra
 
-Pré-condição:
+Objetivo concluído:
+
+- Anexo A produzido;
+- 82 arquivos versionados inventariados;
+- 24 arquivos Python analisados por AST;
+- 18 classes, 90 métodos, 95 funções e 15 funções aninhadas registrados;
+- 158 commits enumerados;
+- testes, workflows, scripts, JSON, runtime, documentação e entrypoint reconciliados;
+- classificações `REUTILIZAR`, `ADAPTAR`, `SUBSTITUIR` e `DESCONTINUAR` registradas;
+- rastreabilidade preliminar com a PTM V2.5 registrada;
+- nenhum código alterado e nenhuma execução real realizada.
+
+Evidência canônica:
 
 ```text
-LEA_11=Done
-CLEAN_PROJECT_ACCEPTANCE=PASS
+docs/audits/PREDIXAI_PTP-GOV.6_ARVORE_AST_20260716.txt.gz.b64
+RAW_REPORT_SHA256=ac70a6bd4acfeb5b35bbfdbf15a7212247db9a8be438191463c54f4912b19428
+RAW_REPORT_SIZE_BYTES=36842
+RAW_REPORT_LINE_COUNT=512
 ```
 
-Objetivo:
-- produzir o Anexo A;
-- inventariar diretórios, arquivos, módulos, funções, entrypoints, configuração, persistência, scripts, testes, logs, backups e documentos;
-- classificar cada item como REUTILIZAR, ADAPTAR, SUBSTITUIR ou DESCONTINUAR;
-- registrar fonte, caminho, branch/commit, evidência, certeza, risco e rastreabilidade PTM;
-- não alterar código.
-
-Saída: `AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS`.
-
-Prompt específico:
+Saída:
 
 ```text
-Este chat trabalha exclusivamente na PTP-GOV.6.
-Inicie pelo Anexo A.
-Registre fonte, caminho, branch/commit, evidência, classificação, certeza, risco e rastreabilidade PTM.
-Não altere código.
-Não avance para PTM V2.5.
+AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS
+LEA_7=DONE
 ```
 
 ## CHAT 02 — PTP-GOV.6-RC
 
-Objetivo: revisão crítica da Auditoria Mestra e do Anexo A.
+Objetivo concluído: revisão crítica independente da Auditoria Mestra e do Anexo A.
 
-Gate: `AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS`.
+Primeira passagem:
+
+```text
+AUDITORIA_MESTRA_CRITICAL_REVIEW=FAIL
+CRITICAL_BLOCKERS=3
+```
+
+Bloqueadores encontrados:
+
+1. evidência bruta não disponível;
+2. estados documentais progressivos sem autoridade consolidada;
+3. campos obrigatórios incompletos em parte das matrizes.
+
+Remediações:
+
+- artefato integral imutável publicado;
+- documento pai e Apêndices 01–03 definidos como snapshots progressivos;
+- ordem de autoridade consolidada;
+- contrato de herança e matriz complementar por família publicados;
+- cópia textual não canônica substituída por ponteiro verificável;
+- threads críticos resolvidos.
+
+Gate final:
+
+```text
+AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+EVIDENCE_INTEGRITY=PASS
+CLASSIFICATION_MATRIX=PASS
+TRACEABILITY_MATRIX=PASS
+LEA_10=DONE_AFTER_FINAL_SYNC
+```
+
+Documento:
+
+```text
+docs/history/reviews/REVISAO_CRITICA_AUDITORIA_MESTRA_PTP-GOV.6_20260716.md
+```
 
 ## CHAT 03 — PTM V2.5
 
-Objetivo: reconciliar a PTM preliminar com o legado aprovado.
+Pré-condições:
 
-Gate: `PTM_V2_5_DRAFT_COMPLETE=PASS`.
+```text
+AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+PR_29_MERGED=PASS
+LEA_10=DONE
+```
+
+Objetivo:
+
+- reconciliar a PTM V2.5 preliminar com o legado aprovado;
+- confrontar contratos, entidades, estados, lifecycle, persistência e clientes;
+- preservar classificações e riscos do Anexo A;
+- não implementar código;
+- não gerar SQL ou migrations;
+- não antecipar execução real.
+
+Gate:
+
+```text
+PTM_V2_5_DRAFT_COMPLETE=PASS
+```
 
 ## CHAT 04 — PTM V2.5-RC
 
