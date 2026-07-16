@@ -11,9 +11,9 @@
 - Issue ativa: `LEA-12`
 - Branch de trabalho: `docs/ptp-mem-1-hardening`
 - Pull Request ativo: `#30`, Draft
-- Head observado antes da remediação: `b0019e2e92bf68f995ed024d351812316a891668`
-- Etapa atual: `REMEDIACAO_DA_REVISAO_INDEPENDENTE`
-- Boss Gate: `FAIL`
+- Head observado no último marco: `46d89286246223da2719204d019be4b9c6eeb584`
+- Etapa atual: `REMEDIACAO_CONCLUIDA_AGUARDANDO_NOVA_REVISAO`
+- Gate atual: `INDEPENDENT_CRITICAL_REVIEW_RETRY_REQUIRED`
 - Etapa do produto preservada: `PTM V2.5 — Reconciliação com o legado`
 - Issue do produto: `LEA-8`, `Todo`, não iniciada e sem bloqueio formal pela PTP-MEM.1
 
@@ -34,19 +34,19 @@ Divergência entre manifesto e documentação bloqueia avanço automático.
 ## Transição atual
 
 ```text
-schema_version=1.0.0
+schema_version=1.0.1
 state_revision=0
 transition_id=PTP-MEM.1-T01
-transition_status=BLOCKED
-github_sync_status=IN_PROGRESS
-linear_sync_status=PASS
+transition_status=READY_FOR_INDEPENDENT_REVIEW
+github_sync_status=PASS
+linear_sync_status=IN_PROGRESS
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 ```
 
 A `state_revision` permanece `0` enquanto a transição não estiver consolidada. Retentativas e remediações preservam o mesmo `transition_id`.
 
-## Revisão crítica independente
+## Primeira revisão crítica independente
 
 ```text
 INDEPENDENT_CRITICAL_REVIEW=FAIL
@@ -56,20 +56,25 @@ PR_30_MERGE_AUTHORIZATION=BLOCKED
 RUNTIME_R8_R24=NOT_EXECUTED
 ```
 
-Bloqueadores:
+## Remediação aplicada
 
-1. o estado vivo não refletia a existência da PR nº 30;
-2. `expected_pr_head` persistido na própria branch era autorreferente e inviável.
+```text
+BLOCKER_1_STATE_LIVE_STALE=CORRECTED
+BLOCKER_2_SELF_REFERENTIAL_PR_HEAD=CORRECTED
+SCHEMA_COVERAGE=EXPANDED
+CANONICAL_STATE_VOCABULARY=UNIFIED
+SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
+```
 
-Correção adotada:
+Novo contrato de concorrência:
 
 ```text
 OBSERVED_PR_HEAD = snapshot informativo persistido
-PRE_WRITE_EXPECTED_PR_HEAD = valor capturado externamente pela sessão
+PRE_WRITE_EXPECTED_PR_HEAD = valor efêmero capturado pela sessão
 CURRENT_PR_HEAD = valor consultado imediatamente antes da escrita
 ```
 
-A comparação pré-escrita não usa um SHA futuro armazenado no próprio commit.
+O valor esperado do PR head não é persistido para tentar prever o SHA do commit futuro.
 
 ## Estado consolidado anterior
 
@@ -103,7 +108,7 @@ DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
 INSTRUCTION_SOURCE_ALLOWLIST=PASS_DRAFT
 DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS_DRAFT
 BOOTSTRAP_MINIMAL_READ_SET=PASS_DRAFT
-CRITICAL_REVIEW=FAIL_REMEDIATION_IN_PROGRESS
+CRITICAL_REVIEW=PENDING_RETRY
 PR_MERGED=NO
 POST_MERGE_RECEIPT=NOT_STARTED
 APPLICATION_CODE_CHANGED=NO
@@ -143,12 +148,11 @@ INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
 
 ## Próxima ação
 
-1. concluir a remediação dos dois bloqueadores e três avisos;
-2. sincronizar manifesto, este arquivo, tronco e Linear;
-3. manter a PR nº 30 como Draft;
-4. repetir revisão crítica em chat limpo e somente leitura;
-5. integrar somente após Boss Gate independente `PASS`;
-6. executar a Transição B pós-merge em PR separado.
+1. sincronizar a remediação no Linear;
+2. manter a PR nº 30 como Draft;
+3. repetir revisão crítica em chat limpo e somente leitura;
+4. integrar somente após Boss Gate independente `PASS`;
+5. executar a Transição B pós-merge em PR separado.
 
 ## Proibições
 
