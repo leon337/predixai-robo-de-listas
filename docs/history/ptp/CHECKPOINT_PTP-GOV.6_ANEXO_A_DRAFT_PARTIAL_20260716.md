@@ -1,0 +1,174 @@
+# CHECKPOINT — PTP-GOV.6
+
+## Auditoria Mestra V2.4.3-R1 — Anexo A parcial
+
+## 1. Identificação
+
+```text
+PROJECT=PredixAI Robô de Listas
+REPOSITORY=leon337/predixai-robo-de-listas
+SOURCE_BRANCH=main
+SOURCE_COMMIT=0e2d7e98d863769be32a8bcb8b93684a61674aa3
+WORK_BRANCH=docs/ptp-gov-6-anexo-a
+DRAFT_PR=29
+LINEAR_ISSUE=LEA-7
+REAL_VERSION=V2.4.3-R1
+ACTIVE_STAGE=PTP-GOV.6
+FIRST_DELIVERABLE=ANEXO_A
+CHECKPOINT_STATUS=MISSION_CONTINUES
+CODE_CHANGED=NO
+SQL_GENERATED=NO
+MIGRATIONS_GENERATED=NO
+PTM_V2_5_STARTED=NO
+```
+
+## 2. Entregas publicadas
+
+1. `docs/audits/ANEXO_A_INVENTARIO_FACTUAL_LEGADO_PTP-GOV.6_20260716.md`;
+2. `docs/audits/ANEXO_A_APENDICE_01_IMPORTS_SIMBOLOS_JSON_PTP-GOV.6_20260716.md`.
+
+Commits:
+
+```text
+f0fe0cf30e41b5069c0d9628704c8d5ee3565712
+  docs(audit): iniciar Anexo A do legado V2.4.3-R1
+
+eed19865fbb0ddd5ac9fd9cc0e0ac5d30851f3f3
+  docs(audit): adicionar grafo de imports e schema JSON do legado
+```
+
+## 3. Concluído nesta passagem
+
+```text
+REPOSITORY_AND_BASE_CONFIRMED=PASS
+GITHUB_LINEAR_RECONCILIATION=PASS_WITH_DOCUMENT_GAPS
+PRIMARY_ENTRYPOINT_CONFIRMED=PASS
+APP_PYTHON_MODULES_CONFIRMED=17
+TEST_FILES_CONFIRMED=7
+VERSIONED_WORKFLOWS_CONFIRMED=9
+DIRECT_IMPORT_GRAPH=PASS_PRELIMINARY
+CORE_SYMBOL_INDEX=PASS_PRELIMINARY
+JSON_SCHEMA_4_INVENTORY=PASS_PRELIMINARY
+RUNTIME_ARTIFACT_MODEL=PASS_PRELIMINARY
+REAL_CLICK_PATHS=PASS
+RUNTIME_VERSION_CONSISTENCY=PASS
+DOCUMENTATION_ONLY_BRANCH=PASS
+```
+
+## 4. Achados críticos
+
+### 4.1 Dois caminhos de clique real
+
+1. teste de calibração em `app/main.py::_test_both_coordinates`;
+2. execução agendada em `app/main.py::_execution_loop`, substituída por `app/bootstrap_v231.py::execution_loop`.
+
+```text
+CALIBRATION_REAL_CLICK=BLOCKED
+SCHEDULED_REAL_CLICK=BLOCKED
+REAL_CLICK_EXECUTED_DURING_AUDIT=NO
+RISK=CRITICAL
+```
+
+### 4.2 Cadeia de monkey patching
+
+O entrypoint instala patches sequenciais sobre `PredixAIRoboListas`. A ordem de instalação é dependência comportamental.
+
+Classificação: `SUBSTITUIR` o mecanismo, preservando comportamentos úteis como requisitos de regressão.
+
+### 4.3 Persistência
+
+O legado usa `config/config_predixai_robo_listas.json`, schema 4, com perfis, listas, sinais e histórico de sessões.
+
+Classificação: `ADAPTAR` como fonte de migração e `SUBSTITUIR` como fonte global definitiva futura.
+
+Nenhum banco, SQL ou migration foi criado.
+
+### 4.4 Divergências documentais
+
+```text
+README_VERSION_CONSISTENCY=FAIL
+README_ENTRYPOINT_CONSISTENCY=FAIL
+CHANGELOG_VERSION_COVERAGE=FAIL
+MULTICHAT_TRUNK_LEA_11_SYNC=FAIL
+```
+
+- `README.md` declara `1.0.0` e recomenda `python app/main.py`;
+- `VERSION` contém `2.4.3`;
+- o entrypoint real é `run.sh -> app/bootstrap_v23_entry.py`;
+- `CHANGELOG.md` termina em `2.3.3`;
+- o tronco multichat ainda registra `LEA_11=READY_FOR_DONE_AFTER_SYNC`.
+
+## 5. Classificações preliminares principais
+
+```text
+MAIN_UI_DOMAIN=ADAPTAR
+PATCH_CHAIN=SUBSTITUIR
+JSON_MIGRATION_SOURCE=ADAPTAR
+JSON_FINAL_SOURCE_OF_TRUTH=SUBSTITUIR
+RUNTIME_GUARD=ADAPTAR
+CONFIG_SAFETY=ADAPTAR
+DIAGNOSTICS=ADAPTAR
+PURE_PREFLIGHT=REUTILIZAR
+VERSION_READER=REUTILIZAR
+PYNPUT_ACTIVE_EXECUTION=DESCONTINUAR_NO_BASELINE_V2_5
+HISTORICAL_DOCUMENTS=REUTILIZAR_AS_MEMORY_ONLY
+README=SUBSTITUIR
+CHANGELOG=ADAPTAR
+```
+
+## 6. Pendências obrigatórias
+
+```text
+FULL_RECURSIVE_TREE_RECONCILIATION=PENDING
+ROOT_FILE_INVENTORY_COMPLETE=PENDING
+ALL_DOCS_CLASSIFICATION=PENDING
+ALL_METHODS_AND_NESTED_FUNCTIONS_COUNT=PENDING
+JSON_FIELD_OPTIONALITY_MATRIX=PENDING
+STATUS_TRANSITION_MATRIX=PENDING
+TEST_FUNCTION_MATRIX=PENDING
+WORKFLOW_CROSS_COVERAGE_MATRIX=PENDING
+COMMIT_HISTORY_RECONCILIATION=PENDING
+README_CORRECTION=PENDING
+CHANGELOG_COMPLETION=PENDING
+TRUNK_SYNC=PENDING
+PROJECT_STATE_UPDATE_FOR_DRAFT=PENDING
+AUDITORIA_MESTRA_DRAFT_COMPLETE=PENDING
+```
+
+## 7. Bloqueios e proibições
+
+```text
+TECHNICAL_BLOCKER=NONE
+IMPLEMENTATION_V2_5=PROHIBITED
+CODE_CHANGE=PROHIBITED_DURING_AUDIT
+SQL=PROHIBITED
+MIGRATIONS=PROHIBITED
+REAL_CLICK_EXECUTION=PROHIBITED
+PTM_V2_5_ADVANCE=BLOCKED
+LEA_10_START=BLOCKED
+PR_29_MERGE=BLOCKED_UNTIL_DRAFT_COMPLETE
+```
+
+## 8. Próxima ação exata
+
+```text
+1. Reabrir a missão pela Skill iniciar.
+2. Ler PROJECT_STATE.md, LEA-7 e a Draft PR #29.
+3. Continuar na branch docs/ptp-gov-6-anexo-a.
+4. Produzir matriz detalhada de testes e workflows.
+5. Reconciliar arquivos raiz e documentação.
+6. Completar matriz de transições e opcionalidade do JSON.
+7. Não corrigir código.
+8. Não avançar para LEA-10.
+```
+
+## 9. Gate de checkpoint
+
+```text
+CHECKPOINT_DOCUMENTED=PASS
+GITHUB_BRANCH_PRESERVED=PASS
+DRAFT_PR_PRESERVED=PASS
+LINEAR_SYNC_REQUIRED=YES
+MISSION_COMPLETE=NO
+NEXT_STAGE_UNLOCKED=NO
+```
