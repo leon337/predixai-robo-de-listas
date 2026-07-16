@@ -7,15 +7,15 @@ main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
 real_version: "V2.4.3-R1"
 
 active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
-active_stage: "REMEDIACAO_RC3_CONCLUIDA_AGUARDANDO_RC4"
+active_stage: "REMEDIACAO_RC4_CONCLUIDA_AGUARDANDO_RC5"
 active_linear_issue: "LEA-12"
 active_pull_request: 30
 working_branch: "docs/ptp-mem-1-hardening"
 observed_pr_head: "2d3ccb53e7ff22866f75664bd8adf15e06edbd95"
 
-current_gate: "INDEPENDENT_CRITICAL_REVIEW_RC4_REQUIRED"
+current_gate: "INDEPENDENT_CRITICAL_REVIEW_RC5_REQUIRED"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTAR_RC4_SOMENTE_LEITURA"
+next_action: "EXECUTAR_RC5_SOMENTE_LEITURA"
 blockers: []
 
 transition_id: "PTP-MEM.1-T01"
@@ -28,7 +28,7 @@ bound_transition_id: "PTP-MEM.1-T01"
 
 github_sync_status: "PASS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-16T21:14:34Z"
+last_sync_at_utc: "2026-07-16T23:05:00Z"
 
 mission_lock:
   locked: true
@@ -42,7 +42,7 @@ mission_lock:
   transition_id_snapshot: "PTP-MEM.1-T01"
   started_at_utc: "2026-07-16T20:25:11Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T21:14:34Z"
+  heartbeat_at_utc: "2026-07-16T23:05:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
