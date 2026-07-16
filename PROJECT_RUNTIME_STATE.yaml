@@ -1,4 +1,4 @@
-schema_version: "1.0.1"
+schema_version: "1.0.2"
 state_revision: 0
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
@@ -7,28 +7,28 @@ main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
 real_version: "V2.4.3-R1"
 
 active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
-active_stage: "REMEDIACAO_CONCLUIDA_AGUARDANDO_NOVA_REVISAO"
+active_stage: "REMEDIACAO_RC3_CONCLUIDA_AGUARDANDO_RC4"
 active_linear_issue: "LEA-12"
 active_pull_request: 30
 working_branch: "docs/ptp-mem-1-hardening"
-observed_pr_head: "46d89286246223da2719204d019be4b9c6eeb584"
+observed_pr_head: "2d3ccb53e7ff22866f75664bd8adf15e06edbd95"
 
-current_gate: "INDEPENDENT_CRITICAL_REVIEW_RETRY_REQUIRED"
+current_gate: "INDEPENDENT_CRITICAL_REVIEW_RC4_REQUIRED"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTAR_NOVA_REVISAO_INDEPENDENTE_SOMENTE_LEITURA"
+next_action: "EXECUTAR_RC4_SOMENTE_LEITURA"
 blockers: []
 
 transition_id: "PTP-MEM.1-T01"
 transition_status: "READY_FOR_INDEPENDENT_REVIEW"
 from_state: "PTP-GOV.6-RC_MERGED"
 to_state: "PTP-MEM.1_DRAFT_READY_FOR_INDEPENDENT_REVIEW"
-expected_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
-expected_state_revision: 0
-expected_transition_id: "PTP-MEM.1-T01"
+baseline_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+baseline_state_revision: 0
+bound_transition_id: "PTP-MEM.1-T01"
 
 github_sync_status: "PASS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-16T20:53:43Z"
+last_sync_at_utc: "2026-07-16T21:14:34Z"
 
 mission_lock:
   locked: true
@@ -37,10 +37,12 @@ mission_lock:
   owner: "GPT builder chat"
   session_id: "PTP-MEM.1-BUILDER-01"
   base_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
-  observed_pr_head: "46d89286246223da2719204d019be4b9c6eeb584"
+  observed_pr_head: "2d3ccb53e7ff22866f75664bd8adf15e06edbd95"
+  state_revision_snapshot: 0
+  transition_id_snapshot: "PTP-MEM.1-T01"
   started_at_utc: "2026-07-16T20:25:11Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T20:53:43Z"
+  heartbeat_at_utc: "2026-07-16T21:14:34Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -62,3 +64,4 @@ safety:
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
+  persisted_expected_fields_prohibited: true
