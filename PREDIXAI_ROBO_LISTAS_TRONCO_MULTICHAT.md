@@ -19,9 +19,12 @@ IMPLEMENTACAO=NAO_AUTORIZADA
 MISSION=PTP-MEM.1
 LINEAR_ISSUE=LEA-12
 WORKING_BRANCH=docs/ptp-mem-1-hardening
+ACTIVE_PULL_REQUEST=30
+OBSERVED_PR_HEAD=b0019e2e92bf68f995ed024d351812316a891668
 TRANSITION_ID=PTP-MEM.1-T01
 STATE_REVISION=0
-TRANSITION_STATUS=IN_PROGRESS
+TRANSITION_STATUS=BLOCKED
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_FAILED
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 PR_MERGE=NOT_AUTHORIZED
@@ -38,7 +41,9 @@ A PTP-MEM.1 endurece a continuidade e não altera automaticamente dependências 
 ✅ PTP-GOV.6 — Auditoria Mestra
 ✅ PTP-GOV.6-RC — Revisão crítica
 🟧 PTP-MEM.1 — Endurecimento GitHub–Linear–Multichat
-⬜ PTP-MEM.1-RC — Revisão crítica independente
+🟥 PTP-MEM.1-RC — Primeira revisão independente: FAIL
+🟨 PTP-MEM.1-RM — Remediação dos bloqueadores
+⬜ PTP-MEM.1-RC2 — Nova revisão independente
 ⬜ PTP-MEM.1-PM — Recibo pós-merge
 ⬜ PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC
@@ -84,52 +89,50 @@ LEA_7=DONE
 
 ### CHAT 02 — PTP-GOV.6-RC
 
-Primeira passagem:
-
 ```text
-AUDITORIA_MESTRA_CRITICAL_REVIEW=FAIL
-CRITICAL_BLOCKERS=3
-```
-
-Após remediação:
-
-```text
-AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
+FIRST_REVIEW=FAIL
+FIRST_CRITICAL_BLOCKERS=3
+FINAL_REVIEW=PASS
+FINAL_CRITICAL_BLOCKERS=0
 PR_29_MERGED=PASS
 LEA_10=DONE
 ```
 
-### CHAT 03 — PTP-MEM.1
+### CHAT 03 — PTP-MEM.1 — construção
 
-Objetivo:
+Entregas:
 
-- criar manifesto operacional estruturado;
-- definir autoridade por domínio;
-- criar transições idempotentes;
-- estabelecer concorrência otimista e lock consultivo;
-- proteger contra escrita obsoleta;
-- limitar `iniciar` a bootstrap somente leitura;
-- criar especificações R8–R24;
-- separar PR principal de recibo pós-merge.
+- manifesto operacional estruturado;
+- autoridade por domínio;
+- transições idempotentes;
+- concorrência otimista e lock consultivo;
+- Skill `iniciar` somente leitura;
+- especificações R8–R24;
+- separação entre PR principal e recibo pós-merge.
 
-Estado do draft:
+### CHAT 04 — PTP-MEM.1-RC — revisão independente
 
 ```text
-POST_MERGE_STATE_RECONCILIATION=PASS_DRAFT
-PERMANENT_INSTRUCTIONS_STATE_FREE=PASS_DRAFT
-FIELD_LEVEL_AUTHORITY_DEFINED=PASS_DRAFT
-MACHINE_READABLE_STATE_MANIFEST=PASS_DRAFT
-STATE_SCHEMA_VERSIONED=PASS_DRAFT
-IDEMPOTENT_TRANSITION_PROTOCOL=PASS_DRAFT
-PARTIAL_SYNC_RECOVERY=PASS_DRAFT
-CONCURRENT_CHAT_CONTROL=PASS_DRAFT
-STALE_WRITE_PROTECTION=PASS_DRAFT
-START_SKILL_BOUNDARY=PASS_DRAFT
-DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
-TEST_RUNTIME_EXECUTED=NO
-INDEPENDENT_CRITICAL_REVIEW=PENDING
+INDEPENDENT_CRITICAL_REVIEW=FAIL
+CRITICAL_BLOCKERS=2
+MAJOR_WARNINGS=3
+PR_30_MERGE_AUTHORIZATION=BLOCKED
 ```
+
+Bloqueadores:
+
+1. manifesto, PROJECT_STATE e tronco não refletiam a PR nº 30 aberta;
+2. `expected_pr_head` persistido na própria branch era autorreferente.
+
+Remediação definida:
+
+```text
+OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
+PRE_WRITE_EXPECTED_PR_HEAD=EXTERNAL_SESSION_VALUE
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+```
+
+A revisão de estado permanece `0`; a mesma transição `PTP-MEM.1-T01` será retomada até consolidação.
 
 ## Transições obrigatórias
 
@@ -143,6 +146,8 @@ UPDATE_TRUNK
 UPDATE_LINEAR
 OPEN_PR
 INDEPENDENT_REVIEW
+REMEDIATE_IF_FAIL
+REPEAT_INDEPENDENT_REVIEW
 MERGE_AFTER_PASS
 ```
 
