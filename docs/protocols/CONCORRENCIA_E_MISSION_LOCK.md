@@ -10,21 +10,22 @@ STALE_WRITE_PROTECTION=SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION
 
 O mission lock informa posse lógica e intenção de escrita. Ele não impede tecnicamente outro chat ou usuário de alterar GitHub ou Linear.
 
-## Separação dos heads
+## Semântica canônica
 
 ```text
-OBSERVED_PR_HEAD
-PRE_WRITE_EXPECTED_PR_HEAD
-CURRENT_PR_HEAD
+OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
 ```
 
-- `OBSERVED_PR_HEAD`: snapshot informativo persistido no manifesto;
-- `PRE_WRITE_EXPECTED_PR_HEAD`: valor capturado externamente pela sessão antes da escrita;
-- `CURRENT_PR_HEAD`: valor consultado no GitHub imediatamente antes da escrita.
+- `OBSERVED_PR_HEAD`: snapshot informativo persistido;
+- `PRE_WRITE_EXPECTED_*`: valores efêmeros capturados pela sessão imediatamente antes da escrita;
+- `CURRENT_*`: valores consultados nas fontes vivas imediatamente antes da mutação.
 
-É proibido persistir na própria branch um `expected_pr_head` que tente representar o SHA do commit que ainda será criado. Isso produziria uma expectativa autorreferente e imediatamente obsoleta.
+Nenhum campo persistido pode usar o prefixo `EXPECTED_` para representar uma expectativa de pré-escrita.
 
-## Campos do lock
+## Campos persistidos do lock
 
 ```text
 MISSION_LOCKED=YES|NO
@@ -32,16 +33,18 @@ LOCK_OWNER
 LOCK_SESSION_ID
 LOCK_BASE_SHA
 LOCK_OBSERVED_PR_HEAD
+LOCK_STATE_REVISION_SNAPSHOT
+LOCK_TRANSITION_ID_SNAPSHOT
 LOCK_STARTED_AT
 LOCK_EXPIRES_AT
 LOCK_HEARTBEAT_AT
-EXPECTED_STATE_REVISION
-EXPECTED_TRANSITION_ID
 ```
+
+Os campos `LOCK_STATE_REVISION_SNAPSHOT` e `LOCK_TRANSITION_ID_SNAPSHOT` são informativos. Não substituem as expectativas efêmeras da sessão.
 
 ## Pré-condições antes de cada escrita
 
-A sessão deve capturar os valores esperados e, imediatamente antes da mutação, consultar os valores atuais:
+A sessão captura os valores esperados e consulta os valores atuais imediatamente antes da mutação:
 
 ```text
 PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
@@ -49,8 +52,6 @@ PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD
 PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
 PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
 ```
-
-O valor esperado do PR head é memória efêmera da sessão, não campo autoritativo persistido na branch.
 
 Se qualquer igualdade falhar:
 
@@ -65,18 +66,18 @@ STATE_RECONSTRUCTION_REQUIRED=YES
 Após cada commit confirmado:
 
 1. consultar o novo `CURRENT_PR_HEAD`;
-2. atualizar o snapshot efêmero da sessão;
-3. não reescrever o manifesto somente para tentar armazenar o SHA do próprio commit;
-4. atualizar `OBSERVED_PR_HEAD` apenas em marcos de sincronização úteis;
+2. renovar `PRE_WRITE_EXPECTED_PR_HEAD` apenas na memória efêmera da sessão;
+3. não reescrever o manifesto para armazenar o SHA do próprio commit;
+4. atualizar `OBSERVED_PR_HEAD` somente em marcos úteis de sincronização;
 5. confirmar novamente main, revisão e transição antes da próxima escrita.
 
 ## Aquisição lógica
 
 1. reconstruir GitHub, PR, manifesto e Linear;
-2. confirmar ausência de lock válido incompatível;
-3. capturar main SHA, PR head, state revision e transition id;
-4. registrar owner, session e snapshot informativo;
-5. só então iniciar escrita documental.
+2. confirmar ausência de lock consultivo incompatível;
+3. capturar os quatro valores `PRE_WRITE_EXPECTED_*`;
+4. registrar apenas snapshots informativos do lock;
+5. executar a escrita somente após validar as quatro invariantes.
 
 ## Heartbeat
 
