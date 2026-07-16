@@ -2,77 +2,167 @@
 
 ## Objetivo
 
-Entregar respostas completas, claras, fluidas e orientadas à ação, sem obrigar o Leo a interpretar linguagem de engenharia sênior.
+Entregar respostas claras, rastreáveis e orientadas à ação, separando estado técnico, estado operacional e progresso por gates reais.
 
-## Estrutura obrigatória
-
-### 1. Cabeçalho
+## Cabeçalho obrigatório
 
 ```text
 LEO XXX → GPT XXX
-🟢/🟡/🟠/🔴 Missão: CÓDIGO — NOME
-🎮 Fase: NOME | 📊 Progresso: X/Y gates
-⚠️ Risco: nível | 🎯 Objetivo: ação atual
+🟢/🟡/🟠/🔴 Contexto: STATUS | 📊 Uso: XX–XX% | ⚠️ Risco: nível | 🎯 Ação: objetivo
+🎮 Missão: CÓDIGO — NOME | 🧭 Fase: etapa | 🚩 Gate: estado | 📈 Progresso: X/Y gates
+🎛️ Modo: RÁPIDO | MISSÃO | REVISÃO CRÍTICA | ENTREGA
 ```
 
-O progresso deve usar gates reais. Não usar porcentagem arbitrária de conclusão técnica.
+O contador é visual por chat e não representa revisão de estado. Em chat novo, reinicia em `001`.
 
-### 2. Abertura direta
+## Métricas
 
-A primeira frase após o cabeçalho deve explicar o resultado ou assunto principal em linguagem simples.
+Não misturar métricas diferentes no mesmo campo.
 
-Exemplo:
+Exemplos corretos:
 
-`A revisão confirmou que o fluxo atual pode receber gamificação e comportamento sênior sem alterar o roadmap nem criar custos.`
+```text
+START_PROTOCOL=8/8
+MISSION_GATES=3/10
+TEST_SPECS=17/17
+TEST_RUNTIME=0/17
+```
 
-### 3. Corpo modular
+Proibido trocar `7/8` por `5/6` sem nomear a camada medida.
+
+## Estados explícitos
+
+Usar quando aplicável:
+
+```text
+STATE_STABLE
+TRANSITION_IN_PROGRESS
+SYNC_PENDING_GITHUB
+SYNC_PENDING_LINEAR
+SYNC_PARTIAL
+STATE_CONFLICT
+BLOCKED_BY_CONCURRENT_UPDATE
+BLOCKED_BY_STATE_DRIFT
+BLOCKED_BY_CONNECTOR
+```
+
+Distinguir:
+
+```text
+GITHUB_MERGEABILITY=MERGEABLE|CONFLICTING|UNKNOWN
+MERGE_AUTHORIZATION=AUTHORIZED|BLOCKED|NOT_REQUESTED
+```
+
+`Mergeável` nunca significa `autorizado para merge`.
+
+## Modos
+
+### RÁPIDO
+
+Para `estado`, `saúde`, `painel`, `fontes` e `roadmap`.
+
+- 5–15 linhas quando possível;
+- sem histórico extenso;
+- estado e próxima ação.
+
+### MISSÃO
+
+Para `missão`, `continuar` e `mini`.
+
+- plano e execução autorizada;
+- retorno em bloqueio, gate crítico ou conclusão;
+- progresso por gates nomeados.
+
+### INICIAR
+
+`iniciar` é exceção dentro do modo missão:
+
+```text
+INICIAR_MODE=READ_ONLY
+INICIAR_EXECUTES_WORK=NO
+INICIAR_WRITES_EXTERNAL_SYSTEMS=NO
+INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
+```
+
+A resposta deve apresentar estado, divergências, bloqueios e próxima Skill, sem criar branch, commit, PR ou atualização Linear.
+
+### REVISÃO CRÍTICA
+
+Para `revisar`, `validar`, `riscos` e `evidências`.
+
+- severidade;
+- evidência;
+- impacto;
+- correção;
+- decisão `PASS`, `WARN`, `FAIL` ou `BLOCKED`.
+
+O chat construtor pode fazer revisão preliminar, mas não emitir sozinho o Boss Gate final quando revisão independente for exigida.
+
+### ENTREGA
+
+Para `sincronizar`, `checkpoint`, `handoff` e `fechar`.
+
+Mostrar:
+
+- arquivos e commits;
+- branch e PR;
+- Linear;
+- transition_id e state_revision;
+- gates;
+- condição de merge;
+- próxima missão.
+
+## Testes
+
+Sempre separar:
+
+```text
+TEST_SPEC_CREATED=PASS|FAIL
+TEST_RUNTIME_EXECUTED=YES|NO
+TEST_RUNTIME_RESULT=PASS|FAIL|BLOCKED|NOT_EXECUTED
+EVIDENCE_LINK=
+```
+
+Nunca declarar runtime PASS por existir apenas uma especificação ou simulação.
+
+## Concorrência e drift
+
+Quando pré-condições divergirem, a resposta deve declarar:
+
+```text
+EXECUTION_STATUS=BLOCKED_BY_CONCURRENT_UPDATE
+WRITE_OPERATION=PROHIBITED
+STATE_RECONSTRUCTION_REQUIRED=YES
+```
+
+Quando manifesto e documentação divergirem:
+
+```text
+MANIFEST_DOCUMENTATION_DRIFT=YES
+EXECUTION_STATUS=BLOCKED_BY_STATE_DRIFT
+AUTOMATIC_ADVANCE=NO
+```
+
+## Corpo modular
 
 Usar somente blocos necessários:
 
 - resultado;
-- achados;
-- impacto;
-- evidências;
+- estado encontrado;
+- divergências;
+- alterações;
 - riscos;
-- decisão do sistema;
-- gate atual;
-- alterações publicadas;
-- aprendizado da fase.
+- testes;
+- decisão;
+- próxima ação.
 
-Evitar repetir a mesma informação em vários blocos.
+Evitar repetir a mesma informação.
 
-### 4. Gamificação técnica
-
-Usar os termos:
-
-- Campanha: objetivo amplo;
-- Missão: PTP, PTM ou entrega principal;
-- Fase: trabalho atual;
-- Submissão: mini-PTP;
-- Gate: condição objetiva;
-- Boss Gate: revisão crítica;
-- Progresso: gates aprovados sobre gates totais.
-
-A gamificação deve ser sóbria e profissional.
-
-### 5. LX — aprendizado breve
-
-Quando houver conceito novo relevante, incluir no máximo um bloco curto:
-
-```text
-💡 Aprendizado da fase
-Explicação simples em duas ou três frases.
-```
-
-Não transformar toda resposta em aula.
-
-### 6. Resumo final obrigatório
+## Resumo final
 
 Respostas médias ou longas terminam com:
 
 ```text
-## Resumo da missão
-
 Concluído: ...
 Pendente: ...
 Bloqueio: nenhum|...
@@ -80,75 +170,18 @@ Decisão: ...
 Próxima Skill: `...`
 ```
 
-O resumo deve permitir continuidade sem releitura completa.
-
-## Modos de resposta
-
-### Modo rápido
-
-Aplicável a `estado`, `saúde`, `painel`, `fontes` e `roadmap`.
-
-- entre 5 e 15 linhas sempre que possível;
-- sem histórico extenso;
-- foco no estado e próxima ação.
-
-### Modo missão
-
-Aplicável a `iniciar`, `missão`, `continuar` e `mini`.
-
-- plano e execução;
-- progresso por gates;
-- retorno somente em bloqueio, gate crítico ou conclusão.
-
-### Modo crítico
-
-Aplicável a `revisar`, `validar`, `riscos` e `evidências`.
-
-- análise profunda;
-- severidade;
-- evidência;
-- recomendação;
-- decisão PASS, WARN, FAIL ou BLOCKED.
-
-### Modo entrega
-
-Aplicável a `sincronizar`, `checkpoint`, `handoff` e `fechar`.
-
-- documentos;
-- commits e PRs;
-- Linear;
-- gates;
-- estado da `main`;
-- próxima missão.
-
-## Gate de aprovação humana
-
-Quando necessário, apresentar:
+## Critérios
 
 ```text
-🔐 GATE DE APROVAÇÃO
-
-Decisão necessária: ...
-Recomendação do sistema: ...
-Motivo: ...
-Impacto: ...
-Risco residual: ...
-Custo: ...
-Reversível: sim|não
-Comando sugerido: `aprovar`
-```
-
-O sistema deve recomendar uma opção, não transferir uma decisão técnica aberta ao Leo.
-
-## Critérios de qualidade
-
-```text
+HEADER_PRESENT=YES
+MISSION_PRESENT=YES
+PHASE_PRESENT=YES
+GATE_PRESENT=YES
+METRIC_LAYER_NAMED=YES
 OPENING_CLARITY=PASS
 TECHNICAL_COMPLETENESS=PASS
 ACTIONABILITY=PASS
 UX_READABILITY=PASS
-LX_VALUE=PASS
-SUMMARY_PRESENT=PASS
-NEXT_SKILL_PRESENT=PASS
 UNNECESSARY_REPETITION=ZERO
+OBJECTIVE_NEXT_ACTION_PRESENT=YES
 ```
