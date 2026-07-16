@@ -11,7 +11,7 @@
 - **Missão de validação atual:** `LEA-11 — Validar protocolos da pasta limpa`
 - **Primeira entrega posterior:** `Anexo A — Inventário factual do legado`
 - **Próxima revisão posterior:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
-- **Status:** TESTES RUNTIME R1–R5 APROVADOS — R6 E R7 PENDENTES
+- **Status:** TESTES RUNTIME R1–R6 APROVADOS — R7 PENDENTE
 - **Data:** 2026-07-16
 
 ## Ordem obrigatória de leitura
@@ -63,7 +63,9 @@ Runtime R2 — modelo de resposta ............... PASS
 Runtime R3 — Skill estado ..................... PASS
 Runtime R4 — gate crítico ..................... PASS
 Runtime R5 — checkpoint ....................... PASS
-Runtime R6–R7 ................................. PENDENTES
+Runtime R6 — fechar ........................... PASS
+Runtime R7 — continuidade multichat ........... PENDENTE
+Validação final da pasta limpa ................ PENDENTE
 Auditoria Mestra V2.4.3-R1 .................... BLOQUEADA ATÉ LEA-11=Done
 Anexo A — Inventário factual .................. NÃO INICIADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
@@ -78,7 +80,9 @@ Implementação V2.5 ............................ NÃO AUTORIZADA
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md`
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R6_RESULTADO_20260716.md`
 - `docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md`
+- `docs/history/ptp/FECHAMENTO_LEA-11_RUNTIME_R1_R6_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MIGRACAO_PROJETO_LIMPO_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MELHORIAS_OPERACIONAIS_LEVES_20260716.md`
 - `docs/history/ptp/CHECKPOINT_FINAL_MIGRACAO_PROJETO_LIMPO_20260716.md`
@@ -103,7 +107,7 @@ RESPONSE_MODEL_RUNTIME=PASS
 STATE_SKILL_RUNTIME=PASS
 CRITICAL_GATE_RUNTIME=PASS
 CHECKPOINT_PROTOCOL_RUNTIME=PASS
-CLOSING_PROTOCOL_RUNTIME=PENDING
+CLOSING_PROTOCOL_RUNTIME=PASS
 MULTICHAT_CONTINUITY_RUNTIME=PENDING
 CLEAN_PROJECT_ACCEPTANCE=PENDING
 EXTERNAL_AUTOMATION=DEFERRED
@@ -115,13 +119,14 @@ FAILURE_CODES=NONE
 
 ```text
 1. Manter LEA-11 em andamento no Linear.
-2. Executar o teste R6 com a Skill: fechar.
-3. O fechamento deve concluir somente a missão documental temporária de validação e preparar o teste R7.
-4. Abrir novo chat na mesma pasta temporária e enviar apenas: iniciar.
-5. Validar continuidade multichat e reconstrução dos resultados anteriores.
-6. Não anexar ZIP, arquivos ou checkpoint.
-7. Somente após R6, R7 e CLEAN_PROJECT_ACCEPTANCE=PASS, criar a pasta definitiva e iniciar PTP-GOV.6.
-8. Não alterar código, gerar SQL ou migrations físicas.
+2. Abrir um novo chat na mesma pasta temporária.
+3. Enviar apenas: iniciar.
+4. Confirmar reconstrução por GitHub e Linear sem histórico externo.
+5. Confirmar que os resultados R1–R6 são encontrados.
+6. Confirmar R7 como fase atual e próxima ação correta.
+7. Não anexar ZIP, arquivos ou checkpoint.
+8. Somente após R7 e CLEAN_PROJECT_ACCEPTANCE=PASS, concluir LEA-11 e liberar a pasta definitiva.
+9. Não iniciar PTP-GOV.6, alterar código, gerar SQL ou migrations físicas.
 ```
 
 ## Roadmap oficial com revisões críticas
@@ -140,8 +145,8 @@ FAILURE_CODES=NONE
 ✅ Runtime R3 — Skill estado
 ✅ Runtime R4 — gate crítico
 ✅ Runtime R5 — checkpoint sem transporte manual
-🟧 Runtime R6 — fechar com sincronização
-⬜ Runtime R7 — continuidade multichat
+✅ Runtime R6 — fechar com sincronização
+🟧 Runtime R7 — continuidade multichat
 ⬜ Validação final da pasta limpa
 
 ⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
@@ -178,17 +183,15 @@ NÃO iniciar a Auditoria Mestra antes da LEA-11=Done.
 
 ```text
 LIGHTWEIGHT_OPERATIONAL_REVIEW=PASS
-PR_20_MERGED=PASS
-PR_21_MERGED=PASS
-PR_22_MERGED=PASS
-LINEAR_LEA_11=IN_PROGRESS
 PROTOCOL_STATIC_VALIDATION=PASS
 START_PROTOCOL_RUNTIME=PASS
 RESPONSE_MODEL_RUNTIME=PASS
 STATE_SKILL_RUNTIME=PASS
 CRITICAL_GATE_RUNTIME=PASS
 CHECKPOINT_PROTOCOL_RUNTIME=PASS
-PROTOCOL_RUNTIME_REMAINING=R6_R7
+CLOSING_PROTOCOL_RUNTIME=PASS
+PROTOCOL_RUNTIME_REMAINING=R7
+LINEAR_LEA_11=IN_PROGRESS
 NEW_CHATGPT_PROJECT=PENDING_VALIDATION
 PTP_GOV_6=BLOCKED_UNTIL_PROTOCOL_TESTS_PASS
 IMPLEMENTATION=NAO_AUTORIZADA
