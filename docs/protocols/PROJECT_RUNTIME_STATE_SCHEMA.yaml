@@ -1,0 +1,185 @@
+schema_version: "1.0.2"
+title: "PROJECT_RUNTIME_STATE contract"
+required:
+  - schema_version
+  - state_revision
+  - project
+  - repository
+  - main_branch
+  - main_head
+  - real_version
+  - active_mission
+  - active_stage
+  - active_linear_issue
+  - active_pull_request
+  - working_branch
+  - observed_pr_head
+  - current_gate
+  - gate_status
+  - next_action
+  - blockers
+  - transition_id
+  - transition_status
+  - baseline_main_sha
+  - baseline_state_revision
+  - bound_transition_id
+  - github_sync_status
+  - linear_sync_status
+  - mission_lock
+  - implementation_authorized
+  - code_change_authorized
+  - sql_authorized
+  - migration_authorized
+  - real_click_authorized
+  - source_authority
+  - safety
+
+types:
+  schema_version: string
+  state_revision: integer
+  project: string
+  repository: string
+  main_branch: string
+  main_head: string
+  real_version: string
+  active_mission: string
+  active_stage: string
+  active_linear_issue: [string, null]
+  active_pull_request: [integer, null]
+  working_branch: [string, null]
+  observed_pr_head: [string, null]
+  current_gate: string
+  gate_status: string
+  next_action: string
+  blockers: array
+  transition_id: string
+  transition_status: string
+  baseline_main_sha: string
+  baseline_state_revision: integer
+  bound_transition_id: string
+  github_sync_status: string
+  linear_sync_status: string
+  mission_lock: object
+  implementation_authorized: boolean
+  code_change_authorized: boolean
+  sql_authorized: boolean
+  migration_authorized: boolean
+  real_click_authorized: boolean
+  source_authority: object
+  safety: object
+
+persisted_field_policy:
+  expected_prefix_allowed: false
+  allowed_semantics:
+    - BASELINE
+    - BOUND_IDENTITY
+    - OBSERVED_INFORMATIONAL_SNAPSHOT
+  prohibited_fields:
+    - expected_main_sha
+    - expected_pr_head
+    - expected_state_revision
+    - expected_transition_id
+
+state_revision_contract:
+  minimum: 0
+  monotonic: true
+  increment_once_per_consolidated_transition: true
+  preserve_during_partial_retry: true
+  bound_to_transition_id: true
+  update_only_after_preconditions: true
+
+allowed_transition_status:
+  - PREPARED
+  - IN_PROGRESS
+  - PARTIAL
+  - BLOCKED
+  - READY_FOR_INDEPENDENT_REVIEW
+  - APPROVED_FOR_MERGE
+  - MERGED_PENDING_POST_MERGE_CONFIRMATION
+  - COMPLETE
+
+allowed_sync_status:
+  - NOT_STARTED
+  - IN_PROGRESS
+  - PASS
+  - FAIL
+  - PENDING
+
+allowed_gate_status:
+  - NOT_STARTED
+  - IN_PROGRESS
+  - PASS
+  - WARN
+  - FAIL
+  - BLOCKED
+
+allowed_execution_status:
+  - READ_ONLY
+  - AUTHORIZED_DOCUMENTATION_ONLY
+  - BLOCKED_BY_CONCURRENT_UPDATE
+  - BLOCKED_BY_STATE_DRIFT
+  - BLOCKED_BY_CONNECTOR_FAILURE
+  - BLOCKED_BY_SCHEMA_MISMATCH
+  - AWAITING_INDEPENDENT_REVIEW
+  - AWAITING_POST_MERGE_CONFIRMATION
+  - COMPLETE
+
+pr_head_contract:
+  persisted_field: "observed_pr_head"
+  persisted_semantics: "informational snapshot of last observed PR head"
+  pre_write_expected_field: "PRE_WRITE_EXPECTED_PR_HEAD"
+  pre_write_expected_persistence: false
+  current_field: "CURRENT_PR_HEAD"
+  current_source: "live GitHub query immediately before write"
+  self_referential_expected_head_prohibited: true
+
+mission_lock_contract:
+  enforcement: "ADVISORY"
+  concurrency_model: "OPTIMISTIC"
+  required_fields:
+    - locked
+    - enforcement
+    - concurrency_model
+    - owner
+    - session_id
+    - base_sha
+    - observed_pr_head
+    - state_revision_snapshot
+    - transition_id_snapshot
+    - started_at_utc
+    - expires_at_utc
+    - heartbeat_at_utc
+
+pre_write_invariants:
+  - "PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA"
+  - "PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD"
+  - "PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION"
+  - "PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID"
+
+on_invariant_failure:
+  execution_status: "BLOCKED_BY_CONCURRENT_UPDATE"
+  write_operation: "PROHIBITED"
+  state_reconstruction_required: true
+
+cross_document_invariants:
+  - "manifest active mission matches PROJECT_STATE active mission"
+  - "manifest active Linear issue matches Linear"
+  - "manifest active PR matches GitHub when non-null"
+  - "manifest current gate matches the human state"
+  - "manifest prohibitions are not weakened by another document"
+
+on_documentation_drift:
+  manifest_documentation_drift: true
+  execution_status: "BLOCKED_BY_STATE_DRIFT"
+  automatic_advance: false
+
+schema_migration:
+  backward_compatibility_required: true
+  migration_document_required: true
+  previous_schema_preserved_in_history: true
+  state_revision_must_not_reset: true
+
+validation_status:
+  manual_contract_validation: "PASS"
+  runtime_validation_executed: false
+  runtime_validation_result: "NOT_EXECUTED"

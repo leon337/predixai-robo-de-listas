@@ -1,246 +1,140 @@
 # PREDIXAI ROBÔ DE LISTAS — TRONCO MULTICHAT OFICIAL
 
-## Estado de entrada
+## Estado consolidado
 
 ```text
-VERSÃO_REAL=V2.4.3-R1
-PTP-GOV.5.2=CONCLUÍDA
-MEMORY_ACCEPTANCE_SUITE=PASS
-PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS
-RESPONSE_MODEL_RUNTIME=PASS
-STATE_SKILL_RUNTIME=PASS
-CRITICAL_GATE_RUNTIME=PASS
-CHECKPOINT_PROTOCOL_RUNTIME=PASS
-CLOSING_PROTOCOL_RUNTIME=PASS
-MULTICHAT_CONTINUITY_RUNTIME=PASS
-CLEAN_PROJECT_ACCEPTANCE=PASS
-LEA_11=DONE
-LEA_7=DONE
-LEA_10=DONE_AFTER_FINAL_SYNC
-AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS
-AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
-PTM_V2_5=READY
-IMPLEMENTAÇÃO=NAO_AUTORIZADA
-```
-
-## Roadmap oficial
-
-```text
-✅ PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória
-✅ Etapa 0 — Verificação do Ambiente
-✅ Teste A — Acesso Documental
-✅ Teste B — Reconstrução
-✅ Teste C — Continuidade
-✅ Validação estática dos protocolos
-✅ Runtime R1 — iniciar sem memória manual
-✅ Runtime R2 — modelo de resposta UI/UX/LX
-✅ Runtime R3 — Skill estado
-✅ Runtime R4 — gate crítico
-✅ Runtime R5 — checkpoint sem transporte manual
-✅ Runtime R6 — fechar com sincronização
-✅ Runtime R7 — continuidade multichat
-✅ Validação final da pasta limpa
-✅ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
-✅ Anexo A — Inventário factual do legado
-✅ PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A
-
-🟧 PTM V2.5 — Reconciliação com o legado
-⬜ PTM V2.5-RC — Revisão crítica
-⬜ PTM V2.6 — Observação, extração, análise e sinais
-⬜ PTM V2.6-RC — Revisão crítica
-⬜ PTM V2.7 — Execução controlada, reconciliação e estabilização
-⬜ PTM V2.7-RC — Revisão crítica
-⬜ PTP-ARCH.1 — Consolidação cruzada
-⬜ PTP-ARCH.1-RC — Revisão crítica
-⬜ PTP-ADR.1 — Consolidação dos ADRs
-⬜ PTP-ADR.1-RC — Revisão crítica
-⬜ PTP-DOC.1 — Documento Mestre
-⬜ PTP-DOC.1-RC — Revisão crítica final
-⬜ PTP-ARCH.2 — Congelamento da Arquitetura V1.0
-⬜ PTP-READY.1 — Prontidão para implementação
-```
-
-## CHAT 00 — LEA-11 — Validação dos protocolos
-
-Estado final:
-
-```text
-R1_INICIAR=PASS
-R2_RESPONSE_MODEL=PASS
-R3_ESTADO=PASS
-R4_CRITICAL_GATE=PASS
-R5_CHECKPOINT=PASS
-R6_FECHAR=PASS
-R7_MULTICHAT_CONTINUITY=PASS
-CLEAN_PROJECT_ACCEPTANCE=PASS
-LEA_11=DONE
-```
-
-## CHAT 01 — PTP-GOV.6 — Auditoria Mestra
-
-Objetivo concluído:
-
-- Anexo A produzido;
-- 82 arquivos versionados inventariados;
-- 24 arquivos Python analisados por AST;
-- 18 classes, 90 métodos, 95 funções e 15 funções aninhadas registrados;
-- 158 commits enumerados;
-- testes, workflows, scripts, JSON, runtime, documentação e entrypoint reconciliados;
-- classificações `REUTILIZAR`, `ADAPTAR`, `SUBSTITUIR` e `DESCONTINUAR` registradas;
-- rastreabilidade preliminar com a PTM V2.5 registrada;
-- nenhum código alterado e nenhuma execução real realizada.
-
-Evidência canônica:
-
-```text
-docs/audits/PREDIXAI_PTP-GOV.6_ARVORE_AST_20260716.txt.gz.b64
-RAW_REPORT_SHA256=ac70a6bd4acfeb5b35bbfdbf15a7212247db9a8be438191463c54f4912b19428
-RAW_REPORT_SIZE_BYTES=36842
-RAW_REPORT_LINE_COUNT=512
-```
-
-Saída:
-
-```text
-AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS
-LEA_7=DONE
-```
-
-## CHAT 02 — PTP-GOV.6-RC
-
-Objetivo concluído: revisão crítica independente da Auditoria Mestra e do Anexo A.
-
-Primeira passagem:
-
-```text
-AUDITORIA_MESTRA_CRITICAL_REVIEW=FAIL
-CRITICAL_BLOCKERS=3
-```
-
-Bloqueadores encontrados:
-
-1. evidência bruta não disponível;
-2. estados documentais progressivos sem autoridade consolidada;
-3. campos obrigatórios incompletos em parte das matrizes.
-
-Remediações:
-
-- artefato integral imutável publicado;
-- documento pai e Apêndices 01–03 definidos como snapshots progressivos;
-- ordem de autoridade consolidada;
-- contrato de herança e matriz complementar por família publicados;
-- cópia textual não canônica substituída por ponteiro verificável;
-- threads críticos resolvidos.
-
-Gate final:
-
-```text
-AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
-EVIDENCE_INTEGRITY=PASS
-CLASSIFICATION_MATRIX=PASS
-TRACEABILITY_MATRIX=PASS
-LEA_10=DONE_AFTER_FINAL_SYNC
-```
-
-Documento:
-
-```text
-docs/history/reviews/REVISAO_CRITICA_AUDITORIA_MESTRA_PTP-GOV.6_20260716.md
-```
-
-## CHAT 03 — PTM V2.5
-
-Pré-condições:
-
-```text
-AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
+VERSAO_REAL=V2.4.3-R1
+AUDITORIA_MESTRA=PASS
+PTP_GOV_6_RC=PASS
 PR_29_MERGED=PASS
+LEA_7=DONE
 LEA_10=DONE
+PTM_V2_5=READY_FOR_DOCUMENTAL_RECONCILIATION
+IMPLEMENTACAO=NAO_AUTORIZADA
 ```
 
-Objetivo:
-
-- reconciliar a PTM V2.5 preliminar com o legado aprovado;
-- confrontar contratos, entidades, estados, lifecycle, persistência e clientes;
-- preservar classificações e riscos do Anexo A;
-- não implementar código;
-- não gerar SQL ou migrations;
-- não antecipar execução real.
-
-Gate:
+## Missão metodológica ativa
 
 ```text
-PTM_V2_5_DRAFT_COMPLETE=PASS
+MISSION=PTP-MEM.1
+LINEAR_ISSUE=LEA-12
+WORKING_BRANCH=docs/ptp-mem-1-hardening
+ACTIVE_PULL_REQUEST=30
+TRANSITION_ID=PTP-MEM.1-T01
+STATE_REVISION=0
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RC5_PASS
+LOCK_ENFORCEMENT=ADVISORY
+CONCURRENCY_MODEL=OPTIMISTIC
+PR_MERGE=NOT_AUTHORIZED_PENDING_FORMAL_DECISION
 ```
 
-## CHAT 04 — PTM V2.5-RC
+A PTP-MEM.1 não altera automaticamente dependências funcionais da PTM V2.5. A LEA-8 permanece `Todo`, não iniciada e sem bloqueio formal criado por esta missão.
 
-Gate: `PTM_V2_5_CRITICAL_REVIEW=PASS`.
+## Roadmap
 
-## CHAT 05 — PTM V2.6
+```text
+✅ PTP-GOV.5.2 — Memória e continuidade inicial
+✅ Runtime R1–R7
+✅ Aceitação da pasta limpa
+✅ PTP-GOV.6 — Auditoria Mestra
+✅ PTP-GOV.6-RC — Revisão crítica
+🟧 PTP-MEM.1 — Endurecimento GitHub–Linear–Multichat
+🟥 PTP-MEM.1-RC1 — FAIL
+✅ PTP-MEM.1-RM1 — Remediação concluída
+🟥 PTP-MEM.1-RC2 — FAIL
+✅ PTP-MEM.1-RM2 — Remediação concluída
+🟥 PTP-MEM.1-RC3 — FAIL
+✅ PTP-MEM.1-RM3 — Remediação concluída
+🟥 PTP-MEM.1-RC4 — FAIL
+✅ PTP-MEM.1-RM4 — Remediação concluída
+✅ PTP-MEM.1-RC5 — PASS independente
+⏳ PTP-MEM.1-MG — Aguardando autorização formal de merge
+⬜ PTP-MEM.1-PM — Recibo pós-merge
+⬜ PTM V2.5 — Reconciliação com o legado
+⬜ PTM V2.5-RC
+⬜ PTM V2.6
+⬜ PTM V2.6-RC
+⬜ PTM V2.7
+⬜ PTM V2.7-RC
+⬜ Consolidação cruzada
+⬜ ADRs
+⬜ Documento Mestre
+⬜ Congelamento da Arquitetura V1.0
+⬜ Prontidão para implementação
+```
 
-Gate: `PTM_V2_6_DRAFT_COMPLETE=PASS`.
+## Histórico resumido da PTP-MEM.1
 
-## CHAT 06 — PTM V2.6-RC
+A construção criou manifesto, schema, autoridade por domínio, transições idempotentes, concorrência otimista, lock consultivo, Skill `iniciar` somente leitura, política de retenção e especificações R8–R24.
 
-Gate: `PTM_V2_6_CRITICAL_REVIEW=PASS`.
+```text
+RC1=FAIL; CRITICAL_BLOCKERS=2
+RC2=FAIL; CRITICAL_BLOCKERS=2
+RC3=FAIL; CRITICAL_BLOCKERS=1
+RC4=FAIL; CRITICAL_BLOCKERS=1
+RC5=PASS; CRITICAL_BLOCKERS=0
+```
 
-## CHAT 07 — PTM V2.7
+Resultado técnico da RC5:
 
-Gate: `PTM_V2_7_DRAFT_COMPLETE=PASS`.
+```text
+PERSISTED_EXPECTED_FIELDS=ABSENT
+PRE_WRITE_EXPECTED_FIELDS=EPHEMERAL_ONLY
+MANIFEST_SCHEMA_VALIDATION=PASS
+MANIFEST_DOCUMENTATION_ALIGNMENT=PASS
+SCHEMA_MIGRATION_POLICY=PASS
+RUNTIME_R8_R24=NOT_EXECUTED
+SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
+```
 
-## CHAT 08 — PTM V2.7-RC
+## Transições obrigatórias
 
-Gate: `PTM_V2_7_CRITICAL_REVIEW=PASS`.
+### Transição A — implementação documental
 
-## CHAT 09 — PTP-ARCH.1
+```text
+CREATE_DOCUMENTS
+UPDATE_MANIFEST_PRELIMINARY
+UPDATE_PROJECT_STATE
+UPDATE_TRUNK
+UPDATE_LINEAR
+OPEN_PR
+INDEPENDENT_REVIEW
+REMEDIATE_IF_FAIL
+REPEAT_INDEPENDENT_REVIEW
+MERGE_AFTER_PASS_AND_FORMAL_AUTHORIZATION
+```
 
-Gate: `CROSS_CONSOLIDATION_COMPLETE=PASS`.
+A Transição A está tecnicamente aprovada, mas ainda não integrada.
 
-## CHAT 10 — PTP-ARCH.1-RC
+### Transição B — confirmação pós-merge
 
-Gate: `CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS`.
+```text
+READ_REAL_MERGE_COMMIT
+CONFIRM_MAIN
+CONFIRM_LINEAR
+HANDOFF_ACTIVATED=PASS
+INCREMENT_STATE_REVISION_ONCE
+CLOSE_TRANSITION_ID
+CREATE_POST_MERGE_RECEIPT
+OPEN_SEPARATE_SMALL_PR
+MERGE_RECEIPT_PR
+```
 
-## CHAT 11 — PTP-ADR.1
-
-Gate: `ADR_SET_COMPLETE=PASS`.
-
-## CHAT 12 — PTP-ADR.1-RC
-
-Gate: `ADR_CRITICAL_REVIEW=PASS`.
-
-## CHAT 13 — PTP-DOC.1
-
-Gate: `MASTER_DOCUMENT_DRAFT_COMPLETE=PASS`.
-
-## CHAT 14 — PTP-DOC.1-RC
-
-Gate: `MASTER_DOCUMENT_CRITICAL_REVIEW=PASS`.
-
-## CHAT 15 — PTP-ARCH.2
-
-Gate: `ARCHITECTURE_V1_0_FROZEN=PASS`.
-
-## CHAT 16 — PTP-READY.1
-
-Gate: `IMPLEMENTATION_READINESS=GO|GO_WITH_CONDITIONS|NO_GO`.
-
-## Regra de atualização
-
-Atualizar este documento sempre que uma etapa ou revisão iniciar/concluir, surgir mini-PTP, mudar escopo, dependência, versão, gate ou sequência. Nenhuma mudança de roadmap é válida apenas no chat.
+A missão só termina após a Transição B.
 
 ## Gate universal
 
 ```text
 CURRENT_STAGE_DOCUMENTED=PASS
-CRITICAL_REVIEW_STATUS=PASS|PENDING
+STATE_MANIFEST_VALID=PASS
+STATE_DOCUMENTATION_ALIGNED=PASS
+CRITICAL_REVIEW_STATUS=PASS
 CRITICAL_BLOCKERS=0
 PROJECT_STATE_UPDATED=PASS
 TRUNK_UPDATED=PASS
-LINEAR_UPDATED=PASS
-PR_MERGED=PASS
-HANDOFF_CHECKPOINT=PASS
+LINEAR_UPDATED=IN_PROGRESS
+MAIN_PR_MERGED=NO
+POST_MERGE_RECEIPT=PENDING
+APPLICATION_CODE_CHANGED=NO
 ```

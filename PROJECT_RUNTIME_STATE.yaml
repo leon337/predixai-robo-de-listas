@@ -1,0 +1,72 @@
+schema_version: "1.0.2"
+state_revision: 0
+project: "PredixAI Robô de Listas"
+repository: "leon337/predixai-robo-de-listas"
+main_branch: "main"
+main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+real_version: "V2.4.3-R1"
+
+active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
+active_stage: "RC5_APROVADA_AGUARDANDO_DECISAO_FORMAL_DE_MERGE"
+active_linear_issue: "LEA-12"
+active_pull_request: 30
+working_branch: "docs/ptp-mem-1-hardening"
+observed_pr_head: "f8df1ddc0b2ec4a87429d0fd5e4cbb0efb57e4a4"
+
+current_gate: "INDEPENDENT_CRITICAL_REVIEW_RC5_PASS"
+gate_status: "PASS"
+next_action: "AGUARDAR_AUTORIZACAO_FORMAL_PARA_SAIR_DE_DRAFT_E_INTEGRAR_PR_30"
+blockers: []
+
+transition_id: "PTP-MEM.1-T01"
+transition_status: "APPROVED_FOR_MERGE"
+from_state: "PTP-GOV.6-RC_MERGED"
+to_state: "PTP-MEM.1_DRAFT_APPROVED_AWAITING_MERGE_AUTHORIZATION"
+baseline_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+baseline_state_revision: 0
+bound_transition_id: "PTP-MEM.1-T01"
+
+github_sync_status: "PASS"
+linear_sync_status: "IN_PROGRESS"
+last_sync_at_utc: "2026-07-16T23:15:00Z"
+
+mission_lock:
+  locked: true
+  enforcement: "ADVISORY"
+  concurrency_model: "OPTIMISTIC"
+  owner: "GPT builder chat"
+  session_id: "PTP-MEM.1-BUILDER-01"
+  base_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+  observed_pr_head: "f8df1ddc0b2ec4a87429d0fd5e4cbb0efb57e4a4"
+  state_revision_snapshot: 0
+  transition_id_snapshot: "PTP-MEM.1-T01"
+  started_at_utc: "2026-07-16T20:25:11Z"
+  expires_at_utc: null
+  heartbeat_at_utc: "2026-07-16T23:15:00Z"
+
+implementation_authorized: false
+code_change_authorized: false
+sql_authorized: false
+migration_authorized: false
+real_click_authorized: false
+
+source_authority:
+  operational_state: "PROJECT_RUNTIME_STATE.yaml"
+  human_state: "PROJECT_STATE.md"
+  roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  task_status_and_dependencies: "Linear"
+  unmerged_work: "active Pull Request and working branch"
+  consolidated_code_and_docs: "GitHub main"
+
+safety:
+  manifest_documentation_drift: false
+  execution_status: "AWAITING_MERGE_AUTHORIZATION"
+  automatic_advance: false
+  stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
+  lock_enforcement: "ADVISORY"
+  persisted_expected_fields_prohibited: true
+  independent_critical_review: "PASS"
+  critical_blockers: 0
+  runtime_r8_r24: "NOT_EXECUTED"
+  schema_runtime_validation: "NOT_EXECUTED"
+  pr_merge_authorization: "BLOCKED_PENDING_FORMAL_DECISION"

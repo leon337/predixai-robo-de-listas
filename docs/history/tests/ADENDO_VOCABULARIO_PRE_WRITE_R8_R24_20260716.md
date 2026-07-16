@@ -1,0 +1,32 @@
+# Adendo — Vocabulário canônico de pré-escrita para R8–R24
+
+Este adendo preserva a especificação histórica `MEMORY_RUNTIME_R8_R24_SPEC_20260716.md` e corrige seu vocabulário operacional sem reescrever o registro original.
+
+## Contrato canônico
+
+```text
+OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
+PRE_WRITE_EXPECTED_MAIN_SHA=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_TRANSITION_ID=EPHEMERAL_SESSION_VALUE
+CURRENT_MAIN_SHA=LIVE_GITHUB_QUERY
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+CURRENT_STATE_REVISION=LIVE_MANIFEST_READ
+CURRENT_TRANSITION_ID=LIVE_MANIFEST_READ
+SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
+```
+
+## Aplicação aos testes
+
+Toda ocorrência histórica de `EXPECTED_MAIN_SHA`, `EXPECTED_PR_HEAD`, `EXPECTED_STATE_REVISION` e `EXPECTED_TRANSITION_ID` deve ser interpretada, para execução futura, como os respectivos campos `PRE_WRITE_EXPECTED_*` efêmeros.
+
+Os testes R8–R24 permanecem apenas especificados:
+
+```text
+TEST_SPEC_CREATED=PASS
+TEST_RUNTIME_EXECUTED=NO
+TEST_RUNTIME_RESULT=NOT_EXECUTED
+```
+
+Este adendo não declara qualquer resultado runtime.
