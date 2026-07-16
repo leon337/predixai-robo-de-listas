@@ -112,7 +112,7 @@ e8fce748424b81e5020a282bf91484ab730c481e
 978c8a735ef1013369bdf39e37b543d7df951d9c
   registrar engenharia, decisões e falhas
 
-ef b98e17de3909926f210db52d278149868e0edb
+efb98e17de3909926f210db52d278149868e0edb
   integrar memória GitHub testável
 
 58973dcee5e0bbfe4445c96b8fd268cb866c373e
@@ -124,8 +124,6 @@ ef b98e17de3909926f210db52d278149868e0edb
 0e2d7e98d863769be32a8bcb8b93684a61674aa3
   alinhar PROJECT_STATE após conclusão da LEA-11
 ```
-
-Correção de registro: o SHA `efb98e17de3909926f210db52d278149868e0edb` é o marco de integração da memória GitHub testável.
 
 ## 7. Conclusões arquiteturais do histórico
 
