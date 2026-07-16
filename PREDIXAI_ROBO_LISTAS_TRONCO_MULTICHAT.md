@@ -10,7 +10,11 @@ MEMORY_ACCESS_TEST_A=PASS
 MEMORY_RECONSTRUCTION_TEST_B=PASS
 MEMORY_CONTINUITY_TEST_C=PASS
 MEMORY_ACCEPTANCE_SUITE=PASS
-AUDITORIA_MESTRA=LIBERADA
+PROTOCOL_STATIC_VALIDATION=PASS
+START_PROTOCOL_RUNTIME=PASS_OBSERVED
+RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
+PROTOCOL_RUNTIME_REMAINING=R3_R4_R5_R6_R7
+AUDITORIA_MESTRA=BLOQUEADA_ATÉ_LEA_11_DONE
 IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ```
 
@@ -22,8 +26,13 @@ IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ✅ Teste A — Acesso Documental
 ✅ Teste B — Reconstrução
 ✅ Teste C — Continuidade
+✅ Validação estática dos protocolos
+✅ Runtime R1 — iniciar sem memória manual
+✅ Runtime R2 — modelo de resposta UI/UX/LX
+🟧 Runtime R3–R7 — estado, gate crítico, checkpoint, fechar e continuidade
+⬜ Validação final da pasta limpa
 
-🟧 PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
+⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
 ⬜ Anexo A — Inventário factual do legado
 ⬜ PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A
 
@@ -52,7 +61,20 @@ IMPLEMENTAÇÃO=NAO_AUTORIZADA
 
 ## 3. Chats oficiais
 
+### CHAT 00 — LEA-11 — Validação dos protocolos
+
+Objetivo:
+- comprovar início sem checkpoint, ZIP ou upload;
+- comprovar resposta UI/UX/LX;
+- validar Skills, gate crítico, checkpoint, fechamento e continuidade multichat;
+- corrigir divergências antes da pasta definitiva.
+
+Saída: `CLEAN_PROJECT_ACCEPTANCE=PASS`
+
 ### CHAT 01 — PTP-GOV.6 — Auditoria Mestra
+
+Pré-condição:
+`LEA_11=Done` e `CLEAN_PROJECT_ACCEPTANCE=PASS`.
 
 Objetivo:
 - produzir o Anexo A;
