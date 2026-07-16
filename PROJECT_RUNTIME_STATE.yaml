@@ -1,0 +1,64 @@
+schema_version: "1.0.0"
+state_revision: 0
+project: "PredixAI Robô de Listas"
+repository: "leon337/predixai-robo-de-listas"
+main_branch: "main"
+main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+real_version: "V2.4.3-R1"
+
+active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
+active_stage: "FASE_1 — Correção do estado pós-merge"
+active_linear_issue: "LEA-12"
+active_pull_request: null
+working_branch: "docs/ptp-mem-1-hardening"
+expected_pr_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+
+current_gate: "POST_MERGE_STATE_RECONCILIATION"
+gate_status: "IN_PROGRESS"
+next_action: "Corrigir estado vivo vencido e publicar os contratos iniciais de continuidade"
+blockers: []
+
+transition_id: "PTP-MEM.1-T01"
+transition_status: "IN_PROGRESS"
+from_state: "PTP-GOV.6-RC_MERGED"
+to_state: "PTP-MEM.1_DRAFT_READY_FOR_INDEPENDENT_REVIEW"
+expected_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+expected_state_revision: 0
+expected_transition_id: "PTP-MEM.1-T01"
+
+github_sync_status: "IN_PROGRESS"
+linear_sync_status: "PASS"
+last_sync_at_utc: "2026-07-16T20:25:11Z"
+
+mission_lock:
+  locked: true
+  enforcement: "ADVISORY"
+  concurrency_model: "OPTIMISTIC"
+  owner: "GPT builder chat"
+  session_id: "PTP-MEM.1-BUILDER-01"
+  base_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+  pr_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+  started_at_utc: "2026-07-16T20:25:11Z"
+  expires_at_utc: null
+  heartbeat_at_utc: "2026-07-16T20:25:11Z"
+
+implementation_authorized: false
+code_change_authorized: false
+sql_authorized: false
+migration_authorized: false
+real_click_authorized: false
+
+source_authority:
+  operational_state: "PROJECT_RUNTIME_STATE.yaml"
+  human_state: "PROJECT_STATE.md"
+  roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  task_status_and_dependencies: "Linear"
+  unmerged_work: "active Pull Request and working branch"
+  consolidated_code_and_docs: "GitHub main"
+
+safety:
+  manifest_documentation_drift: false
+  execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
+  automatic_advance: false
+  stale_write_protection: "SHA_AND_STATE_REVISION"
+  lock_enforcement: "ADVISORY"
