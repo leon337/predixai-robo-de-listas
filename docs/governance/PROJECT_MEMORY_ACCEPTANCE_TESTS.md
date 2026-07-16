@@ -1,35 +1,128 @@
-# Testes de Aceitação da Memória do Projeto
+# Protocolo de Aceitação da Memória do Projeto
 
 ## Autoridade
 
 - **Projeto:** PredixAI Robô de Listas
 - **Repositório:** `leon337/predixai-robo-de-listas`
-- **PTP:** `PTP-GOV.5`
-- **Status:** ATIVO
+- **PTP:** `PTP-GOV.5 — Memória e Governança Documental`
+- **Revisão:** 2
 - **Data:** 2026-07-16
+- **Status:** ATIVO
 
 ## Objetivo
 
-Comprovar que um chat novo, sem memória prévia, sem checkpoint colado e sem instruções personalizadas, consegue reconstruir e continuar corretamente o projeto lendo apenas o GitHub.
+Comprovar, em duas etapas independentes, que um chat novo:
 
-A documentação não será considerada aprovada por parecer completa. Será aprovada somente por teste.
+1. consegue acessar e ler os arquivos obrigatórios do GitHub;
+2. depois consegue reconstruir e continuar corretamente o projeto sem memória prévia.
+
+A documentação só pode ser avaliada depois que o acesso for comprovado.
 
 ---
 
-# TESTE 1 — Reconstrução do estado
+# Resultado histórico do protocolo anterior
+
+```text
+TESTE_001=FAIL_POR_FALTA_DE_ACESSO_AO_REPOSITORIO
+DOCUMENTACAO_AVALIADA=NAO
+FALHA_DE_INTERPRETACAO=NAO
+FALHA_DE_ACESSO=SIM
+```
+
+Registro oficial:
+
+`docs/history/tests/TESTE_001_RESULTADO_20260716.md`
+
+## Lição aprendida
+
+O protocolo anterior misturava capacidade de acesso e capacidade de interpretação. A recusa do chat em inventar o estado foi correta, mas o teste não chegou a avaliar a documentação.
+
+---
+
+# ETAPA A — TESTE DE ACESSO
+
+## Objetivo
+
+Confirmar que o chat consegue ler conteúdo real do repositório, e não apenas a página genérica do GitHub.
 
 ## Ambiente
 
-- Novo chat.
-- Nenhum histórico do projeto.
-- Nenhum checkpoint.
-- Nenhuma instrução personalizada do PredixAI.
-- Acesso ao GitHub.
+- chat novo;
+- sem checkpoint;
+- sem memória do projeto;
+- sem instruções personalizadas do PredixAI;
+- acesso ao GitHub ou conector equivalente.
 
 ## Prompt exato
 
 ```text
-Leia o repositório https://github.com/leon337/predixai-robo-de-listas e explique, sem implementar nada:
+Acesse o repositório https://github.com/leon337/predixai-robo-de-listas e confirme se consegue ler o conteúdo real destes três arquivos da branch main:
+
+1. PROJECT_STATE.md
+2. docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md
+3. docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md
+
+Não interprete o projeto ainda. Para cada arquivo, informe:
+- caminho;
+- título encontrado;
+- uma informação factual presente no conteúdo.
+
+Se não conseguir abrir algum arquivo, declare ACCESS_FAIL e não tente reconstruir o projeto.
+```
+
+## PASS obrigatório
+
+O chat deve demonstrar leitura dos três arquivos, informando corretamente:
+
+```text
+PROJECT_STATE.md
+→ título relacionado ao estado do PredixAI Robô de Listas;
+→ repositório oficial ou versão V2.4.3-R1.
+
+PTP-GOV.5...
+→ título PTP-GOV.5 — Memória e Governança Documental;
+→ objetivo de memória GitHub testável ou erro de escopo registrado.
+
+PROJECT_MEMORY_ACCEPTANCE_TESTS.md
+→ protocolo em duas etapas Acesso → Reconstrução;
+→ TESTE_001 registrado como falha de acesso.
+```
+
+## Resultado formal
+
+```text
+MEMORY_ACCESS_TEST_A=PASS|FAIL
+FILES_REQUESTED=3
+FILES_READ=0..3
+FAILURE_CODE=
+```
+
+## Falhas automáticas
+
+```text
+FAIL_ACCESS_GENERIC_GITHUB_PAGE
+FAIL_ACCESS_PROJECT_STATE
+FAIL_ACCESS_PTP_GOV_5
+FAIL_ACCESS_MEMORY_PROTOCOL
+FAIL_ACCESS_UNVERIFIED_CLAIM
+```
+
+Se `MEMORY_ACCESS_TEST_A=FAIL`, a Etapa B é bloqueada.
+
+---
+
+# ETAPA B — TESTE DE RECONSTRUÇÃO
+
+## Pré-condição
+
+```text
+MEMORY_ACCESS_TEST_A=PASS
+```
+
+## Prompt exato
+
+```text
+Agora que o acesso aos arquivos foi confirmado, leia o repositório https://github.com/leon337/predixai-robo-de-listas e explique, sem implementar nada:
 
 1. Em que etapa o projeto está.
 2. O que já foi concluído.
@@ -41,8 +134,6 @@ Leia o repositório https://github.com/leon337/predixai-robo-de-listas e expliqu
 
 ## Resposta esperada mínima
 
-A resposta deve conter, sem contradição:
-
 ```text
 Projeto: PredixAI Robô de Listas.
 Repositório oficial: leon337/predixai-robo-de-listas.
@@ -50,15 +141,15 @@ Versão real atual: V2.4.3-R1.
 PTP ativa: PTP-GOV.5 — Memória e Governança Documental.
 
 Concluído:
-- os 12 pontos da arquitetura conceitual;
+- 12 pontos da arquitetura conceitual;
 - revisões críticas arquiteturais;
 - schema lógico SQLite conceitual;
 - divisão V2.5–V2.7;
 - PTM V2.5 preliminar.
 
 Etapa atual:
-- validar a memória documental;
-- continuar a Auditoria Mestra do legado V2.4.3-R1.
+- governança documental em validação;
+- Auditoria Mestra do legado V2.4.3-R1 ainda pendente/em andamento.
 
 Pendente:
 - Anexo A do inventário real;
@@ -70,24 +161,24 @@ Pendente:
 - congelamento da Arquitetura V1.0.
 
 Próxima ação:
-- executar os testes de memória e continuar a Auditoria Mestra apenas no repositório correto.
+- concluir a validação da memória e continuar a Auditoria Mestra exclusivamente no repositório correto.
 
 Proibido:
 - iniciar implementação;
-- usar o repositório predixai-platform;
+- usar predixai-platform como fonte;
 - misturar estado real com arquitetura futura;
 - considerar a PTM definitiva antes do inventário.
 ```
 
-## Critérios de PASS
+## PASS obrigatório
 
-- Identifica o repositório correto.
-- Identifica `V2.4.3-R1`.
-- Identifica `PTP-GOV.5`.
-- Distingue estado real de arquitetura futura.
-- Informa que a Auditoria Mestra está pendente/em andamento.
-- Não inicia código ou implementação.
-- Não menciona `predixai-platform` como fonte válida.
+- identifica repositório e versão corretos;
+- identifica `PTP-GOV.5`;
+- distingue legado real de arquitetura futura;
+- reconhece que a PTM V2.5 é preliminar;
+- informa a Auditoria Mestra como próxima etapa após validação;
+- não cria código, script ou migration;
+- não usa dados do repositório incorreto.
 
 ## Falhas automáticas
 
@@ -96,130 +187,58 @@ FAIL_REPOSITORY_MIX
 FAIL_IMPLEMENTATION_STARTED
 FAIL_WRONG_ACTIVE_PTP
 FAIL_WRONG_NEXT_ACTION
-FAIL_LEGACY_TARGET
 FAIL_STATE_ARCHITECTURE_CONFUSION
+FAIL_SKIP_MASTER_AUDIT
 ```
 
 ---
 
-# TESTE 2 — Continuidade correta
+# ETAPA C — TESTE DE CONTINUIDADE
 
-## Ambiente
+Executado em outro chat novo, somente após A e B passarem.
 
-Outro chat novo e independente do Teste 1.
-
-## Prompt exato
+## Prompt
 
 ```text
 Leia o repositório https://github.com/leon337/predixai-robo-de-listas e continue exatamente da última etapa registrada. Não peça checkpoint e não implemente código antes de confirmar o estado e a próxima ação.
 ```
 
-## Resposta esperada mínima
-
-```text
-1. Confirmar que a fonte oficial é o repositório predixai-robo-de-listas.
-2. Confirmar que a arquitetura conceitual já foi concluída.
-3. Confirmar que a PTM V2.5 é preliminar e não reconciliada.
-4. Confirmar que a PTP ativa é PTP-GOV.5.
-5. Informar que a próxima atividade é validar a memória documental e continuar a Auditoria Mestra.
-6. Retomar a auditoria pelo inventário real da branch main/V2.4.3-R1.
-7. Não produzir código, script, migration, correção ou implementação.
-```
-
-A resposta pode iniciar a leitura/auditoria somente após declarar essas sete confirmações.
-
-## Critérios de PASS
-
-- Continua da etapa correta sem reiniciar a arquitetura.
-- Não solicita um checkpoint externo.
-- Não cria código.
-- Não altera a PTM como definitiva.
-- Mantém o GitHub como fonte técnica.
-- Respeita a ordem do roadmap.
-
-## Falhas automáticas
-
-```text
-FAIL_RESTART_FROM_ZERO
-FAIL_CHECKPOINT_DEPENDENCY
-FAIL_CODE_BEFORE_AUDIT
-FAIL_WRONG_REPOSITORY
-FAIL_SKIP_PTM_RECONCILIATION
-FAIL_SKIP_DOCUMENT_MASTER
-```
-
----
-
-# TESTE 3 — Decisões congeladas
-
-## Prompt
-
-```text
-Quais decisões estão congeladas e quais foram revogadas neste projeto?
-```
-
 ## PASS mínimo
 
-Deve mencionar:
-
-- servidor como fonte global;
-- SQLite somente pelo servidor e escritor único;
-- clientes sem acesso direto ao banco;
-- listas independentes da análise;
-- separação entre análise, sinal e execução;
-- schema físico progressivo;
-- GitHub como memória oficial;
-- auditoria exclusiva no repositório correto;
-- revogação do chat como memória primária;
-- revogação da auditoria separada da rastreabilidade.
+- confirma a fonte oficial;
+- confirma arquitetura conceitual concluída;
+- confirma PTM V2.5 preliminar;
+- confirma PTP-GOV.5;
+- continua pela Auditoria Mestra;
+- não reinicia a arquitetura;
+- não pede checkpoint externo;
+- não produz implementação.
 
 ---
 
-# TESTE 4 — Riscos e erro histórico
-
-## Prompt
-
-```text
-Quais são os riscos atuais e qual erro de escopo já ocorreu?
-```
-
-## PASS mínimo
-
-Deve reconhecer:
-
-- Auditoria Mestra ainda não concluída.
-- PTM V2.5 ainda não reconciliada.
-- Documento Mestre inexistente.
-- Implementação não autorizada.
-- Erro anterior de auditar `predixai-platform`.
-- Invalidação completa das conclusões daquele repositório.
-
----
-
-# Registro dos resultados
-
-Cada teste deve ser registrado neste formato:
+# Registro de resultados
 
 ```text
 TEST_ID=
 DATE_UTC=
 MODEL_OR_CHAT=
 PROMPT_EXACT=
-RESULT=PASS|FAIL|PASS_WITH_WARNINGS
+ACCESS_STATUS=PASS|FAIL|NOT_APPLICABLE
+RESULT=PASS|FAIL|PASS_WITH_WARNINGS|BLOCKED_BY_ACCESS
 FAILURE_CODES=
+FILES_READ=
 MISSING_FACTS=
 WRONG_FACTS=
 DOCUMENT_CHANGES_REQUIRED=
 EVIDENCE_LINK=
 ```
 
-## Gate final
+# Gate da PTP-GOV.5
 
 ```text
-MEMORY_TEST_1=PASS
-MEMORY_TEST_2=PASS
+MEMORY_ACCESS_TEST_A=PASS
+MEMORY_RECONSTRUCTION_TEST_B=PASS
+MEMORY_CONTINUITY_TEST_C=PASS
 ```
 
-Os testes 3 e 4 são obrigatórios antes do congelamento da Arquitetura V1.0.
-
-Se qualquer teste falhar, a documentação deve ser corrigida e o teste repetido em outro chat novo.
+Se qualquer etapa falhar, o avanço para a Auditoria Mestra permanece bloqueado até correção e repetição em chat independente.
