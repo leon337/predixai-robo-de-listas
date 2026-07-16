@@ -4,31 +4,33 @@
 
 - **Projeto:** PredixAI Robô de Listas
 - **Repositório oficial:** `leon337/predixai-robo-de-listas`
-- **Branch técnica de referência:** `main`
+- **Branch técnica:** `main`
 - **Versão real atual:** `V2.4.3-R1`
-- **HEAD usado para este estado:** `1c35534ee82d91ba34a6eab098eacf586a286b93`
-- **Status deste documento:** ATIVO
+- **PTP ativa:** `PTP-GOV.5 — Memória e Governança Documental`
+- **Mini-PTP ativa:** `PTP-GOV.5.1 — Protocolo Acesso → Reconstrução`
+- **Status:** ATIVO
 - **Data:** 2026-07-16
-- **Substitui:** checkpoints informais de chat como fonte principal
-- **Complementa:** `docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md`
 
 ## Leia nesta ordem
 
 1. `PROJECT_STATE.md`
 2. `docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md`
-3. `docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md`
-4. documentação histórica e técnica já existente no repositório
-5. código da branch `main`
+3. `docs/history/ptp/PTP-GOV.5.1_PROTOCOLO_ACESSO_RECONSTRUCAO_20260716.md`
+4. `docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md`
+5. `docs/history/tests/TESTE_001_RESULTADO_20260716.md`
+6. documentação técnica e código da branch `main`
 
 ## Regra de fonte oficial
 
-- O **GitHub** é a memória técnica e documental oficial.
-- O **Linear** é o guia operacional de tarefas, bloqueios e progresso.
-- O **ChatGPT** é o ambiente de análise e engenharia, não a memória primária.
-- Auditorias devem usar exclusivamente o repositório correto desta PTP.
-- Dados de outros repositórios são `REJEITADO_POR_ESCOPO`.
+```text
+GitHub  = memória técnica e documental
+Linear  = guia operacional de tarefas e bloqueios
+ChatGPT = ambiente de análise e engenharia
+```
 
-## Estado atual do projeto
+Auditorias devem usar exclusivamente `leon337/predixai-robo-de-listas`. Dados de outros repositórios são `REJEITADO_POR_ESCOPO`.
+
+## Estado atual
 
 ```text
 Arquitetura conceitual dos 12 pontos .......... CONCLUÍDA
@@ -36,42 +38,64 @@ Revisões críticas arquiteturais ............... CONCLUÍDAS
 Schema lógico SQLite .......................... CONGELADO CONCEITUALMENTE
 Sequência V2.5–V2.7 ........................... CONGELADA CONCEITUALMENTE
 PTM V2.5 ...................................... PRELIMINAR / NÃO RECONCILIADA
-Auditoria Mestra do legado V2.4.3-R1 .......... EM ANDAMENTO
+PTP-GOV.5 memória documental .................. EM VALIDAÇÃO
+Teste 001 original ............................ FAIL_POR_FALTA_DE_ACESSO
+Teste A — acesso .............................. PENDENTE
+Teste B — reconstrução ......................... BLOQUEADO PELO TESTE A
+Teste C — continuidade ......................... BLOQUEADO PELOS TESTES A/B
+Auditoria Mestra V2.4.3-R1 .................... PAUSADA ATÉ VALIDAR MEMÓRIA
 PTM V2.6 ...................................... NÃO INICIADA
 PTM V2.7 ...................................... NÃO INICIADA
-Documento Mestre de Arquitetura ............... NÃO GERADO
+Documento Mestre .............................. NÃO GERADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
 ```
 
-## Etapa atual
-
-### PTP ativa
-
-`PTP-GOV.5 — Memória e Governança Documental`
-
-### Objetivo atual
-
-Implantar uma memória autossuficiente no GitHub, validável por chats sem contexto, e depois concluir a Auditoria Mestra do legado real `V2.4.3-R1` antes de reconciliar a PTM V2.5.
-
-### Próxima ação obrigatória
+## Resultado oficial do primeiro experimento
 
 ```text
-1. Validar os testes de memória definidos em PROJECT_MEMORY_ACCEPTANCE_TESTS.md.
-2. Continuar a Auditoria Mestra somente no repositório predixai-robo-de-listas.
-3. Produzir o Anexo A — Inventário real da V2.4.3-R1.
-4. Reconciliar a PTM V2.5 com o inventário real.
+TESTE_001=FAIL_POR_FALTA_DE_ACESSO_AO_REPOSITORIO
+DOCUMENTACAO_AVALIADA=NAO
+FALHA_DE_INTERPRETACAO=NAO
+FALHA_DE_ACESSO=SIM
 ```
 
-## Roadmap oficial até o Documento Mestre
+O chat novo não conseguiu abrir o conteúdo real do GitHub. Portanto, a qualidade da documentação ainda não foi testada.
+
+## Protocolo vigente
 
 ```text
-🟧 PTP-GOV.5 — Memória e Governança Documental
-⬜ Teste 1 — reconstrução de estado por chat novo
-⬜ Teste 2 — continuidade correta por chat novo
+ETAPA A — ACESSO
+→ comprovar leitura real dos arquivos obrigatórios.
+
+ETAPA B — RECONSTRUÇÃO
+→ somente após A=PASS, avaliar a reconstrução do projeto.
+
+ETAPA C — CONTINUIDADE
+→ em outro chat novo, continuar exatamente da etapa correta.
+```
+
+A Etapa B não pode ser julgada quando a Etapa A falhar.
+
+## Próxima ação obrigatória
+
+```text
+1. Executar o Teste A — Acesso com o prompt oficial.
+2. Se A=PASS, executar o Teste B — Reconstrução.
+3. Se B=PASS, executar o Teste C — Continuidade.
+4. Registrar resultados no GitHub e Linear.
+5. Somente então retomar a Auditoria Mestra V2.4.3-R1.
+```
+
+## Roadmap até o Documento Mestre
+
+```text
+🟧 PTP-GOV.5.1 — Protocolo Acesso → Reconstrução
+⬜ Teste A — acesso ao conteúdo real
+⬜ Teste B — reconstrução do estado
+⬜ Teste C — continuidade correta
 ⬜ Auditoria Mestra do legado V2.4.3-R1
 ⬜ Anexo A — Inventário real
-⬜ Reconciliar PTM V2.5
-⬜ Revisar criticamente PTM V2.5
+⬜ Reconciliar e revisar PTM V2.5
 ⬜ Construir e revisar PTM V2.6
 ⬜ Construir e revisar PTM V2.7
 ⬜ Consolidação cruzada final
@@ -107,117 +131,63 @@ V2.7 = execução controlada, reconciliação, distribuição e estabilização
 
 ## Decisões congeladas
 
-- Servidor é a fonte global oficial de estado.
-- SQLite será acessado somente pelo servidor.
-- Escritas SQLite passam por escritor único/fila central.
-- REST consulta/comanda; WebSocket notifica; event bus comunica internamente.
-- Eventos externos críticos usam outbox transacional.
-- Android e desktop são clientes sem acesso direto ao banco.
-- Android é painel operacional principal, mas não é dependência de inicialização.
-- Listas manuais e programadas funcionam sem análise gráfica.
-- Análise, estratégia, sinal e execução permanecem separados.
-- Schema lógico é completo; schema físico será progressivo por versão.
-- Linux Mint/X11 e Windows terão suporte progressivo comprovado por testes.
-- Frequências e thresholds não medidos são `PROVISIONAL_BASELINE`.
-- GitHub é fonte técnica para auditorias, inventários, validações e migrações.
-- Nenhuma implementação começa antes da Auditoria Mestra, PTMs e Documento Mestre.
+- servidor é a fonte global oficial de estado;
+- SQLite é acessado somente pelo servidor;
+- escritas SQLite usam escritor único/fila central;
+- REST consulta/comanda, WebSocket notifica e event bus comunica internamente;
+- eventos críticos usam outbox transacional;
+- Android e desktop são clientes sem acesso direto ao banco;
+- Android é painel principal, mas não dependência de inicialização;
+- listas manuais e programadas funcionam sem análise;
+- análise, estratégia, sinal e execução permanecem separados;
+- schema lógico é completo e schema físico progressivo;
+- frequências e thresholds não medidos são `PROVISIONAL_BASELINE`;
+- GitHub é a fonte das auditorias, inventários, validações e migrações;
+- nenhuma implementação começa antes da Auditoria Mestra, PTMs e Documento Mestre.
 
-## Estados transversais congelados
+## Estado real já confirmado
 
-```text
-STRATEGY_WAIT  = análise válida sem oportunidade
-WAIT_MORE_DATA = dados insuficientes ou confirmação pendente
-DEGRADED       = processamento permitido com limitações
-BLOCKED        = condição crítica impede continuidade
-```
+- aplicação desktop Python para Linux Mint/X11;
+- base histórica em `app/main.py` com Tkinter, JSON, threads e `pynput`;
+- modelos `Signal`, `ScheduleList`, `CoordinateProfile` e `PredixAIRoboListas`;
+- persistência histórica em `config/config_predixai_robo_listas.json`;
+- dependência confirmada `pynput==1.8.2`;
+- HEAD atual possui `app/bootstrap_v243.py`, logs, backups, diagnóstico e reparo;
+- README está parcialmente defasado em relação ao HEAD.
 
-## Modos de persistência
+## Erros e decisões revogadas
 
-```text
-NORMAL
-DIAGNOSTIC
-REPLAY_RECORDING
-TEST
-MINIMAL_SAFE
-```
+### Repositório incorreto
 
-## Níveis de teste real controlado
+Foi auditado por engano `leon337/predixai-platform`. Todas as conclusões foram invalidadas e são proibidas nesta PTP.
 
-```text
-R0 = interface sintética local
-R1 = aplicação real somente leitura
-R2 = validação visual sem movimento e sem clique
-R3 = pointer preview sem clique
-R4 = clique controlado em ambiente local autorizado
-```
+### Teste único de memória
 
-## Estado real já confirmado no repositório correto
+O protocolo que avaliava acesso e reconstrução ao mesmo tempo foi revogado. Foi substituído pelo fluxo Acesso → Reconstrução → Continuidade.
 
-- Aplicação desktop Python para Linux Mint/X11.
-- Código histórico em `app/main.py` com Tkinter, JSON, threads e `pynput`.
-- Modelos existentes: `Signal`, `ScheduleList`, `CoordinateProfile` e `PredixAIRoboListas`.
-- Persistência histórica em `config/config_predixai_robo_listas.json`.
-- Dependência externa confirmada: `pynput==1.8.2`.
-- O HEAD atual contém `app/bootstrap_v243.py` e funcionalidades de logs, backups, diagnóstico e reparo de instalação.
-- O README está parcialmente defasado em relação ao HEAD atual.
+### Chat como memória principal
 
-## Erro registrado e correção
-
-### Erro
-
-Foi iniciada uma auditoria no repositório incorreto `leon337/predixai-platform`.
-
-### Impacto
-
-As conclusões daquela auditoria não pertencem ao PredixAI Robô de Listas.
-
-### Correção
-
-- Auditoria incorreta invalidada integralmente.
-- Nenhum dado dela pode entrar na PTM ou no Documento Mestre.
-- Repositório único autorizado: `leon337/predixai-robo-de-listas`.
-- Toda conclusão futura deve informar fonte, caminho, branch/commit, classificação e certeza.
-
-## Decisões revogadas
-
-### Auditoria separada da rastreabilidade
-
-- **Decisão anterior:** inventariar e somente depois reconciliar a PTM.
-- **Status:** REVOGADA.
-- **Substituição:** Auditoria Mestra integrada, com inventário, classificação e rastreabilidade lado a lado.
-
-### Chat como fonte principal de memória
-
-- **Decisão implícita anterior:** checkpoints de chat carregariam o estado.
-- **Status:** REVOGADA.
-- **Substituição:** GitHub é memória oficial; checkpoints são apenas cópia de segurança.
-
-## Regras permanentes de memória
-
-1. Cada etapa relevante gera documento histórico versionado no GitHub.
-2. O estado atual deve ser atualizado em `PROJECT_STATE.md`.
-3. Um documento só é aprovado quando um chat novo consegue reconstruir o estado apenas pelo GitHub.
-4. Falha no teste exige correção documental antes de continuar.
-5. Linear acompanha tarefas; não substitui o conteúdo técnico do GitHub.
-6. Nenhum chat pode declarar execução sem commit, relatório, evidência ou confirmação explícita.
+Revogado. GitHub é a memória oficial; checkpoints de chat são cópia de segurança.
 
 ## Proibições atuais
 
 ```text
 NÃO iniciar implementação V2.5.
-NÃO gerar SQL físico ou migrations físicas.
-NÃO alterar a PTM como definitiva antes do inventário.
+NÃO gerar SQL ou migrations físicas.
+NÃO tratar a PTM como definitiva.
 NÃO usar dados do predixai-platform.
-NÃO tratar README como única descrição do estado real.
-NÃO misturar estado real da V2.4.3-R1 com arquitetura futura V2.5–V2.7.
+NÃO misturar V2.4.3-R1 real com V2.5–V2.7 futura.
+NÃO executar reconstrução se o teste de acesso falhar.
+NÃO retomar a Auditoria Mestra antes dos gates de memória.
 ```
 
-## Critério de passagem da etapa atual
+## Gate da etapa atual
 
 ```text
-MEMORY_TEST_1=PASS
-MEMORY_TEST_2=PASS
-AUDITORIA_MESTRA=PASS
-ANEXO_A_INVENTARIO_REAL=PASS
-PTM_V2_5_RECONCILIADA=PASS
+TESTE_001_RESULTADO_REGISTRADO=PASS
+PROTOCOLO_DUAS_ETAPAS_DOCUMENTADO=PASS
+MEMORY_ACCESS_TEST_A=PENDING
+MEMORY_RECONSTRUCTION_TEST_B=BLOCKED
+MEMORY_CONTINUITY_TEST_C=BLOCKED
+AUDITORIA_MESTRA=PAUSED
 ```
