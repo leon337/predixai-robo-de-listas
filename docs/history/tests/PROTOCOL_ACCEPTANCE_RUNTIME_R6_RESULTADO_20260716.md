@@ -32,15 +32,26 @@ SQL_OR_MIGRATIONS_CREATED=NO
 ```text
 GATES_VALIDATED=PASS
 GITHUB_UPDATED=PASS
-LINEAR_UPDATED=PENDING_UNTIL_PR_MERGE
-PR_STATE_REPORTED=PENDING_UNTIL_PR_MERGE
+LINEAR_UPDATED=PASS
+PR_STATE_REPORTED=PASS
 NEXT_STAGE_REPORTED=PASS
-CLOSING_PROTOCOL_RUNTIME=PASS_OBSERVED
+CLOSING_PROTOCOL_RUNTIME=PASS
+```
+
+## Publicação e sincronização
+
+```text
+DOCUMENTATION_PR=25
+DOCUMENTATION_PR_STATE=MERGED
+DOCUMENTATION_MERGE_COMMIT=8631e14f6e896e835825015e2103b5655337e365
+LINEAR_ISSUE=LEA-11
+LINEAR_STATUS=IN_PROGRESS
+LINEAR_R6_RECORD=PASS
 ```
 
 ## Decisão
 
-O fechamento conclui somente o ciclo documental runtime R1–R6. A missão `LEA-11` permanece em andamento porque o teste R7 de continuidade multichat ainda é obrigatório.
+O fechamento concluiu somente o ciclo documental runtime R1–R6. A missão `LEA-11` permanece em andamento porque o teste R7 de continuidade multichat ainda é obrigatório.
 
 A Auditoria Mestra, a PTM V2.5, alterações de código, SQL e migrations físicas continuam bloqueadas.
 
