@@ -75,16 +75,33 @@ NEW_STATE_REVISION=NO
 
 ## Concorrência
 
-O modelo é otimista e o lock é consultivo. Antes de escrita:
+O modelo é otimista e o lock é consultivo. Antes de escrita, a sessão captura as expectativas efêmeras e consulta o estado vivo:
 
 ```text
-EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
-EXPECTED_PR_HEAD == CURRENT_PR_HEAD
-EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
-EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
+PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
+PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD
+PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
+PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
 ```
 
-Falha em qualquer comparação bloqueia escrita.
+Semântica obrigatória:
+
+```text
+OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
+```
+
+O valor persistido `OBSERVED_PR_HEAD` é apenas informativo. A proteção contra escrita obsoleta usa o valor capturado pela sessão antes da alteração e o valor consultado ao vivo imediatamente antes da escrita.
+
+Falha em qualquer comparação bloqueia escrita:
+
+```text
+EXECUTION_STATUS=BLOCKED_BY_CONCURRENT_UPDATE
+WRITE_OPERATION=PROHIBITED
+STATE_RECONSTRUCTION_REQUIRED=YES
+```
 
 ## Handoff
 
