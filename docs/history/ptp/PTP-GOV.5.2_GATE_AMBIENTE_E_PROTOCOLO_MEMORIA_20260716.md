@@ -8,17 +8,13 @@
 - **Projeto:** PredixAI Robô de Listas
 - **Repositório:** `leon337/predixai-robo-de-listas`
 - **Data:** 2026-07-16
-- **Status:** EM ANDAMENTO — TESTE C PENDENTE DE REPETIÇÃO
+- **Status:** CONCLUÍDA
 
 ## Objetivo
 
-Corrigir a causa raiz do primeiro teste de memória, tornar a configuração do conector GitHub um gate obrigatório, unificar o conjunto oficial do Teste A e comprovar a continuidade multichat antes da retomada da Auditoria Mestra.
+Corrigir a causa raiz do primeiro teste de memória, tornar o conector GitHub um pré-requisito obrigatório, unificar o conjunto oficial do Teste A e comprovar a continuidade multichat antes da retomada da Auditoria Mestra.
 
-## Descoberta
-
-O primeiro chat de teste não conseguiu ler o repositório porque o plugin/conector GitHub não havia sido adicionado à conversa. Depois da ativação, o repositório e os arquivos reais ficaram acessíveis.
-
-## Correção formal
+## Causa raiz corrigida
 
 ```text
 CLASSIFICACAO_ANTERIOR=FAIL_POR_FALTA_DE_ACESSO_AO_REPOSITORIO
@@ -28,26 +24,16 @@ DOCUMENTACAO_AVALIADA=NAO
 FALHA_DE_AMBIENTE=SIM
 ```
 
-## Protocolo oficial
+## Protocolo oficial executado
 
 ```text
-ETAPA 0 — VERIFICAÇÃO DO AMBIENTE
-→ conector GitHub adicionado e autorizado;
-→ repositório oficial acessível;
-→ branch main acessível;
-→ PROJECT_STATE.md legível.
-
-TESTE A — ACESSO DOCUMENTAL
-→ leitura comprovada dos três arquivos oficiais.
-
-TESTE B — RECONSTRUÇÃO
-→ reconstrução somente após 0/A=PASS.
-
-TESTE C — CONTINUIDADE
-→ continuidade em outro chat somente após 0/A/B=PASS.
+ETAPA 0 — VERIFICAÇÃO DO AMBIENTE ........ PASS
+TESTE A — ACESSO DOCUMENTAL .............. PASS
+TESTE B — RECONSTRUÇÃO ................... PASS
+TESTE C — CONTINUIDADE ................... PASS
 ```
 
-## Conjunto oficial único do Teste A
+## Conjunto oficial do Teste A
 
 ```text
 1. PROJECT_STATE.md
@@ -55,72 +41,76 @@ TESTE C — CONTINUIDADE
 3. docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md
 ```
 
-Qualquer conjunto anterior diferente está revogado para fins de aceitação.
+Qualquer conjunto anterior diferente permanece revogado para fins de aceitação.
 
-## Resultados já comprovados
+## Evidências
 
-```text
-MEMORY_ENVIRONMENT_GATE=PASS
-MEMORY_ACCESS_TEST_A=PASS
-FILES_REQUESTED=3
-FILES_READ=3
-MEMORY_RECONSTRUCTION_TEST_B=PASS
-FAILURE_CODES_0_A_B=NONE
-```
+- `docs/history/tests/MEMORY_GATES_0_A_B_RESULTADOS_20260716.md`
+- `docs/history/tests/MEMORY_CONTINUITY_TEST_C_RESULTADO_20260716.md`
 
-Evidência oficial:
+## Histórico do Teste C
 
-`docs/history/tests/MEMORY_GATES_0_A_B_RESULTADOS_20260716.md`
-
-## Primeira tentativa do Teste C
-
-A tentativa em chat independente retornou:
+A primeira tentativa foi bloqueada corretamente porque a `main` ainda não registrava Etapa 0, Teste A e Teste B como aprovados:
 
 ```text
-MEMORY_CONTINUITY_TEST_C=FAIL
 FAILURE_CODES=FAIL_C_PRECONDITIONS_NOT_RECORDED
-```
-
-Esse resultado foi tecnicamente correto: a `main` ainda apresentava Etapa 0, A e B como pendentes, portanto o chat não poderia declarar continuidade aprovada.
-
-Classificação:
-
-```text
 TEST_C_CAPABILITY_FAILURE=NAO
 TEST_C_BLOCKED_BY_STALE_OFFICIAL_STATE=SIM
-CORRECTION_REQUIRED=REGISTER_0_A_B_IN_MAIN
 ```
 
-## Gate de avanço atualizado
+Depois da integração da PR #17, o Teste C foi repetido em outro chat novo, com conector GitHub ativo e sem checkpoint externo.
+
+Resultado final:
+
+```text
+MEMORY_CONTINUITY_TEST_C=PASS
+ACTIVE_PTP=PTP-GOV.5 — Memória e Governança Documental
+ACTIVE_MINI_PTP=PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória
+COMPLETED_GATES=MEMORY_ENVIRONMENT_GATE; MEMORY_ACCESS_TEST_A; MEMORY_RECONSTRUCTION_TEST_B; MEMORY_CONTINUITY_TEST_C
+PENDING_GATE=NONE
+MASTER_AUDIT_STATUS=READY_TO_RESUME
+FAILURE_CODES=NONE
+```
+
+## Gate de fechamento
 
 ```text
 CAUSE_ROOT_CORRECTED=PASS
 ENVIRONMENT_STAGE_DEFINED=PASS
 OFFICIAL_TEST_A_FILESET_UNIFIED=PASS
 PR_16_MERGED=PASS
+PR_17_MERGED=PASS
 MEMORY_ENVIRONMENT_GATE=PASS
 MEMORY_ACCESS_TEST_A=PASS
 MEMORY_RECONSTRUCTION_TEST_B=PASS
-MEMORY_CONTINUITY_TEST_C=PENDING_RETEST
-AUDITORIA_MESTRA=PAUSED
+MEMORY_CONTINUITY_TEST_C=PASS
+MEMORY_ACCEPTANCE_SUITE=PASS
+PTP_GOV_5_2=PASS
+AUDITORIA_MESTRA=READY_TO_RESUME
 ```
 
 ## Próxima ação
 
-1. Integrar na `main` o registro formal da Etapa 0 e dos Testes A/B.
-2. Abrir outro chat novo, sem checkpoint externo.
-3. Adicionar e ativar o conector GitHub.
-4. Repetir o Teste C — Continuidade.
-5. Registrar o resultado.
-6. Somente com `MEMORY_CONTINUITY_TEST_C=PASS`, retomar a Auditoria Mestra da V2.4.3-R1 pelo inventário factual do Anexo A.
+Retomar a Auditoria Mestra do legado V2.4.3-R1, iniciando pelo inventário factual do Anexo A.
 
-## Proibições
+Para cada conclusão devem ser registrados:
 
 ```text
-NÃO julgar a documentação quando o ambiente falhar.
-NÃO executar reconstrução sem Teste A=PASS.
-NÃO retomar Auditoria Mestra antes de Teste C=PASS.
+FONTE
+CAMINHO
+BRANCH OU COMMIT
+CLASSIFICAÇÃO=REUTILIZAR|ADAPTAR|SUBSTITUIR|DESCONTINUAR
+NÍVEL DE CERTEZA
+RASTREABILIDADE COM A PTM V2.5 PRELIMINAR
+```
+
+## Proibições preservadas
+
+```text
 NÃO iniciar implementação V2.5.
 NÃO gerar SQL ou migrations físicas.
+NÃO tratar a PTM V2.5 como definitiva.
 NÃO usar dados do predixai-platform.
+NÃO misturar o legado real V2.4.3-R1 com a arquitetura futura.
+NÃO alterar código durante a Auditoria Mestra.
 ```
