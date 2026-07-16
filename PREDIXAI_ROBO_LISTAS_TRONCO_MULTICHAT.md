@@ -23,7 +23,7 @@ ACTIVE_PULL_REQUEST=30
 TRANSITION_ID=PTP-MEM.1-T01
 STATE_REVISION=0
 TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
-CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RC4_REQUIRED
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RC5_REQUIRED
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 PR_MERGE=NOT_AUTHORIZED
@@ -46,7 +46,9 @@ A PTP-MEM.1 não altera automaticamente dependências funcionais da PTM V2.5. A 
 ✅ PTP-MEM.1-RM2 — Remediação concluída
 🟥 PTP-MEM.1-RC3 — FAIL
 ✅ PTP-MEM.1-RM3 — Remediação concluída
-🟨 PTP-MEM.1-RC4 — Aguardando revisão independente
+🟥 PTP-MEM.1-RC4 — FAIL
+✅ PTP-MEM.1-RM4 — Remediação concluída
+🟨 PTP-MEM.1-RC5 — Aguardando revisão independente
 ⬜ PTP-MEM.1-PM — Recibo pós-merge
 ⬜ PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC
@@ -94,16 +96,25 @@ CRITICAL_BLOCKERS=1
 
 Bloqueador: `EXPECTED_*` ainda aparecia como nomenclatura persistida em dois protocolos ativos.
 
-### Remediação RC3
+### RC4
+
+```text
+BOSS_GATE_RC4=FAIL
+CRITICAL_BLOCKERS=1
+```
+
+Bloqueador: o protocolo de retenção e migração ainda exigia `EXPECTED_STATE_REVISION` como registro persistido.
+
+### Remediação RC4
 
 ```text
 PERSISTED_EXPECTED_FIELDS=PROHIBITED
-OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
-PRE_WRITE_EXPECTED_FIELDS=EPHEMERAL_SESSION_VALUES
-CURRENT_FIELDS=LIVE_SOURCE_QUERIES
+MIGRATION_BASELINE_STATE_REVISION=PERSISTED_SNAPSHOT
+PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
+CURRENT_STATE_REVISION=LIVE_SOURCE_QUERY
 ```
 
-Campos persistidos agora usam `BASELINE_*`, `BOUND_*` ou `*_SNAPSHOT`. O schema evoluiu para `1.0.2`.
+A política de migração agora usa `BASELINE_STATE_REVISION`, `BOUND_TRANSITION_ID` e `RESULTING_STATE_REVISION`. O schema permanece `1.0.2` e a validação runtime continua `NOT_EXECUTED`.
 
 ## Transições obrigatórias
 
