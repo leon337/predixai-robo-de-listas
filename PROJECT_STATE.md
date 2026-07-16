@@ -11,8 +11,8 @@
 - Issue ativa: `LEA-12`
 - Branch de trabalho: `docs/ptp-mem-1-hardening`
 - Pull Request ativo: `#30`, Draft
-- Etapa atual: `REMEDIACAO_RC3_CONCLUIDA_AGUARDANDO_RC4`
-- Gate atual: `INDEPENDENT_CRITICAL_REVIEW_RC4_REQUIRED`
+- Etapa atual: `REMEDIACAO_RC4_CONCLUIDA_AGUARDANDO_RC5`
+- Gate atual: `INDEPENDENT_CRITICAL_REVIEW_RC5_REQUIRED`
 - Etapa do produto preservada: `PTM V2.5 — Reconciliação com o legado`
 - Issue do produto: `LEA-8`, `Todo`, não iniciada e sem bloqueio formal pela PTP-MEM.1
 
@@ -54,31 +54,25 @@ RC2=FAIL
 RC2_CRITICAL_BLOCKERS=2
 RC3=FAIL
 RC3_CRITICAL_BLOCKERS=1
+RC4=FAIL
+RC4_CRITICAL_BLOCKERS=1
 PR_30_MERGE_AUTHORIZATION=BLOCKED
 RUNTIME_R8_R24=NOT_EXECUTED
 ```
 
-## Remediação RC3
+## Remediação RC4
 
-O bloqueador residual foi eliminado em todos os contratos ativos.
+O protocolo de retenção e migração foi alinhado ao schema `1.0.2`.
 
 ```text
 PERSISTED_EXPECTED_FIELDS=PROHIBITED
-OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
-PRE_WRITE_EXPECTED_FIELDS=EPHEMERAL_SESSION_VALUES
-CURRENT_FIELDS=LIVE_SOURCE_QUERIES
-SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
+MIGRATION_BASELINE_STATE_REVISION=PERSISTED_SNAPSHOT
+PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
+CURRENT_STATE_REVISION=LIVE_SOURCE_QUERY
+SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
 ```
 
-Campos persistidos agora usam semântica de baseline, vínculo ou snapshot:
-
-```text
-BASELINE_MAIN_SHA
-BASELINE_STATE_REVISION
-BOUND_TRANSITION_ID
-LOCK_STATE_REVISION_SNAPSHOT
-LOCK_TRANSITION_ID_SNAPSHOT
-```
+Nenhum registro persistido de migração usa `EXPECTED_*` ou `expected_*`.
 
 ## Gates da PTP-MEM.1
 
@@ -93,13 +87,13 @@ STATE_SCHEMA_VERSIONED=PASS_DRAFT
 IDEMPOTENT_TRANSITION_PROTOCOL=PASS_DRAFT
 PARTIAL_SYNC_RECOVERY=PASS_DRAFT
 CONCURRENT_CHAT_CONTROL=PASS_DRAFT
-STALE_WRITE_PROTECTION=REMEDIATED_PENDING_RC4
+STALE_WRITE_PROTECTION=REMEDIATED_PENDING_RC5
 START_SKILL_BOUNDARY=PASS_DRAFT
 DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
 INSTRUCTION_SOURCE_ALLOWLIST=PASS_DRAFT
 DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS_DRAFT
 BOOTSTRAP_MINIMAL_READ_SET=PASS_DRAFT
-CRITICAL_REVIEW=PENDING_RC4
+CRITICAL_REVIEW=PENDING_RC5
 PR_MERGED=NO
 POST_MERGE_RECEIPT=NOT_STARTED
 APPLICATION_CODE_CHANGED=NO
@@ -118,9 +112,9 @@ SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
 
 ## Próxima ação
 
-1. sincronizar a remediação RC3 no Linear;
+1. sincronizar a remediação RC4 no Linear;
 2. manter a PR nº 30 como Draft;
-3. executar RC4 em chat limpo e somente leitura;
+3. executar RC5 em chat limpo e somente leitura;
 4. integrar somente após Boss Gate independente `PASS`;
 5. executar Transição B pós-merge em PR separado.
 
@@ -136,5 +130,6 @@ NÃO integrar PR sem revisão crítica independente PASS.
 NÃO declarar teste runtime PASS sem execução e evidência.
 NÃO tratar lock consultivo como trava técnica.
 NÃO persistir PRE_WRITE_EXPECTED_*.
+NÃO persistir EXPECTED_* em contratos ou registros ativos.
 NÃO ativar handoff antes do recibo pós-merge.
 ```
