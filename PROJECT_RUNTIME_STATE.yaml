@@ -7,19 +7,21 @@ main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
 real_version: "V2.4.3-R1"
 
 active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
-active_stage: "FASE_1 — Correção do estado pós-merge"
+active_stage: "REMEDIACAO_DA_REVISAO_INDEPENDENTE"
 active_linear_issue: "LEA-12"
-active_pull_request: null
+active_pull_request: 30
 working_branch: "docs/ptp-mem-1-hardening"
-expected_pr_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+observed_pr_head: "b0019e2e92bf68f995ed024d351812316a891668"
 
-current_gate: "POST_MERGE_STATE_RECONCILIATION"
-gate_status: "IN_PROGRESS"
-next_action: "Corrigir estado vivo vencido e publicar os contratos iniciais de continuidade"
-blockers: []
+current_gate: "INDEPENDENT_CRITICAL_REVIEW_FAILED"
+gate_status: "FAIL"
+next_action: "CORRIGIR_BLOQUEADORES_DA_REVISAO_E_REPETIR_BOSS_GATE"
+blockers:
+  - "Estado vivo não refletia o PR 30 aberto"
+  - "Proteção por PR head usava expectativa autorreferente persistida"
 
 transition_id: "PTP-MEM.1-T01"
-transition_status: "IN_PROGRESS"
+transition_status: "BLOCKED"
 from_state: "PTP-GOV.6-RC_MERGED"
 to_state: "PTP-MEM.1_DRAFT_READY_FOR_INDEPENDENT_REVIEW"
 expected_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
@@ -28,7 +30,7 @@ expected_transition_id: "PTP-MEM.1-T01"
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-16T20:25:11Z"
+last_sync_at_utc: "2026-07-16T20:39:00Z"
 
 mission_lock:
   locked: true
@@ -37,10 +39,10 @@ mission_lock:
   owner: "GPT builder chat"
   session_id: "PTP-MEM.1-BUILDER-01"
   base_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
-  pr_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+  observed_pr_head: "b0019e2e92bf68f995ed024d351812316a891668"
   started_at_utc: "2026-07-16T20:25:11Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T20:25:11Z"
+  heartbeat_at_utc: "2026-07-16T20:39:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -60,5 +62,5 @@ safety:
   manifest_documentation_drift: false
   execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
   automatic_advance: false
-  stale_write_protection: "SHA_AND_STATE_REVISION"
+  stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
