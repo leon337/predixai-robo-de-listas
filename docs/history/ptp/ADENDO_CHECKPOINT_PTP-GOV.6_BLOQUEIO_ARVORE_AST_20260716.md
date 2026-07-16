@@ -103,11 +103,13 @@ REAL_CLICK_EXECUTION=PROHIBITED
 ## 7. Próxima ação
 
 ```text
-1. Gerar o relatório somente leitura no ambiente local do repositório.
-2. Publicar ou registrar a evidência no GitHub.
-3. Retomar a PTP-GOV.6.
-4. Reconciliar árvore, AST e documentação individual.
-5. Somente depois avaliar AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS.
+1. Diagnosticar o clone local e confirmar remote, HEAD, branch e refs disponíveis.
+2. Tornar o commit-base acessível localmente sem alterar o worktree.
+3. Gerar o relatório somente leitura.
+4. Publicar ou registrar a evidência no GitHub.
+5. Retomar a PTP-GOV.6.
+6. Reconciliar árvore, AST e documentação individual.
+7. Somente depois avaliar AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS.
 ```
 
 ## 8. Gate do adendo
@@ -120,3 +122,31 @@ MISSION_COMPLETE=NO
 NEXT_STAGE_UNLOCKED=NO
 AWAITING_LEO_READ_ONLY_EXECUTION=YES
 ```
+
+## 9. Evidência de execução local recebida
+
+Em 2026-07-16, Leo executou duas vezes o relatório somente leitura: uma vez com a aplicação fechada e outra com a aplicação aberta.
+
+As duas tentativas encerraram no mesmo gate inicial:
+
+```text
+fatal: Not a valid object name 0e2d7e98d863769be32a8bcb8b93684a61674aa3^{commit}
+ERRO: commit-base não existe no repositório local.
+```
+
+Conclusões:
+
+```text
+LOCAL_REPORT_ATTEMPT_COUNT=2
+LOCAL_SOURCE_COMMIT_AVAILABLE=NO
+WORKTREE_AUDIT_STARTED=NO
+TEMPORARY_WORKTREE_CREATED=NO
+AST_ANALYSIS_STARTED=NO
+REPORT_GENERATED=NO
+APPLICATION_OPEN_STATE_RELEVANT=NO
+APPLICATION_STARTED_BY_SCRIPT=NO
+REAL_CLICK_EXECUTED_BY_SCRIPT=NO
+FAILURE_STAGE=COMMIT_EXISTENCE_GATE
+```
+
+A execução com a aplicação aberta não prova que o script a iniciou. O script encerrou antes de qualquer comando relacionado ao conteúdo auditado e não contém comando de abertura da aplicação.
