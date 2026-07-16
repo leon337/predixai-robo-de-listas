@@ -7,18 +7,20 @@
 - **Branch técnica:** `main`
 - **Versão real atual:** `V2.4.3-R1`
 - **PTP ativa:** `PTP-GOV.5 — Memória e Governança Documental`
-- **Mini-PTP ativa:** `PTP-GOV.5.1 — Protocolo Acesso → Reconstrução`
-- **Status:** ATIVO
+- **Mini-PTP ativa:** `PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória`
+- **Status:** EM VALIDAÇÃO
 - **Data:** 2026-07-16
 
 ## Leia nesta ordem
 
 1. `PROJECT_STATE.md`
 2. `docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md`
-3. `docs/history/ptp/PTP-GOV.5.1_PROTOCOLO_ACESSO_RECONSTRUCAO_20260716.md`
+3. `docs/history/ptp/PTP-GOV.5.2_GATE_AMBIENTE_E_PROTOCOLO_MEMORIA_20260716.md`
 4. `docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md`
-5. `docs/history/tests/TESTE_001_RESULTADO_20260716.md`
-6. documentação técnica e código da branch `main`
+5. `docs/history/ptp/CHECKPOINT_HISTORICO_COMPLETO_PTP-GOV.5_ARQUITETURA_V2.5_V2.7_20260716.md`
+6. `docs/history/ptp/ANEXO_CONTRATOS_PTM_SCHEMA_PTP-GOV.5_20260716.md`
+7. `docs/history/tests/TESTE_001_RESULTADO_20260716.md`
+8. código e documentação técnica da branch `main`
 
 ## Regra de fonte oficial
 
@@ -38,11 +40,13 @@ Revisões críticas arquiteturais ............... CONCLUÍDAS
 Schema lógico SQLite .......................... CONGELADO CONCEITUALMENTE
 Sequência V2.5–V2.7 ........................... CONGELADA CONCEITUALMENTE
 PTM V2.5 ...................................... PRELIMINAR / NÃO RECONCILIADA
+Histórico integral desta sessão ............... PUBLICADO NA PR #16
 PTP-GOV.5 memória documental .................. EM VALIDAÇÃO
-Teste 001 original ............................ FAIL_POR_FALTA_DE_ACESSO
-Teste A — acesso .............................. PENDENTE
-Teste B — reconstrução ......................... BLOQUEADO PELO TESTE A
-Teste C — continuidade ......................... BLOQUEADO PELOS TESTES A/B
+Teste 001 original ............................ FAIL_POR_CONECTOR_GITHUB_NAO_CONFIGURADO
+Etapa 0 — ambiente ............................ PENDENTE DE REPETIÇÃO FORMAL
+Teste A — acesso .............................. BLOQUEADO PELA ETAPA 0
+Teste B — reconstrução ........................ BLOQUEADO POR 0/A
+Teste C — continuidade ........................ BLOQUEADO POR 0/A/B
 Auditoria Mestra V2.4.3-R1 .................... PAUSADA ATÉ VALIDAR MEMÓRIA
 PTM V2.6 ...................................... NÃO INICIADA
 PTM V2.7 ...................................... NÃO INICIADA
@@ -50,47 +54,65 @@ Documento Mestre .............................. NÃO GERADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
 ```
 
-## Resultado oficial do primeiro experimento
+## Resultado oficial corrigido do primeiro experimento
 
 ```text
-TESTE_001=FAIL_POR_FALTA_DE_ACESSO_AO_REPOSITORIO
+TESTE_001=FAIL_POR_CONECTOR_GITHUB_NAO_CONFIGURADO
+REPOSITORIO_INDISPONIVEL=NAO
 DOCUMENTACAO_AVALIADA=NAO
 FALHA_DE_INTERPRETACAO=NAO
-FALHA_DE_ACESSO=SIM
+FALHA_DE_AMBIENTE=SIM
+CAUSA_RAIZ=PLUGIN_OU_CONECTOR_GITHUB_NAO_ADICIONADO_AO_CHAT
 ```
 
-O chat novo não conseguiu abrir o conteúdo real do GitHub. Portanto, a qualidade da documentação ainda não foi testada.
+Depois que o conector GitHub foi adicionado ao chat de teste, o repositório e seus arquivos passaram a ser acessíveis. Portanto, a primeira falha não pode ser atribuída ao repositório nem à documentação.
 
 ## Protocolo vigente
 
 ```text
-ETAPA A — ACESSO
-→ comprovar leitura real dos arquivos obrigatórios.
+ETAPA 0 — VERIFICAÇÃO DO AMBIENTE
+→ confirmar conector GitHub ativo, conta autorizada, repositório, branch e arquivos legíveis.
+
+ETAPA A — ACESSO DOCUMENTAL
+→ comprovar leitura real do conjunto oficial de três arquivos.
 
 ETAPA B — RECONSTRUÇÃO
-→ somente após A=PASS, avaliar a reconstrução do projeto.
+→ somente após 0/A=PASS, avaliar reconstrução do projeto.
 
 ETAPA C — CONTINUIDADE
 → em outro chat novo, continuar exatamente da etapa correta.
 ```
 
-A Etapa B não pode ser julgada quando a Etapa A falhar.
+## Conjunto oficial do Teste A
+
+```text
+1. PROJECT_STATE.md
+2. docs/history/ptp/PTP-GOV.5_MEMORIA_E_GOVERNANCA_DOCUMENTAL_20260716.md
+3. docs/governance/PROJECT_MEMORY_ACCEPTANCE_TESTS.md
+```
+
+Qualquer lista anterior diferente desta está revogada para fins de gate.
 
 ## Próxima ação obrigatória
 
 ```text
-1. Executar o Teste A — Acesso com o prompt oficial.
-2. Se A=PASS, executar o Teste B — Reconstrução.
-3. Se B=PASS, executar o Teste C — Continuidade.
-4. Registrar resultados no GitHub e Linear.
-5. Somente então retomar a Auditoria Mestra V2.4.3-R1.
+1. Integrar a PR #16 após alinhamento documental.
+2. Abrir chat novo sem memória ou checkpoint.
+3. Adicionar/ativar o conector GitHub nesse chat.
+4. Executar Etapa 0.
+5. Com Etapa 0=PASS, executar Teste A.
+6. Com A=PASS, executar Teste B.
+7. Com B=PASS, executar Teste C em outro chat.
+8. Registrar resultados no GitHub e Linear.
+9. Somente então retomar a Auditoria Mestra V2.4.3-R1.
 ```
 
 ## Roadmap até o Documento Mestre
 
 ```text
-🟧 PTP-GOV.5.1 — Protocolo Acesso → Reconstrução
-⬜ Teste A — acesso ao conteúdo real
+🟧 PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória
+⬜ Etapa 0 — verificar ambiente e conector GitHub
+⬜ Teste A — acesso documental
 ⬜ Teste B — reconstrução do estado
 ⬜ Teste C — continuidade correta
 ⬜ Auditoria Mestra do legado V2.4.3-R1
@@ -163,7 +185,11 @@ Foi auditado por engano `leon337/predixai-platform`. Todas as conclusões foram 
 
 ### Teste único de memória
 
-O protocolo que avaliava acesso e reconstrução ao mesmo tempo foi revogado. Foi substituído pelo fluxo Acesso → Reconstrução → Continuidade.
+Revogado. Acesso e reconstrução não podem ser avaliados no mesmo gate.
+
+### Falha genérica de acesso
+
+A classificação `FAIL_POR_FALTA_DE_ACESSO_AO_REPOSITORIO` foi refinada. A causa raiz confirmada foi `CONECTOR_GITHUB_NAO_CONFIGURADO`.
 
 ### Chat como memória principal
 
@@ -177,16 +203,20 @@ NÃO gerar SQL ou migrations físicas.
 NÃO tratar a PTM como definitiva.
 NÃO usar dados do predixai-platform.
 NÃO misturar V2.4.3-R1 real com V2.5–V2.7 futura.
-NÃO executar reconstrução se o teste de acesso falhar.
+NÃO executar Teste A sem Etapa 0=PASS.
+NÃO executar reconstrução se o Teste A falhar.
 NÃO retomar a Auditoria Mestra antes dos gates de memória.
 ```
 
 ## Gate da etapa atual
 
 ```text
-TESTE_001_RESULTADO_REGISTRADO=PASS
-PROTOCOLO_DUAS_ETAPAS_DOCUMENTADO=PASS
-MEMORY_ACCESS_TEST_A=PENDING
+HISTORICO_INTEGRAL_PR_16=PASS
+CAUSA_RAIZ_TESTE_001_CORRIGIDA=PASS
+ETAPA_0_DOCUMENTADA=PASS
+CONJUNTO_OFICIAL_TESTE_A_UNICO=PASS
+MEMORY_ENVIRONMENT_GATE=PENDING
+MEMORY_ACCESS_TEST_A=BLOCKED
 MEMORY_RECONSTRUCTION_TEST_B=BLOCKED
 MEMORY_CONTINUITY_TEST_C=BLOCKED
 AUDITORIA_MESTRA=PAUSED
