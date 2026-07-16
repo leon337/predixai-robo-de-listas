@@ -20,11 +20,11 @@ MISSION=PTP-MEM.1
 LINEAR_ISSUE=LEA-12
 WORKING_BRANCH=docs/ptp-mem-1-hardening
 ACTIVE_PULL_REQUEST=30
-OBSERVED_PR_HEAD=b0019e2e92bf68f995ed024d351812316a891668
+OBSERVED_PR_HEAD=f3c5358348f02459f53859bb52e925124e07d523
 TRANSITION_ID=PTP-MEM.1-T01
 STATE_REVISION=0
-TRANSITION_STATUS=BLOCKED
-CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_FAILED
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RETRY_REQUIRED
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 PR_MERGE=NOT_AUTHORIZED
@@ -42,8 +42,10 @@ A PTP-MEM.1 endurece a continuidade e não altera automaticamente dependências 
 ✅ PTP-GOV.6-RC — Revisão crítica
 🟧 PTP-MEM.1 — Endurecimento GitHub–Linear–Multichat
 🟥 PTP-MEM.1-RC — Primeira revisão independente: FAIL
-🟨 PTP-MEM.1-RM — Remediação dos bloqueadores
-⬜ PTP-MEM.1-RC2 — Nova revisão independente
+✅ PTP-MEM.1-RM — Remediação dos bloqueadores originais
+🟥 PTP-MEM.1-RC2 — Segunda revisão independente: FAIL
+✅ PTP-MEM.1-RM2 — Remediação dos bloqueadores residuais
+🟨 PTP-MEM.1-RC3 — Nova revisão independente
 ⬜ PTP-MEM.1-PM — Recibo pós-merge
 ⬜ PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC
@@ -110,7 +112,7 @@ Entregas:
 - especificações R8–R24;
 - separação entre PR principal e recibo pós-merge.
 
-### CHAT 04 — PTP-MEM.1-RC — revisão independente
+### CHAT 04 — PTP-MEM.1-RC — primeira revisão independente
 
 ```text
 INDEPENDENT_CRITICAL_REVIEW=FAIL
@@ -119,20 +121,46 @@ MAJOR_WARNINGS=3
 PR_30_MERGE_AUTHORIZATION=BLOCKED
 ```
 
-Bloqueadores:
+Bloqueadores originais:
 
 1. manifesto, PROJECT_STATE e tronco não refletiam a PR nº 30 aberta;
 2. `expected_pr_head` persistido na própria branch era autorreferente.
 
-Remediação definida:
+Remediação original:
 
 ```text
 OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
-PRE_WRITE_EXPECTED_PR_HEAD=EXTERNAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
 CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
 ```
 
-A revisão de estado permanece `0`; a mesma transição `PTP-MEM.1-T01` será retomada até consolidação.
+### CHAT 05 — PTP-MEM.1-RC2 — segunda revisão independente
+
+```text
+BOSS_GATE_RC2=FAIL
+CRITICAL_BLOCKERS=2
+MAJOR_WARNINGS=2
+PR_30_MERGE_AUTHORIZATION=BLOCKED
+```
+
+Bloqueadores residuais:
+
+1. tronco ainda representava o estado anterior;
+2. três protocolos ativos ainda usavam o contrato antigo `EXPECTED_*`.
+
+Remediação RC2:
+
+```text
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RETRY_REQUIRED
+PRE_WRITE_EXPECTED_MAIN_SHA=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
+PRE_WRITE_EXPECTED_TRANSITION_ID=EPHEMERAL_SESSION_VALUE
+```
+
+A `state_revision` permanece `0`; a mesma transição `PTP-MEM.1-T01` é preservada até consolidação.
 
 ## Transições obrigatórias
 
