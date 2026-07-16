@@ -6,14 +6,25 @@ As Skills são comandos curtos que acionam protocolos completos sem depender de 
 
 ## Regra universal de pré-escrita
 
-Antes de qualquer escrita externa, validar:
+Antes de qualquer escrita externa, a sessão captura expectativas efêmeras e consulta os valores atuais:
 
 ```text
-EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
-EXPECTED_PR_HEAD == CURRENT_PR_HEAD
-EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
-EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
+PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
+PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD
+PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
+PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
 ```
+
+Semântica obrigatória:
+
+```text
+OBSERVED_PR_HEAD=PERSISTED_INFORMATIONAL_SNAPSHOT
+PRE_WRITE_EXPECTED_PR_HEAD=EPHEMERAL_SESSION_VALUE
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY
+SELF_REFERENTIAL_EXPECTED_HEAD=PROHIBITED
+```
+
+O `OBSERVED_PR_HEAD` persistido não substitui a captura efêmera da sessão e não pode tentar prever o SHA do commit que ainda será criado.
 
 Falha em qualquer condição:
 
@@ -56,7 +67,7 @@ O comando deve reconstruir o estado, informar missão, fase, gate, divergências
 
 ### `continuar`
 
-Executar a próxima unidade autorizada da missão. Deve reconstruir somente o delta necessário, validar pré-condições de escrita e respeitar o `transition_id` atual.
+Executar a próxima unidade autorizada da missão. Deve reconstruir somente o delta necessário, capturar as expectativas efêmeras de pré-escrita, consultar os valores atuais e respeitar o `transition_id` vigente.
 
 Não criar nova missão durante retry de sincronização parcial.
 
