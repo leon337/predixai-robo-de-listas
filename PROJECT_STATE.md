@@ -7,11 +7,11 @@
 - **Branch técnica:** `main`
 - **Versão real atual:** `V2.4.3-R1`
 - **PTP concluída:** `PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória`
-- **PTP operacional posterior:** `PTP-GOV.6 — Auditoria Mestra V2.4.3-R1`
-- **Missão de validação atual:** `LEA-11 — Validar protocolos da pasta limpa`
-- **Primeira entrega posterior:** `Anexo A — Inventário factual do legado`
-- **Próxima revisão posterior:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
-- **Status:** TESTES RUNTIME R1–R6 APROVADOS — R7 PENDENTE
+- **Missão concluída:** `LEA-11 — Validar protocolos da pasta limpa`
+- **PTP operacional atual:** `PTP-GOV.6 — Auditoria Mestra V2.4.3-R1`
+- **Primeira entrega:** `Anexo A — Inventário factual do legado`
+- **Próxima revisão:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
+- **Status:** PASTA LIMPA ACEITA — AUDITORIA MESTRA LIBERADA
 - **Data:** 2026-07-16
 
 ## Ordem obrigatória de leitura
@@ -21,12 +21,11 @@
 3. `PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`
 4. `docs/protocols/PREDIXAI_ROBO_LISTAS_SKILLS.md`
 5. `docs/protocols/PREDIXAI_ROBO_LISTAS_RESPONSE_MODEL.md`
-6. `docs/protocols/PREDIXAI_ROBO_LISTAS_RUNTIME_TEST_PLAN.md`
-7. documento da PTP ou PTM ativa;
-8. revisão crítica mais recente;
-9. evidências indicadas neste arquivo;
-10. código e documentação técnica da branch `main`;
-11. issue correspondente no Linear.
+6. documento da PTP ou PTM ativa;
+7. revisão crítica mais recente;
+8. evidências indicadas neste arquivo;
+9. código e documentação técnica da branch `main`;
+10. issue correspondente no Linear.
 
 ## Fonte oficial
 
@@ -37,8 +36,6 @@ ChatGPT = ambiente de análise, engenharia e orquestração
 ```
 
 A continuidade não depende de ZIP, upload manual, checkpoint colado ou memória informal de outro chat.
-
-Auditorias devem usar exclusivamente `leon337/predixai-robo-de-listas`. Dados de outros repositórios são `REJEITADO_POR_ESCOPO`.
 
 ## Estado consolidado
 
@@ -51,43 +48,18 @@ PTM V2.5 ...................................... PRELIMINAR / NÃO RECONCILIADA
 Histórico integral ............................ PUBLICADO E INTEGRADO
 Suite de memória .............................. PASS
 Migração documental ........................... PASS
-Instruções oficiais ........................... ATUALIZADAS
-Skills do projeto ............................. CRIADAS
-Modelo de resposta UI/UX/LX ................... CRIADO
-Gamificação técnica ........................... APROVADA
-Agentes como papéis lógicos ................... APROVADOS
-Infraestrutura autônoma externa ............... ADIADA
+Skills do projeto ............................. PASS
+Modelo de resposta UI/UX/LX ................... PASS
+Gamificação técnica ........................... PASS
+Agentes como papéis lógicos ................... PASS
 Validação estática dos protocolos ............. PASS
-Runtime R1 — iniciar .......................... PASS
-Runtime R2 — modelo de resposta ............... PASS
-Runtime R3 — Skill estado ..................... PASS
-Runtime R4 — gate crítico ..................... PASS
-Runtime R5 — checkpoint ....................... PASS
-Runtime R6 — fechar ........................... PASS
-Runtime R7 — continuidade multichat ........... PENDENTE
-Validação final da pasta limpa ................ PENDENTE
-Auditoria Mestra V2.4.3-R1 .................... BLOQUEADA ATÉ LEA-11=Done
+Runtime R1–R7 ................................. PASS
+Validação final da pasta limpa ................ PASS
+Auditoria Mestra V2.4.3-R1 .................... LIBERADA
 Anexo A — Inventário factual .................. NÃO INICIADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
+Infraestrutura autônoma externa ............... ADIADA
 ```
-
-## Evidências de governança
-
-- `docs/history/tests/MEMORY_GATES_0_A_B_RESULTADOS_20260716.md`
-- `docs/history/tests/MEMORY_CONTINUITY_TEST_C_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R6_RESULTADO_20260716.md`
-- `docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md`
-- `docs/history/ptp/FECHAMENTO_LEA-11_RUNTIME_R1_R6_20260716.md`
-- `docs/history/reviews/REVISAO_CRITICA_MIGRACAO_PROJETO_LIMPO_20260716.md`
-- `docs/history/reviews/REVISAO_CRITICA_MELHORIAS_OPERACIONAIS_LEVES_20260716.md`
-- `docs/history/ptp/CHECKPOINT_FINAL_MIGRACAO_PROJETO_LIMPO_20260716.md`
-- `docs/history/ptp/CHECKPOINT_HISTORICO_COMPLETO_PTP-GOV.5_ARQUITETURA_V2.5_V2.7_20260716.md`
-- `docs/history/ptp/ANEXO_CONTRATOS_PTM_SCHEMA_PTP-GOV.5_20260716.md`
 
 ## Resultado oficial dos gates
 
@@ -108,48 +80,40 @@ STATE_SKILL_RUNTIME=PASS
 CRITICAL_GATE_RUNTIME=PASS
 CHECKPOINT_PROTOCOL_RUNTIME=PASS
 CLOSING_PROTOCOL_RUNTIME=PASS
-MULTICHAT_CONTINUITY_RUNTIME=PENDING
-CLEAN_PROJECT_ACCEPTANCE=PENDING
+MULTICHAT_CONTINUITY_RUNTIME=PASS
+CLEAN_PROJECT_ACCEPTANCE=PASS
+LEA_11=READY_FOR_DONE_AFTER_SYNC
+AUDITORIA_MESTRA=READY
 EXTERNAL_AUTOMATION=DEFERRED
-AUDITORIA_MESTRA=BLOCKED_UNTIL_RUNTIME_TESTS_PASS
 FAILURE_CODES=NONE
 ```
 
-## Próxima ação obrigatória
+## Evidências principais
 
-```text
-1. Manter LEA-11 em andamento no Linear.
-2. Abrir um novo chat na mesma pasta temporária.
-3. Enviar apenas: iniciar.
-4. Confirmar reconstrução por GitHub e Linear sem histórico externo.
-5. Confirmar que os resultados R1–R6 são encontrados.
-6. Confirmar R7 como fase atual e próxima ação correta.
-7. Não anexar ZIP, arquivos ou checkpoint.
-8. Somente após R7 e CLEAN_PROJECT_ACCEPTANCE=PASS, concluir LEA-11 e liberar a pasta definitiva.
-9. Não iniciar PTP-GOV.6, alterar código, gerar SQL ou migrations físicas.
-```
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R6_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R7_RESULTADO_20260716.md`
+- `docs/history/tests/CLEAN_PROJECT_ACCEPTANCE_RESULTADO_20260716.md`
+- `docs/history/ptp/CHECKPOINT_HISTORICO_COMPLETO_PTP-GOV.5_ARQUITETURA_V2.5_V2.7_20260716.md`
+- `docs/history/ptp/ANEXO_CONTRATOS_PTM_SCHEMA_PTP-GOV.5_20260716.md`
 
-## Roadmap oficial com revisões críticas
+## Roadmap oficial
 
 ```text
 ✅ PTP-GOV.5.2 — Memória e continuidade
 ✅ Revisão crítica da migração
 ✅ Instruções oficiais do Projeto
 ✅ Tronco multichat
-✅ Revisão crítica das melhorias leves
-✅ Skills oficiais do projeto
-✅ Modelo de resposta UI/UX/LX
-✅ Validação estática dos protocolos
-✅ Runtime R1 — iniciar sem memória manual
-✅ Runtime R2 — resposta UI/UX/LX
-✅ Runtime R3 — Skill estado
-✅ Runtime R4 — gate crítico
-✅ Runtime R5 — checkpoint sem transporte manual
-✅ Runtime R6 — fechar com sincronização
-🟧 Runtime R7 — continuidade multichat
-⬜ Validação final da pasta limpa
+✅ Skills e modelo UI/UX/LX
+✅ Validação estática
+✅ Runtime R1–R7
+✅ Aceitação final da pasta limpa
 
-⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
+🟧 PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
 ⬜ Anexo A — Inventário factual do legado
 ⬜ PTP-GOV.6-RC — Revisão crítica
 ⬜ PTM V2.5
@@ -165,6 +129,19 @@ FAILURE_CODES=NONE
 ⬜ Prontidão para implementação
 ```
 
+## Próxima ação obrigatória
+
+```text
+1. Concluir LEA-11 no Linear.
+2. Manter LEA-7 em andamento.
+3. Criar a pasta definitiva do Projeto contendo apenas a instrução operacional curta.
+4. Ativar GitHub e Linear.
+5. Abrir o primeiro chat e enviar apenas: iniciar.
+6. Confirmar PTP-GOV.6 e iniciar o Anexo A.
+7. Não alterar código, gerar SQL ou migrations.
+8. Não avançar para PTM V2.5 antes de PTP-GOV.6-RC=PASS.
+```
+
 ## Proibições atuais
 
 ```text
@@ -175,24 +152,5 @@ NÃO tratar PTM preliminar como definitiva.
 NÃO usar dados do predixai-platform.
 NÃO depender de transferência manual de memória.
 NÃO implantar n8n, OpenClaw, Ollama, workers ou nuvem agora.
-NÃO criar a pasta definitiva antes dos testes runtime.
-NÃO iniciar a Auditoria Mestra antes da LEA-11=Done.
-```
-
-## Gate atual
-
-```text
-LIGHTWEIGHT_OPERATIONAL_REVIEW=PASS
-PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS
-RESPONSE_MODEL_RUNTIME=PASS
-STATE_SKILL_RUNTIME=PASS
-CRITICAL_GATE_RUNTIME=PASS
-CHECKPOINT_PROTOCOL_RUNTIME=PASS
-CLOSING_PROTOCOL_RUNTIME=PASS
-PROTOCOL_RUNTIME_REMAINING=R7
-LINEAR_LEA_11=IN_PROGRESS
-NEW_CHATGPT_PROJECT=PENDING_VALIDATION
-PTP_GOV_6=BLOCKED_UNTIL_PROTOCOL_TESTS_PASS
-IMPLEMENTATION=NAO_AUTORIZADA
+NÃO avançar sem revisão crítica.
 ```

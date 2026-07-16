@@ -1,14 +1,10 @@
 # PREDIXAI ROBÔ DE LISTAS — TRONCO MULTICHAT OFICIAL
 
-## 1. Estado de entrada
+## Estado de entrada
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
 PTP-GOV.5.2=CONCLUÍDA
-MEMORY_ENVIRONMENT_GATE=PASS
-MEMORY_ACCESS_TEST_A=PASS
-MEMORY_RECONSTRUCTION_TEST_B=PASS
-MEMORY_CONTINUITY_TEST_C=PASS
 MEMORY_ACCEPTANCE_SUITE=PASS
 PROTOCOL_STATIC_VALIDATION=PASS
 START_PROTOCOL_RUNTIME=PASS
@@ -17,12 +13,14 @@ STATE_SKILL_RUNTIME=PASS
 CRITICAL_GATE_RUNTIME=PASS
 CHECKPOINT_PROTOCOL_RUNTIME=PASS
 CLOSING_PROTOCOL_RUNTIME=PASS
-PROTOCOL_RUNTIME_REMAINING=R7
-AUDITORIA_MESTRA=BLOQUEADA_ATÉ_LEA_11_DONE
+MULTICHAT_CONTINUITY_RUNTIME=PASS
+CLEAN_PROJECT_ACCEPTANCE=PASS
+LEA_11=READY_FOR_DONE_AFTER_SYNC
+AUDITORIA_MESTRA=READY
 IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ```
 
-## 2. Roadmap oficial
+## Roadmap oficial
 
 ```text
 ✅ PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória
@@ -37,47 +35,31 @@ IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ✅ Runtime R4 — gate crítico
 ✅ Runtime R5 — checkpoint sem transporte manual
 ✅ Runtime R6 — fechar com sincronização
-🟧 Runtime R7 — continuidade multichat
-⬜ Validação final da pasta limpa
+✅ Runtime R7 — continuidade multichat
+✅ Validação final da pasta limpa
 
-⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
+🟧 PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
 ⬜ Anexo A — Inventário factual do legado
 ⬜ PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A
-
 ⬜ PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC — Revisão crítica
-
 ⬜ PTM V2.6 — Observação, extração, análise e sinais
 ⬜ PTM V2.6-RC — Revisão crítica
-
 ⬜ PTM V2.7 — Execução controlada, reconciliação e estabilização
 ⬜ PTM V2.7-RC — Revisão crítica
-
 ⬜ PTP-ARCH.1 — Consolidação cruzada
-⬜ PTP-ARCH.1-RC — Revisão crítica da consolidação
-
+⬜ PTP-ARCH.1-RC — Revisão crítica
 ⬜ PTP-ADR.1 — Consolidação dos ADRs
-⬜ PTP-ADR.1-RC — Revisão crítica dos ADRs
-
+⬜ PTP-ADR.1-RC — Revisão crítica
 ⬜ PTP-DOC.1 — Documento Mestre
 ⬜ PTP-DOC.1-RC — Revisão crítica final
-
 ⬜ PTP-ARCH.2 — Congelamento da Arquitetura V1.0
-⬜ PTP-READY.1 — Revisão de prontidão para implementação
-⬜ Implementação autorizada em novos chats
+⬜ PTP-READY.1 — Prontidão para implementação
 ```
 
-## 3. Chats oficiais
+## CHAT 00 — LEA-11 — Validação dos protocolos
 
-### CHAT 00 — LEA-11 — Validação dos protocolos
-
-Objetivo:
-- comprovar início sem checkpoint, ZIP ou upload;
-- comprovar resposta UI/UX/LX;
-- validar Skills, gate crítico, checkpoint, fechamento e continuidade multichat;
-- corrigir divergências antes da pasta definitiva.
-
-Estado atual:
+Estado final:
 
 ```text
 R1_INICIAR=PASS
@@ -86,42 +68,29 @@ R3_ESTADO=PASS
 R4_CRITICAL_GATE=PASS
 R5_CHECKPOINT=PASS
 R6_FECHAR=PASS
-R7_MULTICHAT_CONTINUITY=PENDING
-CLEAN_PROJECT_ACCEPTANCE=PENDING
+R7_MULTICHAT_CONTINUITY=PASS
+CLEAN_PROJECT_ACCEPTANCE=PASS
 ```
 
-Checkpoint e fechamento vigentes:
+Saída: `LEA_11=DONE_AFTER_LINEAR_SYNC`.
 
-- `docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md`
-- `docs/history/ptp/FECHAMENTO_LEA-11_RUNTIME_R1_R6_20260716.md`
-
-Handoff obrigatório para R7:
-
-```text
-ABRIR_NOVO_CHAT=SIM
-MESMA_PASTA_TEMPORARIA=SIM
-ENTRADA_UNICA=iniciar
-ZIP_OU_UPLOAD=NAO
-CHECKPOINT_COLADO=NAO
-RECONSTRUIR_POR_GITHUB_E_LINEAR=SIM
-LOCALIZAR_RESULTADOS_ANTERIORES=R1_R2_R3_R4_R5_R6
-PROXIMA_ACAO_ESPERADA=R7_MULTICHAT_CONTINUITY
-```
-
-Saída: `CLEAN_PROJECT_ACCEPTANCE=PASS`
-
-### CHAT 01 — PTP-GOV.6 — Auditoria Mestra
+## CHAT 01 — PTP-GOV.6 — Auditoria Mestra
 
 Pré-condição:
-`LEA_11=Done` e `CLEAN_PROJECT_ACCEPTANCE=PASS`.
+
+```text
+LEA_11=Done
+CLEAN_PROJECT_ACCEPTANCE=PASS
+```
 
 Objetivo:
 - produzir o Anexo A;
 - inventariar diretórios, arquivos, módulos, funções, entrypoints, configuração, persistência, scripts, testes, logs, backups e documentos;
-- classificar cada item;
-- rastrear com a PTM V2.5 preliminar.
+- classificar cada item como REUTILIZAR, ADAPTAR, SUBSTITUIR ou DESCONTINUAR;
+- registrar fonte, caminho, branch/commit, evidência, certeza, risco e rastreabilidade PTM;
+- não alterar código.
 
-Saída: `AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS`
+Saída: `AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS`.
 
 Prompt específico:
 
@@ -133,91 +102,75 @@ Não altere código.
 Não avance para PTM V2.5.
 ```
 
-### CHAT 02 — PTP-GOV.6-RC
+## CHAT 02 — PTP-GOV.6-RC
 
 Objetivo: revisão crítica da Auditoria Mestra e do Anexo A.
 
-Gate: `AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS`
+Gate: `AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS`.
 
-### CHAT 03 — PTM V2.5
+## CHAT 03 — PTM V2.5
 
 Objetivo: reconciliar a PTM preliminar com o legado aprovado.
 
-Gate: `PTM_V2_5_DRAFT_COMPLETE=PASS`
+Gate: `PTM_V2_5_DRAFT_COMPLETE=PASS`.
 
-### CHAT 04 — PTM V2.5-RC
+## CHAT 04 — PTM V2.5-RC
 
-Gate: `PTM_V2_5_CRITICAL_REVIEW=PASS`
+Gate: `PTM_V2_5_CRITICAL_REVIEW=PASS`.
 
-### CHAT 05 — PTM V2.6
+## CHAT 05 — PTM V2.6
 
-Objetivo: observação, extração, análise, estratégias, sinais e Android operacional.
+Gate: `PTM_V2_6_DRAFT_COMPLETE=PASS`.
 
-Gate: `PTM_V2_6_DRAFT_COMPLETE=PASS`
+## CHAT 06 — PTM V2.6-RC
 
-### CHAT 06 — PTM V2.6-RC
+Gate: `PTM_V2_6_CRITICAL_REVIEW=PASS`.
 
-Gate: `PTM_V2_6_CRITICAL_REVIEW=PASS`
+## CHAT 07 — PTM V2.7
 
-### CHAT 07 — PTM V2.7
+Gate: `PTM_V2_7_DRAFT_COMPLETE=PASS`.
 
-Objetivo: execução controlada e simulada, comandos, reconciliação, distribuição e estabilização.
+## CHAT 08 — PTM V2.7-RC
 
-Gate: `PTM_V2_7_DRAFT_COMPLETE=PASS`
+Gate: `PTM_V2_7_CRITICAL_REVIEW=PASS`.
 
-### CHAT 08 — PTM V2.7-RC
+## CHAT 09 — PTP-ARCH.1
 
-Gate: `PTM_V2_7_CRITICAL_REVIEW=PASS`
+Gate: `CROSS_CONSOLIDATION_COMPLETE=PASS`.
 
-### CHAT 09 — PTP-ARCH.1
+## CHAT 10 — PTP-ARCH.1-RC
 
-Objetivo: consolidação cruzada entre Auditoria Mestra e PTMs.
+Gate: `CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS`.
 
-Gate: `CROSS_CONSOLIDATION_COMPLETE=PASS`
+## CHAT 11 — PTP-ADR.1
 
-### CHAT 10 — PTP-ARCH.1-RC
+Gate: `ADR_SET_COMPLETE=PASS`.
 
-Gate: `CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS`
+## CHAT 12 — PTP-ADR.1-RC
 
-### CHAT 11 — PTP-ADR.1
+Gate: `ADR_CRITICAL_REVIEW=PASS`.
 
-Objetivo: consolidar decisões arquiteturais em ADRs.
+## CHAT 13 — PTP-DOC.1
 
-Gate: `ADR_SET_COMPLETE=PASS`
+Gate: `MASTER_DOCUMENT_DRAFT_COMPLETE=PASS`.
 
-### CHAT 12 — PTP-ADR.1-RC
+## CHAT 14 — PTP-DOC.1-RC
 
-Gate: `ADR_CRITICAL_REVIEW=PASS`
+Gate: `MASTER_DOCUMENT_CRITICAL_REVIEW=PASS`.
 
-### CHAT 13 — PTP-DOC.1
+## CHAT 15 — PTP-ARCH.2
 
-Objetivo: gerar o Documento Mestre.
+Gate: `ARCHITECTURE_V1_0_FROZEN=PASS`.
 
-Gate: `MASTER_DOCUMENT_DRAFT_COMPLETE=PASS`
+## CHAT 16 — PTP-READY.1
 
-### CHAT 14 — PTP-DOC.1-RC
+Gate: `IMPLEMENTATION_READINESS=GO|GO_WITH_CONDITIONS|NO_GO`.
 
-Gate: `MASTER_DOCUMENT_CRITICAL_REVIEW=PASS`
+## Regra de atualização
 
-### CHAT 15 — PTP-ARCH.2
+Atualizar este documento sempre que uma etapa ou revisão iniciar/concluir, surgir mini-PTP, mudar escopo, dependência, versão, gate ou sequência. Nenhuma mudança de roadmap é válida apenas no chat.
 
-Objetivo: congelar Arquitetura V1.0.
-
-Gate: `ARCHITECTURE_V1_0_FROZEN=PASS`
-
-### CHAT 16 — PTP-READY.1
-
-Objetivo: decisão `GO`, `GO_WITH_CONDITIONS` ou `NO_GO`.
-
-Gate: `IMPLEMENTATION_READINESS=GO|GO_WITH_CONDITIONS|NO_GO`
-
-## 4. Regra de atualização
-
-Atualizar este documento sempre que uma etapa ou revisão iniciar/concluir, surgir mini-PTP, mudar escopo, dependência, versão, gate ou sequência.
-
-Nenhuma mudança de roadmap é válida apenas no chat.
-
-## 5. Gate universal
+## Gate universal
 
 ```text
 CURRENT_STAGE_DOCUMENTED=PASS
