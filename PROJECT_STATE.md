@@ -82,7 +82,8 @@ CHECKPOINT_PROTOCOL_RUNTIME=PASS
 CLOSING_PROTOCOL_RUNTIME=PASS
 MULTICHAT_CONTINUITY_RUNTIME=PASS
 CLEAN_PROJECT_ACCEPTANCE=PASS
-LEA_11=READY_FOR_DONE_AFTER_SYNC
+LEA_11=DONE
+LEA_7=IN_PROGRESS
 AUDITORIA_MESTRA=READY
 EXTERNAL_AUTOMATION=DEFERRED
 FAILURE_CODES=NONE
@@ -132,14 +133,12 @@ FAILURE_CODES=NONE
 ## Próxima ação obrigatória
 
 ```text
-1. Concluir LEA-11 no Linear.
-2. Manter LEA-7 em andamento.
-3. Criar a pasta definitiva do Projeto contendo apenas a instrução operacional curta.
-4. Ativar GitHub e Linear.
-5. Abrir o primeiro chat e enviar apenas: iniciar.
-6. Confirmar PTP-GOV.6 e iniciar o Anexo A.
-7. Não alterar código, gerar SQL ou migrations.
-8. Não avançar para PTM V2.5 antes de PTP-GOV.6-RC=PASS.
+1. Criar a pasta definitiva do Projeto contendo apenas a instrução operacional curta.
+2. Ativar GitHub e Linear.
+3. Abrir o primeiro chat e enviar apenas: iniciar.
+4. Confirmar PTP-GOV.6 e iniciar o Anexo A.
+5. Não alterar código, gerar SQL ou migrations.
+6. Não avançar para PTM V2.5 antes de PTP-GOV.6-RC=PASS.
 ```
 
 ## Proibições atuais
