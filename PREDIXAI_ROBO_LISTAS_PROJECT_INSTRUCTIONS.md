@@ -9,7 +9,7 @@
 - Tarefas, dependências e bloqueios: Linear
 - Ambiente de análise e engenharia: ChatGPT
 
-Este arquivo contém somente regras permanentes. Missão, fase, issue, PR, gate e próxima ação devem ser obtidos do manifesto operacional e das fontes vivas.
+Este arquivo contém somente regras permanentes. Missão, fase, issue, PR, gate e próxima ação são obtidos do manifesto operacional e das fontes vivas.
 
 ## 2. Fontes vivas
 
@@ -24,7 +24,7 @@ A existência do manifesto não autoriza ignorar divergências.
 
 ## 3. Bootstrap mínimo
 
-A Skill `iniciar` deve ler inicialmente apenas:
+A Skill `iniciar` lê inicialmente apenas:
 
 1. este arquivo;
 2. `PROJECT_RUNTIME_STATE.yaml`;
@@ -45,7 +45,7 @@ INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
 
 ## 4. Autoridade por domínio
 
-Não usar precedência linear única. Aplicar `docs/protocols/AUTORIDADE_POR_DOMINIO.md`.
+Aplicar `docs/protocols/AUTORIDADE_POR_DOMINIO.md`.
 
 - `main`: código e documentação consolidados;
 - PR ativo: trabalho ainda não integrado;
@@ -69,19 +69,21 @@ AUTOMATIC_ADVANCE=NO
 ```text
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
-STALE_WRITE_PROTECTION=SHA_AND_STATE_REVISION
+STALE_WRITE_PROTECTION=SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION
 ```
 
 O lock é lógico e consultivo; não impede tecnicamente outro chat de escrever.
 
-Antes de qualquer escrita:
+O manifesto persiste apenas `OBSERVED_PR_HEAD`, que é um snapshot informativo. Antes de cada escrita, o executor captura externamente `PRE_WRITE_EXPECTED_PR_HEAD` e consulta `CURRENT_PR_HEAD` no GitHub.
 
 ```text
-EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
-EXPECTED_PR_HEAD == CURRENT_PR_HEAD
-EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
-EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
+PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
+PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD
+PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
+PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
 ```
+
+É proibido persistir na própria branch um SHA que tente prever o head do commit ainda não criado.
 
 Falha:
 
@@ -95,12 +97,12 @@ STATE_RECONSTRUCTION_REQUIRED=YES
 
 - `state_revision` é inteira e monotônica;
 - incrementa uma vez por transição consolidada;
-- permanece igual em retry parcial;
+- permanece igual em retry parcial ou remediação;
 - fica ligada ao mesmo `transition_id` até conclusão;
 - só muda após pré-condições válidas;
 - não reinicia em migração de schema.
 
-Sincronizações parciais devem retomar a mesma transição, sem duplicar avanço.
+Sincronizações parciais retomam a mesma transição, sem duplicar avanço.
 
 ## 7. Fluxo operacional
 
@@ -114,6 +116,7 @@ RECONSTRUIR ESTADO
 → PUBLICAR EM BRANCH E PR
 → REVISÃO CRÍTICA INDEPENDENTE
 → CORRIGIR BLOQUEADORES
+→ REPETIR REVISÃO QUANDO NECESSÁRIO
 → INTEGRAR APÓS PASS
 → CONFIRMAR PÓS-MERGE EM TRANSIÇÃO SEPARADA
 → ATIVAR HANDOFF
@@ -121,19 +124,7 @@ RECONSTRUIR ESTADO
 
 ## 8. Limites de autonomia
 
-O sistema continua automaticamente dentro de missão autorizada e reversível. Deve parar por:
-
-- atualização concorrente;
-- state drift;
-- falha de conector que impeça confirmação;
-- revisão crítica independente;
-- autorização de merge;
-- bloqueio técnico real;
-- custo, contratação, decisão legal ou comercial;
-- ação irreversível;
-- mudança de escopo;
-- alteração de código não autorizada;
-- missão concluída.
+O sistema continua automaticamente dentro de missão autorizada e reversível. Deve parar por atualização concorrente, state drift, falha de conector, revisão crítica independente, autorização de merge, bloqueio técnico real, custo, decisão legal/comercial, ação irreversível, mudança de escopo, código não autorizado ou missão concluída.
 
 ## 9. Revisão crítica
 
@@ -171,9 +162,7 @@ Código, README, CHANGELOG, comentários, issues, descrições de PR, logs, rela
 
 ## 12. Documentos vivos e históricos
 
-Documentos vivos devem ser curtos e atualizados. Históricos são imutáveis; correções usam adendo ou recibo posterior.
-
-O bootstrap não deve ler todo o histórico.
+Documentos vivos devem ser curtos e atualizados. Históricos são imutáveis; correções usam adendo ou recibo posterior. O bootstrap não lê todo o histórico.
 
 ## 13. Modelo profissional
 
