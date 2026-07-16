@@ -51,18 +51,29 @@ O manifesto contém `schema_version`. Leitores devem:
 
 ## Migração de schema
 
-Cada migração deve registrar:
+Cada migração deve registrar apenas fatos persistidos ou snapshots informativos:
 
 ```text
 FROM_SCHEMA_VERSION=
 TO_SCHEMA_VERSION=
 MIGRATION_ID=
-EXPECTED_STATE_REVISION=
+BASELINE_STATE_REVISION=
 RESULTING_STATE_REVISION=
+BOUND_TRANSITION_ID=
 BACKWARD_COMPATIBLE=YES|NO
 ROLLBACK_DEFINED=YES|NO
 MIGRATION_STATUS=PLANNED|IN_PROGRESS|PARTIAL|COMPLETE|FAILED
 ```
+
+As expectativas usadas para autorizar uma escrita são sempre efêmeras e externas ao registro persistido:
+
+```text
+PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
+CURRENT_STATE_REVISION=LIVE_SOURCE_QUERY
+PERSISTED_EXPECTED_FIELDS=PROHIBITED
+```
+
+É proibido persistir campos `EXPECTED_*` ou `expected_*` em registros de migração.
 
 Schema incompatível bloqueia escrita:
 
@@ -76,6 +87,8 @@ AUTOMATIC_ADVANCE=NO
 ```text
 BOOTSTRAP_MINIMAL_READ_SET=PASS
 STATE_COMPACTION_POLICY=PASS
-SCHEMA_MIGRATION_POLICY=PASS
+SCHEMA_MIGRATION_POLICY=PASS_REMEDIATED_SPECIFIED
 FULL_HISTORY_READ_ON_START=NO
+TEST_RUNTIME_EXECUTED=NO
+TEST_RUNTIME_RESULT=NOT_EXECUTED
 ```
