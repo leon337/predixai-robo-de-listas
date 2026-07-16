@@ -11,9 +11,12 @@ MEMORY_RECONSTRUCTION_TEST_B=PASS
 MEMORY_CONTINUITY_TEST_C=PASS
 MEMORY_ACCEPTANCE_SUITE=PASS
 PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS_OBSERVED
-RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
-PROTOCOL_RUNTIME_REMAINING=R3_R4_R5_R6_R7
+START_PROTOCOL_RUNTIME=PASS
+RESPONSE_MODEL_RUNTIME=PASS
+STATE_SKILL_RUNTIME=PASS
+CRITICAL_GATE_RUNTIME=PASS
+CHECKPOINT_PROTOCOL_RUNTIME=PASS
+PROTOCOL_RUNTIME_REMAINING=R6_R7
 AUDITORIA_MESTRA=BLOQUEADA_ATÉ_LEA_11_DONE
 IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ```
@@ -29,7 +32,11 @@ IMPLEMENTAÇÃO=NAO_AUTORIZADA
 ✅ Validação estática dos protocolos
 ✅ Runtime R1 — iniciar sem memória manual
 ✅ Runtime R2 — modelo de resposta UI/UX/LX
-🟧 Runtime R3–R7 — estado, gate crítico, checkpoint, fechar e continuidade
+✅ Runtime R3 — Skill estado
+✅ Runtime R4 — gate crítico
+✅ Runtime R5 — checkpoint sem transporte manual
+🟧 Runtime R6 — fechar com sincronização
+⬜ Runtime R7 — continuidade multichat
 ⬜ Validação final da pasta limpa
 
 ⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
@@ -68,6 +75,21 @@ Objetivo:
 - comprovar resposta UI/UX/LX;
 - validar Skills, gate crítico, checkpoint, fechamento e continuidade multichat;
 - corrigir divergências antes da pasta definitiva.
+
+Estado atual:
+
+```text
+R1_INICIAR=PASS
+R2_RESPONSE_MODEL=PASS
+R3_ESTADO=PASS
+R4_CRITICAL_GATE=PASS
+R5_CHECKPOINT=PASS
+R6_FECHAR=PENDING
+R7_MULTICHAT_CONTINUITY=PENDING
+```
+
+Checkpoint vigente:
+`docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md`
 
 Saída: `CLEAN_PROJECT_ACCEPTANCE=PASS`
 
