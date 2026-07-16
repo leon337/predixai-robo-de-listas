@@ -4,15 +4,15 @@
 
 Toda mudança de missão ou gate usa um `transition_id` único e persistente até consolidação.
 
-Campos persistidos:
+## Campos persistidos
 
 ```text
 TRANSITION_ID
 FROM_STATE
 TO_STATE
-EXPECTED_MAIN_SHA
-EXPECTED_STATE_REVISION
-EXPECTED_TRANSITION_ID
+BASELINE_MAIN_SHA
+BASELINE_STATE_REVISION
+BOUND_TRANSITION_ID
 OBSERVED_PR_HEAD
 GITHUB_UPDATE_STATUS
 LINEAR_UPDATE_STATUS
@@ -23,14 +23,22 @@ TRANSITION_STATUS
 TRANSITION_COMPLETE
 ```
 
-Campos efêmeros da sessão de escrita:
+Os campos persistidos registram baseline, vínculo e observação. Nenhum campo persistido usa o prefixo `EXPECTED_`.
+
+## Campos efêmeros da sessão de escrita
 
 ```text
+PRE_WRITE_EXPECTED_MAIN_SHA
 PRE_WRITE_EXPECTED_PR_HEAD
+PRE_WRITE_EXPECTED_STATE_REVISION
+PRE_WRITE_EXPECTED_TRANSITION_ID
+CURRENT_MAIN_SHA
 CURRENT_PR_HEAD
+CURRENT_STATE_REVISION
+CURRENT_TRANSITION_ID
 ```
 
-`PRE_WRITE_EXPECTED_PR_HEAD` nunca é persistido para tentar prever o SHA do próprio commit futuro.
+Todos os `PRE_WRITE_EXPECTED_*` existem somente na sessão executora. Eles não são persistidos para tentar prever o resultado de um commit futuro.
 
 ## State revision
 
@@ -65,7 +73,7 @@ PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
 PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
 ```
 
-Após commit válido, o executor consulta o novo PR head e renova apenas o snapshot efêmero da sessão.
+Após commit válido, o executor consulta os valores atuais e renova somente os snapshots efêmeros da sessão.
 
 ## Sincronização parcial
 
