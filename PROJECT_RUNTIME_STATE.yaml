@@ -1,48 +1,48 @@
 schema_version: "1.0.2"
-state_revision: 0
+state_revision: 1
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-main_head: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
+main_head: "4d3f7e33d8927c80240b5f48e130158ee98c258f"
 real_version: "V2.4.3-R1"
 
 active_mission: "PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat"
-active_stage: "RC5_APROVADA_AGUARDANDO_DECISAO_FORMAL_DE_MERGE"
+active_stage: "TRANSICAO_B_RECIBO_POS_MERGE"
 active_linear_issue: "LEA-12"
-active_pull_request: 30
-working_branch: "docs/ptp-mem-1-hardening"
-observed_pr_head: "f8df1ddc0b2ec4a87429d0fd5e4cbb0efb57e4a4"
+active_pull_request: null
+working_branch: "docs/ptp-mem-1-post-merge-receipt"
+observed_pr_head: null
 
-current_gate: "INDEPENDENT_CRITICAL_REVIEW_RC5_PASS"
-gate_status: "PASS"
-next_action: "AGUARDAR_AUTORIZACAO_FORMAL_PARA_SAIR_DE_DRAFT_E_INTEGRAR_PR_30"
+current_gate: "POST_MERGE_RECEIPT_REQUIRED"
+gate_status: "IN_PROGRESS"
+next_action: "ABRIR_E_REVISAR_PR_DOCUMENTAL_DO_RECIBO_POS_MERGE"
 blockers: []
 
-transition_id: "PTP-MEM.1-T01"
-transition_status: "APPROVED_FOR_MERGE"
-from_state: "PTP-GOV.6-RC_MERGED"
-to_state: "PTP-MEM.1_DRAFT_APPROVED_AWAITING_MERGE_AUTHORIZATION"
-baseline_main_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
-baseline_state_revision: 0
-bound_transition_id: "PTP-MEM.1-T01"
+transition_id: "PTP-MEM.1-T02"
+transition_status: "IN_PROGRESS"
+from_state: "PTP-MEM.1_MAIN_PR_MERGED"
+to_state: "PTP-MEM.1_POST_MERGE_RECEIPT_MERGED"
+baseline_main_sha: "4d3f7e33d8927c80240b5f48e130158ee98c258f"
+baseline_state_revision: 1
+bound_transition_id: "PTP-MEM.1-T02"
 
-github_sync_status: "PASS"
+github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-16T23:15:00Z"
+last_sync_at_utc: "2026-07-16T23:50:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "GPT builder chat"
-  session_id: "PTP-MEM.1-BUILDER-01"
-  base_sha: "0c7591eeb571b80ae726018c7ddff9a9c5563954"
-  observed_pr_head: "f8df1ddc0b2ec4a87429d0fd5e4cbb0efb57e4a4"
-  state_revision_snapshot: 0
-  transition_id_snapshot: "PTP-MEM.1-T01"
-  started_at_utc: "2026-07-16T20:25:11Z"
+  session_id: "PTP-MEM.1-POST-MERGE-01"
+  base_sha: "4d3f7e33d8927c80240b5f48e130158ee98c258f"
+  observed_pr_head: null
+  state_revision_snapshot: 1
+  transition_id_snapshot: "PTP-MEM.1-T02"
+  started_at_utc: "2026-07-16T23:50:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T23:15:00Z"
+  heartbeat_at_utc: "2026-07-16T23:50:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -60,7 +60,7 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_MERGE_AUTHORIZATION"
+  execution_status: "AWAITING_POST_MERGE_CONFIRMATION"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
@@ -69,4 +69,6 @@ safety:
   critical_blockers: 0
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
-  pr_merge_authorization: "BLOCKED_PENDING_FORMAL_DECISION"
+  main_pr_merged: true
+  handoff_activated: true
+  post_merge_receipt_merged: false
