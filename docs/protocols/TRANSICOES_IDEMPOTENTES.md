@@ -2,18 +2,18 @@
 
 ## Contrato
 
-Toda mudança de missão ou gate deve usar um `transition_id` único e persistente até a consolidação.
+Toda mudança de missão ou gate usa um `transition_id` único e persistente até consolidação.
 
-Campos obrigatórios:
+Campos persistidos:
 
 ```text
 TRANSITION_ID
 FROM_STATE
 TO_STATE
 EXPECTED_MAIN_SHA
-EXPECTED_PR_HEAD
 EXPECTED_STATE_REVISION
 EXPECTED_TRANSITION_ID
+OBSERVED_PR_HEAD
 GITHUB_UPDATE_STATUS
 LINEAR_UPDATE_STATUS
 PROJECT_STATE_UPDATE_STATUS
@@ -23,13 +23,22 @@ TRANSITION_STATUS
 TRANSITION_COMPLETE
 ```
 
+Campos efêmeros da sessão de escrita:
+
+```text
+PRE_WRITE_EXPECTED_PR_HEAD
+CURRENT_PR_HEAD
+```
+
+`PRE_WRITE_EXPECTED_PR_HEAD` nunca é persistido para tentar prever o SHA do próprio commit futuro.
+
 ## State revision
 
 `state_revision` é inteira e monotônica.
 
 - inicia em zero na adoção do protocolo;
 - incrementa uma única vez por transição consolidada;
-- permanece inalterada durante retries da mesma transição;
+- permanece inalterada durante retries e remediações da mesma transição;
 - fica vinculada ao mesmo `transition_id` até conclusão;
 - só muda depois da validação das pré-condições;
 - não reinicia em migrações de schema.
@@ -45,9 +54,20 @@ PREPARED
 → COMPLETE
 ```
 
-## Sincronização parcial
+## Pré-condição de escrita
 
-Exemplo GitHub atualizado e Linear indisponível:
+Antes de cada mutação, a sessão compara:
+
+```text
+PRE_WRITE_EXPECTED_MAIN_SHA == CURRENT_MAIN_SHA
+PRE_WRITE_EXPECTED_PR_HEAD == CURRENT_PR_HEAD
+PRE_WRITE_EXPECTED_STATE_REVISION == CURRENT_STATE_REVISION
+PRE_WRITE_EXPECTED_TRANSITION_ID == CURRENT_TRANSITION_ID
+```
+
+Após commit válido, o executor consulta o novo PR head e renova apenas o snapshot efêmero da sessão.
+
+## Sincronização parcial
 
 ```text
 TRANSITION_STATUS=PARTIAL
@@ -58,11 +78,9 @@ STATE_REVISION=UNCHANGED
 TRANSITION_ID=UNCHANGED
 ```
 
-O próximo chat deve concluir a mesma transição. É proibido criar nova missão ou incrementar a revisão.
+O próximo chat conclui a mesma transição. É proibido criar nova missão ou incrementar a revisão.
 
 ## Prevenção de avanço duplicado
-
-Antes de executar uma etapa, verificar se o efeito esperado já existe.
 
 - arquivo já atualizado: não regravar sem necessidade;
 - comentário Linear já publicado: não duplicar;
@@ -102,21 +120,22 @@ POST_MERGE_RECEIPT_MERGED=PASS
 TRANSITION_COMPLETE=YES
 ```
 
-## Falhas
+## Falhas canônicas
 
 ```text
 PARTIAL_SYNC_RECOVERY=RETRY_SAME_TRANSITION
 DUPLICATE_ADVANCE=BLOCKED
 UNKNOWN_TRANSITION=STATE_RECONSTRUCTION_REQUIRED
-SCHEMA_INCOMPATIBLE=BLOCKED_BY_STATE_DRIFT
+SCHEMA_INCOMPATIBLE=BLOCKED_BY_SCHEMA_MISMATCH
+CONNECTOR_UNAVAILABLE=BLOCKED_BY_CONNECTOR_FAILURE
 ```
 
 ## Gates
 
 ```text
-IDEMPOTENT_TRANSITION_PROTOCOL=PASS_SPECIFIED
+IDEMPOTENT_TRANSITION_PROTOCOL=PASS_REMEDIATED_SPECIFIED
 PARTIAL_SYNC_RECOVERY=PASS_SPECIFIED
 DUPLICATE_ADVANCE_PREVENTION=PASS_SPECIFIED
+TEST_RUNTIME_EXECUTED=NO
+TEST_RUNTIME_RESULT=NOT_EXECUTED
 ```
-
-Os gates acima validam o contrato documental, não a execução runtime.
