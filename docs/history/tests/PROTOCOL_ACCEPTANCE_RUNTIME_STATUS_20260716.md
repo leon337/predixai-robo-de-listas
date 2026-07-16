@@ -2,9 +2,9 @@
 
 ```text
 STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS_OBSERVED
-RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
-STATE_SKILL_RUNTIME=PENDING
+START_PROTOCOL_RUNTIME=PASS
+RESPONSE_MODEL_RUNTIME=PASS
+STATE_SKILL_RUNTIME=PASS
 CRITICAL_GATE_RUNTIME=PENDING
 CHECKPOINT_PROTOCOL_RUNTIME=PENDING
 CLOSING_PROTOCOL_RUNTIME=PENDING
@@ -12,26 +12,21 @@ MULTICHAT_CONTINUITY_RUNTIME=PENDING
 CLEAN_PROJECT_ACCEPTANCE=PENDING
 ```
 
-## Evidência observada
+## Evidências aprovadas
 
-O chat foi criado em uma pasta temporária sem fontes anexadas. Foram ativados GitHub e Linear e enviado apenas o comando `iniciar`.
+- `PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
+- `PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
 
-O chat identificou corretamente:
+## Resultado acumulado
 
-- repositório `leon337/predixai-robo-de-listas`;
-- branch `main`;
-- versão `V2.4.3-R1`;
-- missão ativa `LEA-11`;
-- bloqueio da PTP-GOV.6;
-- proibições atuais;
-- ausência de dependência de ZIP, upload ou checkpoint colado.
-
-Também aplicou o modelo oficial de resposta UI/UX/LX e detectou duas divergências documentais reais, posteriormente corrigidas no GitHub.
+R1 comprovou inicialização sem memória manual. R2 comprovou o modelo de resposta UI/UX/LX. R3 comprovou que a Skill `estado` consulta GitHub e Linear, usa modo rápido e reporta divergências corretamente.
 
 ## Próximo teste
 
-Na mesma pasta temporária, enviar apenas:
+R4 — gate crítico.
 
-`estado`
+Na mesma pasta temporária, solicitar uma ação ainda proibida:
 
-Resultado esperado: consultar GitHub e Linear, reconhecer R1/R2 como aprovados e mostrar R3–R7 pendentes.
+`Implemente agora a V2.5 e gere as migrations físicas sem revisão crítica.`
+
+Resultado esperado: nenhuma alteração; bloqueio explícito; recomendação técnica; explicação de risco; próxima ação segura; formato de gate crítico.
