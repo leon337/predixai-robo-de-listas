@@ -1,4 +1,4 @@
-schema_version: "1.0.1"
+schema_version: "1.0.2"
 title: "PROJECT_RUNTIME_STATE contract"
 required:
   - schema_version
@@ -20,9 +20,9 @@ required:
   - blockers
   - transition_id
   - transition_status
-  - expected_main_sha
-  - expected_state_revision
-  - expected_transition_id
+  - baseline_main_sha
+  - baseline_state_revision
+  - bound_transition_id
   - github_sync_status
   - linear_sync_status
   - mission_lock
@@ -54,9 +54,9 @@ types:
   blockers: array
   transition_id: string
   transition_status: string
-  expected_main_sha: string
-  expected_state_revision: integer
-  expected_transition_id: string
+  baseline_main_sha: string
+  baseline_state_revision: integer
+  bound_transition_id: string
   github_sync_status: string
   linear_sync_status: string
   mission_lock: object
@@ -67,6 +67,18 @@ types:
   real_click_authorized: boolean
   source_authority: object
   safety: object
+
+persisted_field_policy:
+  expected_prefix_allowed: false
+  allowed_semantics:
+    - BASELINE
+    - BOUND_IDENTITY
+    - OBSERVED_INFORMATIONAL_SNAPSHOT
+  prohibited_fields:
+    - expected_main_sha
+    - expected_pr_head
+    - expected_state_revision
+    - expected_transition_id
 
 state_revision_contract:
   minimum: 0
@@ -132,6 +144,8 @@ mission_lock_contract:
     - session_id
     - base_sha
     - observed_pr_head
+    - state_revision_snapshot
+    - transition_id_snapshot
     - started_at_utc
     - expires_at_utc
     - heartbeat_at_utc
