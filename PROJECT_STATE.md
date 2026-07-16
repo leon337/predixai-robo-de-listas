@@ -10,25 +10,11 @@
 - Missão ativa: `PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat`
 - Issue ativa: `LEA-12`
 - Branch de trabalho: `docs/ptp-mem-1-hardening`
-- Pull Request ativo: `#30`, Draft
-- Etapa atual: `REMEDIACAO_RC4_CONCLUIDA_AGUARDANDO_RC5`
-- Gate atual: `INDEPENDENT_CRITICAL_REVIEW_RC5_REQUIRED`
+- Pull Request ativo: `#30`, Draft, não integrado
+- Etapa atual: `RC5_APROVADA_AGUARDANDO_DECISAO_FORMAL_DE_MERGE`
+- Gate atual: `INDEPENDENT_CRITICAL_REVIEW_RC5_PASS`
 - Etapa do produto preservada: `PTM V2.5 — Reconciliação com o legado`
 - Issue do produto: `LEA-8`, `Todo`, não iniciada e sem bloqueio formal pela PTP-MEM.1
-
-## Autoridade
-
-```text
-PROJECT_RUNTIME_STATE.yaml = estado operacional canônico estruturado
-PROJECT_STATE.md = visão humana detalhada derivada
-PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md = roadmap e histórico resumido
-GitHub main = código e documentação consolidados
-Pull Request ativo = trabalho ainda não integrado
-Linear = tarefas, bloqueios, dependências e progresso
-ChatGPT = contexto temporário
-```
-
-Divergência entre manifesto e documentação bloqueia avanço automático.
 
 ## Transição atual
 
@@ -36,14 +22,14 @@ Divergência entre manifesto e documentação bloqueia avanço automático.
 schema_version=1.0.2
 state_revision=0
 transition_id=PTP-MEM.1-T01
-transition_status=READY_FOR_INDEPENDENT_REVIEW
+transition_status=APPROVED_FOR_MERGE
 github_sync_status=PASS
 linear_sync_status=IN_PROGRESS
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 ```
 
-A `state_revision` permanece `0` durante revisões e remediações da mesma transição.
+A revisão permanece `0` porque a transição ainda não foi consolidada por merge e confirmação pós-merge.
 
 ## Histórico das revisões independentes
 
@@ -56,23 +42,27 @@ RC3=FAIL
 RC3_CRITICAL_BLOCKERS=1
 RC4=FAIL
 RC4_CRITICAL_BLOCKERS=1
-PR_30_MERGE_AUTHORIZATION=BLOCKED
-RUNTIME_R8_R24=NOT_EXECUTED
+RC5=PASS
+RC5_CRITICAL_BLOCKERS=0
 ```
 
-## Remediação RC4
-
-O protocolo de retenção e migração foi alinhado ao schema `1.0.2`.
+## Boss Gate aprovado
 
 ```text
-PERSISTED_EXPECTED_FIELDS=PROHIBITED
-MIGRATION_BASELINE_STATE_REVISION=PERSISTED_SNAPSHOT
-PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
-CURRENT_STATE_REVISION=LIVE_SOURCE_QUERY
+INDEPENDENT_CRITICAL_REVIEW_RC5=PASS
+CRITICAL_BLOCKERS=0
+PERSISTED_EXPECTED_FIELDS=ABSENT
+PRE_WRITE_EXPECTED_FIELDS=EPHEMERAL_ONLY
+MANIFEST_SCHEMA_VALIDATION=PASS
+MANIFEST_DOCUMENTATION_ALIGNMENT=PASS
+SCHEMA_MIGRATION_POLICY=PASS
+RUNTIME_R8_R24=NOT_EXECUTED
 SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
+PR_MERGED=NO
+PR_MERGE_AUTHORIZATION=BLOCKED_PENDING_FORMAL_DECISION
 ```
 
-Nenhum registro persistido de migração usa `EXPECTED_*` ou `expected_*`.
+A aprovação técnica independente não equivale a autorização humana automática para retirar o Draft ou integrar a PR.
 
 ## Gates da PTP-MEM.1
 
@@ -81,26 +71,27 @@ CURRENT_STATE_RECONSTRUCTED=PASS
 NO_CONCURRENT_WORK=PASS
 POST_MERGE_STATE_RECONCILIATION=PASS_DRAFT
 PERMANENT_INSTRUCTIONS_STATE_FREE=PASS_DRAFT
-FIELD_LEVEL_AUTHORITY_DEFINED=PASS_DRAFT
-MACHINE_READABLE_STATE_MANIFEST=PASS_DRAFT
-STATE_SCHEMA_VERSIONED=PASS_DRAFT
-IDEMPOTENT_TRANSITION_PROTOCOL=PASS_DRAFT
-PARTIAL_SYNC_RECOVERY=PASS_DRAFT
-CONCURRENT_CHAT_CONTROL=PASS_DRAFT
-STALE_WRITE_PROTECTION=REMEDIATED_PENDING_RC5
-START_SKILL_BOUNDARY=PASS_DRAFT
+FIELD_LEVEL_AUTHORITY_DEFINED=PASS
+MACHINE_READABLE_STATE_MANIFEST=PASS
+STATE_SCHEMA_VERSIONED=PASS
+IDEMPOTENT_TRANSITION_PROTOCOL=PASS
+PARTIAL_SYNC_RECOVERY=PASS
+CONCURRENT_CHAT_CONTROL=PASS
+STALE_WRITE_PROTECTION=PASS_SPECIFIED
+START_SKILL_BOUNDARY=PASS
 DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
-INSTRUCTION_SOURCE_ALLOWLIST=PASS_DRAFT
-DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS_DRAFT
-BOOTSTRAP_MINIMAL_READ_SET=PASS_DRAFT
-CRITICAL_REVIEW=PENDING_RC5
+INSTRUCTION_SOURCE_ALLOWLIST=PASS
+DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS
+BOOTSTRAP_MINIMAL_READ_SET=PASS
+CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
 PR_MERGED=NO
 POST_MERGE_RECEIPT=NOT_STARTED
 APPLICATION_CODE_CHANGED=NO
 SQL_OR_MIGRATIONS_CREATED=NO
 ```
 
-## Testes R8–R24
+## Testes
 
 ```text
 TEST_SPEC_CREATED=PASS
@@ -112,11 +103,11 @@ SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
 
 ## Próxima ação
 
-1. sincronizar a remediação RC4 no Linear;
-2. manter a PR nº 30 como Draft;
-3. executar RC5 em chat limpo e somente leitura;
-4. integrar somente após Boss Gate independente `PASS`;
-5. executar Transição B pós-merge em PR separado.
+1. manter a PR nº 30 como Draft;
+2. aguardar autorização formal para sair de Draft e integrar;
+3. antes de qualquer merge, reconstruir `main`, PR head, `state_revision` e `transition_id`;
+4. após merge real, executar a Transição B em PR documental separado;
+5. somente então incrementar `state_revision`, ativar o handoff e encerrar a missão.
 
 ## Proibições
 
@@ -126,10 +117,8 @@ NÃO executar a aplicação ou clique real.
 NÃO gerar SQL ou migrations.
 NÃO iniciar implementação V2.5.
 NÃO escrever diretamente na main.
-NÃO integrar PR sem revisão crítica independente PASS.
-NÃO declarar teste runtime PASS sem execução e evidência.
-NÃO tratar lock consultivo como trava técnica.
-NÃO persistir PRE_WRITE_EXPECTED_*.
-NÃO persistir EXPECTED_* em contratos ou registros ativos.
+NÃO integrar sem autorização formal.
+NÃO declarar runtime PASS sem execução e evidência.
+NÃO persistir PRE_WRITE_EXPECTED_* ou EXPECTED_*.
 NÃO ativar handoff antes do recibo pós-merge.
 ```
