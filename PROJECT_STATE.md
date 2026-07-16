@@ -7,11 +7,11 @@
 - **Branch técnica:** `main`
 - **Versão real atual:** `V2.4.3-R1`
 - **PTP concluída:** `PTP-GOV.5.2 — Gate de Ambiente e Protocolo de Memória`
-- **PTP operacional atual:** `PTP-GOV.6 — Auditoria Mestra V2.4.3-R1`
+- **PTP operacional posterior:** `PTP-GOV.6 — Auditoria Mestra V2.4.3-R1`
 - **Missão de validação atual:** `LEA-11 — Validar protocolos da pasta limpa`
 - **Primeira entrega posterior:** `Anexo A — Inventário factual do legado`
-- **Próxima revisão:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
-- **Status:** VALIDAÇÃO ESTÁTICA APROVADA — TESTES RUNTIME EM CHAT LIMPO PENDENTES
+- **Próxima revisão posterior:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
+- **Status:** TESTES RUNTIME R1/R2 APROVADOS — R3 A R7 PENDENTES
 - **Data:** 2026-07-16
 
 ## Ordem obrigatória de leitura
@@ -21,11 +21,12 @@
 3. `PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`
 4. `docs/protocols/PREDIXAI_ROBO_LISTAS_SKILLS.md`
 5. `docs/protocols/PREDIXAI_ROBO_LISTAS_RESPONSE_MODEL.md`
-6. documento da PTP ou PTM ativa;
-7. revisão crítica mais recente;
-8. evidências indicadas neste arquivo;
-9. código e documentação técnica da branch `main`;
-10. issue correspondente no Linear.
+6. `docs/protocols/PREDIXAI_ROBO_LISTAS_RUNTIME_TEST_PLAN.md`
+7. documento da PTP ou PTM ativa;
+8. revisão crítica mais recente;
+9. evidências indicadas neste arquivo;
+10. código e documentação técnica da branch `main`;
+11. issue correspondente no Linear.
 
 ## Fonte oficial
 
@@ -57,8 +58,10 @@ Gamificação técnica ........................... APROVADA
 Agentes como papéis lógicos ................... APROVADOS
 Infraestrutura autônoma externa ............... ADIADA
 Validação estática dos protocolos ............. PASS
-Testes runtime dos protocolos ................. PENDENTES
-Auditoria Mestra V2.4.3-R1 .................... BLOQUEADA ATÉ TESTES RUNTIME
+Runtime R1 — iniciar .......................... PASS OBSERVADO
+Runtime R2 — modelo de resposta ............... PASS OBSERVADO
+Runtime R3–R7 ................................. PENDENTES
+Auditoria Mestra V2.4.3-R1 .................... BLOQUEADA ATÉ LEA-11=Done
 Anexo A — Inventário factual .................. NÃO INICIADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
 ```
@@ -68,6 +71,7 @@ Implementação V2.5 ............................ NÃO AUTORIZADA
 - `docs/history/tests/MEMORY_GATES_0_A_B_RESULTADOS_20260716.md`
 - `docs/history/tests/MEMORY_CONTINUITY_TEST_C_RESULTADO_20260716.md`
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MIGRACAO_PROJETO_LIMPO_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MELHORIAS_OPERACIONAIS_LEVES_20260716.md`
 - `docs/history/ptp/CHECKPOINT_FINAL_MIGRACAO_PROJETO_LIMPO_20260716.md`
@@ -87,10 +91,14 @@ MISSION_AUTONOMY_POLICY_STATIC=PASS
 CRITICAL_GATE_POLICY_STATIC=PASS
 MANUAL_MEMORY_TRANSFER_PROHIBITED=PASS
 PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PENDING
+START_PROTOCOL_RUNTIME=PASS_OBSERVED
+RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
+STATE_SKILL_RUNTIME=PENDING
+CRITICAL_GATE_RUNTIME=PENDING
 CHECKPOINT_PROTOCOL_RUNTIME=PENDING
 CLOSING_PROTOCOL_RUNTIME=PENDING
 MULTICHAT_CONTINUITY_RUNTIME=PENDING
+CLEAN_PROJECT_ACCEPTANCE=PENDING
 EXTERNAL_AUTOMATION=DEFERRED
 AUDITORIA_MESTRA=BLOCKED_UNTIL_RUNTIME_TESTS_PASS
 FAILURE_CODES=NONE
@@ -99,16 +107,13 @@ FAILURE_CODES=NONE
 ## Próxima ação obrigatória
 
 ```text
-1. Integrar a correção de estado e a validação estática na branch main.
-2. Manter LEA-11 em andamento no Linear.
-3. Criar uma pasta temporária de teste no ChatGPT contendo somente a instrução operacional curta.
-4. Ativar GitHub e Linear nessa pasta temporária.
-5. Abrir um chat novo e enviar apenas: iniciar.
-6. Não anexar ZIP, arquivos ou checkpoint.
-7. Validar reconstrução, resposta UI/UX/LX e continuidade.
-8. Depois testar gate crítico, checkpoint e fechar em chats controlados.
-9. Somente após todos os gates PASS, criar a pasta definitiva e iniciar PTP-GOV.6.
-10. Não alterar código.
+1. Manter LEA-11 em andamento no Linear.
+2. Na mesma pasta temporária, enviar apenas: estado.
+3. Confirmar que a Skill consulta GitHub e Linear e identifica os PASS de R1/R2.
+4. Depois executar os testes de gate crítico, checkpoint, fechamento e continuidade multichat conforme o plano runtime.
+5. Não anexar ZIP, arquivos ou checkpoint.
+6. Somente após todos os gates PASS, criar a pasta definitiva e iniciar PTP-GOV.6.
+7. Não alterar código.
 ```
 
 ## Roadmap oficial com revisões críticas
@@ -122,7 +127,9 @@ FAILURE_CODES=NONE
 ✅ Skills oficiais do projeto
 ✅ Modelo de resposta UI/UX/LX
 ✅ Validação estática dos protocolos
-🟧 Testes runtime dos protocolos
+✅ Runtime R1 — iniciar sem memória manual
+✅ Runtime R2 — resposta UI/UX/LX
+🟧 Runtime R3–R7 — Skills, gate, checkpoint, fechar e continuidade
 ⬜ Validação final da pasta limpa
 
 ⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
@@ -160,10 +167,12 @@ NÃO iniciar a Auditoria Mestra antes da LEA-11=Done.
 ```text
 LIGHTWEIGHT_OPERATIONAL_REVIEW=PASS
 PR_20_MERGED=PASS
+PR_21_MERGED=PASS
 LINEAR_LEA_11=IN_PROGRESS
 PROTOCOL_STATIC_VALIDATION=PASS
-GITHUB_STATE_CORRECTION=READY_FOR_PR
-PROTOCOL_RUNTIME_TESTS=PENDING
+START_PROTOCOL_RUNTIME=PASS_OBSERVED
+RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
+PROTOCOL_RUNTIME_REMAINING=R3_R4_R5_R6_R7
 NEW_CHATGPT_PROJECT=PENDING_VALIDATION
 PTP_GOV_6=BLOCKED_UNTIL_PROTOCOL_TESTS_PASS
 IMPLEMENTATION=NAO_AUTORIZADA
