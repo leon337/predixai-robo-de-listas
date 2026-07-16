@@ -1,173 +1,139 @@
 # PROJECT_STATE — PredixAI Robô de Listas
 
-## Autoridade documental
+## Estado operacional
 
-- **Projeto:** PredixAI Robô de Listas
-- **Repositório oficial:** `leon337/predixai-robo-de-listas`
-- **Branch técnica:** `main`
-- **Versão real atual:** `V2.4.3-R1`
-- **PTP concluída:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra`
-- **Missão concluída:** `LEA-10 — PTP-GOV.6-RC`
-- **Próxima missão liberada:** `PTM V2.5 — Reconciliação com o legado`
-- **Issue seguinte:** `LEA-8 — Reconciliar e revisar PTM V2.5`
-- **Status:** AUDITORIA MESTRA APROVADA — PTM V2.5 LIBERADA PARA RECONCILIAÇÃO DOCUMENTAL
-- **Data:** 2026-07-16
+- Projeto: PredixAI Robô de Listas
+- Repositório: `leon337/predixai-robo-de-listas`
+- Branch oficial: `main`
+- HEAD consolidado de entrada: `0c7591eeb571b80ae726018c7ddff9a9c5563954`
+- Versão real: `V2.4.3-R1`
+- Missão ativa: `PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat`
+- Issue ativa: `LEA-12`
+- Branch de trabalho: `docs/ptp-mem-1-hardening`
+- Pull Request: ainda não aberto
+- Etapa do produto preservada: `PTM V2.5 — Reconciliação com o legado`
+- Issue do produto: `LEA-8`, `Todo`, não iniciada e sem bloqueio formal pela PTP-MEM.1
 
-## Ordem obrigatória de leitura
-
-1. `PREDIXAI_ROBO_LISTAS_PROJECT_INSTRUCTIONS.md`
-2. `PROJECT_STATE.md`
-3. `PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`
-4. `docs/protocols/PREDIXAI_ROBO_LISTAS_SKILLS.md`
-5. `docs/protocols/PREDIXAI_ROBO_LISTAS_RESPONSE_MODEL.md`
-6. documento da PTP ou PTM ativa;
-7. revisão crítica mais recente;
-8. evidências indicadas neste arquivo;
-9. código e documentação técnica da branch `main`;
-10. issue correspondente no Linear.
-
-## Fonte oficial
+## Autoridade
 
 ```text
-GitHub  = memória técnica, documental e histórica
-Linear  = tarefas, bloqueios, dependências e progresso
-ChatGPT = ambiente de análise, engenharia e orquestração
+PROJECT_RUNTIME_STATE.yaml = estado operacional canônico estruturado
+PROJECT_STATE.md = visão humana detalhada derivada
+PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md = roadmap e histórico resumido
+GitHub main = código e documentação consolidados
+Pull Request ativo = trabalho ainda não integrado
+Linear = tarefas, bloqueios, dependências e progresso
+ChatGPT = contexto temporário
 ```
 
-A continuidade não depende de ZIP, upload manual, checkpoint colado ou memória informal de outro chat.
+Divergência entre manifesto e documentação bloqueia avanço automático.
 
-## Estado consolidado
+## Transição atual
 
 ```text
-Arquitetura conceitual dos 12 pontos .......... CONCLUÍDA
-Revisões críticas arquiteturais ............... CONCLUÍDAS
-Schema lógico SQLite .......................... CONGELADO CONCEITUALMENTE
-Sequência V2.5–V2.7 ........................... CONGELADA CONCEITUALMENTE
-PTM V2.5 ...................................... PRELIMINAR / PRONTA PARA RECONCILIAÇÃO
-Histórico integral ............................ PUBLICADO E INTEGRADO
-Suite de memória .............................. PASS
-Migração documental ........................... PASS
-Skills do projeto ............................. PASS
-Modelo de resposta UI/UX/LX ................... PASS
-Gamificação técnica ........................... PASS
-Agentes como papéis lógicos ................... PASS
-Validação estática dos protocolos ............. PASS
-Runtime R1–R7 ................................. PASS
-Validação final da pasta limpa ................ PASS
-Auditoria Mestra V2.4.3-R1 .................... PASS
-Anexo A — Inventário factual .................. PASS
-PTP-GOV.6-RC .................................. PASS
-Implementação V2.5 ............................ NÃO AUTORIZADA
-Infraestrutura autônoma externa ............... ADIADA
+schema_version=1.0.0
+state_revision=0
+transition_id=PTP-MEM.1-T01
+transition_status=IN_PROGRESS
+github_sync_status=IN_PROGRESS
+linear_sync_status=PASS
+LOCK_ENFORCEMENT=ADVISORY
+CONCURRENCY_MODEL=OPTIMISTIC
 ```
 
-## Resultado oficial dos gates
+A `state_revision` permanece `0` enquanto a transição não estiver consolidada. Retentativas parciais preservam o mesmo `transition_id` e a mesma revisão.
+
+## Estado consolidado anterior
 
 ```text
-MEMORY_ACCEPTANCE_SUITE=PASS
-MIGRATION_CRITICAL_REVIEW=PASS
-PROJECT_INSTRUCTIONS=PASS
-MULTICHAT_TRUNK=PASS
-SKILLS_PROTOCOL_STATIC=PASS
-RESPONSE_MODEL_STATIC=PASS
-MISSION_AUTONOMY_POLICY_STATIC=PASS
-CRITICAL_GATE_POLICY_STATIC=PASS
-MANUAL_MEMORY_TRANSFER_PROHIBITED=PASS
-PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS
-RESPONSE_MODEL_RUNTIME=PASS
-STATE_SKILL_RUNTIME=PASS
-CRITICAL_GATE_RUNTIME=PASS
-CHECKPOINT_PROTOCOL_RUNTIME=PASS
-CLOSING_PROTOCOL_RUNTIME=PASS
-MULTICHAT_CONTINUITY_RUNTIME=PASS
-CLEAN_PROJECT_ACCEPTANCE=PASS
-LEA_11=DONE
-LEA_7=DONE
-LEA_10=DONE_AFTER_FINAL_SYNC
 AUDITORIA_MESTRA_DRAFT_COMPLETE=PASS
 AUDITORIA_MESTRA_CRITICAL_REVIEW=PASS
 CRITICAL_BLOCKERS=0
-PTM_V2_5=READY
-EXTERNAL_AUTOMATION=DEFERRED
-FAILURE_CODES=NONE
+PR_29_MERGED=PASS
+LEA_7=DONE
+LEA_10=DONE
+PTM_V2_5=READY_FOR_DOCUMENTAL_RECONCILIATION
+IMPLEMENTATION_V2_5=NOT_AUTHORIZED
 ```
 
-## Evidências principais
+A antiga orientação para concluir o merge da PR #29 foi removida porque o merge já ocorreu.
 
-### Memória e protocolos
-
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R6_RESULTADO_20260716.md`
-- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R7_RESULTADO_20260716.md`
-- `docs/history/tests/CLEAN_PROJECT_ACCEPTANCE_RESULTADO_20260716.md`
-
-### Auditoria Mestra
-
-- `docs/audits/ANEXO_A_INVENTARIO_FACTUAL_LEGADO_PTP-GOV.6_20260716.md`
-- `docs/audits/ANEXO_A_APENDICE_01_IMPORTS_SIMBOLOS_JSON_PTP-GOV.6_20260716.md`
-- `docs/audits/ANEXO_A_APENDICE_02_TESTES_WORKFLOWS_ESTADOS_JSON_RAIZ_PTP-GOV.6_20260716.md`
-- `docs/audits/ANEXO_A_APENDICE_03_HISTORICO_COMMITS_LIMITES_COLETA_PTP-GOV.6_20260716.md`
-- `docs/audits/ANEXO_A_APENDICE_04_ARVORE_AST_DOCUMENTACAO_FINAL_PTP-GOV.6_20260716.md`
-- `docs/audits/ADENDO_REMEDIACAO_PTP-GOV.6-RC_EVIDENCIA_ESTADO_RASTREABILIDADE_20260716.md`
-- `docs/audits/PREDIXAI_PTP-GOV.6_ARVORE_AST_20260716.txt.gz.b64`
-- `docs/history/reviews/REVISAO_CRITICA_AUDITORIA_MESTRA_PTP-GOV.6_20260716.md`
-- `docs/history/ptp/CHECKPOINT_PTP-GOV.6_ANEXO_A_DRAFT_COMPLETE_20260716.md`
-
-## Roadmap oficial
+## Gates da PTP-MEM.1
 
 ```text
-✅ PTP-GOV.5.2 — Memória e continuidade
-✅ Revisão crítica da migração
-✅ Instruções oficiais do Projeto
-✅ Tronco multichat
-✅ Skills e modelo UI/UX/LX
-✅ Validação estática
-✅ Runtime R1–R7
-✅ Aceitação final da pasta limpa
-✅ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
-✅ Anexo A — Inventário factual do legado
-✅ PTP-GOV.6-RC — Revisão crítica
-
-🟧 PTM V2.5 — Reconciliação com o legado
-⬜ PTM V2.5-RC
-⬜ PTM V2.6
-⬜ PTM V2.6-RC
-⬜ PTM V2.7
-⬜ PTM V2.7-RC
-⬜ Consolidação cruzada e revisão
-⬜ ADRs e revisão
-⬜ Documento Mestre e revisão final
-⬜ Congelamento da Arquitetura V1.0
-⬜ Prontidão para implementação
+CURRENT_STATE_RECONSTRUCTED=PASS
+NO_CONCURRENT_WORK=PASS
+POST_MERGE_STATE_RECONCILIATION=PASS_DRAFT
+PERMANENT_INSTRUCTIONS_STATE_FREE=PASS_DRAFT
+FIELD_LEVEL_AUTHORITY_DEFINED=PASS_DRAFT
+MACHINE_READABLE_STATE_MANIFEST=PASS_DRAFT
+STATE_SCHEMA_VERSIONED=PASS_DRAFT
+IDEMPOTENT_TRANSITION_PROTOCOL=PASS_DRAFT
+PARTIAL_SYNC_RECOVERY=PASS_DRAFT
+CONCURRENT_CHAT_CONTROL=PASS_DRAFT
+STALE_WRITE_PROTECTION=PASS_DRAFT
+START_SKILL_BOUNDARY=PASS_DRAFT
+DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
+INSTRUCTION_SOURCE_ALLOWLIST=PASS_DRAFT
+DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS_DRAFT
+BOOTSTRAP_MINIMAL_READ_SET=PASS_DRAFT
+CRITICAL_REVIEW=PENDING_INDEPENDENT
+PR_MERGED=NO
+POST_MERGE_RECEIPT=NOT_STARTED
+APPLICATION_CODE_CHANGED=NO
+SQL_OR_MIGRATIONS_CREATED=NO
 ```
 
-## Próxima ação obrigatória
+## Testes R8–R24
 
 ```text
-1. concluir merge e sincronização final da PTP-GOV.6-RC;
-2. manter a LEA-8 bloqueada até o merge estar confirmado;
-3. abrir novo chat para a PTM V2.5;
-4. reconstruir o estado exclusivamente pela main e pelo Linear;
-5. reconciliar a PTM V2.5 preliminar com o legado aprovado no Anexo A;
-6. não implementar código, gerar SQL ou migrations;
-7. não avançar para PTM V2.6 antes de PTM_V2_5_CRITICAL_REVIEW=PASS.
+TEST_SPEC_CREATED=PASS
+TEST_RUNTIME_EXECUTED=NO
+TEST_RUNTIME_RESULT=NOT_EXECUTED
 ```
 
-## Proibições atuais
+Nenhum teste runtime recebe PASS sem execução real e evidência individual.
+
+## Bootstrap obrigatório
+
+A Skill `iniciar` lê inicialmente apenas:
+
+1. instruções permanentes;
+2. `PROJECT_RUNTIME_STATE.yaml`;
+3. este arquivo;
+4. tronco multichat;
+5. Linear;
+6. PR indicado pelo manifesto, quando existir.
 
 ```text
+INICIAR_MODE=READ_ONLY
+FULL_HISTORY_READ_ON_START=NO
+INICIAR_EXECUTES_WORK=NO
+INICIAR_WRITES_EXTERNAL_SYSTEMS=NO
+INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
+```
+
+## Próxima ação
+
+1. concluir atualização do tronco e do modelo de resposta;
+2. consolidar protocolo de retenção e testes R8–R24;
+3. produzir relatório documental do draft;
+4. abrir PR principal sem merge;
+5. preparar prompt para revisão crítica independente;
+6. corrigir bloqueadores encontrados pelo revisor;
+7. integrar somente após Boss Gate independente PASS;
+8. executar Transição B pós-merge em PR separado.
+
+## Proibições
+
+```text
+NÃO alterar código da aplicação.
+NÃO executar a aplicação ou clique real.
+NÃO gerar SQL ou migrations.
 NÃO iniciar implementação V2.5.
-NÃO alterar código durante a reconciliação arquitetural.
-NÃO gerar SQL ou migrations físicas.
-NÃO tratar PTM V2.5 preliminar como definitiva antes da reconciliação.
-NÃO usar dados do predixai-platform.
-NÃO depender de transferência manual de memória.
-NÃO implantar n8n, OpenClaw, Ollama, workers ou nuvem agora.
-NÃO avançar para PTM V2.6 sem revisão crítica da PTM V2.5.
-NÃO executar clique real, login real, ordem real, compra ou venda real.
+NÃO escrever diretamente na main.
+NÃO integrar PR sem revisão crítica independente.
+NÃO declarar teste runtime PASS sem execução e evidência.
+NÃO tratar lock consultivo como trava técnica.
+NÃO ativar handoff antes do recibo pós-merge.
 ```
