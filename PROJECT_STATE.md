@@ -10,7 +10,10 @@
 - Missão ativa: `PTP-MEM.1 — Endurecimento da Continuidade GitHub–Linear–Multichat`
 - Issue ativa: `LEA-12`
 - Branch de trabalho: `docs/ptp-mem-1-hardening`
-- Pull Request: ainda não aberto
+- Pull Request ativo: `#30`, Draft
+- Head observado antes da remediação: `b0019e2e92bf68f995ed024d351812316a891668`
+- Etapa atual: `REMEDIACAO_DA_REVISAO_INDEPENDENTE`
+- Boss Gate: `FAIL`
 - Etapa do produto preservada: `PTM V2.5 — Reconciliação com o legado`
 - Issue do produto: `LEA-8`, `Todo`, não iniciada e sem bloqueio formal pela PTP-MEM.1
 
@@ -34,14 +37,39 @@ Divergência entre manifesto e documentação bloqueia avanço automático.
 schema_version=1.0.0
 state_revision=0
 transition_id=PTP-MEM.1-T01
-transition_status=IN_PROGRESS
+transition_status=BLOCKED
 github_sync_status=IN_PROGRESS
 linear_sync_status=PASS
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
 ```
 
-A `state_revision` permanece `0` enquanto a transição não estiver consolidada. Retentativas parciais preservam o mesmo `transition_id` e a mesma revisão.
+A `state_revision` permanece `0` enquanto a transição não estiver consolidada. Retentativas e remediações preservam o mesmo `transition_id`.
+
+## Revisão crítica independente
+
+```text
+INDEPENDENT_CRITICAL_REVIEW=FAIL
+CRITICAL_BLOCKERS=2
+MAJOR_WARNINGS=3
+PR_30_MERGE_AUTHORIZATION=BLOCKED
+RUNTIME_R8_R24=NOT_EXECUTED
+```
+
+Bloqueadores:
+
+1. o estado vivo não refletia a existência da PR nº 30;
+2. `expected_pr_head` persistido na própria branch era autorreferente e inviável.
+
+Correção adotada:
+
+```text
+OBSERVED_PR_HEAD = snapshot informativo persistido
+PRE_WRITE_EXPECTED_PR_HEAD = valor capturado externamente pela sessão
+CURRENT_PR_HEAD = valor consultado imediatamente antes da escrita
+```
+
+A comparação pré-escrita não usa um SHA futuro armazenado no próprio commit.
 
 ## Estado consolidado anterior
 
@@ -56,8 +84,6 @@ PTM_V2_5=READY_FOR_DOCUMENTAL_RECONCILIATION
 IMPLEMENTATION_V2_5=NOT_AUTHORIZED
 ```
 
-A antiga orientação para concluir o merge da PR #29 foi removida porque o merge já ocorreu.
-
 ## Gates da PTP-MEM.1
 
 ```text
@@ -71,13 +97,13 @@ STATE_SCHEMA_VERSIONED=PASS_DRAFT
 IDEMPOTENT_TRANSITION_PROTOCOL=PASS_DRAFT
 PARTIAL_SYNC_RECOVERY=PASS_DRAFT
 CONCURRENT_CHAT_CONTROL=PASS_DRAFT
-STALE_WRITE_PROTECTION=PASS_DRAFT
+STALE_WRITE_PROTECTION=REMEDIATED_PENDING_REVIEW
 START_SKILL_BOUNDARY=PASS_DRAFT
 DYNAMIC_MEMORY_TESTS_CREATED=PASS_SPEC_ONLY
 INSTRUCTION_SOURCE_ALLOWLIST=PASS_DRAFT
 DOCUMENT_PROMPT_INJECTION_PROTECTION=PASS_DRAFT
 BOOTSTRAP_MINIMAL_READ_SET=PASS_DRAFT
-CRITICAL_REVIEW=PENDING_INDEPENDENT
+CRITICAL_REVIEW=FAIL_REMEDIATION_IN_PROGRESS
 PR_MERGED=NO
 POST_MERGE_RECEIPT=NOT_STARTED
 APPLICATION_CODE_CHANGED=NO
@@ -90,6 +116,8 @@ SQL_OR_MIGRATIONS_CREATED=NO
 TEST_SPEC_CREATED=PASS
 TEST_RUNTIME_EXECUTED=NO
 TEST_RUNTIME_RESULT=NOT_EXECUTED
+SCHEMA_CONTRACT_MANUAL_VALIDATION=PASS
+SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
 ```
 
 Nenhum teste runtime recebe PASS sem execução real e evidência individual.
@@ -115,14 +143,12 @@ INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
 
 ## Próxima ação
 
-1. concluir atualização do tronco e do modelo de resposta;
-2. consolidar protocolo de retenção e testes R8–R24;
-3. produzir relatório documental do draft;
-4. abrir PR principal sem merge;
-5. preparar prompt para revisão crítica independente;
-6. corrigir bloqueadores encontrados pelo revisor;
-7. integrar somente após Boss Gate independente PASS;
-8. executar Transição B pós-merge em PR separado.
+1. concluir a remediação dos dois bloqueadores e três avisos;
+2. sincronizar manifesto, este arquivo, tronco e Linear;
+3. manter a PR nº 30 como Draft;
+4. repetir revisão crítica em chat limpo e somente leitura;
+5. integrar somente após Boss Gate independente `PASS`;
+6. executar a Transição B pós-merge em PR separado.
 
 ## Proibições
 
@@ -132,7 +158,7 @@ NÃO executar a aplicação ou clique real.
 NÃO gerar SQL ou migrations.
 NÃO iniciar implementação V2.5.
 NÃO escrever diretamente na main.
-NÃO integrar PR sem revisão crítica independente.
+NÃO integrar PR sem revisão crítica independente PASS.
 NÃO declarar teste runtime PASS sem execução e evidência.
 NÃO tratar lock consultivo como trava técnica.
 NÃO ativar handoff antes do recibo pós-merge.
