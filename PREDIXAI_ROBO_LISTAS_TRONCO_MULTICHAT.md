@@ -22,11 +22,11 @@ WORKING_BRANCH=docs/ptp-mem-1-hardening
 ACTIVE_PULL_REQUEST=30
 TRANSITION_ID=PTP-MEM.1-T01
 STATE_REVISION=0
-TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
-CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RC5_REQUIRED
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_RC5_PASS
 LOCK_ENFORCEMENT=ADVISORY
 CONCURRENCY_MODEL=OPTIMISTIC
-PR_MERGE=NOT_AUTHORIZED
+PR_MERGE=NOT_AUTHORIZED_PENDING_FORMAL_DECISION
 ```
 
 A PTP-MEM.1 não altera automaticamente dependências funcionais da PTM V2.5. A LEA-8 permanece `Todo`, não iniciada e sem bloqueio formal criado por esta missão.
@@ -48,7 +48,8 @@ A PTP-MEM.1 não altera automaticamente dependências funcionais da PTM V2.5. A 
 ✅ PTP-MEM.1-RM3 — Remediação concluída
 🟥 PTP-MEM.1-RC4 — FAIL
 ✅ PTP-MEM.1-RM4 — Remediação concluída
-🟨 PTP-MEM.1-RC5 — Aguardando revisão independente
+✅ PTP-MEM.1-RC5 — PASS independente
+⏳ PTP-MEM.1-MG — Aguardando autorização formal de merge
 ⬜ PTP-MEM.1-PM — Recibo pós-merge
 ⬜ PTM V2.5 — Reconciliação com o legado
 ⬜ PTM V2.5-RC
@@ -65,56 +66,27 @@ A PTP-MEM.1 não altera automaticamente dependências funcionais da PTM V2.5. A 
 
 ## Histórico resumido da PTP-MEM.1
 
-### Construção
-
-Foram criados manifesto, schema, autoridade por domínio, transições idempotentes, concorrência otimista, lock consultivo, Skill `iniciar` somente leitura, retenção e especificações R8–R24.
-
-### RC1
+A construção criou manifesto, schema, autoridade por domínio, transições idempotentes, concorrência otimista, lock consultivo, Skill `iniciar` somente leitura, política de retenção e especificações R8–R24.
 
 ```text
-INDEPENDENT_CRITICAL_REVIEW=FAIL
-CRITICAL_BLOCKERS=2
+RC1=FAIL; CRITICAL_BLOCKERS=2
+RC2=FAIL; CRITICAL_BLOCKERS=2
+RC3=FAIL; CRITICAL_BLOCKERS=1
+RC4=FAIL; CRITICAL_BLOCKERS=1
+RC5=PASS; CRITICAL_BLOCKERS=0
 ```
 
-Bloqueadores: estado vivo não refletia a PR e `expected_pr_head` persistido era autorreferente.
-
-### RC2
+Resultado técnico da RC5:
 
 ```text
-BOSS_GATE_RC2=FAIL
-CRITICAL_BLOCKERS=2
+PERSISTED_EXPECTED_FIELDS=ABSENT
+PRE_WRITE_EXPECTED_FIELDS=EPHEMERAL_ONLY
+MANIFEST_SCHEMA_VALIDATION=PASS
+MANIFEST_DOCUMENTATION_ALIGNMENT=PASS
+SCHEMA_MIGRATION_POLICY=PASS
+RUNTIME_R8_R24=NOT_EXECUTED
+SCHEMA_RUNTIME_VALIDATION=NOT_EXECUTED
 ```
-
-Bloqueadores: tronco ainda no estado anterior e contratos antigos continuavam ativos em três protocolos.
-
-### RC3
-
-```text
-BOSS_GATE_RC3=FAIL
-CRITICAL_BLOCKERS=1
-```
-
-Bloqueador: `EXPECTED_*` ainda aparecia como nomenclatura persistida em dois protocolos ativos.
-
-### RC4
-
-```text
-BOSS_GATE_RC4=FAIL
-CRITICAL_BLOCKERS=1
-```
-
-Bloqueador: o protocolo de retenção e migração ainda exigia `EXPECTED_STATE_REVISION` como registro persistido.
-
-### Remediação RC4
-
-```text
-PERSISTED_EXPECTED_FIELDS=PROHIBITED
-MIGRATION_BASELINE_STATE_REVISION=PERSISTED_SNAPSHOT
-PRE_WRITE_EXPECTED_STATE_REVISION=EPHEMERAL_SESSION_VALUE
-CURRENT_STATE_REVISION=LIVE_SOURCE_QUERY
-```
-
-A política de migração agora usa `BASELINE_STATE_REVISION`, `BOUND_TRANSITION_ID` e `RESULTING_STATE_REVISION`. O schema permanece `1.0.2` e a validação runtime continua `NOT_EXECUTED`.
 
 ## Transições obrigatórias
 
@@ -130,8 +102,10 @@ OPEN_PR
 INDEPENDENT_REVIEW
 REMEDIATE_IF_FAIL
 REPEAT_INDEPENDENT_REVIEW
-MERGE_AFTER_PASS
+MERGE_AFTER_PASS_AND_FORMAL_AUTHORIZATION
 ```
+
+A Transição A está tecnicamente aprovada, mas ainda não integrada.
 
 ### Transição B — confirmação pós-merge
 
@@ -153,14 +127,14 @@ A missão só termina após a Transição B.
 
 ```text
 CURRENT_STAGE_DOCUMENTED=PASS
-STATE_MANIFEST_VALID=PASS|PENDING
-STATE_DOCUMENTATION_ALIGNED=PASS|PENDING
-CRITICAL_REVIEW_STATUS=PASS|PENDING|FAIL
+STATE_MANIFEST_VALID=PASS
+STATE_DOCUMENTATION_ALIGNED=PASS
+CRITICAL_REVIEW_STATUS=PASS
 CRITICAL_BLOCKERS=0
 PROJECT_STATE_UPDATED=PASS
 TRUNK_UPDATED=PASS
-LINEAR_UPDATED=PASS
-MAIN_PR_MERGED=PASS|NO
-POST_MERGE_RECEIPT=PASS|PENDING
+LINEAR_UPDATED=IN_PROGRESS
+MAIN_PR_MERGED=NO
+POST_MERGE_RECEIPT=PENDING
 APPLICATION_CODE_CHANGED=NO
 ```
