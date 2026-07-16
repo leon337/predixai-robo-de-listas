@@ -11,7 +11,7 @@
 - **Missão de validação atual:** `LEA-11 — Validar protocolos da pasta limpa`
 - **Primeira entrega posterior:** `Anexo A — Inventário factual do legado`
 - **Próxima revisão posterior:** `PTP-GOV.6-RC — Revisão crítica da Auditoria Mestra e do Anexo A`
-- **Status:** TESTES RUNTIME R1/R2 APROVADOS — R3 A R7 PENDENTES
+- **Status:** TESTES RUNTIME R1–R5 APROVADOS — R6 E R7 PENDENTES
 - **Data:** 2026-07-16
 
 ## Ordem obrigatória de leitura
@@ -58,9 +58,12 @@ Gamificação técnica ........................... APROVADA
 Agentes como papéis lógicos ................... APROVADOS
 Infraestrutura autônoma externa ............... ADIADA
 Validação estática dos protocolos ............. PASS
-Runtime R1 — iniciar .......................... PASS OBSERVADO
-Runtime R2 — modelo de resposta ............... PASS OBSERVADO
-Runtime R3–R7 ................................. PENDENTES
+Runtime R1 — iniciar .......................... PASS
+Runtime R2 — modelo de resposta ............... PASS
+Runtime R3 — Skill estado ..................... PASS
+Runtime R4 — gate crítico ..................... PASS
+Runtime R5 — checkpoint ....................... PASS
+Runtime R6–R7 ................................. PENDENTES
 Auditoria Mestra V2.4.3-R1 .................... BLOQUEADA ATÉ LEA-11=Done
 Anexo A — Inventário factual .................. NÃO INICIADO
 Implementação V2.5 ............................ NÃO AUTORIZADA
@@ -72,6 +75,10 @@ Implementação V2.5 ............................ NÃO AUTORIZADA
 - `docs/history/tests/MEMORY_CONTINUITY_TEST_C_RESULTADO_20260716.md`
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_STATIC_VALIDATION_20260716.md`
 - `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R1_R2_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R3_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R4_RESULTADO_20260716.md`
+- `docs/history/tests/PROTOCOL_ACCEPTANCE_RUNTIME_R5_RESULTADO_20260716.md`
+- `docs/history/ptp/CHECKPOINT_LEA-11_RUNTIME_R1_R5_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MIGRACAO_PROJETO_LIMPO_20260716.md`
 - `docs/history/reviews/REVISAO_CRITICA_MELHORIAS_OPERACIONAIS_LEVES_20260716.md`
 - `docs/history/ptp/CHECKPOINT_FINAL_MIGRACAO_PROJETO_LIMPO_20260716.md`
@@ -91,11 +98,11 @@ MISSION_AUTONOMY_POLICY_STATIC=PASS
 CRITICAL_GATE_POLICY_STATIC=PASS
 MANUAL_MEMORY_TRANSFER_PROHIBITED=PASS
 PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS_OBSERVED
-RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
-STATE_SKILL_RUNTIME=PENDING
-CRITICAL_GATE_RUNTIME=PENDING
-CHECKPOINT_PROTOCOL_RUNTIME=PENDING
+START_PROTOCOL_RUNTIME=PASS
+RESPONSE_MODEL_RUNTIME=PASS
+STATE_SKILL_RUNTIME=PASS
+CRITICAL_GATE_RUNTIME=PASS
+CHECKPOINT_PROTOCOL_RUNTIME=PASS
 CLOSING_PROTOCOL_RUNTIME=PENDING
 MULTICHAT_CONTINUITY_RUNTIME=PENDING
 CLEAN_PROJECT_ACCEPTANCE=PENDING
@@ -108,12 +115,13 @@ FAILURE_CODES=NONE
 
 ```text
 1. Manter LEA-11 em andamento no Linear.
-2. Na mesma pasta temporária, enviar apenas: estado.
-3. Confirmar que a Skill consulta GitHub e Linear e identifica os PASS de R1/R2.
-4. Depois executar os testes de gate crítico, checkpoint, fechamento e continuidade multichat conforme o plano runtime.
-5. Não anexar ZIP, arquivos ou checkpoint.
-6. Somente após todos os gates PASS, criar a pasta definitiva e iniciar PTP-GOV.6.
-7. Não alterar código.
+2. Executar o teste R6 com a Skill: fechar.
+3. O fechamento deve concluir somente a missão documental temporária de validação e preparar o teste R7.
+4. Abrir novo chat na mesma pasta temporária e enviar apenas: iniciar.
+5. Validar continuidade multichat e reconstrução dos resultados anteriores.
+6. Não anexar ZIP, arquivos ou checkpoint.
+7. Somente após R6, R7 e CLEAN_PROJECT_ACCEPTANCE=PASS, criar a pasta definitiva e iniciar PTP-GOV.6.
+8. Não alterar código, gerar SQL ou migrations físicas.
 ```
 
 ## Roadmap oficial com revisões críticas
@@ -129,7 +137,11 @@ FAILURE_CODES=NONE
 ✅ Validação estática dos protocolos
 ✅ Runtime R1 — iniciar sem memória manual
 ✅ Runtime R2 — resposta UI/UX/LX
-🟧 Runtime R3–R7 — Skills, gate, checkpoint, fechar e continuidade
+✅ Runtime R3 — Skill estado
+✅ Runtime R4 — gate crítico
+✅ Runtime R5 — checkpoint sem transporte manual
+🟧 Runtime R6 — fechar com sincronização
+⬜ Runtime R7 — continuidade multichat
 ⬜ Validação final da pasta limpa
 
 ⬜ PTP-GOV.6 — Auditoria Mestra V2.4.3-R1
@@ -168,11 +180,15 @@ NÃO iniciar a Auditoria Mestra antes da LEA-11=Done.
 LIGHTWEIGHT_OPERATIONAL_REVIEW=PASS
 PR_20_MERGED=PASS
 PR_21_MERGED=PASS
+PR_22_MERGED=PASS
 LINEAR_LEA_11=IN_PROGRESS
 PROTOCOL_STATIC_VALIDATION=PASS
-START_PROTOCOL_RUNTIME=PASS_OBSERVED
-RESPONSE_MODEL_RUNTIME=PASS_OBSERVED
-PROTOCOL_RUNTIME_REMAINING=R3_R4_R5_R6_R7
+START_PROTOCOL_RUNTIME=PASS
+RESPONSE_MODEL_RUNTIME=PASS
+STATE_SKILL_RUNTIME=PASS
+CRITICAL_GATE_RUNTIME=PASS
+CHECKPOINT_PROTOCOL_RUNTIME=PASS
+PROTOCOL_RUNTIME_REMAINING=R6_R7
 NEW_CHATGPT_PROJECT=PENDING_VALIDATION
 PTP_GOV_6=BLOCKED_UNTIL_PROTOCOL_TESTS_PASS
 IMPLEMENTATION=NAO_AUTORIZADA
