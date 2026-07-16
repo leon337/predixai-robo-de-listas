@@ -19,8 +19,6 @@ O contador é visual por chat e não representa revisão de estado. Em chat novo
 
 Não misturar métricas diferentes no mesmo campo.
 
-Exemplos corretos:
-
 ```text
 START_PROTOCOL=8/8
 MISSION_GATES=3/10
@@ -30,9 +28,7 @@ TEST_RUNTIME=0/17
 
 Proibido trocar `7/8` por `5/6` sem nomear a camada medida.
 
-## Estados explícitos
-
-Usar quando aplicável:
+## Vocabulário canônico de estados
 
 ```text
 STATE_STABLE
@@ -43,8 +39,11 @@ SYNC_PARTIAL
 STATE_CONFLICT
 BLOCKED_BY_CONCURRENT_UPDATE
 BLOCKED_BY_STATE_DRIFT
-BLOCKED_BY_CONNECTOR
+BLOCKED_BY_CONNECTOR_FAILURE
+BLOCKED_BY_SCHEMA_MISMATCH
 ```
+
+Não usar aliases como `BLOCKED_BY_CONNECTOR` quando o contrato define `BLOCKED_BY_CONNECTOR_FAILURE`.
 
 Distinguir:
 
@@ -84,7 +83,7 @@ INICIAR_WRITES_EXTERNAL_SYSTEMS=NO
 INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
 ```
 
-A resposta deve apresentar estado, divergências, bloqueios e próxima Skill, sem criar branch, commit, PR ou atualização Linear.
+A resposta apresenta estado, divergências, bloqueios e próxima Skill, sem criar branch, commit, PR ou atualização Linear.
 
 ### REVISÃO CRÍTICA
 
@@ -102,15 +101,7 @@ O chat construtor pode fazer revisão preliminar, mas não emitir sozinho o Boss
 
 Para `sincronizar`, `checkpoint`, `handoff` e `fechar`.
 
-Mostrar:
-
-- arquivos e commits;
-- branch e PR;
-- Linear;
-- transition_id e state_revision;
-- gates;
-- condição de merge;
-- próxima missão.
+Mostrar arquivos e commits, branch e PR, Linear, `transition_id`, `state_revision`, gates, condição de merge e próxima missão.
 
 ## Testes
 
@@ -127,7 +118,7 @@ Nunca declarar runtime PASS por existir apenas uma especificação ou simulaçã
 
 ## Concorrência e drift
 
-Quando pré-condições divergirem, a resposta deve declarar:
+Quando pré-condições divergirem:
 
 ```text
 EXECUTION_STATUS=BLOCKED_BY_CONCURRENT_UPDATE
@@ -143,18 +134,21 @@ EXECUTION_STATUS=BLOCKED_BY_STATE_DRIFT
 AUTOMATIC_ADVANCE=NO
 ```
 
+Quando um conector necessário estiver indisponível:
+
+```text
+EXECUTION_STATUS=BLOCKED_BY_CONNECTOR_FAILURE
+```
+
+Quando manifesto e schema forem incompatíveis:
+
+```text
+EXECUTION_STATUS=BLOCKED_BY_SCHEMA_MISMATCH
+```
+
 ## Corpo modular
 
-Usar somente blocos necessários:
-
-- resultado;
-- estado encontrado;
-- divergências;
-- alterações;
-- riscos;
-- testes;
-- decisão;
-- próxima ação.
+Usar somente os blocos necessários: resultado, estado encontrado, divergências, alterações, riscos, testes, decisão e próxima ação.
 
 Evitar repetir a mesma informação.
 
