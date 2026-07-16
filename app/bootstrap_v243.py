@@ -28,6 +28,22 @@ def _add_card(self, parent, title: str, detail: str) -> None:
     app_main.ttk.Label(card, text=detail, style="Body.TLabel", wraplength=560, justify="left").pack(anchor="w", pady=(3, 0))
 
 
+def _open_external_folder(self, path: Path, label: str) -> None:
+    """Abre pasta fora do app e evita que a janela sempre-no-topo a esconda."""
+    try:
+        self.root.attributes("-topmost", False)
+        open_path(path)
+        messagebox.showinfo(
+            "Pasta aberta",
+            f"{label} aberta no gerenciador de arquivos.\n\nO aplicativo será minimizado para deixar a pasta visível.",
+            parent=self.root,
+        )
+        self.root.iconify()
+    except Exception as exc:
+        self.root.attributes("-topmost", True)
+        messagebox.showerror(f"Falha ao abrir {label.lower()}", str(exc), parent=self.root)
+
+
 def show_tools(self) -> None:
     self._set_page("Ferramentas")
     self._clear()
@@ -44,40 +60,44 @@ def show_tools(self) -> None:
     actions.pack(fill="x", pady=(12, 5))
 
     def open_logs() -> None:
-        try:
-            open_path(ROOT_DIR / "logs")
-        except Exception as exc:
-            messagebox.showerror("Falha ao abrir logs", str(exc))
+        _open_external_folder(self, ROOT_DIR / "logs", "Pasta de logs")
 
     def open_backups() -> None:
-        try:
-            open_path(ROOT_DIR / "backups" / "config")
-        except Exception as exc:
-            messagebox.showerror("Falha ao abrir backups", str(exc))
+        _open_external_folder(self, ROOT_DIR / "backups" / "config", "Pasta de backups")
 
     def export_report() -> None:
         try:
             report = export_diagnostic_report(ROOT_DIR, collect_diagnostics(ROOT_DIR))
             logging.getLogger("predixai.runtime").info("Relatório de diagnóstico criado: %s", report)
-            messagebox.showinfo("Diagnóstico exportado", f"Relatório criado em:\n{report}")
+            messagebox.showinfo("Diagnóstico exportado", f"Relatório criado em:\n{report}", parent=self.root)
         except Exception as exc:
-            messagebox.showerror("Falha ao exportar diagnóstico", str(exc))
+            messagebox.showerror("Falha ao exportar diagnóstico", str(exc), parent=self.root)
 
     def repair_installation() -> None:
-        if not messagebox.askyesno(
+        self.root.attributes("-topmost", False)
+        confirmed = messagebox.askyesno(
             "Reparar instalação",
-            "Executar o reparo do ícone e do atalho da área de trabalho?",
-        ):
+            "Executar agora o reparo do ícone e do atalho da área de trabalho?",
+            parent=self.root,
+        )
+        if not confirmed:
+            self.root.attributes("-topmost", True)
             return
         try:
             result = run_installer(ROOT_DIR)
             if result.returncode == 0:
-                messagebox.showinfo("Reparo concluído", "Ícone e atalho atualizados com sucesso.")
+                messagebox.showinfo(
+                    "Reparo concluído",
+                    "Ícone e atalho atualizados com sucesso.",
+                    parent=self.root,
+                )
             else:
                 detail = (result.stderr or result.stdout or "Falha sem detalhes").strip()
-                messagebox.showerror("Falha no reparo", detail[-1500:])
+                messagebox.showerror("Falha no reparo", detail[-1500:], parent=self.root)
         except Exception as exc:
-            messagebox.showerror("Falha no reparo", str(exc))
+            messagebox.showerror("Falha no reparo", str(exc), parent=self.root)
+        finally:
+            self.root.attributes("-topmost", True)
 
     for text, command in (
         ("Abrir logs", open_logs),
@@ -109,6 +129,7 @@ def show_about(self) -> None:
         f"Versão {version}\n\n"
         "Perfis, listas datadas, execução controlada, logs, backups e diagnóstico.\n"
         "Projeto PredixAI BR.",
+        parent=self.root,
     )
 
 
