@@ -1,55 +1,56 @@
 schema_version: "1.0.3"
-state_revision: 5
+state_revision: 6
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
+observed_main_head: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-16"
-active_stage: "PTM_V2_7_APPROVED_FOR_MERGE"
+active_stage: "PTM_V2_7_POST_MERGE_RECEIPT"
 active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
-active_pull_request: 37
-working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "4e645747f6d00f53bdb7c711fbb33d72e67bec44"
-pr_mode: "approved_for_merge"
+active_pull_request: 38
+working_branch: "leonpcsn/lea-16-ptm-v27-recibo-pos-merge"
+observed_pr_head: "b2d1b8909219eb6c700e013becc76153869847fc"
+pr_mode: "post_merge_receipt"
 active_checkpoint: null
 
-current_gate: "PTM_V2_7_MERGE"
-gate_status: "PASS"
-next_action: "MERGE_PR_37_WITH_EXPECTED_HEAD"
-blockers: []
+current_gate: "PTM_V2_7_POST_MERGE_CONFIRMATION"
+gate_status: "IN_PROGRESS"
+next_action: "MERGE_RECEIPT_PR_38_THEN_CONFIRM"
+blockers:
+  - "POST_MERGE_RECEIPT_PR_PENDING"
 
-transition_id: "LEA-16-T01"
-transition_status: "APPROVED_FOR_MERGE"
-from_state: "PTM_V2_6_DOCUMENTALLY_DEFINITIVE"
-to_state: "PTM_V2_7_APPROVED_FOR_MERGE"
-baseline_main_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
+transition_id: "LEA-16-T02"
+transition_status: "MERGED_PENDING_POST_MERGE_CONFIRMATION"
+from_state: "PTM_V2_7_APPROVED_FOR_MERGE"
+to_state: "PTM_V2_7_MAIN_MERGED_RECEIPT_PENDING"
+baseline_main_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
 baseline_state_revision: 5
-bound_transition_id: "LEA-16-T01"
+bound_transition_id: "LEA-16-T02"
 main_pr: 37
-main_pr_merge_commit: null
-post_merge_receipt_pr: null
+main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
+post_merge_receipt_pr: 38
 post_merge_receipt_merge_commit: null
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T04:16:00Z"
+last_sync_at_utc: "2026-07-17T04:20:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-16"
-  session_id: "lea16-20260716"
-  base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "4e645747f6d00f53bdb7c711fbb33d72e67bec44"
-  state_revision_snapshot: 5
-  transition_id_snapshot: "LEA-16-T01"
-  started_at_utc: "2026-07-17T02:50:25Z"
+  session_id: "lea16-postmerge-20260717"
+  base_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
+  observed_pr_head: "b2d1b8909219eb6c700e013becc76153869847fc"
+  state_revision_snapshot: 6
+  transition_id_snapshot: "LEA-16-T02"
+  started_at_utc: "2026-07-17T04:18:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T04:16:00Z"
+  heartbeat_at_utc: "2026-07-17T04:20:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -57,7 +58,6 @@ sql_authorized: false
 migration_authorized: false
 real_click_authorized: true
 merge_authorized: true
-ptm_v2_6_start_authorized: true
 ptm_v2_7_start_authorized: true
 
 source_authority:
@@ -65,80 +65,47 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
-  controlled_ui_clock_addendum: "docs/architecture/PTM_V2.7_ADENDO_RETESTE_02_CONTROLLED_UI_CLOCK_LEA-17_20260717.md"
   final_review: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_PTM_V2.7_LEA-17_20260717.md"
+  post_merge_receipt: "docs/history/ptp/RECIBO_POS_MERGE_LEA-16_PTM_V2.7_20260717.md"
   task_status_and_dependencies: "Linear"
-  unmerged_work: "PR #37"
+  unmerged_work: "PR #38"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
+  execution_status: "AWAITING_POST_MERGE_CONFIRMATION"
   automatic_advance: false
-  stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
-  lock_enforcement: "ADVISORY"
-  persisted_expected_fields_prohibited: true
-  builder_self_review: "PASS_WITH_MINOR_FINDINGS"
   independent_critical_review: "PASS"
   independent_review_issue: "LEA-17"
-  independent_review_issue_status: "DONE_PENDING_MERGE_SYNC"
-  reviewed_content_head: "fce5e8e5c8db436ab8abd9796446dadd8f30dadc"
-  reviewed_binding_commit: "093ae2980bfba38511f9f4b44c33f917b9ce715e"
-  final_review_commit: "4e645747f6d00f53bdb7c711fbb33d72e67bec44"
-  retest_01_superseded: true
-  retest_02_pass: true
+  independent_review_issue_status: "DONE"
   critical_blockers: 0
   major_findings: 0
   minor_findings: 4
   structural_requirements: 32
   functional_requirements: 52
   total_requirement_ids: 84
-  requirement_id_uniqueness: true
-  traceability_completeness: true
-  legacy_classification_consistency: true
   controlled_automation_policy_active: true
+  controlled_ui_normative_contract_defined: true
   controlled_capture_ocr_authorized: true
   controlled_replay_authorized: true
   controlled_pointer_keyboard_click_authorized: true
   controlled_test_authentication_authorized: true
-  controlled_ui_adapter_allowed: true
-  controlled_ui_normative_contract_defined: true
   financial_effect_simulated_only: true
-  real_financial_effect_requires_separate_authorization_all_targets: true
-  external_financial_execution_authorized: false
-  real_money_operation_authorized: false
-  same_boot_restart_invalidates_previous_command: true
-  execution_capability_baseline: "CONTROLLED_UI_ALLOWED_FINANCIAL_SIMULATED_ONLY"
-  documental_ready_for_independent_review: true
-  documental_ready_for_merge: true
-  pr_ready_for_review: true
-  retest_required: false
-  merge_authorization_pending: false
-  merge_authorization_recorded: true
-  runtime_r8_r24: "NOT_EXECUTED"
-  schema_runtime_validation: "NOT_EXECUTED"
-  manual_schema_contract_validation: true
+  production_monetary_effect_requires_separate_authorization_all_targets: true
   application_code_changed: false
   test_code_changed: false
   workflows_changed: false
   sql_or_migrations_created: false
-  pointer_movement_executed: false
-  keyboard_input_executed: false
-  real_click_executed: false
-  real_order_executed: false
-  controlled_ui_adapter_implemented: false
-  external_financial_adapter_exists: false
-  real_credentials_accepted: false
-  main_pr_merged: false
+  main_pr_merged: true
+  main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
+  post_merge_receipt_recorded: true
+  post_merge_receipt_integrated: false
   handoff_activated: false
-  post_merge_receipt_recorded: false
   transition_complete: false
   last_completed_product_issue: "LEA-14"
-  last_completed_product_issue_status: "DONE"
   current_product_issue: "LEA-16"
   current_product_issue_status: "IN_PROGRESS"
   ptm_v2_5_definitive: true
   ptm_v2_6_definitive: true
-  ptm_v2_7_started: true
   ptm_v2_7_critical_review_complete: true
   ptm_v2_7_definitive: false
