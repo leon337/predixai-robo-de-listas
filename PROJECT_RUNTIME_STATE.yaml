@@ -3,61 +3,60 @@ state_revision: 6
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
+observed_main_head: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
 real_version: "V2.4.3-R1"
 
-active_mission: "LEA-16"
-active_stage: "PTM_V2_7_POST_MERGE_RECEIPT"
-active_linear_issue: "LEA-16"
-active_review_issue: "LEA-17"
-active_pull_request: 38
-working_branch: "leonpcsn/lea-16-ptm-v27-recibo-pos-merge"
-observed_pr_head: "b2d1b8909219eb6c700e013becc76153869847fc"
-pr_mode: "post_merge_receipt"
+active_mission: "NONE"
+active_stage: "PTM_V2_7_COMPLETE"
+active_linear_issue: null
+active_review_issue: null
+active_pull_request: null
+working_branch: null
+observed_pr_head: null
+pr_mode: null
 active_checkpoint: null
 
-current_gate: "PTM_V2_7_POST_MERGE_CONFIRMATION"
-gate_status: "IN_PROGRESS"
-next_action: "MERGE_RECEIPT_PR_38_THEN_CONFIRM"
-blockers:
-  - "POST_MERGE_RECEIPT_PR_PENDING"
+current_gate: "PTM_V2_7_COMPLETE"
+gate_status: "PASS"
+next_action: "START_CROSS_CONSOLIDATION_DOCUMENTATION"
+blockers: []
 
 transition_id: "LEA-16-T02"
-transition_status: "MERGED_PENDING_POST_MERGE_CONFIRMATION"
+transition_status: "COMPLETE"
 from_state: "PTM_V2_7_APPROVED_FOR_MERGE"
-to_state: "PTM_V2_7_MAIN_MERGED_RECEIPT_PENDING"
+to_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
 baseline_main_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
 baseline_state_revision: 5
 bound_transition_id: "LEA-16-T02"
 main_pr: 37
 main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
 post_merge_receipt_pr: 38
-post_merge_receipt_merge_commit: null
+post_merge_receipt_merge_commit: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
 
-github_sync_status: "IN_PROGRESS"
-linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T04:20:00Z"
+github_sync_status: "PASS"
+linear_sync_status: "PASS"
+last_sync_at_utc: "2026-07-17T04:23:00Z"
 
 mission_lock:
-  locked: true
+  locked: false
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "LEA-16"
-  session_id: "lea16-postmerge-20260717"
-  base_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
-  observed_pr_head: "b2d1b8909219eb6c700e013becc76153869847fc"
+  owner: "NONE"
+  session_id: "closed-lea16"
+  base_sha: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+  observed_pr_head: null
   state_revision_snapshot: 6
   transition_id_snapshot: "LEA-16-T02"
   started_at_utc: "2026-07-17T04:18:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T04:20:00Z"
+  heartbeat_at_utc: "2026-07-17T04:23:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
 real_click_authorized: true
-merge_authorized: true
+merge_authorized: false
 ptm_v2_7_start_authorized: true
 
 source_authority:
@@ -68,16 +67,14 @@ source_authority:
   final_review: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_PTM_V2.7_LEA-17_20260717.md"
   post_merge_receipt: "docs/history/ptp/RECIBO_POS_MERGE_LEA-16_PTM_V2.7_20260717.md"
   task_status_and_dependencies: "Linear"
-  unmerged_work: "PR #38"
+  unmerged_work: "none"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_POST_MERGE_CONFIRMATION"
+  execution_status: "COMPLETE"
   automatic_advance: false
   independent_critical_review: "PASS"
-  independent_review_issue: "LEA-17"
-  independent_review_issue_status: "DONE"
   critical_blockers: 0
   major_findings: 0
   minor_findings: 4
@@ -97,15 +94,15 @@ safety:
   workflows_changed: false
   sql_or_migrations_created: false
   main_pr_merged: true
-  main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
   post_merge_receipt_recorded: true
-  post_merge_receipt_integrated: false
-  handoff_activated: false
-  transition_complete: false
-  last_completed_product_issue: "LEA-14"
-  current_product_issue: "LEA-16"
-  current_product_issue_status: "IN_PROGRESS"
+  post_merge_receipt_integrated: true
+  handoff_activated: true
+  transition_complete: true
+  last_completed_product_issue: "LEA-16"
+  last_completed_product_issue_status: "DONE"
+  current_product_issue: "NONE"
   ptm_v2_5_definitive: true
   ptm_v2_6_definitive: true
   ptm_v2_7_critical_review_complete: true
-  ptm_v2_7_definitive: false
+  ptm_v2_7_definitive: true
+  cross_consolidation_ready: true
