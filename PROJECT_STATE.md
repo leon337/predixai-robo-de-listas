@@ -58,20 +58,32 @@ G1_PRECONDITIONS_PASS=PASS
 G2_SOURCE_INVENTORY_COMPLETE=PASS
 G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS_BUILDER
 G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS_BUILDER
-G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=IN_PROGRESS
-G6_CONSOLIDATED_DOCUMENT_READY=NOT_STARTED
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER
+G6_CONSOLIDATED_DOCUMENT_READY=IN_PROGRESS
 G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 ```
 
-## Resultado G3
+## Resultados acumulados
 
 ```text
 CANONICAL_DOMAIN_COUNT=16
 MANDATORY_HANDOFF_COUNT=12
 DOMAIN_BOUNDARY_BLOCKERS=0
+V2_5_TOTAL_COVERED=56/56
+V2_6_TOTAL_COVERED=78/78
+V2_7_TOTAL_COVERED=84/84
+CROSS_VERSION_TOTAL_COVERED=218/218
+INDIVIDUAL_REQUIREMENT_ROWS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+NEW_REQUIREMENT_IDS=0
+SUPERSEDED_INTERPRETATION_IDS=32
+CONFLICT_CLASSES_REVIEWED=24
+UNRESOLVED_NORMATIVE_CONFLICTS=0
+ADR_CANDIDATE_COUNT=18
 ```
 
-O mapa fixa a cadeia:
+## Fronteira arquitetural
 
 ```text
 LISTAS E PERFIS
@@ -84,25 +96,7 @@ LISTAS E PERFIS
 → DISPATCH, RECIBO E RECONCILIAÇÃO
 ```
 
-## Resultado G4
-
-```text
-V2_5_TOTAL_COVERED=56/56
-V2_6_TOTAL_COVERED=78/78
-V2_7_TOTAL_COVERED=84/84
-CROSS_VERSION_TOTAL_COVERED=218/218
-DUPLICATE_REQUIREMENT_IDS=0
-ORPHAN_REQUIREMENT_IDS=0
-NEW_REQUIREMENT_IDS=0
-DOMAIN_LINKAGE_COMPLETE=PASS_BUILDER
-HANDOFF_LINKAGE_COMPLETE=PASS_BUILDER
-SUPERSEDED_ID_INTERPRETATION_LINKED=PASS_BUILDER
-TRACEABILITY_BLOCKERS=0
-```
-
-Cobertura documental não equivale a implementação ou runtime aprovado. SQL, migrations, testes de runtime e schema físico permanecem não executados ou não definidos nesta missão.
-
-## Invariantes consolidados
+Invariantes:
 
 - servidor é autoridade global;
 - Android e UI são clientes;
@@ -112,22 +106,29 @@ Cobertura documental não equivale a implementação ou runtime aprovado. SQL, m
 - coordenada não é autorização;
 - recibo isolado não é verdade global;
 - ação `CONTROLLED_UI` não autoriza efeito financeiro real;
-- restart invalida a despachabilidade de comando anterior.
+- restart invalida a despachabilidade de comando anterior;
+- timeout não comprova ausência de efeito;
+- `UNKNOWN_EFFECT` bloqueia ação correlata.
 
 ## Entregas
 
 - ✅ `docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
 - ✅ `docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
 - ✅ `docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
-- 🟧 registro de conflitos, supersessões e precedência;
-- ⬜ catálogo de decisões candidatas a ADR;
-- ⬜ documento de consolidação cruzada;
+- ✅ `docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- ✅ `docs/architecture/REGISTRO_CONFLITOS_SUPERSESSOES_PRECEDENCIA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- ✅ `docs/architecture/CATALOGO_DECISOES_CANDIDATAS_ADR_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- 🟧 documento final da consolidação cruzada;
+- 🟧 auto-revisão preliminar do builder;
 - ⬜ pacote para revisão crítica independente.
 
-## Achado documental controlado
+## Pendências deliberadas
 
-Não existe um relatório Markdown final separado para a revisão V2.5 com o nome presumido. A autoridade é composta pela revisão final do PR `#33`, Linear `LEA-13` e recibo pós-merge da `LEA-8`.
+- topologia e tecnologia deverão ser decididas em ADRs após revisão crítica da consolidação;
+- thresholds numéricos dependem de benchmark reproduzível;
+- implementação, schema físico, SQL, migrations e runtime permanecem não autorizados;
+- o PR `#40` permanece Draft e sem autorização de merge.
 
 ## Próxima ação
 
-Consolidar conflitos, supersessões e precedência normativa, distinguindo cláusulas vigentes, registros históricos e decisões candidatas a ADR.
+Consolidar as entregas G2–G5 em documento arquitetural único e executar auto-revisão preliminar do builder.
