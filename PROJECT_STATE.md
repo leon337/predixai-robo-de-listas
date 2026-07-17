@@ -7,18 +7,18 @@
 - HEAD consolidado observado: `1ca1be40b570b3ba458cf28efc73113da2031e8d`
 - Versão real do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-14 — PTM V2.6 — Observação, análise e sinais`
-- Fase: revisão crítica independente aprovada e sincronizada
+- Fase: merge documental autorizado e aguardando execução protegida
 - Revisão concluída: `LEA-15 — PTM V2.6-RC`, `Done`
-- PR ativo: `#35`, pronto para revisão, mergeável tecnicamente e sem autorização de merge
+- PR ativo: `#35`, pronto, mergeável tecnicamente e autorizado por Leo
 - Branch de trabalho: `leonpcsn/lea-14-ptm-v26-observacao-analise-e-sinais`
-- Próxima etapa: autorização humana explícita para merge
+- Próxima etapa: executar o merge com validação do HEAD e registrar confirmação pós-merge
 
 ## Transição ativa
 
 ```text
 STATE_REVISION=5
 TRANSITION_ID=LEA-14-T01
-TRANSITION_STATUS=IN_PROGRESS
+TRANSITION_STATUS=APPROVED_FOR_MERGE
 FROM_STATE=PTM_V2_5_DOCUMENTALLY_DEFINITIVE
 TO_STATE=PTM_V2_6_DOCUMENTAL_READY_FOR_MERGE
 BASE_MAIN_SHA=1ca1be40b570b3ba458cf28efc73113da2031e8d
@@ -29,7 +29,7 @@ PR_MODE=READY
 MISSION_LOCK=LOCKED_ADVISORY
 ```
 
-A PTM V2.5 permanece documentalmente definitiva. A PTM V2.6 foi aprovada no Boss Gate documental, mas somente se tornará definitiva após merge real e confirmação pós-merge em transição separada.
+A PTM V2.5 permanece documentalmente definitiva. A PTM V2.6 foi aprovada no Boss Gate documental e teve seu merge explicitamente autorizado; somente se tornará definitiva após o merge real e a confirmação pós-merge.
 
 ## Resultado da PTM V2.6
 
@@ -101,19 +101,19 @@ IMPLEMENTATION_AUTHORIZED=NO
 
 ```text
 CURRENT_GATE=PTM_V2_6_MERGE_AUTHORIZATION
-GATE_STATUS=PENDING
+GATE_STATUS=PASS
 REVIEW_ISSUE=LEA-15_DONE
 PULL_REQUEST=35
 PR_READY_FOR_REVIEW=YES
 GITHUB_MERGEABILITY=MERGEABLE
-MERGE_AUTHORIZATION=BLOCKED
+MERGE_AUTHORIZATION=GRANTED_BY_LEO
 AUTOMATIC_ADVANCE=NO
 ```
 
 ## Condição de avanço
 
 ```text
-EXPLICIT_MERGE_AUTHORIZATION=REQUIRED
+EXPLICIT_MERGE_AUTHORIZATION=PASS
 EXPECTED_PR_HEAD_MUST_MATCH=CURRENT_PR_HEAD
 MERGE_EXECUTED=NO
 POST_MERGE_CONFIRMATION=PENDING_AFTER_REAL_MERGE
@@ -122,7 +122,7 @@ PTM_V2_7_START_AUTHORIZED=NO
 
 ## Próxima ação
 
-Executar `@GitHub @Linear autorizar merge PR #35`.
+Executar o merge protegido do PR `#35` e registrar a confirmação pós-merge.
 
 ## Proibições vigentes
 
@@ -131,7 +131,6 @@ NÃO alterar código da aplicação.
 NÃO gerar SQL, schema físico ou migrations.
 NÃO executar captura, OCR, aplicação ou replay contra fonte real.
 NÃO mover ponteiro, clicar, digitar ou operar saldo real.
-NÃO fazer merge sem autorização explícita.
 NÃO declarar a PTM V2.6 definitiva antes do merge e recibo pós-merge.
 NÃO iniciar a PTM V2.7.
 ```
