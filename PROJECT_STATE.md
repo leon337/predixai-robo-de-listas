@@ -57,8 +57,8 @@ REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
 G1_PRECONDITIONS_PASS=PASS
 G2_SOURCE_INVENTORY_COMPLETE=PASS
 G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS_BUILDER
-G4_REQUIREMENTS_TRACEABILITY_COMPLETE=IN_PROGRESS
-G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=NOT_STARTED
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS_BUILDER
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=IN_PROGRESS
 G6_CONSOLIDATED_DOCUMENT_READY=NOT_STARTED
 G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 ```
@@ -68,14 +68,6 @@ G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 ```text
 CANONICAL_DOMAIN_COUNT=16
 MANDATORY_HANDOFF_COUNT=12
-DOMAIN_AUTHORITY_DEFINED=PASS
-DOMAIN_INPUT_OUTPUT_DEFINED=PASS
-DOMAIN_STATES_DEFINED=PASS
-DOMAIN_BLOCKERS_DEFINED=PASS
-FORBIDDEN_BYPASS_PATHS_DEFINED=PASS
-V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS_BUILDER
-ANALYSIS_EXECUTION_SEPARATION=PASS_BUILDER
-CONTROLLED_UI_FINANCIAL_EFFECT_SEPARATION=PASS_BUILDER
 DOMAIN_BOUNDARY_BLOCKERS=0
 ```
 
@@ -92,7 +84,25 @@ LISTAS E PERFIS
 → DISPATCH, RECIBO E RECONCILIAÇÃO
 ```
 
-Invariantes principais:
+## Resultado G4
+
+```text
+V2_5_TOTAL_COVERED=56/56
+V2_6_TOTAL_COVERED=78/78
+V2_7_TOTAL_COVERED=84/84
+CROSS_VERSION_TOTAL_COVERED=218/218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+NEW_REQUIREMENT_IDS=0
+DOMAIN_LINKAGE_COMPLETE=PASS_BUILDER
+HANDOFF_LINKAGE_COMPLETE=PASS_BUILDER
+SUPERSEDED_ID_INTERPRETATION_LINKED=PASS_BUILDER
+TRACEABILITY_BLOCKERS=0
+```
+
+Cobertura documental não equivale a implementação ou runtime aprovado. SQL, migrations, testes de runtime e schema físico permanecem não executados ou não definidos nesta missão.
+
+## Invariantes consolidados
 
 - servidor é autoridade global;
 - Android e UI são clientes;
@@ -101,14 +111,15 @@ Invariantes principais:
 - sinal não é comando;
 - coordenada não é autorização;
 - recibo isolado não é verdade global;
-- ação `CONTROLLED_UI` não autoriza efeito financeiro real.
+- ação `CONTROLLED_UI` não autoriza efeito financeiro real;
+- restart invalida a despachabilidade de comando anterior.
 
 ## Entregas
 
 - ✅ `docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
 - ✅ `docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
-- 🟧 matriz consolidada de requisitos e rastreabilidade;
-- ⬜ registro de conflitos, supersessões e precedência;
+- ✅ `docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- 🟧 registro de conflitos, supersessões e precedência;
 - ⬜ catálogo de decisões candidatas a ADR;
 - ⬜ documento de consolidação cruzada;
 - ⬜ pacote para revisão crítica independente.
@@ -119,4 +130,4 @@ Não existe um relatório Markdown final separado para a revisão V2.5 com o nom
 
 ## Próxima ação
 
-Construir a matriz consolidada de requisitos e rastreabilidade, preservando os IDs existentes das PTMs e vinculando cada requisito aos domínios e handoffs canônicos.
+Consolidar conflitos, supersessões e precedência normativa, distinguindo cláusulas vigentes, registros históricos e decisões candidatas a ADR.
