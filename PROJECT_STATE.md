@@ -7,159 +7,140 @@
 - HEAD de `main` confirmado: `f3c84d97523c1c631392cefb69b6cb3e8f6a56e2`
 - Versão real do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-16 — PTM V2.7 — Execução controlada e gates de segurança`, `In Progress`
-- Revisão crítica independente: `LEA-17 — PTM V2.7-RC`, `In Progress — FAIL com remediação obrigatória`
-- PR ativo: `#37`, rascunho para remediação
+- Revisão crítica independente: `LEA-17 — PTM V2.7-RC`, aguardando reteste
+- PR ativo: `#37`, rascunho pronto para reteste independente
 - Branch de trabalho: `leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca`
-- HEAD do builder revisado: `f475d94ae389109f466c23d2a8731b65364794ef`
-- Fase: revisão crítica concluída com achados maiores; aguardando remediação e novo reteste
-- Próxima etapa bloqueada: merge, confirmação pós-merge e consolidação cruzada
+- Fase: correção transversal de escopo controlado concluída pelo builder
+- Autorização humana: correção, merge e publicação autorizados por Leo em 17/07/2026, condicionados ao reteste técnico `PASS`
 
 ## Transição ativa
 
 ```text
 STATE_REVISION=5
 TRANSITION_ID=LEA-16-T01
-TRANSITION_STATUS=IN_PROGRESS
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
 FROM_STATE=PTM_V2_6_DOCUMENTALLY_DEFINITIVE
-TO_STATE=PTM_V2_7_REMEDIATION_REQUIRED
+TO_STATE=PTM_V2_7_SCOPE_CORRECTION_READY_FOR_RETEST
 BASE_MAIN_SHA=f3c84d97523c1c631392cefb69b6cb3e8f6a56e2
 MAIN_PULL_REQUEST=37
-MAIN_PULL_REQUEST_STATUS=DRAFT_REMEDIATION_REQUIRED
+MAIN_PULL_REQUEST_STATUS=DRAFT_READY_FOR_RETEST
 ACTIVE_REVIEW_ISSUE=LEA-17
 MISSION_LOCK=LOCKED_ADVISORY
 GITHUB_SYNC_STATUS=IN_PROGRESS
 LINEAR_SYNC_STATUS=IN_PROGRESS
 ```
 
-O `state_revision` permanece `5` durante a transição não consolidada. Ele somente poderá avançar após integração e confirmação pós-merge em transição separada.
+O `state_revision` permanece `5` durante a transição não consolidada. Ele avançará somente na confirmação pós-merge.
 
-## Escopo preservado da PTM V2.7
+## Política ativa de automação controlada
+
+Fontes normativas:
+
+1. `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`;
+2. `docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md`;
+3. `PREDIXAI_ROBO_LISTAS_PROJECT_INSTRUCTIONS.md`.
 
 ```text
-V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
-V2_6=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
-V2_7=CONTROLLED_EXECUTION_DOMAIN_WITH_SIMULATED_ONLY_BASELINE
+CONTROLLED_SCREEN_CAPTURE=ALLOWED
+CONTROLLED_OCR=ALLOWED
+CONTROLLED_REPLAY=ALLOWED
+CONTROLLED_POINTER_MOVEMENT=ALLOWED
+CONTROLLED_KEYBOARD_INPUT=ALLOWED
+CONTROLLED_CLICK=ALLOWED
+CONTROLLED_TEST_AUTHENTICATION=ALLOWED
+CONTROLLED_END_TO_END_TESTS=ALLOWED
 ```
+
+A autorização aplica-se a aplicações próprias, ambiente local controlado, sandbox dedicada, fixture sanitizada e alvo de teste explicitamente allowlisted.
+
+Separação obrigatória:
 
 ```text
-EXECUTION_MODE_ALLOWED=DISABLED|DRY_RUN|SIMULATED
-REAL_MODE_ENUM_EXPOSED=NO
-REAL_EXECUTION_ADAPTER_EXISTS=NO
-REAL_CREDENTIALS_ACCEPTED=NO
-REAL_SIDE_EFFECT_ALLOWED=NO
-IMPLEMENTATION_AUTHORIZED=NO
+CONTROLLED_UI_ACTION != REAL_FINANCIAL_EFFECT
+FINANCIAL_EFFECT_BASELINE=SIMULATED_ONLY
+CONTROLLED_UI_ACTION_BASELINE=ALLOWED
+EXTERNAL_FINANCIAL_EXECUTION_AUTHORIZED=NO
+REAL_MONEY_OPERATION_AUTHORIZED=NO
 ```
 
-A revisão confirmou que sinal, comando, autorização, tentativa, recibo e reconciliação permanecem separados e que nenhuma capacidade real foi criada.
+## Correção das versões
+
+### PTM V2.5
+
+Exclusões de ponteiro e clique significam `OUT_OF_SCOPE_FOR_FOUNDATION_STAGE`, não proibição global.
+
+### PTM V2.6
+
+Captura, OCR e replay controlados são permitidos. O domínio analítico não produz ação de UI por responsabilidade própria, mas harnesses controlados de teste são permitidos.
+
+### PTM V2.7
+
+Adaptador de automação de UI controlada é permitido para aplicações próprias e sandboxes. Adaptador financeiro externo e operação com saldo real não são autorizados por esta missão.
 
 ## Entregas
 
 1. `docs/architecture/PTM_V2.7_EXECUCAO_CONTROLADA_GATES_LEA-16_20260716.md`;
 2. `docs/architecture/PTM_V2.7_MATRIZ_RASTREABILIDADE_LEA-16_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.7_LEA-16_20260716.md`;
-4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.7_LEA-16_20260716.md`;
-5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.7_LEA-17_20260717.md`;
-6. PR `#37`;
-7. Linear `LEA-16` e `LEA-17`.
+3. `docs/architecture/PTM_V2.7_ADENDO_REMEDIACAO_LEA-17_LEA-16_20260717.md`;
+4. `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`;
+5. `docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md`;
+6. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.7_LEA-17_20260717.md`;
+7. PR `#37`;
+8. Linear `LEA-16` e `LEA-17`.
 
-## Resultado da revisão crítica
-
-```text
-PTM_V2_7_CRITICAL_REVIEW=FAIL
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=4
-MINOR_FINDINGS=4
-REQUIREMENT_ID_UNIQUENESS=PASS
-TRACEABILITY_COMPLETENESS=FAIL
-LEGACY_CLASSIFICATION_CONSISTENCY=FAIL
-V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS
-SIMULATED_ONLY_BASELINE=PASS
-SIGNAL_EXECUTION_SEPARATION=PASS
-AUTHORIZATION_MODEL=PASS
-IDEMPOTENCY_AND_DEDUPLICATION=PASS_CONCEPTUAL
-UNKNOWN_EFFECT_CONTAINMENT=PASS
-KILL_SWITCH_DOMINANCE=PASS_SPECIFIED_NOT_RUNTIME
-REAL_ADAPTER_ABSENCE=PASS_DOCUMENTAL
-REAL_EFFECT_NEGATIVE_PROOF=FAIL_NOT_EXECUTED_AND_SCOPE_AMBIGUOUS
-STATE_SCHEMA_COMPATIBILITY=FAIL_AT_REVIEWED_HEAD
-DOCUMENTAL_READY_FOR_MERGE=NO
-RETEST_REQUIRED=YES
-PTM_V2_7_DOCUMENTALLY_DEFINITIVE=NO
-```
-
-## Achados maiores bloqueantes
-
-1. manifesto usava enums incompatíveis com `PROJECT_RUNTIME_STATE_SCHEMA.yaml`;
-2. `deadline_monotonic` não é recuperável com segurança após restart;
-3. `command_id` foi classificado como `NOVO` na matriz, apesar de herdado da V2.5;
-4. gate de prova negativa confunde especificação documental com evidência runtime não executada e não define escopo diante do legado com `pynput`.
-
-## Achados menores
-
-1. taxonomia definitiva de `target_logical_id` pendente;
-2. limites numéricos e thresholds dependem de benchmark;
-3. topologia e precedência dos canais do kill switch pendentes;
-4. state machine sem matriz integral de transições, guardas e eventos.
-
-## Modelo de segurança preservado
-
-```text
-APPLICATION_CODE_CHANGED=NO
-TEST_CODE_CHANGED=NO
-WORKFLOWS_CHANGED=NO
-APPLICATION_EXECUTED=NO
-RUNTIME_VALIDATION=NOT_EXECUTED
-SQL_GENERATED=NO
-MIGRATIONS_GENERATED=NO
-PHYSICAL_SCHEMA_DEFINED=NO
-POINTER_MOVEMENT_EXECUTED=NO
-KEYBOARD_INPUT_EXECUTED=NO
-REAL_CLICK_EXECUTED=NO
-REAL_ORDER_EXECUTED=NO
-IMPLEMENTATION_AUTHORIZED=NO
-MERGE_AUTHORIZED=NO
-```
-
-## Gate atual
-
-```text
-CURRENT_GATE=PTM_V2_7_REMEDIATION
-GATE_STATUS=FAIL
-ACTIVE_PULL_REQUEST=37
-PULL_REQUEST_MODE=DRAFT_REMEDIATION_REQUIRED
-ACTIVE_REVIEW_ISSUE=LEA-17
-MISSION_LOCK=LOCKED_ADVISORY
-AUTOMATIC_ADVANCE=NO
-MERGE_AUTHORIZATION_PENDING=BLOCKED_BY_REVIEW_FAIL
-```
-
-## Condição de novo reteste
+## Estado dos achados anteriores
 
 ```text
 MAJOR_01_SCHEMA_ENUMS=REMEDIATED
 MAJOR_02_RESTART_STABLE_DEADLINE=REMEDIATED
 MAJOR_03_COMMAND_ID_CLASSIFICATION=REMEDIATED
 MAJOR_04_NEGATIVE_PROOF_GATE=REMEDIATED
-OPEN_CRITICAL_FINDINGS=0
-OPEN_MAJOR_FINDINGS=0
-PR_HEAD_UPDATED=YES
-REVIEW_THREADS_RESOLVED_OR_RESPONDED=YES
-RE_REVIEW_REQUIRED=YES
+GLOBAL_CONTROLLED_AUTOMATION_SCOPE=REMEDIATED
+OPEN_CRITICAL_FINDINGS_BUILDER_VIEW=0
+OPEN_MAJOR_FINDINGS_BUILDER_VIEW=0
+RETEST_REQUIRED=YES
+```
+
+A prova negativa passa a verificar ação não controlada, acesso externo não autorizado e efeito financeiro real. Ela não proíbe a existência de OCR, captura, `pynput`, `pyautogui`, Selenium ou ferramentas equivalentes em escopo controlado.
+
+## Segurança preservada
+
+```text
+SECRETS_IN_GIT=NO
+PRODUCTION_CREDENTIAL_DISCLOSURE=NO
+UNAUTHORIZED_THIRD_PARTY_ACCESS=NO
+EXTERNAL_FINANCIAL_ORDER=NO
+REAL_MONEY_OPERATION=NO
+APPLICATION_CODE_CHANGED=NO
+SQL_GENERATED=NO
+MIGRATIONS_GENERATED=NO
+APPLICATION_EXECUTED_DURING_DOCUMENTAL_MISSION=NO
+```
+
+## Gate atual
+
+```text
+CURRENT_GATE=PTM_V2_7_INDEPENDENT_RETEST
+GATE_STATUS=IN_PROGRESS
+ACTIVE_PULL_REQUEST=37
+PULL_REQUEST_MODE=DRAFT_READY_FOR_RETEST
+ACTIVE_REVIEW_ISSUE=LEA-17
+MERGE_AUTHORIZATION_RECORDED=YES
+MERGE_EXECUTION_CONDITION=INDEPENDENT_RETEST_PASS
+AUTOMATIC_ADVANCE=NO
 ```
 
 ## Próxima ação
 
-Remediar os quatro achados maiores no PR `#37` sem alterar código, SQL, migrations ou executar aplicação. Depois executar nova revisão da `LEA-17` sobre o novo HEAD.
+Executar reteste independente da `LEA-17` sobre o HEAD atualizado do PR `#37`. Em `PASS`, marcar o PR pronto, integrar com o SHA verificado e publicar a confirmação pós-merge em transição separada.
 
-## Proibições vigentes
+## Limites vigentes
 
 ```text
-NÃO alterar código da aplicação, testes ou workflows.
-NÃO gerar SQL, schema físico ou migrations.
-NÃO executar aplicação, captura, OCR ou replay contra fonte real.
-NÃO aceitar ou armazenar login, senha, cookie, token ou chave real.
-NÃO mover ponteiro, digitar, clicar ou emitir ordem real.
-NÃO marcar a PTM V2.7 como definitiva.
-NÃO realizar merge enquanto a revisão permanecer FAIL.
-NÃO avançar para consolidação cruzada.
+CONTROLLED_AUTOMATION=ALLOWED
+SECRETS_OR_CREDENTIALS_IN_GIT=PROHIBITED
+UNAUTHORIZED_EXTERNAL_ACCESS=PROHIBITED
+REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
+MERGE_BEFORE_RETEST_PASS=PROHIBITED
+CROSS_CONSOLIDATION_BEFORE_POST_MERGE_RECEIPT=PROHIBITED
 ```
