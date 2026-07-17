@@ -73,10 +73,15 @@ ENV_TOKENS_COOKIES_PRIVATE_KEYS_IN_GIT=PROHIBITED
 UNAUTHORIZED_THIRD_PARTY_ACCESS=PROHIBITED
 REAL_MONEY_OPERATION=NOT_AUTHORIZED_BY_THIS_POLICY
 EXTERNAL_FINANCIAL_ORDER=NOT_AUTHORIZED_BY_THIS_POLICY
+REAL_BALANCE_CHANGE=NOT_AUTHORIZED_BY_THIS_POLICY
 PRODUCTION_CREDENTIAL_DISCLOSURE=PROHIBITED
 ```
 
-Operação financeira real ou atuação em sistema externo de produção exige decisão comercial e legal separada, escopo próprio e autorização específica. Esta limitação não se aplica às aplicações próprias, sandboxes e ambientes de teste controlados descritos nesta política.
+Operação financeira real, ordem financeira externa ou alteração de saldo real exigem decisão comercial e legal separada, escopo próprio, arquitetura específica e autorização explícita **em qualquer classe de alvo**, inclusive aplicação própria, ambiente local, sandbox ou teste allowlisted que possa alcançar infraestrutura financeira de produção.
+
+A classificação como aplicação própria ou ambiente controlado dispensa apenas a proibição genérica de automação de interface. Ela nunca transforma autorização de OCR, ponteiro, teclado ou clique em autorização de efeito financeiro real.
+
+Atuação externa não financeira também exige autorização específica quando o alvo não for próprio ou não estiver explicitamente allowlisted.
 
 ## 6. Aplicação por versão
 
@@ -112,6 +117,8 @@ Esta política prevalece sobre redações genéricas anteriores que afirmem, sem
 
 Documentos históricos permanecem imutáveis como evidência do estado anterior. Documentos vivos e arquiteturais devem referenciar esta política e usar terminologia qualificada.
 
+Nenhuma precedência desta política enfraquece os limites permanentes contra efeito financeiro real, segredo em Git ou acesso externo não autorizado.
+
 ## 8. Gates de validação
 
 ```text
@@ -121,5 +128,6 @@ CONTROLLED_OCR_CAPTURE_ALLOWED=PASS
 CONTROLLED_POINTER_KEYBOARD_CLICK_ALLOWED=PASS
 CONTROLLED_TEST_AUTH_ALLOWED=PASS
 REAL_FINANCIAL_EFFECT_SEPARATED=PASS
+REAL_FINANCIAL_EFFECT_REQUIRES_SEPARATE_AUTH_IN_ALL_TARGET_CLASSES=PASS
 HISTORICAL_DOCUMENTS_NON_NORMATIVE=PASS
 ```
