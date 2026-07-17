@@ -4,14 +4,14 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD consolidado observado após o PR principal: `bcd983423c3142adee8eab4720d62208f94161eb`
+- HEAD consolidado observado após o recibo: `128dd3c3aa6966fb96008086985810cd6ad66040`
 - Versão real do legado: `V2.4.3-R1`
 - Missão ativa: nenhuma
-- Última missão concluída: `LEA-14 — PTM V2.6 — Observação, análise e sinais`
+- Última missão concluída: `LEA-14 — PTM V2.6 — Observação, análise e sinais`, `Done`
 - Revisão concluída: `LEA-15 — PTM V2.6-RC`, `Done`
-- PR principal: `#35`, integrado
-- Merge commit principal: `bcd983423c3142adee8eab4720d62208f94161eb`
-- Fase: confirmação pós-merge e fechamento documental
+- PR principal: `#35`, integrado em `bcd983423c3142adee8eab4720d62208f94161eb`
+- Recibo pós-merge: PR `#36`, integrado em `128dd3c3aa6966fb96008086985810cd6ad66040`
+- Fase: estado estável após fechamento da PTM V2.6
 - Próxima etapa disponível: PTM V2.7, somente mediante autorização explícita e missão própria
 
 ## Transição concluída
@@ -25,7 +25,11 @@ TO_STATE=PTM_V2_6_DOCUMENTALLY_DEFINITIVE
 BASE_MAIN_SHA=1ca1be40b570b3ba458cf28efc73113da2031e8d
 MAIN_PULL_REQUEST=35
 MAIN_PULL_REQUEST_MERGE_COMMIT=bcd983423c3142adee8eab4720d62208f94161eb
+POST_MERGE_RECEIPT_PR=36
+POST_MERGE_RECEIPT_MERGE_COMMIT=128dd3c3aa6966fb96008086985810cd6ad66040
 MISSION_LOCK=RELEASED
+GITHUB_SYNC_STATUS=PASS
+LINEAR_SYNC_STATUS=PASS
 ```
 
 ## Resultado definitivo da PTM V2.6
@@ -54,6 +58,8 @@ PTM_V2_6_CRITICAL_REVIEW=PASS
 CRITICAL_BLOCKERS=0
 MAJOR_FINDINGS=0
 MINOR_FINDINGS=2
+RUNTIME_SCHEMA_1_0_3_ALIGNMENT=PASS
+CODEX_P1_FINDINGS_REMEDIATED=2/2
 PTM_V2_6_DOCUMENTALLY_DEFINITIVE=YES
 ```
 
@@ -72,7 +78,8 @@ Os achados permanecem não bloqueantes e devem ser carregados para as etapas doc
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
 5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
 6. `docs/history/ptp/RECIBO_POS_MERGE_LEA-14_PTM_V2.6_20260716.md`;
-7. PR `#35` e Linear `LEA-14`/`LEA-15`.
+7. PRs `#35` e `#36`;
+8. Linear `LEA-14` e `LEA-15`, ambos `Done`.
 
 ## Fronteiras preservadas
 
