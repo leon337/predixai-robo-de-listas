@@ -3,7 +3,7 @@ state_revision: 5
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "bcd983423c3142adee8eab4720d62208f94161eb"
+observed_main_head: "d7785e73654e4b1f5b5b13aeb56427bc5f1438a8"
 real_version: "V2.4.3-R1"
 
 active_mission: "NONE"
@@ -30,12 +30,12 @@ baseline_state_revision: 4
 bound_transition_id: "LEA-14-T01"
 main_pr: 35
 main_pr_merge_commit: "bcd983423c3142adee8eab4720d62208f94161eb"
-post_merge_receipt_pr: null
-post_merge_receipt_merge_commit: null
+post_merge_receipt_pr: 36
+post_merge_receipt_merge_commit: "128dd3c3aa6966fb96008086985810cd6ad66040"
 
 github_sync_status: "PASS"
-linear_sync_status: "PENDING"
-last_sync_at_utc: "2026-07-17T02:40:00Z"
+linear_sync_status: "PASS"
+last_sync_at_utc: "2026-07-17T02:42:47Z"
 
 mission_lock:
   locked: false
@@ -43,13 +43,13 @@ mission_lock:
   concurrency_model: "OPTIMISTIC"
   owner: "NONE"
   session_id: "closed-lea14"
-  base_sha: "bcd983423c3142adee8eab4720d62208f94161eb"
+  base_sha: "128dd3c3aa6966fb96008086985810cd6ad66040"
   observed_pr_head: null
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-14-T01"
   started_at_utc: "2026-07-17T01:59:18Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T02:40:00Z"
+  heartbeat_at_utc: "2026-07-17T02:42:47Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -104,7 +104,7 @@ safety:
   post_merge_receipt_recorded: true
   transition_complete: true
   last_completed_product_issue: "LEA-14"
-  last_completed_product_issue_status: "DONE_PENDING_LINEAR_SYNC"
+  last_completed_product_issue_status: "DONE"
   current_product_issue: "NONE"
   ptm_v2_5_definitive: true
   ptm_v2_6_started: true
