@@ -11,7 +11,7 @@ ACTIVE_MISSION=LEA-16
 ACTIVE_MISSION_NAME=PTM_V2.7_Execucao_Controlada_e_Gates_de_Seguranca
 ACTIVE_REVIEW_ISSUE=LEA-17
 ACTIVE_PULL_REQUEST=37
-ACTIVE_PULL_REQUEST_MODE=READY_FOR_REVIEW
+ACTIVE_PULL_REQUEST_MODE=CHANGES_REQUESTED
 WORKING_BRANCH=leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca
 TRANSITION_ID=LEA-16-T01
 TRANSITION_STATUS=IN_PROGRESS
@@ -19,13 +19,13 @@ STATE_REVISION=5
 PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
 PTM_V2_6_DEFINITIVE=YES_DOCUMENTAL
 PTM_V2_7_BUILDER_DRAFT_COMPLETE=YES
-PTM_V2_7_CRITICAL_REVIEW=PENDING
+PTM_V2_7_CRITICAL_REVIEW=FAIL
 PTM_V2_7_DEFINITIVE=NO
 ```
 
-A PTM V2.7 foi autorizada por Leo em 16/07/2026, recebeu missão própria `LEA-16`, branch isolada e PR documental `#37`. O builder concluiu o draft, matriz, auto-revisão preliminar e prompt de revisão independente. A issue `LEA-17` controla o Boss Gate.
+A PTM V2.7 foi construída no PR `#37` e revisada pela `LEA-17`. A revisão crítica independente resultou em `FAIL` com quatro achados maiores bloqueantes. O PR permanece aberto, sem autorização de merge, aguardando remediação documental e novo reteste.
 
-## Fronteiras
+## Fronteiras preservadas
 
 ```text
 V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
@@ -42,33 +42,46 @@ REAL_SIDE_EFFECT_ALLOWED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 ```
 
-## Resultado preliminar da PTM V2.7
+## Resultado da revisão crítica
 
 ```text
 STRUCTURAL_REQUIREMENTS=32
 FUNCTIONAL_REQUIREMENTS=52
 TOTAL_REQUIREMENT_IDS=84
-REQUIREMENT_ID_UNIQUENESS=PASS_BUILDER
-TRACEABILITY_COMPLETENESS=PASS_BUILDER
-LEGACY_CLASSIFICATION_CONSISTENCY=PASS_BUILDER
-V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS_BUILDER
-SIGNAL_EXECUTION_SEPARATION=PASS_BUILDER
-SIMULATED_ONLY_BASELINE=PASS_BUILDER
-EXECUTION_AUTHORIZATION_MODEL=PASS_BUILDER
-FAIL_CLOSED_EXECUTION_GATES=PASS_BUILDER
-IDEMPOTENCY_AND_DEDUPLICATION=PASS_BUILDER
-LIMITS_AND_KILL_SWITCH=PASS_BUILDER
-RECONCILIATION_AND_AUDIT=PASS_BUILDER
-REAL_EFFECT_NEGATIVE_PROOF_SPECIFIED=PASS_BUILDER
-BUILDER_SELF_REVIEW=PASS_WITH_MINOR_FINDINGS
+REQUIREMENT_ID_UNIQUENESS=PASS
+TRACEABILITY_COMPLETENESS=FAIL
+LEGACY_CLASSIFICATION_CONSISTENCY=FAIL
+V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS
+SIGNAL_EXECUTION_SEPARATION=PASS
+SIMULATED_ONLY_BASELINE=PASS
+AUTHORIZATION_MODEL=PASS
+UNKNOWN_EFFECT_CONTAINMENT=PASS
+KILL_SWITCH_DOMINANCE=PASS_SPECIFIED_NOT_RUNTIME
+REAL_ADAPTER_ABSENCE=PASS_DOCUMENTAL
+REAL_EFFECT_NEGATIVE_PROOF=FAIL_NOT_EXECUTED_AND_SCOPE_AMBIGUOUS
+PTM_V2_7_CRITICAL_REVIEW=FAIL
 CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=3
-DOCUMENTAL_READY_FOR_INDEPENDENT_REVIEW=YES
+MAJOR_FINDINGS=4
+MINOR_FINDINGS=4
 DOCUMENTAL_READY_FOR_MERGE=NO
+RETEST_REQUIRED=YES
 ```
 
-## Decisões centrais da V2.7
+## Achados maiores bloqueantes
+
+1. enums do manifesto incompatíveis com o schema 1.0.3 no HEAD revisado;
+2. deadline monotônico não recuperável de forma segura após reinício;
+3. classificação contraditória de `command_id` entre V2.5, documento pai e matriz V2.7;
+4. prova negativa sem separação entre especificação documental e runtime, além de escopo ambíguo diante do legado com clique conhecido.
+
+## Achados menores
+
+1. taxonomia do alvo lógico pendente;
+2. limites e thresholds dependentes de benchmark;
+3. topologia final do kill switch pendente;
+4. matriz integral de transições da state machine pendente.
+
+## Decisões centrais preservadas
 
 1. sinal, comando, autorização, tentativa, recibo e reconciliação são domínios separados;
 2. não existe estado `ARMED_REAL`;
@@ -81,26 +94,15 @@ DOCUMENTAL_READY_FOR_MERGE=NO
 9. coordenadas são dados geométricos, nunca autorização;
 10. qualquer capacidade real futura exige ADR, threat model, implementação autorizada, revisão crítica e GO separado.
 
-## Tratamento do legado
-
-```text
-PYINPUT_AND_CLICK_PATHS=DESCONTINUAR
-LEGACY_COORDINATES=ADAPTAR_GEOMETRY_ONLY
-RUNTIME_GUARD=ADAPTAR
-MONKEY_PATCH_CHAIN=SUBSTITUIR
-DIAGNOSTIC_TXT=REUTILIZAR_BEHAVIOR_ADAPT_CONTRACT
-CONFIG_SAFETY_AND_BACKUPS=ADAPTAR
-JSON_FINAL_AUTHORITY=SUBSTITUIR
-```
-
 ## Artefatos ativos
 
 1. `docs/architecture/PTM_V2.7_EXECUCAO_CONTROLADA_GATES_LEA-16_20260716.md`;
 2. `docs/architecture/PTM_V2.7_MATRIZ_RASTREABILIDADE_LEA-16_20260716.md`;
 3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.7_LEA-16_20260716.md`;
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.7_LEA-16_20260716.md`;
-5. PR `#37`;
-6. Linear `LEA-16` e `LEA-17`.
+5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.7_LEA-17_20260717.md`;
+6. PR `#37`;
+7. Linear `LEA-16` e `LEA-17`.
 
 ## Roadmap
 
@@ -112,8 +114,8 @@ JSON_FINAL_AUTHORITY=SUBSTITUIR
 ✅ PTM V2.6 / LEA-14 — integrada documentalmente
 ✅ PTM V2.6-RC / LEA-15 — revisão crítica independente PASS
 ✅ confirmação pós-merge da PTM V2.6
-🟨 PTM V2.7 / LEA-16 — builder concluído no PR #37
-🟧 PTM V2.7-RC / LEA-17 — próximo Boss Gate
+🟨 PTM V2.7 / LEA-16 — remediação no PR #37
+🟥 PTM V2.7-RC / LEA-17 — FAIL, novo reteste obrigatório
 ⬜ merge autorizado da PTM V2.7
 ⬜ confirmação pós-merge da PTM V2.7
 ⬜ Consolidação cruzada
@@ -127,26 +129,28 @@ JSON_FINAL_AUTHORITY=SUBSTITUIR
 ## Gate atual
 
 ```text
-CURRENT_GATE=PTM_V2_7_INDEPENDENT_CRITICAL_REVIEW
-GATE_STATUS=PENDING
+CURRENT_GATE=PTM_V2_7_REMEDIATION
+GATE_STATUS=FAIL
 ACTIVE_PULL_REQUEST=37
-ACTIVE_PULL_REQUEST_MODE=READY_FOR_REVIEW
+ACTIVE_PULL_REQUEST_MODE=CHANGES_REQUESTED
 ACTIVE_REVIEW_ISSUE=LEA-17
 MISSION_LOCK=LOCKED_ADVISORY
 AUTOMATIC_ADVANCE=NO
 MERGE_AUTHORIZED=NO
 ```
 
-## Condição de avanço
+## Condição de novo reteste
 
 ```text
-PTM_V2_7_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
-MAJOR_FINDINGS=0_OR_REMEDIATED
-SIMULATED_ONLY_BASELINE=PASS
-REAL_ADAPTER_ABSENCE=PASS
-REAL_EFFECT_NEGATIVE_PROOF=PASS
-LEO_MERGE_AUTHORIZATION=REQUIRED
+MAJOR_01_SCHEMA_ENUMS=REMEDIATED
+MAJOR_02_RESTART_STABLE_DEADLINE=REMEDIATED
+MAJOR_03_COMMAND_ID_CLASSIFICATION=REMEDIATED
+MAJOR_04_NEGATIVE_PROOF_GATE=REMEDIATED
+OPEN_CRITICAL_FINDINGS=0
+OPEN_MAJOR_FINDINGS=0
+PR_HEAD_UPDATED=YES
+REVIEW_THREADS_RESOLVED_OR_RESPONDED=YES
+RE_REVIEW_REQUIRED=YES
 ```
 
 ## Continuidade multichat
@@ -154,7 +158,7 @@ LEO_MERGE_AUTHORIZATION=REQUIRED
 Em novo chat, executar:
 
 ```text
-@GitHub @Linear revisar LEA-17 PR #37
+@GitHub @Linear continuar LEA-16 remediar PR #37
 ```
 
-A revisão deverá ler as fontes primárias e não poderá usar a auto-revisão do builder como autoridade final. Merge, implementação e qualquer efeito real permanecem proibidos.
+A remediação permanece estritamente documental. Merge, implementação, SQL, migrations, runtime e qualquer efeito real continuam proibidos.
