@@ -55,24 +55,28 @@ REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
 
 ```text
 G1_PRECONDITIONS_PASS=PASS
-G2_SOURCE_INVENTORY_COMPLETE=IN_PROGRESS
-G3_DOMAIN_BOUNDARIES_CONSOLIDATED=NOT_STARTED
+G2_SOURCE_INVENTORY_COMPLETE=PASS
+G3_DOMAIN_BOUNDARIES_CONSOLIDATED=IN_PROGRESS
 G4_REQUIREMENTS_TRACEABILITY_COMPLETE=NOT_STARTED
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=NOT_STARTED
 G6_CONSOLIDATED_DOCUMENT_READY=NOT_STARTED
 G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 ```
 
-## Entregas previstas
+## Entregas
 
-1. inventário canônico das fontes;
-2. mapa unificado de domínios e fronteiras;
-3. matriz consolidada de requisitos e rastreabilidade;
-4. registro de conflitos, supersessões e precedência;
-5. catálogo de decisões candidatas a ADR;
-6. documento de consolidação cruzada;
-7. pacote para revisão crítica independente.
+- ✅ `docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- 🟧 mapa unificado de domínios e fronteiras;
+- ⬜ matriz consolidada de requisitos e rastreabilidade;
+- ⬜ registro de conflitos, supersessões e precedência;
+- ⬜ catálogo de decisões candidatas a ADR;
+- ⬜ documento de consolidação cruzada;
+- ⬜ pacote para revisão crítica independente.
+
+## Achado documental controlado
+
+Não existe um relatório Markdown final separado para a revisão V2.5 com o nome presumido. A autoridade é composta pela revisão final do PR `#33`, Linear `LEA-13` e recibo pós-merge da `LEA-8`.
 
 ## Próxima ação
 
-Construir o inventário canônico das fontes no PR `#40`.
+Construir o mapa unificado de domínios, autoridades, entradas, saídas, estados e blockers.
