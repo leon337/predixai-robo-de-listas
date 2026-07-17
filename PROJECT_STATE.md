@@ -4,80 +4,81 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD da integração principal observado: `c826f98973afe975ff6e6c1bc59eb80f69bebfd7`
-- Recibo pós-merge integrado: PR `#34`, commit `408c03d525e3ef1ed73fae079209987668ddc493`
+- HEAD consolidado observado: `1ca1be40b570b3ba458cf28efc73113da2031e8d`
 - Versão real do legado: `V2.4.3-R1`
-- Missão ativa: nenhuma
-- Última missão concluída: `LEA-8 — Reconciliar e revisar PTM V2.5`
-- Issue de revisão concluída: `LEA-13 — PTM V2.5-RC`
-- PR principal: `#33`, integrada
-- Próxima etapa disponível: `PTM V2.6`, não iniciada e dependente de autorização explícita
+- Missão ativa: `LEA-14 — PTM V2.6 — Observação, análise e sinais`
+- Fase: merge documental autorizado e aguardando execução protegida
+- Revisão concluída: `LEA-15 — PTM V2.6-RC`, `Done`
+- PR ativo: `#35`, pronto, mergeável tecnicamente e autorizado por Leo
+- Branch de trabalho: `leonpcsn/lea-14-ptm-v26-observacao-analise-e-sinais`
+- Próxima etapa: executar o merge com validação do HEAD e registrar confirmação pós-merge
 
-## Fechamento da LEA-8
+## Transição ativa
 
 ```text
-STATE_REVISION=4
-TRANSITION_ID=LEA-8-T01
-TRANSITION_STATUS=COMPLETE
-LEA_8_STATUS=DONE
-LEA_13_STATUS=DONE
-PR_33_READY_FOR_REVIEW=PASS
-PR_33_MERGED=PASS
-PR_33_MERGE_COMMIT=c826f98973afe975ff6e6c1bc59eb80f69bebfd7
-POST_MERGE_RECEIPT_PR=34
-POST_MERGE_RECEIPT_MERGED=PASS
-POST_MERGE_RECEIPT_MERGE_COMMIT=408c03d525e3ef1ed73fae079209987668ddc493
-POST_MERGE_CONFIRMATION=PASS
-GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PASS
-PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
-PTM_V2_6_STARTED=NO
-IMPLEMENTATION_AUTHORIZED=NO
+STATE_REVISION=5
+TRANSITION_ID=LEA-14-T01
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+FROM_STATE=PTM_V2_5_DOCUMENTALLY_DEFINITIVE
+TO_STATE=PTM_V2_6_DOCUMENTAL_READY_FOR_MERGE
+BASE_MAIN_SHA=1ca1be40b570b3ba458cf28efc73113da2031e8d
+ACTIVE_LINEAR_ISSUE=LEA-14
+COMPLETED_REVIEW_ISSUE=LEA-15
+ACTIVE_PULL_REQUEST=35
+PR_MODE=READY
+MISSION_LOCK=LOCKED_ADVISORY
 ```
 
-## Resultado aprovado
+A PTM V2.5 permanece documentalmente definitiva. A PTM V2.6 foi aprovada no Boss Gate documental e teve seu merge explicitamente autorizado; somente se tornará definitiva após o merge real e a confirmação pós-merge.
+
+## Resultado da PTM V2.6
 
 ```text
-STRUCTURAL_BASELINE_REQUIREMENTS=29
-FUNCTIONAL_BASELINE_REQUIREMENTS=23
-TOTAL_BASELINE_REQUIREMENTS=52
-ADDITIONAL_GAP_REQUIREMENTS_ACCEPTED=4
-TOTAL_REQUIREMENT_IDS=56
+V2_6_SCOPE=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
+STRUCTURAL_REQUIREMENTS=28
+FUNCTIONAL_REQUIREMENTS=50
+TOTAL_REQUIREMENT_IDS=78
 REQUIREMENT_ID_UNIQUENESS=PASS
 TRACEABILITY_COMPLETENESS=PASS
 LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-SCOPE_V2_5_V2_6_V2_7_SEPARATION=PASS
-PTM_V2_5_CRITICAL_REVIEW=PASS
+V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS
+OBSERVATION_QUALITY_MODEL=PASS
+ANALYSIS_ENGINE_CONTRACTS=PASS
+SIGNAL_LIFECYCLE=PASS
+EXECUTION_EXCLUSION=PASS
+BUILDER_SELF_REVIEW=PASS
+PTM_V2_6_CRITICAL_REVIEW=PASS
 CRITICAL_BLOCKERS=0
 MAJOR_FINDINGS=0
 MINOR_FINDINGS=2
+DOCUMENTAL_READY_FOR_MERGE=YES
+PTM_V2_6_DEFINITIVE=NO
 ```
 
-## Decisões preservadas
+## Achados menores preservados
+
+1. ampliar a granularidade funcional da matriz antes do Documento Mestre ou da vinculação definitiva aos testes;
+2. uniformizar a prova negativa para citar ponteiro, teclado, clique e ordem em todos os resumos.
+
+Os achados não bloqueiam o merge documental e não autorizam implementação.
+
+## Artefatos ativos
+
+1. `docs/architecture/PTM_V2.6_OBSERVACAO_ANALISE_SINAIS_LEA-14_20260716.md`;
+2. `docs/architecture/PTM_V2.6_MATRIZ_RASTREABILIDADE_LEA-14_20260716.md`;
+3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.6_LEA-14_20260716.md`;
+4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
+5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
+6. revisão formal registrada no PR `#35`;
+7. Linear `LEA-14` e `LEA-15`.
+
+## Fronteiras preservadas
 
 ```text
-REAL_CLICK_EXCLUDED_FROM_V2_5=PASS
-POINTER_MOVEMENT_EXCLUDED_FROM_V2_5=PASS
-JSON_AS_FINAL_SOURCE_OF_TRUTH=SUBSTITUIR
-JSON_AS_MIGRATION_SOURCE=ADAPTAR
-PATCH_CHAIN=SUBSTITUIR
-PHYSICAL_SCHEMA=PROGRESSIVE_ONLY
-V2_5_VALIDATION_LEVELS=R0_R1_R2
-V2_6_SCOPE=OBSERVATION_ANALYSIS_SIGNALS
-V2_7_SCOPE=CONTROLLED_EXECUTION_AFTER_OWN_GATES
+V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
+V2_6=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
+V2_7=CONTROLLED_EXECUTION_AFTER_OWN_GATES
 ```
-
-## Artefatos consolidados
-
-1. `docs/architecture/PTM_V2.5_RECONCILIADA_LEA-8_20260716.md`;
-2. `docs/architecture/PTM_V2.5_MATRIZ_RASTREABILIDADE_LEA-8_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
-4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
-5. revisão crítica independente registrada na PR `#33`;
-6. `docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md`;
-7. `docs/history/ptp/RECIBO_POS_MERGE_LEA-8_PTM_V2.5_20260716.md`.
-
-## Escopo e segurança
 
 ```text
 APPLICATION_CODE_CHANGED=NO
@@ -87,32 +88,49 @@ APPLICATION_EXECUTED=NO
 RUNTIME_VALIDATION=NOT_EXECUTED
 SQL_GENERATED=NO
 MIGRATIONS_GENERATED=NO
-REAL_CLICK_EXECUTED=NO
+PHYSICAL_SCHEMA_DEFINED=NO
+POINTER_MOVEMENT_ALLOWED=NO
+KEYBOARD_INPUT_ALLOWED=NO
+REAL_CLICK_ALLOWED=NO
+REAL_ORDER_ALLOWED=NO
+PTM_V2_7_STARTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 ```
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=LEA_8_COMPLETE
+CURRENT_GATE=PTM_V2_6_MERGE_AUTHORIZATION
 GATE_STATUS=PASS
-ACTIVE_PULL_REQUEST=NONE
-ACTIVE_REVIEW_ISSUE=NONE
-MISSION_LOCK=RELEASED
+REVIEW_ISSUE=LEA-15_DONE
+PULL_REQUEST=35
+PR_READY_FOR_REVIEW=YES
+GITHUB_MERGEABILITY=MERGEABLE
+MERGE_AUTHORIZATION=GRANTED_BY_LEO
 AUTOMATIC_ADVANCE=NO
-PTM_V2_6_STARTED=NO
+```
+
+## Condição de avanço
+
+```text
+EXPLICIT_MERGE_AUTHORIZATION=PASS
+EXPECTED_PR_HEAD_MUST_MATCH=CURRENT_PR_HEAD
+MERGE_EXECUTED=NO
+POST_MERGE_CONFIRMATION=PENDING_AFTER_REAL_MERGE
+PTM_V2_7_START_AUTHORIZED=NO
 ```
 
 ## Próxima ação
 
-Executar `@GitHub @Linear iniciar` em novo chat para confirmar o fechamento da LEA-8. A PTM V2.6 somente poderá ser iniciada mediante autorização explícita e missão própria.
+Executar o merge protegido do PR `#35` e registrar a confirmação pós-merge.
 
 ## Proibições vigentes
 
 ```text
-NÃO alterar código da aplicação sem missão autorizada.
-NÃO gerar SQL ou migrations.
-NÃO executar aplicação, cursor ou clique real.
-NÃO iniciar automaticamente a PTM V2.6.
-NÃO declarar validação de runtime sem execução e evidência.
+NÃO alterar código da aplicação.
+NÃO gerar SQL, schema físico ou migrations.
+NÃO executar captura, OCR, aplicação ou replay contra fonte real.
+NÃO mover ponteiro, clicar, digitar ou operar saldo real.
+NÃO declarar a PTM V2.6 definitiva antes do merge e recibo pós-merge.
+NÃO iniciar a PTM V2.7.
 ```
