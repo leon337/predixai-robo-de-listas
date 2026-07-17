@@ -8,7 +8,7 @@
 - Versão do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
 - Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
-- PR ativo: ainda não aberto
+- PR ativo: `#40`, Draft
 - Revisão crítica independente: pendente
 
 ## Transição ativa
@@ -19,7 +19,7 @@ TRANSITION_ID=LEA-18-T01
 TRANSITION_STATUS=IN_PROGRESS
 FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
 TO_STATE=CROSS_CONSOLIDATION_IN_PROGRESS
-GITHUB_SYNC_STATUS=IN_PROGRESS
+GITHUB_SYNC_STATUS=PASS
 LINEAR_SYNC_STATUS=PASS
 MISSION_LOCK=LEA-18
 ```
@@ -75,4 +75,4 @@ G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 
 ## Próxima ação
 
-Construir o inventário canônico das fontes e abrir o PR documental em modo Draft.
+Construir o inventário canônico das fontes no PR `#40`.
