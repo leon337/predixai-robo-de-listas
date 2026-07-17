@@ -4,130 +4,91 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD consolidado observado após o recibo: `128dd3c3aa6966fb96008086985810cd6ad66040`
-- Versão real do legado: `V2.4.3-R1`
-- Missão ativa: nenhuma
-- Última missão concluída: `LEA-14 — PTM V2.6 — Observação, análise e sinais`, `Done`
-- Revisão concluída: `LEA-15 — PTM V2.6-RC`, `Done`
-- PR principal: `#35`, integrado em `bcd983423c3142adee8eab4720d62208f94161eb`
-- Recibo pós-merge: PR `#36`, integrado em `128dd3c3aa6966fb96008086985810cd6ad66040`
-- Fase: estado estável após fechamento da PTM V2.6
-- Próxima etapa disponível: PTM V2.7, somente mediante autorização explícita e missão própria
+- HEAD base: `f3c84d97523c1c631392cefb69b6cb3e8f6a56e2`
+- Versão do legado: `V2.4.3-R1`
+- Missão: `LEA-16 — PTM V2.7`, aguardando integração e recibo
+- Revisão: `LEA-17 — PTM V2.7-RC`, `PASS`
+- PR: `#37`, aprovado para integração
+- Autorização: confirmada por Leo
 
-## Transição concluída
+## Transição
 
 ```text
 STATE_REVISION=5
-TRANSITION_ID=LEA-14-T01
-TRANSITION_STATUS=COMPLETE
-FROM_STATE=PTM_V2_5_DOCUMENTALLY_DEFINITIVE
-TO_STATE=PTM_V2_6_DOCUMENTALLY_DEFINITIVE
-BASE_MAIN_SHA=1ca1be40b570b3ba458cf28efc73113da2031e8d
-MAIN_PULL_REQUEST=35
-MAIN_PULL_REQUEST_MERGE_COMMIT=bcd983423c3142adee8eab4720d62208f94161eb
-POST_MERGE_RECEIPT_PR=36
-POST_MERGE_RECEIPT_MERGE_COMMIT=128dd3c3aa6966fb96008086985810cd6ad66040
-MISSION_LOCK=RELEASED
-GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PASS
+TRANSITION_ID=LEA-16-T01
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+FROM_STATE=PTM_V2_6_DOCUMENTALLY_DEFINITIVE
+TO_STATE=PTM_V2_7_APPROVED_FOR_MERGE
+MAIN_PULL_REQUEST=37
+GATE_STATUS=PASS
 ```
 
-## Resultado definitivo da PTM V2.6
+## Resultado da revisão
 
 ```text
-PTM_V2_6_SCOPE=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
-STRUCTURAL_REQUIREMENTS=28
-FUNCTIONAL_REQUIREMENTS=50
-TOTAL_REQUIREMENT_IDS=78
+PTM_V2_7_CRITICAL_REVIEW=PASS
+RETEST_01=SUPERSEDED
+RETEST_02=PASS
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=4
 REQUIREMENT_ID_UNIQUENESS=PASS
 TRACEABILITY_COMPLETENESS=PASS
 LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS
-AUTHORIZED_VISUAL_SOURCE_FAIL_CLOSED=PASS
-FRAME_PROVENANCE_AND_RETENTION=PASS
-QUALITY_MODEL_AND_CONFIDENCE_CAPS=PASS
-ANALYSIS_ENGINE_A_H_CONTRACTS=PASS
-STRATEGY_001_EXPLAINABILITY=PASS
-CANDIDATE_ARBITRATION=PASS
-SIGNAL_LIFECYCLE=PASS
-PROGRESSIVE_CONTRACT_EXISTENCE=PASS
-SAFE_REPLAY=PASS
-VISUAL_DATA_SECURITY=PASS
-REAL_INPUT_AND_EXECUTION_EXCLUSION=PASS
-PTM_V2_6_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=2
-RUNTIME_SCHEMA_1_0_3_ALIGNMENT=PASS
-CODEX_P1_FINDINGS_REMEDIATED=2/2
-PTM_V2_6_DOCUMENTALLY_DEFINITIVE=YES
+CONTROLLED_UI_NORMATIVE_CONTRACT=PASS
+SAME_BOOT_RESTART_FAIL_CLOSED=PASS
+PRODUCTION_MONETARY_EFFECT_REQUIRES_SEPARATE_GATE=PASS
+DOCUMENTAL_READY_FOR_MERGE=YES
 ```
 
-## Achados menores preservados
+Fonte: `docs/history/reviews/REVISAO_CRITICA_RETESTE_02_PTM_V2.7_LEA-17_20260717.md`.
 
-1. ampliar a granularidade funcional da matriz antes do Documento Mestre ou da vinculação definitiva aos testes;
-2. uniformizar a prova negativa para citar ponteiro, teclado, clique e ordem em todos os resumos.
-
-Os achados permanecem não bloqueantes e devem ser carregados para as etapas documentais posteriores aplicáveis.
-
-## Artefatos consolidados
-
-1. `docs/architecture/PTM_V2.6_OBSERVACAO_ANALISE_SINAIS_LEA-14_20260716.md`;
-2. `docs/architecture/PTM_V2.6_MATRIZ_RASTREABILIDADE_LEA-14_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.6_LEA-14_20260716.md`;
-4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
-5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
-6. `docs/history/ptp/RECIBO_POS_MERGE_LEA-14_PTM_V2.6_20260716.md`;
-7. PRs `#35` e `#36`;
-8. Linear `LEA-14` e `LEA-15`, ambos `Done`.
-
-## Fronteiras preservadas
+## Escopo controlado
 
 ```text
-V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
-V2_6=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
-V2_7=CONTROLLED_EXECUTION_AFTER_OWN_GATES
+CONTROLLED_SCREEN_CAPTURE=ALLOWED
+CONTROLLED_OCR=ALLOWED
+CONTROLLED_REPLAY=ALLOWED
+CONTROLLED_POINTER_MOVEMENT=ALLOWED
+CONTROLLED_KEYBOARD_INPUT=ALLOWED
+CONTROLLED_CLICK=ALLOWED
+CONTROLLED_TEST_AUTHENTICATION=ALLOWED
+CONTROLLED_END_TO_END_TESTS=ALLOWED
+CONTROLLED_UI_CHANNEL=ALLOWED
 ```
 
+A autorização aplica-se a aplicações próprias, ambientes controlados, sandboxes, fixtures e alvos de teste allowlisted.
+
 ```text
-APPLICATION_CODE_CHANGED=NO
-TEST_CODE_CHANGED=NO
-WORKFLOWS_CHANGED=NO
-APPLICATION_EXECUTED=NO
-RUNTIME_VALIDATION=NOT_EXECUTED
-SQL_GENERATED=NO
-MIGRATIONS_GENERATED=NO
-PHYSICAL_SCHEMA_DEFINED=NO
-POINTER_MOVEMENT_ALLOWED=NO
-KEYBOARD_INPUT_ALLOWED=NO
-REAL_CLICK_ALLOWED=NO
-REAL_ORDER_ALLOWED=NO
-IMPLEMENTATION_AUTHORIZED=NO
-PTM_V2_7_STARTED=NO
+CONTROLLED_UI_ACTION_IS_INDEPENDENT_FROM_PRODUCTION_MONETARY_EFFECT=YES
+FINANCIAL_EFFECT_BASELINE=SIMULATED_ONLY
+PRODUCTION_MONETARY_EFFECT_REQUIRES_SEPARATE_AUTHORIZATION_IN_ALL_TARGET_CLASSES=YES
 ```
+
+## Contratos aprovados
+
+- canal `CONTROLLED_UI` independente da dimensão monetária;
+- estado `ARMED_CONTROLLED_UI`;
+- autorização vinculada a alvo, ação, allowlist e canal;
+- adaptador `NULL|SIMULATED|CONTROLLED_UI`;
+- recibo com `ui_result` e `financial_result` separados;
+- qualquer restart invalida a despachabilidade de comando anterior;
+- nova ação após restart exige novo comando e nova autorização.
+
+## Achados menores carregados
+
+1. taxonomia integral de `target_logical_id`;
+2. limites numéricos após benchmark;
+3. ADR da topologia do kill switch;
+4. matriz integral de transições antes da implementação.
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=LEA_14_COMPLETE
+CURRENT_GATE=PTM_V2_7_MERGE
 GATE_STATUS=PASS
-ACTIVE_PULL_REQUEST=NONE
-ACTIVE_REVIEW_ISSUE=NONE
-MISSION_LOCK=RELEASED
-AUTOMATIC_ADVANCE=NO
-PTM_V2_7_START_AUTHORIZED=NO
-```
-
-## Próxima ação
-
-Aguardar autorização explícita para iniciar a PTM V2.7 em missão separada.
-
-## Proibições vigentes
-
-```text
-NÃO alterar código da aplicação sem autorização própria.
-NÃO gerar SQL, schema físico ou migrations.
-NÃO executar captura, OCR, aplicação ou replay contra fonte real.
-NÃO mover ponteiro, clicar, digitar ou operar saldo real.
-NÃO iniciar a PTM V2.7 automaticamente.
+MERGE_AUTHORIZED_BY_LEO=YES
+NEXT_ACTION=MERGE_PR_37_WITH_EXPECTED_HEAD
+POST_MERGE_RECEIPT_REQUIRED=YES
+CROSS_CONSOLIDATION_AUTHORIZED=NO_UNTIL_RECEIPT
 ```

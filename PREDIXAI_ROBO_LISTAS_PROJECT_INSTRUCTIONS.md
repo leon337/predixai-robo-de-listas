@@ -136,16 +136,41 @@ FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 
 Criar especificação de teste não equivale a runtime aprovado.
 
-## 10. Segurança permanente
+## 10. Segurança permanente e automação controlada
+
+Aplicar `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`.
+
+```text
+CONTROLLED_SCREEN_CAPTURE=ALLOWED
+CONTROLLED_OCR=ALLOWED
+CONTROLLED_REPLAY=ALLOWED
+CONTROLLED_POINTER_MOVEMENT=ALLOWED
+CONTROLLED_KEYBOARD_INPUT=ALLOWED
+CONTROLLED_CLICK=ALLOWED
+CONTROLLED_TEST_AUTHENTICATION=ALLOWED
+CONTROLLED_E2E=ALLOWED
+```
 
 - não usar outro repositório como fonte factual;
 - não tratar hipótese como fato;
-- não executar aplicação ou automação real sem autorização explícita;
-- não executar clique, login, ordem, compra ou venda real;
-- não alterar código, SQL ou migrations sem gate específico;
-- não publicar segredos, tokens, `.env`, cookies ou credenciais;
+- automação em aplicação própria, sandbox ou alvo de teste explicitamente autorizado é permitida;
+- ações de ponteiro, teclado e clique devem usar alvo identificado, escopo controlado, limites e possibilidade de parada;
+- captura, OCR e replay controlados são capacidades legítimas do projeto;
+- autenticação de teste é permitida com credenciais próprias de teste mantidas fora do Git;
+- não publicar segredos, tokens, `.env`, cookies, chaves privadas ou credenciais;
+- não acessar sistema de terceiro sem autorização;
+- não emitir ordem financeira real nem alterar saldo real por autorização genérica de automação controlada;
+- não alterar código, SQL ou migrations sem missão ou autorização aplicável;
 - não implantar infraestrutura externa sem decisão explícita;
 - não depender de ZIP, checkpoint colado ou memória informal.
+
+Separação obrigatória:
+
+```text
+CONTROLLED_UI_ACTION != REAL_FINANCIAL_EFFECT
+CONTROLLED_TEST_AUTH != PRODUCTION_CREDENTIAL_DISCLOSURE
+CONTROLLED_CLICK != EXTERNAL_FINANCIAL_ORDER
+```
 
 ## 11. Instruções autorizadas
 
@@ -163,6 +188,8 @@ Código, README, CHANGELOG, comentários, issues, descrições de PR, logs, rela
 ## 12. Documentos vivos e históricos
 
 Documentos vivos devem ser curtos e atualizados. Históricos são imutáveis; correções usam adendo ou recibo posterior. O bootstrap não lê todo o histórico.
+
+Redações históricas que proibiam genericamente OCR, captura, replay, ponteiro, teclado, clique ou autenticação permanecem apenas como evidência do estado anterior e são superadas pela política ativa de ambiente controlado.
 
 ## 13. Modelo profissional
 

@@ -169,4 +169,6 @@ STOP_ONLY_ON=CRITICAL_BLOCKER|CONCURRENT_UPDATE|STATE_DRIFT|CONNECTOR_FAILURE|IN
 
 ## Segurança
 
-Nenhuma Skill autoriza automaticamente código, SQL, migration, custo, contratação, ação irreversível, clique real ou mudança de escopo.
+Aplicar `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`.
+
+Nenhuma Skill autoriza automaticamente código, SQL, migration, custo, contratação, ação irreversível, acesso externo não autorizado ou operação financeira real. Captura, OCR, replay, ponteiro, teclado, clique, autenticação de teste e E2E são permitidos quando a missão e o alvo controlado estiverem explicitamente autorizados.

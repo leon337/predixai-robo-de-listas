@@ -1,137 +1,87 @@
 # PREDIXAI ROBÔ DE LISTAS — TRONCO MULTICHAT OFICIAL
 
-## Estado consolidado
+## Estado em andamento
 
 ```text
 VERSAO_REAL=V2.4.3-R1
-MAIN_HEAD_APOS_RECIBO=128dd3c3aa6966fb96008086985810cd6ad66040
+BASE_MAIN_SHA=f3c84d97523c1c631392cefb69b6cb3e8f6a56e2
 LAST_COMPLETED_MISSION=LEA-14
-LAST_COMPLETED_MISSION_NAME=PTM_V2.6_Observacao_Analise_e_Sinais
+ACTIVE_MISSION=LEA-16
+ACTIVE_REVIEW_ISSUE=LEA-17
+ACTIVE_PULL_REQUEST=37
+ACTIVE_PULL_REQUEST_MODE=APPROVED_FOR_MERGE
+TRANSITION_ID=LEA-16-T01
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+STATE_REVISION=5
 PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
 PTM_V2_6_DEFINITIVE=YES_DOCUMENTAL
-ACTIVE_MISSION=NONE
-TRANSITION_ID=LEA-14-T01
-TRANSITION_STATUS=COMPLETE
-STATE_REVISION=5
-MAIN_PULL_REQUEST=35
-MAIN_PULL_REQUEST_MERGE_COMMIT=bcd983423c3142adee8eab4720d62208f94161eb
-POST_MERGE_RECEIPT_PR=36
-POST_MERGE_RECEIPT_MERGE_COMMIT=128dd3c3aa6966fb96008086985810cd6ad66040
-LINEAR_LEA_14=DONE
-LINEAR_LEA_15=DONE
+PTM_V2_7_CRITICAL_REVIEW=PASS
+PTM_V2_7_DEFINITIVE=NO_UNTIL_MERGE_AND_RECEIPT
 ```
 
-A PTM V2.6 foi construída, revisada criticamente, corrigida quanto aos comentários P1, autorizada por Leo, integrada no PR `#35` e confirmada pelo recibo PR `#36`.
-
-## Resultado consolidado
+## Resultado
 
 ```text
-STRUCTURAL_REQUIREMENTS=28
-FUNCTIONAL_REQUIREMENTS=50
-TOTAL_REQUIREMENT_IDS=78
-REQUIREMENT_ID_UNIQUENESS=PASS
-TRACEABILITY_COMPLETENESS=PASS
-LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS
-AUTHORIZED_VISUAL_SOURCE_FAIL_CLOSED=PASS
-FRAME_PROVENANCE_AND_RETENTION=PASS
-QUALITY_MODEL_AND_CONFIDENCE_CAPS=PASS
-ANALYSIS_ENGINE_A_H_CONTRACTS=PASS
-STRATEGY_001_EXPLAINABILITY=PASS
-CANDIDATE_ARBITRATION=PASS
-SIGNAL_LIFECYCLE=PASS
-PROGRESSIVE_CONTRACT_EXISTENCE=PASS
-SAFE_REPLAY=PASS
-VISUAL_DATA_SECURITY=PASS
-REAL_INPUT_AND_EXECUTION_EXCLUSION=PASS
-PTM_V2_6_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
+RETEST_01=SUPERSEDED
+RETEST_02=PASS
+CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
-MINOR_FINDINGS=2
-RUNTIME_SCHEMA_1_0_3_ALIGNMENT=PASS
-CODEX_P1_FINDINGS_REMEDIATED=2/2
-PR_35_MERGED=PASS
-PR_36_MERGED=PASS
-GITHUB_LINEAR_SYNC=PASS
+MINOR_FINDINGS=4
+STRUCTURAL_REQUIREMENTS=32
+FUNCTIONAL_REQUIREMENTS=52
+TOTAL_REQUIREMENT_IDS=84
+DOCUMENTAL_READY_FOR_MERGE=YES
 ```
 
-## Achados menores preservados
-
-1. ampliar a granularidade funcional da matriz antes do Documento Mestre ou da vinculação definitiva aos testes;
-2. uniformizar a prova negativa para ponteiro, teclado, clique e ordem em todos os resumos.
-
-## Fronteiras
+## Política ativa
 
 ```text
-V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
-V2_6=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
-V2_7=CONTROLLED_EXECUTION_AFTER_OWN_GATES
+CONTROLLED_CAPTURE_OCR_REPLAY=ALLOWED
+CONTROLLED_POINTER_KEYBOARD_CLICK=ALLOWED
+CONTROLLED_TEST_AUTHENTICATION=ALLOWED
+CONTROLLED_UI_CHANNEL=ALLOWED
+FINANCIAL_EFFECT_BASELINE=SIMULATED_ONLY
+PRODUCTION_MONETARY_EFFECT_REQUIRES_SEPARATE_AUTHORIZATION_IN_ALL_TARGET_CLASSES=YES
 ```
 
-```text
-APPLICATION_CODE_CHANGED=NO
-TEST_CODE_CHANGED=NO
-WORKFLOWS_CHANGED=NO
-APPLICATION_EXECUTED=NO
-SQL_GENERATED=NO
-MIGRATIONS_GENERATED=NO
-POINTER_MOVEMENT_ALLOWED=NO
-KEYBOARD_INPUT_ALLOWED=NO
-REAL_CLICK_ALLOWED=NO
-REAL_ORDER_ALLOWED=NO
-IMPLEMENTATION_AUTHORIZED=NO
-PTM_V2_7_STARTED=NO
-```
+## Contratos aprovados
+
+1. `CONTROLLED_UI` possui estados, comando, grant, adaptador e recibo próprios;
+2. resultado de UI e dimensão monetária são reconciliados separadamente;
+3. mudança de instância de processo invalida a despachabilidade de comando anterior;
+4. bibliotecas de automação são permitidas apenas pelo contrato controlado;
+5. acesso externo não autorizado e segredos no repositório permanecem bloqueados.
+
+## Achados menores carregados
+
+1. taxonomia integral do alvo lógico;
+2. limites após benchmark;
+3. ADR da topologia do kill switch;
+4. matriz integral de transições antes da implementação.
 
 ## Roadmap
 
 ```text
-✅ PTP-GOV.6-RC — Auditoria Mestra aprovada
-✅ PTP-MEM.1 — continuidade endurecida e concluída
-✅ PTM V2.5 / LEA-8 — reconciliada, revisada e integrada
-✅ PTM V2.5-RC / LEA-13 — revisão crítica independente PASS
-✅ PTM V2.6 / LEA-14 — integrada documentalmente
-✅ PTM V2.6-RC / LEA-15 — revisão crítica independente PASS
-✅ confirmação pós-merge da PTM V2.6
-⬜ PTM V2.7
-⬜ PTM V2.7-RC
+✅ Auditoria Mestra
+✅ PTM V2.5 e revisão
+✅ PTM V2.6 e revisão
+✅ PTM V2.7 — builder e remediações
+✅ PTM V2.7-RC — PASS
+🟧 merge do PR #37
+⬜ confirmação pós-merge
 ⬜ Consolidação cruzada
 ⬜ ADRs
 ⬜ Documento Mestre
-⬜ Revisão crítica do Documento Mestre
-⬜ Congelamento da Arquitetura V1.0
-⬜ Prontidão para implementação
+⬜ congelamento da Arquitetura V1.0
+⬜ prontidão para implementação
 ```
-
-## Artefatos consolidados
-
-1. `docs/architecture/PTM_V2.6_OBSERVACAO_ANALISE_SINAIS_LEA-14_20260716.md`;
-2. `docs/architecture/PTM_V2.6_MATRIZ_RASTREABILIDADE_LEA-14_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.6_LEA-14_20260716.md`;
-4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
-5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
-6. `docs/history/ptp/RECIBO_POS_MERGE_LEA-14_PTM_V2.6_20260716.md`;
-7. PRs `#35` e `#36`;
-8. Linear `LEA-14` e `LEA-15`, ambos `Done`.
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=LEA_14_COMPLETE
+CURRENT_GATE=PTM_V2_7_MERGE
 GATE_STATUS=PASS
-ACTIVE_PULL_REQUEST=NONE
-ACTIVE_REVIEW_ISSUE=NONE
-MISSION_LOCK=RELEASED
-AUTOMATIC_ADVANCE=NO
-PTM_V2_7_START_AUTHORIZED=NO
+MERGE_AUTHORIZED_BY_LEO=YES
+NEXT_ACTION=MERGE_PR_37_WITH_EXPECTED_HEAD
+POST_MERGE_RECEIPT_REQUIRED=YES
 ```
-
-## Continuidade multichat
-
-Em novo chat, executar:
-
-```text
-@GitHub @Linear iniciar
-```
-
-A Skill `iniciar` deverá confirmar o fechamento e permanecer somente leitura. A PTM V2.7 exige autorização explícita e missão própria.
