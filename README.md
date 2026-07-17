@@ -2,7 +2,7 @@
 
 > Painel operacional, histórico arquitetural e mapa da campanha.
 >
-> Este README é a primeira visão do projeto no GitHub. Ele deve permitir uma auditoria à vista no celular sem exigir a abertura prévia dos documentos internos.
+> Esta é a primeira visão do projeto no GitHub. O estado apresentado abaixo é uma projeção pública derivada das fontes vivas e não substitui o manifesto operacional.
 
 ## 📍 Estado atual do projeto
 
@@ -11,17 +11,24 @@ VERSÃO_REAL=V2.4.3-R1
 MISSÃO_ATIVA=LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7
 REVISÃO=LEA-19 — Revisão crítica independente
 PULL_REQUEST=40
+ACTIVE_PR_HEAD=c1ff8b19da966d6bb4b48ad237ea52db77c60d06
 PR_STATUS=DRAFT
+FASE=CROSS_CONSOLIDATION
 GATE=G7 — RETESTE_03_FAIL
+CONSOLIDACAO_GATES=6/7
+BOSS_GATE=G7_FAIL
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=2
 MINOR_FINDINGS=1
+STATE_REVISION=7
+SNAPSHOT_AT=2026-07-17
+STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+PR_40+LINEAR
 MERGE_AUTORIZADO=NO
 ADRS_AUTORIZADOS=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 ```
 
-A consolidação cruzada já existe, porém ainda não é definitiva. O índice e a matriz de rastreabilidade precisam receber as correções do Reteste 03 antes do Reteste 04.
+A consolidação cruzada já existe, mas ainda não é definitiva. A matriz e o índice de rastreabilidade precisam receber as correções do Reteste 03 antes do Reteste 04.
 
 ## 🗺️ Onde o projeto está agora
 
@@ -39,7 +46,7 @@ PTM V2.7 — Execução controlada e segurança
       ✅ revisada e aprovada
       ↓
 CONSOLIDAÇÃO CRUZADA V2.5 + V2.6 + V2.7
-      🟧 ESTAMOS AQUI
+      🟧 etapa atual — 6/7 gates concluídos
       ↓
 ADRs — decisões arquiteturais formais
       ⬜ não iniciados
@@ -52,41 +59,50 @@ REVISÃO CRÍTICA DO DOCUMENTO MESTRE
       ↓
 ARQUITETURA V1.0 CONGELADA
       ⬜ não iniciada
+      ↓
+PRONTIDÃO PARA IMPLEMENTAÇÃO
+      ⬜ não iniciada
 ```
 
-## 📊 Progresso da campanha documental
+## 📊 Progresso auditável
+
+O painel não usa percentual arbitrário. A unidade de progresso é gate documental concluído e verificável.
 
 ```text
-[██████████] Auditoria Mestra          100%
-[██████████] PTM V2.5                  100%
-[██████████] PTM V2.6                  100%
-[██████████] PTM V2.7                  100%
-[████████░░] Consolidação cruzada       80%
-[░░░░░░░░░░] ADRs                       0%
-[░░░░░░░░░░] Documento Mestre           0%
+README_PROGRESS_SOURCE=LEA-18_GATES
+ARBITRARY_PROGRESS=NO
+
+G1_PRECONDITIONS=PASS
+G2_SOURCE_INVENTORY=PASS
+G3_DOMAIN_BOUNDARIES=PASS_PRE_RETEST_03
+G4_REQUIREMENTS_TRACEABILITY=PASS_PRE_RETEST_03
+G5_CONFLICTS_AND_SUPERSESSIONS=PASS
+G6_CONSOLIDATED_DOCUMENT=PASS
+G7_INDEPENDENT_CRITICAL_REVIEW=FAIL_RETEST_03
+
+CONSOLIDACAO_GATES=6/7
+CURRENT_BLOCKER=G7_INDEPENDENT_CRITICAL_REVIEW
 ```
 
-O percentual representa entregas e gates documentais reais. Não representa progresso de implementação do produto final.
+Os gates G3 e G4 voltam a ser validados no Reteste 04 após as correções dos achados atuais.
 
 ---
 
 # 🧩 O que já foi construído
 
-## 1. Auditoria e memória do legado
+## Auditoria e memória do legado
 
 ```text
 ✅ inventário factual do legado
 ✅ riscos e classificações
 ✅ fronteiras de segurança
-✅ classificação REUTILIZAR
-✅ classificação ADAPTAR
-✅ classificação SUBSTITUIR
-✅ classificação DESCONTINUAR
+✅ REUTILIZAR
+✅ ADAPTAR
+✅ SUBSTITUIR
+✅ DESCONTINUAR
 ```
 
-## 2. PTM V2.5 — Fundação
-
-Define os contratos de fundação:
+## PTM V2.5 — Fundação
 
 ```text
 ✅ configuração
@@ -98,9 +114,7 @@ Define os contratos de fundação:
 ✅ backup e recovery
 ```
 
-## 3. PTM V2.6 — Observação, inteligência e sinais
-
-Define a pipeline de observação e análise:
+## PTM V2.6 — Observação, inteligência e sinais
 
 ```text
 ✅ sessão de observação
@@ -112,9 +126,7 @@ Define a pipeline de observação e análise:
 ✅ candidatos e sinais
 ```
 
-## 4. PTM V2.7 — Ação controlada
-
-Define a fronteira de ação e execução:
+## PTM V2.7 — Ação controlada
 
 ```text
 ✅ comando
@@ -128,9 +140,7 @@ Define a fronteira de ação e execução:
 ✅ auditoria e contenção
 ```
 
-## 5. Consolidação cruzada
-
-Já foram produzidos:
+## Consolidação cruzada
 
 ```text
 ✅ inventário das fontes oficiais
@@ -143,13 +153,12 @@ Já foram produzidos:
 ✅ documento consolidado
 ```
 
-Cobertura documental preservada:
+Cobertura preservada:
 
 ```text
 PTM_V2_5=56 requisitos
 PTM_V2_6=78 requisitos
 PTM_V2_7=84 requisitos
-
 TOTAL=218
 DUPLICADOS=0
 ÓRFÃOS=0
@@ -176,8 +185,6 @@ PTM-V27-003                 → DOM-14
 
 ## MAJOR-08 — requisitos funcionais agrupados incorretamente
 
-Os grupos `V27-EXE-*` e `V27-SAF-*` possuem autoridades primárias diferentes.
-
 ```text
 V27-EXE
 ├── DOM-14 — adaptador e capacidade
@@ -194,16 +201,12 @@ V27-SAF
 Contagens esperadas após a correção:
 
 ```text
-ATUAL               CORRETO
-DOM-13=32        →  DOM-13=26
-DOM-14=12        →  DOM-14=7
-DOM-15=20        →  DOM-15=27
-DOM-16=34        →  DOM-16=38
-
+DOM-13=26
+DOM-14=7
+DOM-15=27
+DOM-16=38
 TOTAL=218
 ```
-
-Nenhum requisito será criado ou removido. Somente a autoridade primária será reconciliada.
 
 ## MINOR-04 — reconciliação textual
 
@@ -213,11 +216,9 @@ Nenhum requisito será criado ou removido. Somente a autoridade primária será 
 30 permaneceram sem alteração
 ```
 
-O documento atual registra `29`; o valor correto é `30`.
-
 ---
 
-# 🛣️ O que falta até o Documento Mestre
+# 🛣️ Caminho até o Documento Mestre
 
 ## Etapa A — concluir a consolidação cruzada
 
@@ -242,9 +243,7 @@ TRACEABILITY_COMPLETENESS=PASS
 DOMAIN_BOUNDARY_CONSISTENCY=PASS
 ```
 
-## Etapa B — integrar formalmente a consolidação
-
-Após o `PASS`:
+## Etapa B — integrar a consolidação
 
 ```text
 ⬜ autorização humana para merge
@@ -255,28 +254,7 @@ Após o `PASS`:
 ⬜ fechamento da LEA-18 e LEA-19
 ```
 
-O merge não é automático.
-
 ## Etapa C — construir os ADRs
-
-Os ADRs consolidarão decisões que não podem permanecer espalhadas pelas PTMs.
-
-Exemplos:
-
-```text
-ADR — autoridade global do servidor
-ADR — separação sinal/comando/autorização
-ADR — persistência single-writer
-ADR — modelo de adaptadores
-ADR — idempotência e deduplicação
-ADR — timeout e UNKNOWN_EFFECT
-ADR — kill switch
-ADR — política de automação controlada
-ADR — recuperação após restart
-ADR — modo financeiro LIVE e seus gates
-```
-
-Situação:
 
 ```text
 ADRs_CANDIDATOS=18
@@ -284,30 +262,11 @@ ADRs_CRIADOS=0
 ADRs_AUTORIZADOS=NO
 ```
 
+Decisões previstas incluem autoridade do servidor, sinal/comando/autorização, single-writer, adaptadores, idempotência, timeout, `UNKNOWN_EFFECT`, kill switch, recovery e gates do modo LIVE.
+
 ## Etapa D — construir o Documento Mestre
 
-O Documento Mestre reunirá:
-
-```text
-1. visão e objetivos do produto
-2. limites, modos e autorizações
-3. arquitetura dos 16 domínios
-4. cadeia completa dos 12 handoffs
-5. contratos da PTM V2.5
-6. contratos da PTM V2.6
-7. contratos da PTM V2.7
-8. decisões aprovadas nos ADRs
-9. modelo de dados conceitual
-10. estados e transições
-11. segurança e threat model
-12. observabilidade e auditoria
-13. estratégia de testes
-14. recovery e continuidade
-15. roadmap de implementação
-16. gates para implementação
-```
-
-Fluxo:
+O Documento Mestre reunirá visão do produto, limites, 16 domínios, 12 handoffs, contratos das PTMs, ADRs, modelo conceitual de dados, estados, segurança, observabilidade, testes, recovery e roadmap de implementação.
 
 ```text
 CONSOLIDAÇÃO APROVADA
@@ -318,29 +277,9 @@ DOCUMENTO MESTRE — DRAFT
         ↓
 REVISÃO CRÍTICA INDEPENDENTE
         ↓
-CORREÇÕES
-        ↓
 DOCUMENTO MESTRE — PASS
         ↓
 ARQUITETURA V1.0 CONGELADA
-```
-
-## Próxima sequência objetiva
-
-```text
-CORRIGIR 3 ACHADOS
-       ↓
-AUDITAR 52/52 IDs FUNCIONAIS
-       ↓
-RETESTE 04
-       ↓
-PASS
-       ↓
-MERGE AUTORIZADO
-       ↓
-ADRs
-       ↓
-DOCUMENTO MESTRE
 ```
 
 ---
@@ -367,28 +306,36 @@ ORDEM_SIMULADA=AUTORIZADA
 
 ## Modo B — conta própria com possibilidade de efeito financeiro real
 
-O projeto reconhece o modo `LIVE` como capacidade arquitetural separada. Ele permanece desligado por padrão e só pode ser ativado por gate específico.
+O modo `LIVE` é uma capacidade arquitetural separada. Ele permanece desligado por padrão. A existência da política não arma sessão, não autoriza implementação e não substitui decisão comercial ou legal.
 
 ```text
 REAL_FINANCIAL_MODE=SUPPORTED_BY_SEPARATE_GATE
 DEFAULT_STATE=DISABLED
+AUTO_ENABLE=PROHIBITED
 HUMAN_ARMING_REQUIRED=YES
 AUTHORIZED_ACCOUNT_ALLOWLIST_REQUIRED=YES
 AUTHORIZED_PLATFORM_ALLOWLIST_REQUIRED=YES
 SESSION_LIMITS_REQUIRED=YES
 MAX_OPERATION_LIMIT_REQUIRED=YES
+LOSS_AND_EXPOSURE_LIMITS_REQUIRED=YES
 KILL_SWITCH_REQUIRED=YES
 AUDIT_RECEIPT_REQUIRED=YES
+SECRET_ISOLATION_REQUIRED=YES
+TARGET_IDENTITY_VALIDATION_REQUIRED=YES
+COMMERCIAL_AND_LEGAL_DECISION_RECORDED_REQUIRED=YES
+PLATFORM_TERMS_AND_JURISDICTION_VALIDATION_REQUIRED=YES
+ACCOUNT_HOLDER_ELIGIBILITY_VALIDATION_REQUIRED=YES
+EXPLICIT_LIVE_SCOPE_AND_AUTHORIZATION_REQUIRED=YES
 EXPLICIT_LIVE_SESSION_CONFIRMATION_REQUIRED=YES
 ```
+
+Sem todos os gates, o Modo B permanece desativado e qualquer efeito financeiro fica bloqueado.
 
 ```text
 CLIQUE CONTROLADO
 ├── modo simulado/controlado → autorizado
-└── modo financeiro LIVE     → condicionado ao gate LIVE
+└── modo financeiro LIVE     → condicionado a todos os gates LIVE
 ```
-
-Autorização de capacidade não equivale à ativação automática do modo `LIVE`.
 
 Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
 
@@ -398,7 +345,7 @@ Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`
 
 O README é uma projeção visual das fontes vivas. Ele não substitui o manifesto, o `PROJECT_STATE.md`, o tronco, o PR ou o Linear.
 
-Toda transição, checkpoint ou fechamento deverá validar:
+Toda transição, checkpoint ou fechamento valida:
 
 ```text
 README_OPERATIONAL_DASHBOARD=PASS
@@ -406,11 +353,12 @@ README_VERSION_SYNC=PASS
 README_MISSION_SYNC=PASS
 README_PHASE_SYNC=PASS
 README_GATE_SYNC=PASS
+README_PROGRESS_SYNC=PASS
 README_BLOCKERS_SYNC=PASS
 README_NEXT_ACTION_SYNC=PASS
+README_SNAPSHOT_METADATA=PASS
+README_AUTOMATION_POLICY_SYNC=PASS
 ```
-
-A missão não pode ser declarada sincronizada quando a primeira página do GitHub apresentar estado antigo.
 
 Fontes oficiais:
 
@@ -492,24 +440,13 @@ CHANGELOG.md
 
 # 📌 Regra de leitura rápida
 
-Ao abrir o repositório, use esta ordem:
-
 ```text
 1. Estado atual
 2. Mapa da campanha
-3. Bloqueios
-4. Próxima sequência
-5. Política de automação
-6. Fontes oficiais
-7. Legado executável
-```
-
-A primeira página deve responder imediatamente:
-
-```text
-Onde estamos?
-O que foi concluído?
-O que está bloqueado?
-O que falta?
-Qual é a próxima ação?
+3. Progresso auditável
+4. Bloqueios
+5. Próxima sequência
+6. Política de automação
+7. Fontes oficiais
+8. Legado executável
 ```
