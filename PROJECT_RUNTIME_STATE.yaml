@@ -7,25 +7,25 @@ observed_main_head: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-16"
-active_stage: "PTM_V2_7_SCOPE_CORRECTION_READY_FOR_RETEST"
+active_stage: "PTM_V2_7_RETEST_02_READY"
 active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
 active_pull_request: 37
 working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "c53d0fab4cddb286c5a2fac772f41ac2978dc2d3"
-pr_mode: "draft_ready_for_independent_retest"
+observed_pr_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
+pr_mode: "ready_for_independent_retest_02"
 active_checkpoint: null
 
-current_gate: "PTM_V2_7_INDEPENDENT_RETEST"
+current_gate: "PTM_V2_7_INDEPENDENT_RETEST_02"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_INDEPENDENT_RETEST_LEA_17_ON_PR_37"
+next_action: "EXECUTE_INDEPENDENT_RETEST_02_LEA_17_ON_PR_37"
 blockers:
-  - "INDEPENDENT_CRITICAL_RETEST_PENDING"
+  - "INDEPENDENT_CRITICAL_RETEST_02_PENDING"
 
 transition_id: "LEA-16-T01"
 transition_status: "READY_FOR_INDEPENDENT_REVIEW"
 from_state: "PTM_V2_6_DOCUMENTALLY_DEFINITIVE"
-to_state: "PTM_V2_7_SCOPE_CORRECTION_READY_FOR_RETEST"
+to_state: "PTM_V2_7_RETEST_02_READY"
 baseline_main_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 baseline_state_revision: 5
 bound_transition_id: "LEA-16-T01"
@@ -36,7 +36,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T03:52:00Z"
+last_sync_at_utc: "2026-07-17T04:07:00Z"
 
 mission_lock:
   locked: true
@@ -45,12 +45,12 @@ mission_lock:
   owner: "LEA-16"
   session_id: "lea16-20260716"
   base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "c53d0fab4cddb286c5a2fac772f41ac2978dc2d3"
+  observed_pr_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-16-T01"
   started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T03:52:00Z"
+  heartbeat_at_utc: "2026-07-17T04:07:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -67,6 +67,8 @@ source_authority:
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   transversal_scope_addendum: "docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md"
+  controlled_ui_clock_addendum: "docs/architecture/PTM_V2.7_ADENDO_RETESTE_02_CONTROLLED_UI_CLOCK_LEA-17_20260717.md"
+  retest_02_traceability: "docs/architecture/PTM_V2.7_SUPLEMENTO_RASTREABILIDADE_RETESTE_02_LEA-17_20260717.md"
   task_status_and_dependencies: "Linear"
   unmerged_work: "PR #37"
   consolidated_code_and_docs: "GitHub main"
@@ -79,13 +81,15 @@ safety:
   lock_enforcement: "ADVISORY"
   persisted_expected_fields_prohibited: true
   builder_self_review: "PASS_WITH_MINOR_FINDINGS"
-  independent_critical_review: "PENDING_RETEST"
+  independent_critical_review: "FAIL_REMEDIATION_REQUIRED_RETEST_02_PENDING"
   independent_review_issue: "LEA-17"
   independent_review_issue_status: "IN_PROGRESS"
-  reviewed_pr_head: "f475d94ae389109f466c23d2a8731b65364794ef"
+  reviewed_pr_head: "510e6a1e19ac6b3dc4778797b3f003fcd9d20afb"
+  retest_01_superseded: true
+  retest_02_candidate_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
   critical_blockers: 0
-  major_findings: 0
-  minor_findings: 4
+  major_findings: 2
+  minor_findings: 2
   structural_requirements: 32
   functional_requirements: 52
   total_requirement_ids: 84
@@ -99,10 +103,13 @@ safety:
   controlled_pointer_keyboard_click_authorized: true
   controlled_test_authentication_authorized: true
   controlled_ui_adapter_allowed: true
+  controlled_ui_normative_contract_defined: true
   controlled_target_scope: "FIRST_PARTY_OR_EXPLICITLY_ALLOWLISTED_TEST_TARGET"
   financial_effect_simulated_only: true
+  real_financial_effect_requires_separate_authorization_all_targets: true
   external_financial_execution_authorized: false
   real_money_operation_authorized: false
+  same_boot_restart_invalidates_previous_command: true
   execution_capability_baseline: "CONTROLLED_UI_ALLOWED_FINANCIAL_SIMULATED_ONLY"
   documental_ready_for_independent_review: true
   documental_ready_for_merge: false
