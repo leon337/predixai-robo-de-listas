@@ -7,9 +7,9 @@
 - HEAD-base confirmado: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
 - Versão do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
-- Revisão ativa: `LEA-19 — Reteste 03 independente do PR #40`
+- Revisão ativa: `LEA-19 — Reteste 04 independente do PR #40`
 - Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
-- PR ativo: `#40`, preparado para Reteste 03
+- PR ativo: `#40`, Draft, remediado para Reteste 04
 - Merge: não autorizado
 - ADRs: não autorizados
 
@@ -18,20 +18,15 @@
 ```text
 STATE_REVISION=7
 TRANSITION_ID=LEA-18-T01
-TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_RETEST_04
 FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-TO_STATE=CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_03
-GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PASS
+TO_STATE=CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_04
 MISSION_LOCK=LEA-18
 ```
 
 ## Escopo
 
 ```text
-PTM_V2_5=FOUNDATION_CONTRACTS_SAFE_MIGRATION
-PTM_V2_6=OBSERVATION_ANALYSIS_SIMULATED_SIGNALS
-PTM_V2_7=CONTROLLED_COMMAND_AUTHORIZATION_ACTION_RECEIPT_RECONCILIATION
 DOCUMENTATION_ONLY=YES
 CODE_CHANGE_AUTHORIZED=NO
 TEST_CODE_CHANGE_AUTHORIZED=NO
@@ -49,27 +44,28 @@ REAL_FINANCIAL_EFFECT=PROHIBITED
 G1_PRECONDITIONS_PASS=PASS
 G2_SOURCE_INVENTORY_COMPLETE=PASS
 G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS_BUILDER_REMEDIATED
-G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS_BUILDER_REMEDIATED
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS_BUILDER_REMEDIATED_FOR_RETEST_04
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER_REMEDIATED
-G6_CONSOLIDATED_DOCUMENT_READY=PASS_BUILDER_REMEDIATED
-G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_03_REQUESTED_LEA_19
+G6_CONSOLIDATED_DOCUMENT_READY=PASS_BUILDER_REMEDIATED_FOR_RETEST_04
+G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_04_REQUIRED_LEA_19
 ```
 
 ## Histórico do Boss Gate
 
 ```text
 INITIAL_REVIEW_RESULT=FAIL
-INITIAL_REVIEW_MAJOR_REMEDIATED=3/3
 RETEST_01_RESULT=FAIL
-RETEST_01_MAJOR_REMEDIATED=2/2
-RETEST_01_MINOR_REMEDIATED=1/1
 RETEST_02_RESULT=FAIL
-RETEST_02_MAJOR_FINDINGS=1
-RETEST_02_MAJOR_REMEDIATED=1/1
+RETEST_03_RESULT=FAIL
+RETEST_03_CRITICAL_FINDINGS=0
+RETEST_03_MAJOR_FINDINGS=2
+RETEST_03_MINOR_FINDINGS=1
+RETEST_03_MAJOR_REMEDIATED=2/2
+RETEST_03_MINOR_REMEDIATED=1/1
 OPEN_CRITICAL_FINDINGS=0
 OPEN_MAJOR_FINDINGS=0
 OPEN_MINOR_FINDINGS=0
-RETEST_03_REQUIRED=YES
+RETEST_04_REQUIRED=YES
 ```
 
 ## Resultado documental do builder
@@ -83,70 +79,34 @@ V2_7_TOTAL_COVERED=84/84
 CROSS_VERSION_TOTAL_COVERED=218/218
 INDIVIDUAL_REQUIREMENT_ROWS=218
 V2_7_STRUCTURAL_IDS_AUDITED=32/32
-V2_7_STRUCTURAL_IDS_RECLASSIFIED=2
-PTM_V25_003_PRIMARY_DOMAIN=DOM-03
+V2_7_FUNCTIONAL_IDS_AUDITED=52/52
 PTM_V27_003_PRIMARY_DOMAIN=DOM-14
 PTM_V27_031_PRIMARY_DOMAIN=DOM-16
 PTM_V27_032_PRIMARY_DOMAIN=DOM-01
-DOM_01_PRIMARY_IDS=7
-DOM_02_PRIMARY_IDS=13
-DOM_03_PRIMARY_IDS=22
-DOM_13_PRIMARY_IDS=32
-DOM_14_PRIMARY_IDS=12
-DOM_16_PRIMARY_IDS=34
+DOM_13_PRIMARY_IDS=26
+DOM_14_PRIMARY_IDS=7
+DOM_15_PRIMARY_IDS=27
+DOM_16_PRIMARY_IDS=38
 DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
 NEW_REQUIREMENT_IDS=0
-SUPERSEDED_INTERPRETATION_IDS=32
-CONFLICT_CLASSES_REVIEWED=24
 UNRESOLVED_NORMATIVE_CONFLICTS=0
-ADR_CANDIDATE_COUNT=18
+ADRS_CREATED=NO
 DOCUMENTAL_BLOCKERS=0
 ```
 
-O builder não emite o Boss Gate final. A consolidação permanece não definitiva até o resultado independente do Reteste 03 da `LEA-19`.
-
-## Fronteira arquitetural
-
-```text
-LISTAS E PERFIS
-→ OBSERVAÇÃO E FRAME
-→ VALIDAÇÃO E EXTRAÇÃO
-→ ANÁLISE A–H
-→ CANDIDATO E SINAL
-→ COMANDO E AUTORIZAÇÃO
-→ ALVO E ADAPTADOR
-→ DISPATCH, RECIBO E RECONCILIAÇÃO
-```
-
-Invariantes:
-
-- servidor é autoridade global;
-- Android e UI são clientes;
-- frame inválido não alimenta análise;
-- sinal não é comando;
-- coordenada não é autorização;
-- recibo isolado não é verdade global;
-- automação controlada não autoriza efeito financeiro real;
-- restart invalida comando anterior;
-- timeout não comprova ausência de efeito;
-- `UNKNOWN_EFFECT` bloqueia ação correlata.
+O builder não emite o Boss Gate final. A consolidação permanece não definitiva até o Reteste 04 independente da `LEA-19`.
 
 ## Entregas
 
 - ✅ inventário canônico de fontes;
 - ✅ mapa de 16 domínios e 12 handoffs;
-- ✅ matriz consolidada `218/218`;
-- ✅ índice individual dos 218 IDs;
-- ✅ registro de conflitos e supersessões;
-- ✅ catálogo de 18 ADRs candidatos;
-- ✅ documento final da consolidação cruzada;
-- ✅ revisão crítica inicial e remediação;
-- ✅ Reteste 01 e remediação;
-- ✅ Reteste 02;
-- ✅ remediação de `MAJOR-06`;
-- ✅ auditoria integral `32/32` dos IDs estruturais V2.7;
-- 🟧 Reteste 03 independente `LEA-19`.
+- ✅ matriz consolidada `218/218` corrigida;
+- ✅ índice individual corrigido;
+- ✅ auditoria estrutural V2.7 `32/32`;
+- ✅ auditoria funcional V2.7 `52/52`;
+- ✅ remediação de `MAJOR-07`, `MAJOR-08` e `MINOR-04`;
+- 🟧 Reteste 04 independente `LEA-19`.
 
 ## Condição para avançar
 
@@ -162,4 +122,4 @@ GITHUB_LINEAR_ALIGNMENT=PASS
 
 ## Próxima ação
 
-Executar o Reteste 03 da `LEA-19` no novo HEAD do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
+Executar o Reteste 04 da `LEA-19` no novo HEAD do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
