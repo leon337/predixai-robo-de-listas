@@ -11,9 +11,10 @@
 - Branch de trabalho: `leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25`
 - PR ativo: `#33`, Draft
 - Transição: `LEA-8-T01`, em andamento
-- Etapa: revisão crítica independente aprovada e sincronização documental pós-revisão concluída
+- Etapa: checkpoint pós-revisão registrado; aguardando reconstrução em novo chat e autorização explícita de merge
 - Issue de revisão: `LEA-13 — PTM V2.5-RC`, `Done`
 - Dependência: `LEA-8` não está mais bloqueada por `LEA-13`; merge depende de autorização explícita
+- Checkpoint ativo: `docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md`
 
 ## Pré-condições confirmadas
 
@@ -27,6 +28,7 @@ HANDOFF_PARA_PTM_V2_5=PASS
 LEA_13=DONE
 PTM_V2_5_CRITICAL_REVIEW=PASS
 CRITICAL_BLOCKERS_DA_REVISAO_PTM_V2_5=0
+CHECKPOINT_LEA_8_POST_REVIEW=PASS
 ```
 
 ## Entregas da LEA-8
@@ -36,7 +38,8 @@ CRITICAL_BLOCKERS_DA_REVISAO_PTM_V2_5=0
 3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
 5. revisão crítica independente registrada na PR `#33`;
-6. sincronização documental pós-revisão registrada na branch da PR `#33`.
+6. sincronização documental pós-revisão registrada na branch da PR `#33`;
+7. checkpoint pós-revisão sem merge registrado no GitHub e no Linear.
 
 ## Resultado da reconciliação e revisão crítica
 
@@ -61,6 +64,7 @@ CRITICAL_BLOCKERS=0
 MAJOR_FINDINGS=0
 MINOR_FINDINGS=2
 PTM_V2_5_POST_REVIEW_DOCUMENT_SYNC=PASS
+CHECKPOINT_STATUS=PASS
 DOCUMENTAL_READY_FOR_MERGE=YES
 MERGE_AUTHORIZED=NO
 PTM_V2_5_DEFINITIVE=NO
@@ -126,15 +130,30 @@ PR_33_REVIEW_THREADS=0
 PTM_V2_5_CRITICAL_REVIEW=PASS
 CRITICAL_BLOCKERS=0
 DOCUMENTAL_READY_FOR_MERGE=YES
+CHECKPOINT_STATUS=PASS
 MERGE_AUTHORIZED=NO
 MERGE_EXECUTED=NO
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 AUTOMATIC_ADVANCE=NO
 ```
 
+## Continuidade
+
+O checkpoint oficial está em:
+
+`docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md`
+
+No próximo chat, executar:
+
+```text
+@GitHub @Linear iniciar
+```
+
+A Skill `iniciar` deverá reconstruir o estado e parar antes de qualquer escrita. A missão `LEA-8` permanece ativa; nenhuma nova PTP/PTM foi iniciada.
+
 ## Próxima ação
 
-Aguardar autorização explícita para retirar a PR `#33` do modo Draft e/ou realizar o merge documental. Não integrar automaticamente e não iniciar a PTM V2.6 nesta etapa.
+Após a reconstrução no novo chat, aguardar autorização explícita para retirar a PR `#33` do modo Draft e/ou realizar o merge documental. Não integrar automaticamente e não iniciar a PTM V2.6.
 
 ## Proibições vigentes
 
@@ -143,6 +162,7 @@ NÃO alterar código da aplicação.
 NÃO gerar SQL ou migrations.
 NÃO executar aplicação, cursor ou clique real.
 NÃO fazer merge sem autorização explícita.
+NÃO retirar a PR do modo Draft sem autorização explícita.
 NÃO iniciar PTM V2.6 nesta etapa.
 NÃO autorizar implementação por esta missão documental.
 NÃO declarar PTM V2.5 definitiva antes da integração e confirmação pós-merge.
