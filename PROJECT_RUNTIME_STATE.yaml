@@ -7,26 +7,28 @@ observed_main_head: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-16"
-active_stage: "PTM_V2_7_BUILDER_READY_FOR_INDEPENDENT_REVIEW"
+active_stage: "PTM_V2_7_REMEDIATION_REQUIRED"
 active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
 active_pull_request: 37
 working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "82f8229f19dc6c2fe4e696f6ced349496432c2bb"
-pr_mode: "ready_for_review"
+observed_pr_head: "1d1a6de9875d76c1d6a52f1fa6d5200f5a7568eb"
+pr_mode: "changes_requested"
 active_checkpoint: null
 
-current_gate: "PTM_V2_7_INDEPENDENT_CRITICAL_REVIEW"
-gate_status: "PENDING"
-next_action: "EXECUTE_INDEPENDENT_REVIEW_LEA_17_ON_PR_37"
+current_gate: "PTM_V2_7_REMEDIATION"
+gate_status: "FAIL"
+next_action: "REMEDIATE_LEA_17_FINDINGS_ON_PR_37"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_PENDING"
-  - "MERGE_AUTHORIZATION_PENDING"
+  - "RESTART_STABLE_DEADLINE_MISSING"
+  - "COMMAND_ID_CLASSIFICATION_INCONSISTENT"
+  - "NEGATIVE_PROOF_GATE_SCOPE_INVALID"
+  - "INDEPENDENT_REVIEW_RETEST_REQUIRED"
 
 transition_id: "LEA-16-T01"
 transition_status: "IN_PROGRESS"
 from_state: "PTM_V2_6_DOCUMENTALLY_DEFINITIVE"
-to_state: "PTM_V2_7_BUILDER_DRAFT_READY_FOR_INDEPENDENT_REVIEW"
+to_state: "PTM_V2_7_REMEDIATION_REQUIRED"
 baseline_main_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 baseline_state_revision: 5
 bound_transition_id: "LEA-16-T01"
@@ -35,9 +37,9 @@ main_pr_merge_commit: null
 post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS_IN_PROGRESS"
-linear_sync_status: "PASS_IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T03:02:00Z"
+github_sync_status: "IN_PROGRESS"
+linear_sync_status: "IN_PROGRESS"
+last_sync_at_utc: "2026-07-17T03:16:46Z"
 
 mission_lock:
   locked: true
@@ -46,12 +48,12 @@ mission_lock:
   owner: "LEA-16"
   session_id: "lea16-20260716"
   base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "82f8229f19dc6c2fe4e696f6ced349496432c2bb"
+  observed_pr_head: "1d1a6de9875d76c1d6a52f1fa6d5200f5a7568eb"
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-16-T01"
   started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T03:02:00Z"
+  heartbeat_at_utc: "2026-07-17T03:16:46Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -72,30 +74,35 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "IN_PROGRESS_AWAITING_INDEPENDENT_REVIEW"
+  execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
   persisted_expected_fields_prohibited: true
   builder_self_review: "PASS_WITH_MINOR_FINDINGS"
-  independent_critical_review: "PENDING"
+  independent_critical_review: "FAIL"
   independent_review_issue: "LEA-17"
-  independent_review_issue_status: "TODO"
-  reviewed_pr_head: null
+  independent_review_issue_status: "IN_PROGRESS"
+  reviewed_pr_head: "f475d94ae389109f466c23d2a8731b65364794ef"
   critical_blockers: 0
-  major_findings: 0
-  minor_findings: 3
+  major_findings: 4
+  minor_findings: 4
   structural_requirements: 32
   functional_requirements: 52
   total_requirement_ids: 84
-  documental_ready_for_independent_review: true
+  requirement_id_uniqueness: true
+  traceability_completeness: false
+  legacy_classification_consistency: false
+  simulated_only_baseline: true
+  documental_ready_for_independent_review: false
   documental_ready_for_merge: false
-  pr_ready_for_review: true
+  pr_ready_for_review: false
+  retest_required: true
   merge_authorization_pending: true
   merge_authorization_recorded: false
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
-  manual_schema_contract_validation: false
+  manual_schema_contract_validation: true
   application_code_changed: false
   test_code_changed: false
   workflows_changed: false
@@ -124,5 +131,5 @@ safety:
   ptm_v2_7_traceability_matrix_complete: true
   ptm_v2_7_builder_self_review_complete: true
   ptm_v2_7_review_prompt_complete: true
-  ptm_v2_7_critical_review_complete: false
+  ptm_v2_7_critical_review_complete: true
   ptm_v2_7_definitive: false
