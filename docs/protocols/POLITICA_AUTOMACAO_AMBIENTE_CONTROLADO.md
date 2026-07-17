@@ -12,49 +12,14 @@ REPOSITORY=leon337/predixai-robo-de-listas
 APPLIES_TO=PTM_V2.5|PTM_V2.6|PTM_V2.7|ADRS|DOCUMENTO_MESTRE|FUTURE_IMPLEMENTATION
 ```
 
-Esta política substitui interpretações genéricas que tratavam captura, OCR, replay, análise de gráficos, ponteiro, teclado, preenchimento de campos, clique ou autenticação como capacidades proibidas em todo o projeto.
+Esta política substitui interpretações genéricas que tratavam análise visual, captura, OCR, replay, ponteiro, teclado, preenchimento, clique ou autenticação como capacidades globalmente proibidas.
 
-## 2. Regra central
-
-Automação de interface é uma capacidade legítima do PredixAI Robô de Listas.
-
-```text
-CONTROLLED_CHART_ANALYSIS=ALLOWED
-CONTROLLED_SCREEN_CAPTURE=ALLOWED
-CONTROLLED_OCR=ALLOWED
-CONTROLLED_REPLAY=ALLOWED
-CONTROLLED_POINTER_MOVEMENT=ALLOWED
-CONTROLLED_KEYBOARD_INPUT=ALLOWED
-CONTROLLED_FIELD_FILLING=ALLOWED
-CONTROLLED_CLICK=ALLOWED
-CONTROLLED_AUTHENTICATION=ALLOWED
-CONTROLLED_END_TO_END_TESTS=ALLOWED
-SIMULATED_ORDER=ALLOWED
-```
-
-A autorização efetiva é determinada pelo modo ativo, pelo alvo autorizado, pela allowlist e pelos gates da sessão.
-
-## 3. Classes de alvo autorizáveis
-
-```text
-FIRST_PARTY_APPLICATION
-LOCAL_CONTROLLED_ENVIRONMENT
-DEDICATED_TEST_SANDBOX
-SANITIZED_FIXTURE_OR_REPLAY
-EXPLICITLY_ALLOWLISTED_TEST_TARGET
-OWNER_AUTHORIZED_BROKER_ACCOUNT
-OWNER_AUTHORIZED_PLATFORM_SESSION
-```
-
-A falta de identificação do alvo bloqueia a ação específica. Ela não transforma a capacidade inteira em proibida.
-
-## 4. Modo A — próprio, simulado ou controlado
+## 2. Modo A — próprio, simulado ou controlado
 
 O Modo A cobre aplicações próprias, ambientes locais, sandboxes, fixtures, replays, contas de teste e alvos explicitamente autorizados sem efeito financeiro real.
 
 ```text
 MODE_A=CONTROLLED_OR_SIMULATED
-MODE_A_DEFAULT=ENABLED_WHEN_MISSION_AUTHORIZES
 CHART_ANALYSIS=ALLOWED
 SCREEN_CAPTURE=ALLOWED
 OCR=ALLOWED
@@ -69,9 +34,11 @@ SIMULATED_ORDER=ALLOWED
 REAL_FINANCIAL_EFFECT=NO
 ```
 
-## 5. Modo B — conta própria com possível efeito financeiro real
+A falta de identificação do alvo bloqueia a ação específica. Ela não transforma a capacidade inteira em proibida.
 
-O Modo B é uma capacidade arquitetural suportada, mas separada. Ele permanece desligado por padrão e não é ativado pela simples existência desta política.
+## 3. Modo B — capacidade arquitetural condicionada
+
+O Modo B é reconhecido apenas como capacidade arquitetural separada. Ele permanece desligado por padrão. Esta política não arma sessão, não autoriza implementação e não substitui autorização específica.
 
 ```text
 MODE_B=LIVE_FINANCIAL_GATED
@@ -80,10 +47,13 @@ DEFAULT_STATE=DISABLED
 AUTO_ENABLE=PROHIBITED
 ```
 
-Ativação exige todos os gates aplicáveis:
+Qualquer futura ativação exige todos os gates abaixo, registrados e verificáveis:
 
 ```text
-LIVE_MODE_EXPLICIT_SCOPE=PASS
+COMMERCIAL_AND_LEGAL_DECISION_RECORDED=PASS
+PLATFORM_TERMS_AND_JURISDICTION_VALIDATED=PASS
+ACCOUNT_HOLDER_ELIGIBILITY_VALIDATED=PASS
+EXPLICIT_LIVE_SCOPE_AND_AUTHORIZATION=PASS
 HUMAN_ARMING_REQUIRED=PASS
 AUTHORIZED_ACCOUNT_ALLOWLIST=PASS
 AUTHORIZED_PLATFORM_ALLOWLIST=PASS
@@ -98,7 +68,7 @@ TARGET_IDENTITY_VALIDATED=PASS
 ROLLBACK_OR_CONTAINMENT_PLAN=PASS
 ```
 
-Sem todos os gates:
+Sem qualquer gate:
 
 ```text
 LIVE_MODE=DISABLED
@@ -106,20 +76,18 @@ FINANCIAL_EFFECT=BLOCKED_BY_GATE
 CONTROLLED_MODE_A_REMAINS_AVAILABLE=YES
 ```
 
-## 6. Separação obrigatória de conceitos
+## 4. Separação obrigatória
 
 ```text
 REAL_UI_ACTION != REAL_FINANCIAL_EFFECT
 CONTROLLED_CLICK != AUTOMATIC_LIVE_ACTIVATION
 CONTROLLED_AUTHENTICATION != SECRET_PUBLICATION
-SCREEN_CAPTURE != UNAUTHORIZED_DATA_COLLECTION
 SIMULATED_ORDER != LIVE_FINANCIAL_ORDER
 MODE_B_SUPPORTED != MODE_B_ARMED
+TECHNICAL_GATE_PASS != COMMERCIAL_OR_LEGAL_APPROVAL
 ```
 
-Um clique real na interface pode ocorrer em Modo A sem produzir efeito financeiro real. Um clique capaz de produzir efeito financeiro exige Modo B armado e gates LIVE aprovados.
-
-## 7. Condições comuns de controle
+## 5. Condições comuns de controle
 
 A automação deve possuir, conforme o risco aplicável:
 
@@ -130,26 +98,23 @@ A automação deve possuir, conforme o risco aplicável:
 - logs e auditoria proporcionais;
 - limites de frequência e concorrência;
 - segredos fora do repositório;
-- redaction de dados sensíveis;
-- teste reversível ou ambiente restaurável quando aplicável;
-- ausência de elevação silenciosa de Modo A para Modo B;
-- confirmação explícita antes de qualquer sessão LIVE.
+- proteção de dados sensíveis;
+- ausência de elevação silenciosa do Modo A para o Modo B.
 
-## 8. Limites permanentes
+## 6. Limites permanentes
 
 ```text
 SECRETS_IN_GIT=PROHIBITED
-ENV_TOKENS_COOKIES_PRIVATE_KEYS_IN_GIT=PROHIBITED
 PRODUCTION_CREDENTIAL_DISCLOSURE=PROHIBITED
 UNAUTHORIZED_THIRD_PARTY_ACCESS=PROHIBITED
 UNALLOWLISTED_TARGET_ACTION=PROHIBITED
 SILENT_MODE_ESCALATION=PROHIBITED
-LIVE_WITHOUT_GATE=PROHIBITED
+LIVE_WITHOUT_ALL_GATES=PROHIBITED
 ```
 
-A autorização A+B aplica-se a alvos próprios e autorizados. Ela não autoriza acesso a conta, plataforma ou sistema de terceiros sem permissão.
+A autorização A+B não supera contratos, termos da plataforma, legislação, jurisdição ou requisitos regulatórios aplicáveis.
 
-## 9. Aplicação por versão
+## 7. Aplicação por versão
 
 ### PTM V2.5
 
@@ -157,7 +122,7 @@ Ponteiro, teclado, campos e clique podem ficar fora do domínio de fundação. I
 
 ### PTM V2.6
 
-A pipeline analítica não autoriza nem executa ações por responsabilidade própria. Captura, análise visual, OCR e replay controlados são permitidos, assim como harnesses de teste autorizados.
+A pipeline analítica não autoriza nem executa ações por responsabilidade própria. Captura, análise visual, OCR e replay controlados são permitidos em alvos autorizados.
 
 ### PTM V2.7
 
@@ -166,27 +131,15 @@ A V2.7 define comando, autorização, alvo, adaptador, dispatch, recibo, reconci
 ```text
 PTM_V2_7_CONTROLLED_UI_ADAPTER=ALLOWED
 PTM_V2_7_SIMULATED_ADAPTER=ALLOWED
-PTM_V2_7_LIVE_ADAPTER=SUPPORTED_BY_FUTURE_LIVE_GATE
-CONTROLLED_UI_ACTION_BASELINE=ALLOWED
-FINANCIAL_EFFECT_BASELINE=SIMULATED_UNTIL_LIVE_GATE_PASS
+PTM_V2_7_LIVE_ADAPTER=SUPPORTED_BY_FUTURE_GATE
+FINANCIAL_EFFECT_BASELINE=SIMULATED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## 10. Precedência e documentos históricos
+## 8. Precedência
 
-Esta política prevalece sobre redações genéricas anteriores que afirmem, sem qualificação de alvo, modo ou etapa:
+Esta política prevalece sobre redações genéricas anteriores que proibiam globalmente análise de gráficos, captura, OCR, replay, movimento de ponteiro, digitação, preenchimento, clique ou autenticação controlada.
 
-- proibição de análise de gráficos;
-- proibição de captura ou OCR;
-- proibição de replay;
-- proibição de movimento de ponteiro;
-- proibição de digitação ou preenchimento de campos;
-- proibição de clique;
-- proibição de autenticação controlada;
-- proibição absoluta de suporte arquitetural ao modo LIVE.
-
-Documentos históricos permanecem imutáveis como evidência do estado anterior. Documentos vivos e novos documentos arquiteturais devem referenciar esta política e usar terminologia qualificada.
-
-Redação correta:
+Documentos históricos permanecem como evidência do estado anterior. Documentos vivos devem usar terminologia qualificada:
 
 ```text
 OUT_OF_SCOPE_FOR_STAGE
@@ -196,40 +149,30 @@ DISABLED_UNTIL_GATE_PASS
 PROHIBITED_FOR_UNAUTHORIZED_TARGET
 ```
 
-Redação genérica proibida em documentos vivos:
-
-```text
-DO_NOT_CLICK_GLOBALLY
-DO_NOT_AUTHENTICATE_GLOBALLY
-DO_NOT_MOVE_POINTER_GLOBALLY
-DO_NOT_CAPTURE_OR_OCR_GLOBALLY
-REAL_MODE_CAN_NEVER_EXIST
-```
-
-## 11. Gates de validação
+## 9. Gates de validação
 
 ```text
 CONTROLLED_AUTOMATION_SCOPE_DEFINED=PASS
 CONTROLLED_TARGET_ALLOWLIST_REQUIRED=PASS
-CONTROLLED_CHART_ANALYSIS_ALLOWED=PASS
-CONTROLLED_OCR_CAPTURE_ALLOWED=PASS
-CONTROLLED_POINTER_KEYBOARD_FIELDS_CLICK_ALLOWED=PASS
-CONTROLLED_AUTH_ALLOWED=PASS
-SIMULATED_ORDER_ALLOWED=PASS
 MODE_A_MODE_B_SEPARATED=PASS
 LIVE_MODE_DEFAULT_DISABLED=PASS
 LIVE_MODE_SEPARATE_GATE_REQUIRED=PASS
+MODE_B_COMMERCIAL_LEGAL_GATE_REQUIRED=PASS
+MODE_B_PLATFORM_COMPLIANCE_GATE_REQUIRED=PASS
+MODE_B_ACCOUNT_ELIGIBILITY_GATE_REQUIRED=PASS
+MODE_B_EXPLICIT_SCOPE_GATE_REQUIRED=PASS
 HISTORICAL_GENERIC_PROHIBITIONS_SUPERSEDED=PASS
 ```
 
-## 12. Estado atual
-
-A aprovação A+B define a arquitetura e a governança dos dois modos. Ela não executa a aplicação, não arma sessão LIVE e não cria autorização automática de implementação.
+## 10. Estado atual
 
 ```text
 MODE_A_POLICY=AUTHORIZED
 MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
 MODE_B_RUNTIME_ACTIVATION=NOT_STARTED
 LIVE_GATE_IMPLEMENTATION=NOT_STARTED
+COMMERCIAL_LEGAL_LIVE_DECISION=NOT_STARTED
+PLATFORM_COMPLIANCE_VALIDATION=NOT_STARTED
+ACCOUNT_ELIGIBILITY_VALIDATION=NOT_STARTED
 CURRENT_DOCUMENTAL_WORK=DOCUMENTATION_ONLY
 ```
