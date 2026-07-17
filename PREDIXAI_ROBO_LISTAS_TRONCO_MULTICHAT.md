@@ -11,16 +11,16 @@ PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
 
 ACTIVE_MISSION=LEA-14
 ACTIVE_MISSION_NAME=PTM_V2.6_Observacao_Analise_e_Sinais
-ACTIVE_STAGE=POST_REVIEW_SYNC_COMPLETE_AWAITING_MERGE_AUTHORIZATION
+ACTIVE_STAGE=MERGE_AUTHORIZED_AWAITING_EXECUTION
 ACTIVE_PULL_REQUEST=35
 ACTIVE_PULL_REQUEST_MODE=READY
 COMPLETED_REVIEW_ISSUE=LEA-15
 TRANSITION_ID=LEA-14-T01
-TRANSITION_STATUS=IN_PROGRESS
+TRANSITION_STATUS=APPROVED_FOR_MERGE
 STATE_REVISION=5
 ```
 
-A `main` conserva o fechamento definitivo da PTM V2.5. A PTM V2.6 está aprovada documentalmente no PR `#35`, mas ainda não foi integrada nem confirmada pós-merge.
+A `main` conserva o fechamento definitivo da PTM V2.5. A PTM V2.6 está aprovada documentalmente e teve o merge do PR `#35` autorizado por Leo; a integração e o recibo pós-merge ainda precisam ser confirmados.
 
 ## PTM V2.6 — resultado da revisão
 
@@ -42,7 +42,7 @@ CRITICAL_BLOCKERS=0
 MAJOR_FINDINGS=0
 MINOR_FINDINGS=2
 DOCUMENTAL_READY_FOR_MERGE=YES
-MERGE_AUTHORIZATION=BLOCKED
+MERGE_AUTHORIZATION=GRANTED_BY_LEO
 PTM_V2_6_DEFINITIVE=NO
 ```
 
@@ -81,9 +81,9 @@ PTM_V2_7_STARTED=NO
 ✅ PTP-MEM.1 — continuidade endurecida e concluída
 ✅ PTM V2.5 / LEA-8 — reconciliada, revisada e integrada
 ✅ PTM V2.5-RC / LEA-13 — revisão crítica independente PASS
-🟨 PTM V2.6 / LEA-14 — PR #35 pronto, aguardando autorização de merge
+🟨 PTM V2.6 / LEA-14 — merge do PR #35 autorizado
 ✅ PTM V2.6-RC / LEA-15 — revisão crítica independente PASS
-⬜ merge e confirmação pós-merge da PTM V2.6
+🟧 merge e confirmação pós-merge da PTM V2.6
 ⬜ PTM V2.7
 ⬜ PTM V2.7-RC
 ⬜ Consolidação cruzada
@@ -108,22 +108,23 @@ PTM_V2_7_STARTED=NO
 
 ```text
 CURRENT_GATE=PTM_V2_6_MERGE_AUTHORIZATION
-GATE_STATUS=PENDING
+GATE_STATUS=PASS
 REVIEW_ISSUE=LEA-15_DONE
 PULL_REQUEST=35
 PR_READY_FOR_REVIEW=YES
 GITHUB_MERGEABILITY=MERGEABLE
 MISSION_LOCK=LOCKED_ADVISORY
-MERGE_AUTHORIZATION=BLOCKED
+MERGE_AUTHORIZATION=GRANTED_BY_LEO
 AUTOMATIC_ADVANCE=NO
 ```
 
 ## Continuidade multichat
 
-A próxima decisão é humana e explícita:
+Próxima ação operacional:
 
 ```text
-@GitHub @Linear autorizar merge PR #35
+EXECUTE_AUTHORIZED_MERGE_PR_35
+CONFIRM_POST_MERGE_STATE
 ```
 
 O merge deve validar novamente `main`, HEAD do PR, `STATE_REVISION=5` e `TRANSITION_ID=LEA-14-T01`. A PTM V2.7 não inicia automaticamente.
