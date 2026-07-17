@@ -4,76 +4,75 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD confirmado após recibo: `3c6330cf27ca973f5ec42591c9266dbf2b28e750`
+- HEAD-base confirmado: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
 - Versão do legado: `V2.4.3-R1`
-- Missão ativa: nenhuma
-- Última missão concluída: `LEA-16 — PTM V2.7`
-- Revisão concluída: `LEA-17 — PTM V2.7-RC`, `PASS`
-- PR principal: `#37`, integrado em `4f7fb106db95c3a33583440fd1bf52fe6603b529`
-- Recibo pós-merge: PR `#38`, integrado em `3c6330cf27ca973f5ec42591c9266dbf2b28e750`
-- Próxima etapa: consolidação cruzada da documentação
+- Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
+- Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
+- PR ativo: ainda não aberto
+- Revisão crítica independente: pendente
 
-## Transição concluída
+## Transição ativa
 
 ```text
-STATE_REVISION=6
-TRANSITION_ID=LEA-16-T02
-TRANSITION_STATUS=COMPLETE
-FROM_STATE=PTM_V2_7_APPROVED_FOR_MERGE
-TO_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-GITHUB_SYNC_STATUS=PASS
+STATE_REVISION=7
+TRANSITION_ID=LEA-18-T01
+TRANSITION_STATUS=IN_PROGRESS
+FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
+TO_STATE=CROSS_CONSOLIDATION_IN_PROGRESS
+GITHUB_SYNC_STATUS=IN_PROGRESS
 LINEAR_SYNC_STATUS=PASS
-MISSION_LOCK=RELEASED
+MISSION_LOCK=LEA-18
 ```
 
-## Resultado definitivo da PTM V2.7
+## Escopo
+
+Consolidar as três PTMs em uma arquitetura documental única, sem reescrever históricos e respeitando a precedência normativa ativa.
 
 ```text
-PTM_V2_7_CRITICAL_REVIEW=PASS
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=4
-STRUCTURAL_REQUIREMENTS=32
-FUNCTIONAL_REQUIREMENTS=52
-TOTAL_REQUIREMENT_IDS=84
-REQUIREMENT_ID_UNIQUENESS=PASS
-TRACEABILITY_COMPLETENESS=PASS
-LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-PTM_V2_7_DOCUMENTALLY_DEFINITIVE=YES
+PTM_V2_5=FOUNDATION_CONTRACTS_SAFE_MIGRATION
+PTM_V2_6=OBSERVATION_ANALYSIS_SIMULATED_SIGNALS
+PTM_V2_7=CONTROLLED_COMMAND_AUTHORIZATION_ACTION_RECEIPT_RECONCILIATION
+DOCUMENTATION_ONLY=YES
+CODE_CHANGE_AUTHORIZED=NO
+SQL_AUTHORIZED=NO
+MIGRATION_AUTHORIZED=NO
+IMPLEMENTATION_AUTHORIZED=NO
 ```
 
-## Escopo controlado consolidado
+## Política transversal vigente
 
 ```text
 CONTROLLED_SCREEN_CAPTURE=ALLOWED
 CONTROLLED_OCR=ALLOWED
 CONTROLLED_REPLAY=ALLOWED
-CONTROLLED_POINTER_MOVEMENT=ALLOWED
-CONTROLLED_KEYBOARD_INPUT=ALLOWED
-CONTROLLED_CLICK=ALLOWED
+CONTROLLED_POINTER_KEYBOARD_CLICK=ALLOWED_IN_CONTROLLED_SCOPE
 CONTROLLED_TEST_AUTHENTICATION=ALLOWED
-CONTROLLED_END_TO_END_TESTS=ALLOWED
-CONTROLLED_UI_CHANNEL=ALLOWED
 FINANCIAL_EFFECT_BASELINE=SIMULATED_ONLY
-PRODUCTION_MONETARY_EFFECT_REQUIRES_SEPARATE_AUTHORIZATION_IN_ALL_TARGET_CLASSES=YES
+REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
 ```
 
-## Contratos consolidados
+## Gates
 
-- canal e estado `CONTROLLED_UI`;
-- autorização vinculada a alvo, ação e allowlist;
-- adaptador `NULL|SIMULATED|CONTROLLED_UI`;
-- recibo com dimensões de UI e monetária separadas;
-- invalidação de comando anterior após qualquer restart;
-- prova negativa contra bypass, alvo não autorizado, segredo e resultado monetário de produção.
+```text
+G1_PRECONDITIONS_PASS=PASS
+G2_SOURCE_INVENTORY_COMPLETE=IN_PROGRESS
+G3_DOMAIN_BOUNDARIES_CONSOLIDATED=NOT_STARTED
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=NOT_STARTED
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=NOT_STARTED
+G6_CONSOLIDATED_DOCUMENT_READY=NOT_STARTED
+G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
+```
 
-## Pendências não bloqueantes
+## Entregas previstas
 
-1. taxonomia integral de `target_logical_id`;
-2. limites numéricos após benchmark;
-3. ADR da topologia do kill switch;
-4. matriz integral de transições antes da implementação.
+1. inventário canônico das fontes;
+2. mapa unificado de domínios e fronteiras;
+3. matriz consolidada de requisitos e rastreabilidade;
+4. registro de conflitos, supersessões e precedência;
+5. catálogo de decisões candidatas a ADR;
+6. documento de consolidação cruzada;
+7. pacote para revisão crítica independente.
 
 ## Próxima ação
 
-Iniciar a consolidação cruzada das PTMs V2.5, V2.6 e V2.7 para preparação dos ADRs e do Documento Mestre.
+Construir o inventário canônico das fontes e abrir o PR documental em modo Draft.
