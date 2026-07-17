@@ -4,7 +4,7 @@
 
 ```text
 VERSAO_REAL=V2.4.3-R1
-MAIN_HEAD_APOS_PR_35=bcd983423c3142adee8eab4720d62208f94161eb
+MAIN_HEAD_APOS_RECIBO=128dd3c3aa6966fb96008086985810cd6ad66040
 LAST_COMPLETED_MISSION=LEA-14
 LAST_COMPLETED_MISSION_NAME=PTM_V2.6_Observacao_Analise_e_Sinais
 PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
@@ -13,9 +13,15 @@ ACTIVE_MISSION=NONE
 TRANSITION_ID=LEA-14-T01
 TRANSITION_STATUS=COMPLETE
 STATE_REVISION=5
+MAIN_PULL_REQUEST=35
+MAIN_PULL_REQUEST_MERGE_COMMIT=bcd983423c3142adee8eab4720d62208f94161eb
+POST_MERGE_RECEIPT_PR=36
+POST_MERGE_RECEIPT_MERGE_COMMIT=128dd3c3aa6966fb96008086985810cd6ad66040
+LINEAR_LEA_14=DONE
+LINEAR_LEA_15=DONE
 ```
 
-A PTM V2.6 foi construída, revisada criticamente, corrigida quanto aos comentários P1, autorizada por Leo e integrada no PR `#35`.
+A PTM V2.6 foi construída, revisada criticamente, corrigida quanto aos comentários P1, autorizada por Leo, integrada no PR `#35` e confirmada pelo recibo PR `#36`.
 
 ## Resultado consolidado
 
@@ -45,6 +51,8 @@ MINOR_FINDINGS=2
 RUNTIME_SCHEMA_1_0_3_ALIGNMENT=PASS
 CODEX_P1_FINDINGS_REMEDIATED=2/2
 PR_35_MERGED=PASS
+PR_36_MERGED=PASS
+GITHUB_LINEAR_SYNC=PASS
 ```
 
 ## Achados menores preservados
@@ -103,7 +111,8 @@ PTM_V2_7_STARTED=NO
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
 5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
 6. `docs/history/ptp/RECIBO_POS_MERGE_LEA-14_PTM_V2.6_20260716.md`;
-7. PR `#35` e Linear `LEA-14`/`LEA-15`.
+7. PRs `#35` e `#36`;
+8. Linear `LEA-14` e `LEA-15`, ambos `Done`.
 
 ## Gate atual
 
