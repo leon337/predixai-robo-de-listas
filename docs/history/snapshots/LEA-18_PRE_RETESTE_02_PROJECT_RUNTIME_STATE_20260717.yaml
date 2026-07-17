@@ -1,0 +1,146 @@
+schema_version: "1.0.3"
+state_revision: 7
+project: "PredixAI Robô de Listas"
+repository: "leon337/predixai-robo-de-listas"
+main_branch: "main"
+observed_main_head: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+real_version: "V2.4.3-R1"
+
+active_mission: "LEA-18"
+active_stage: "CROSS_CONSOLIDATION_INDEPENDENT_RETEST"
+active_linear_issue: "LEA-18"
+active_review_issue: "LEA-19"
+active_pull_request: 40
+working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
+observed_pr_head: "0c7c5904ed753765d4861341f7dd18d838d91ff9"
+pr_mode: "independent_critical_retest"
+active_checkpoint: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
+
+current_gate: "G7_INDEPENDENT_CRITICAL_REVIEW"
+gate_status: "IN_PROGRESS"
+next_action: "EXECUTE_LEA_19_INDEPENDENT_RETEST_ON_PR_40"
+blockers:
+  - "INDEPENDENT_CRITICAL_RETEST_REQUIRED"
+
+transition_id: "LEA-18-T01"
+transition_status: "READY_FOR_INDEPENDENT_REVIEW"
+from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
+to_state: "CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST"
+baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+baseline_state_revision: 6
+bound_transition_id: "LEA-18-T01"
+main_pr: 40
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
+
+github_sync_status: "PASS"
+linear_sync_status: "PASS"
+last_sync_at_utc: "2026-07-17T12:22:16Z"
+
+mission_lock:
+  locked: true
+  enforcement: "ADVISORY"
+  concurrency_model: "OPTIMISTIC"
+  owner: "LEA-18"
+  session_id: "lea18-cross-consolidation-20260717"
+  base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+  observed_pr_head: "0c7c5904ed753765d4861341f7dd18d838d91ff9"
+  state_revision_snapshot: 7
+  transition_id_snapshot: "LEA-18-T01"
+  started_at_utc: "2026-07-17T11:02:35Z"
+  expires_at_utc: null
+  heartbeat_at_utc: "2026-07-17T12:22:16Z"
+
+implementation_authorized: false
+code_change_authorized: false
+test_code_change_authorized: false
+sql_authorized: false
+migration_authorized: false
+real_click_authorized: false
+controlled_ui_action_in_mission_authorized: false
+real_financial_effect_authorized: false
+merge_authorized: false
+cross_consolidation_authorized: true
+adrs_start_authorized: false
+
+source_authority:
+  operational_state: "PROJECT_RUNTIME_STATE.yaml"
+  human_state: "PROJECT_STATE.md"
+  roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  mission_opening_record: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
+  canonical_source_inventory: "docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  unified_domain_boundary_map: "docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  consolidated_requirements_traceability: "docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  individual_requirement_index: "docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  conflict_supersession_register: "docs/architecture/REGISTRO_CONFLITOS_SUPERSESSOES_PRECEDENCIA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  adr_candidate_catalog: "docs/architecture/CATALOGO_DECISOES_CANDIDATAS_ADR_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  consolidated_architecture_document: "docs/architecture/CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  builder_self_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
+  independent_review_package: "docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
+  independent_review_result: "docs/history/reviews/REVISAO_CRITICA_CONSOLIDACAO_CRUZADA_LEA-19_20260717.md"
+  controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
+  transversal_addendum: "docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md"
+  task_status_and_dependencies: "Linear LEA-18 and LEA-19"
+  unmerged_work: "PR #40"
+  consolidated_code_and_docs: "GitHub main"
+
+safety:
+  manifest_documentation_drift: false
+  execution_status: "AWAITING_INDEPENDENT_REVIEW"
+  automatic_advance: false
+  independent_critical_review: "RETEST_REQUESTED_LEA_19"
+  previous_independent_review_status: "FAIL"
+  remediated_major_findings: 3
+  open_major_findings: 0
+  retest_required: true
+  critical_blockers: 0
+  application_code_changed: false
+  test_code_changed: false
+  workflows_changed: false
+  sql_or_migrations_created: false
+  documentation_only: true
+  financial_effect_simulated_only: true
+  production_monetary_effect_requires_separate_authorization_all_targets: true
+  ptm_v2_5_definitive: true
+  ptm_v2_6_definitive: true
+  ptm_v2_7_definitive: true
+  cross_consolidation_ready: true
+  cross_consolidation_started: true
+  g1_preconditions_pass: true
+  g2_source_inventory_complete: true
+  g3_domain_boundaries_consolidated: true
+  g4_requirements_traceability_complete: true
+  g5_conflicts_and_supersessions_resolved: true
+  g6_consolidated_document_ready: true
+  g7_independent_critical_review: false
+  source_inventory_blockers: 0
+  domain_boundary_blockers: 0
+  traceability_blockers: 0
+  conflict_resolution_blockers: 0
+  canonical_domain_count: 16
+  mandatory_handoff_count: 12
+  cross_version_total_requirement_ids: 218
+  individual_requirement_rows: 218
+  duplicate_requirement_ids: 0
+  orphan_requirement_ids: 0
+  new_requirement_ids_created: 0
+  superseded_interpretation_ids: 32
+  conflict_classes_reviewed: 24
+  unresolved_normative_conflicts: 0
+  adr_candidate_count: 18
+  builder_self_review_status: "PASS_PRELIMINARY"
+  builder_self_review_critical_findings: 0
+  builder_self_review_major_findings: 0
+  builder_self_review_minor_findings: 2
+  builder_self_review_minor_resolved: 2
+  ready_for_independent_critical_review: true
+  ready_for_merge: false
+  ready_for_adrs: false
+  missing_v2_5_review_markdown_documented: true
+  last_completed_product_issue: "LEA-16"
+  last_completed_product_issue_status: "DONE"
+  current_product_issue: "LEA-18"
+  current_product_issue_status: "IN_PROGRESS"
+  current_review_issue: "LEA-19"
+  current_review_issue_status: "TODO"
