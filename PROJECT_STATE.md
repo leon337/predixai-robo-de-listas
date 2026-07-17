@@ -8,7 +8,7 @@
 - Versão real do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-16 — PTM V2.7 — Execução controlada e gates de segurança`, `In Progress`
 - Revisão crítica independente: `LEA-17 — PTM V2.7-RC`, `In Progress — FAIL com remediação obrigatória`
-- PR ativo: `#37`, alterações solicitadas
+- PR ativo: `#37`, rascunho para remediação
 - Branch de trabalho: `leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca`
 - HEAD do builder revisado: `f475d94ae389109f466c23d2a8731b65364794ef`
 - Fase: revisão crítica concluída com achados maiores; aguardando remediação e novo reteste
@@ -24,7 +24,7 @@ FROM_STATE=PTM_V2_6_DOCUMENTALLY_DEFINITIVE
 TO_STATE=PTM_V2_7_REMEDIATION_REQUIRED
 BASE_MAIN_SHA=f3c84d97523c1c631392cefb69b6cb3e8f6a56e2
 MAIN_PULL_REQUEST=37
-MAIN_PULL_REQUEST_STATUS=CHANGES_REQUESTED
+MAIN_PULL_REQUEST_STATUS=DRAFT_REMEDIATION_REQUIRED
 ACTIVE_REVIEW_ISSUE=LEA-17
 MISSION_LOCK=LOCKED_ADVISORY
 GITHUB_SYNC_STATUS=IN_PROGRESS
@@ -126,7 +126,7 @@ MERGE_AUTHORIZED=NO
 CURRENT_GATE=PTM_V2_7_REMEDIATION
 GATE_STATUS=FAIL
 ACTIVE_PULL_REQUEST=37
-PULL_REQUEST_MODE=CHANGES_REQUESTED
+PULL_REQUEST_MODE=DRAFT_REMEDIATION_REQUIRED
 ACTIVE_REVIEW_ISSUE=LEA-17
 MISSION_LOCK=LOCKED_ADVISORY
 AUTOMATIC_ADVANCE=NO
