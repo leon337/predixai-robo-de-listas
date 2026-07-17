@@ -3,7 +3,7 @@ state_revision: 4
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "c826f98973afe975ff6e6c1bc59eb80f69bebfd7"
+observed_main_head: "408c03d525e3ef1ed73fae079209987668ddc493"
 real_version: "V2.4.3-R1"
 
 active_mission: null
@@ -30,10 +30,12 @@ baseline_state_revision: 1
 bound_transition_id: "LEA-8-T01"
 main_pr: 33
 main_pr_merge_commit: "c826f98973afe975ff6e6c1bc59eb80f69bebfd7"
+post_merge_receipt_pr: 34
+post_merge_receipt_merge_commit: "408c03d525e3ef1ed73fae079209987668ddc493"
 
 github_sync_status: "PASS"
-linear_sync_status: "PASS_AFTER_RECEIPT_FINALIZATION"
-last_sync_at_utc: "2026-07-17T01:42:47Z"
+linear_sync_status: "PASS"
+last_sync_at_utc: "2026-07-17T01:47:15Z"
 
 mission_lock:
   locked: false
@@ -41,13 +43,13 @@ mission_lock:
   concurrency_model: "OPTIMISTIC"
   owner: null
   session_id: null
-  base_sha: "c826f98973afe975ff6e6c1bc59eb80f69bebfd7"
+  base_sha: "408c03d525e3ef1ed73fae079209987668ddc493"
   observed_pr_head: null
   state_revision_snapshot: 4
   transition_id_snapshot: "LEA-8-T01"
   started_at_utc: null
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T01:42:47Z"
+  heartbeat_at_utc: "2026-07-17T01:47:15Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -87,9 +89,10 @@ safety:
   main_pr_merged: true
   handoff_activated: true
   post_merge_receipt_recorded: true
+  post_merge_receipt_merged: true
   transition_complete: true
   last_completed_product_issue: "LEA-8"
-  last_completed_product_issue_status: "DONE_AFTER_RECEIPT_FINALIZATION"
+  last_completed_product_issue_status: "DONE"
   ptm_v2_5_reconciliation_draft_complete: true
   ptm_v2_5_post_review_document_sync: true
   checkpoint_recorded: true
