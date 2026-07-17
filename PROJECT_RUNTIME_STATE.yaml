@@ -3,53 +3,55 @@ state_revision: 5
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "d7785e73654e4b1f5b5b13aeb56427bc5f1438a8"
+observed_main_head: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "IDLE_AFTER_LEA_14"
-active_linear_issue: null
-active_review_issue: null
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
-pr_mode: null
+active_mission: "LEA-16"
+active_stage: "PTM_V2_7_BUILDER_READY_FOR_INDEPENDENT_REVIEW"
+active_linear_issue: "LEA-16"
+active_review_issue: "LEA-17"
+active_pull_request: 37
+working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
+observed_pr_head: "abd099a1bf606ecedb770d8d8967ce5af58d390f"
+pr_mode: "draft"
 active_checkpoint: null
 
-current_gate: "LEA_14_COMPLETE"
-gate_status: "PASS"
-next_action: "AWAIT_EXPLICIT_PTM_V2_7_AUTHORIZATION"
-blockers: []
+current_gate: "PTM_V2_7_INDEPENDENT_CRITICAL_REVIEW"
+gate_status: "PENDING"
+next_action: "EXECUTE_INDEPENDENT_REVIEW_LEA_17_ON_PR_37"
+blockers:
+  - "INDEPENDENT_CRITICAL_REVIEW_PENDING"
+  - "MERGE_AUTHORIZATION_PENDING"
 
-transition_id: "LEA-14-T01"
-transition_status: "COMPLETE"
-from_state: "PTM_V2_5_DOCUMENTALLY_DEFINITIVE"
-to_state: "PTM_V2_6_DOCUMENTALLY_DEFINITIVE"
-baseline_main_sha: "1ca1be40b570b3ba458cf28efc73113da2031e8d"
-baseline_state_revision: 4
-bound_transition_id: "LEA-14-T01"
-main_pr: 35
-main_pr_merge_commit: "bcd983423c3142adee8eab4720d62208f94161eb"
-post_merge_receipt_pr: 36
-post_merge_receipt_merge_commit: "128dd3c3aa6966fb96008086985810cd6ad66040"
+transition_id: "LEA-16-T01"
+transition_status: "IN_PROGRESS"
+from_state: "PTM_V2_6_DOCUMENTALLY_DEFINITIVE"
+to_state: "PTM_V2_7_BUILDER_DRAFT_READY_FOR_INDEPENDENT_REVIEW"
+baseline_main_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
+baseline_state_revision: 5
+bound_transition_id: "LEA-16-T01"
+main_pr: 37
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS"
-linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T02:42:47Z"
+github_sync_status: "PASS_IN_PROGRESS"
+linear_sync_status: "PASS_IN_PROGRESS"
+last_sync_at_utc: "2026-07-17T03:00:00Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "closed-lea14"
-  base_sha: "128dd3c3aa6966fb96008086985810cd6ad66040"
-  observed_pr_head: null
+  owner: "LEA-16"
+  session_id: "lea16-20260716"
+  base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
+  observed_pr_head: "abd099a1bf606ecedb770d8d8967ce5af58d390f"
   state_revision_snapshot: 5
-  transition_id_snapshot: "LEA-14-T01"
-  started_at_utc: "2026-07-17T01:59:18Z"
+  transition_id_snapshot: "LEA-16-T01"
+  started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T02:42:47Z"
+  heartbeat_at_utc: "2026-07-17T03:00:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -58,60 +60,69 @@ migration_authorized: false
 real_click_authorized: false
 merge_authorized: false
 ptm_v2_6_start_authorized: true
-ptm_v2_7_start_authorized: false
+ptm_v2_7_start_authorized: true
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   task_status_and_dependencies: "Linear"
-  unmerged_work: "none"
+  unmerged_work: "PR #37"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "COMPLETE"
+  execution_status: "IN_PROGRESS_AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
   persisted_expected_fields_prohibited: true
-  builder_self_review: "PASS"
-  independent_critical_review: "PASS"
-  independent_review_issue: "LEA-15"
-  independent_review_issue_status: "DONE"
-  reviewed_pr_head: "4a84ed256e2b8f8ef6718595d46a5b11ea0d05e1"
+  builder_self_review: "PASS_WITH_MINOR_FINDINGS"
+  independent_critical_review: "PENDING"
+  independent_review_issue: "LEA-17"
+  independent_review_issue_status: "TODO"
+  reviewed_pr_head: null
   critical_blockers: 0
   major_findings: 0
-  minor_findings: 2
-  structural_requirements: 28
-  functional_requirements: 50
-  total_requirement_ids: 78
-  documental_ready_for_merge: true
-  pr_ready_for_review: true
-  merge_authorization_pending: false
-  merge_authorization_recorded: true
+  minor_findings: 3
+  structural_requirements: 32
+  functional_requirements: 52
+  total_requirement_ids: 84
+  documental_ready_for_independent_review: true
+  documental_ready_for_merge: false
+  pr_ready_for_review: false
+  merge_authorization_pending: true
+  merge_authorization_recorded: false
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
-  manual_schema_contract_validation: true
+  manual_schema_contract_validation: false
   application_code_changed: false
   test_code_changed: false
   workflows_changed: false
   sql_or_migrations_created: false
+  pointer_movement_executed: false
+  keyboard_input_executed: false
   real_click_executed: false
   real_order_executed: false
-  main_pr_merged: true
-  handoff_activated: true
-  post_merge_receipt_recorded: true
-  transition_complete: true
+  real_execution_adapter_exists: false
+  real_mode_exposed: false
+  real_credentials_accepted: false
+  execution_capability_baseline: "SIMULATED_ONLY"
+  main_pr_merged: false
+  handoff_activated: false
+  post_merge_receipt_recorded: false
+  transition_complete: false
   last_completed_product_issue: "LEA-14"
   last_completed_product_issue_status: "DONE"
-  current_product_issue: "NONE"
+  current_product_issue: "LEA-16"
+  current_product_issue_status: "IN_PROGRESS"
   ptm_v2_5_definitive: true
   ptm_v2_6_started: true
-  ptm_v2_6_builder_draft_complete: true
-  ptm_v2_6_traceability_matrix_complete: true
-  ptm_v2_6_builder_self_review_complete: true
-  ptm_v2_6_review_prompt_complete: true
-  ptm_v2_6_critical_review_complete: true
   ptm_v2_6_definitive: true
-  ptm_v2_7_started: false
+  ptm_v2_7_started: true
+  ptm_v2_7_builder_draft_complete: true
+  ptm_v2_7_traceability_matrix_complete: true
+  ptm_v2_7_builder_self_review_complete: true
+  ptm_v2_7_review_prompt_complete: true
+  ptm_v2_7_critical_review_complete: false
+  ptm_v2_7_definitive: false
