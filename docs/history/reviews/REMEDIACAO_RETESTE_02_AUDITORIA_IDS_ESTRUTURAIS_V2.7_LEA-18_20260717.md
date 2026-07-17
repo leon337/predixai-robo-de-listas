@@ -91,4 +91,4 @@ ADRS_READY_TO_START=NO_PENDING_RETEST_03
 
 ## 6. Próxima ação
 
-Sincronizar `PROJECT_RUNTIME_STATE.yaml`, `PROJECT_STATE.md`, tronco multichat e descrição do PR; resolver a thread de `MAJOR-06`; reabrir `LEA-19` e executar Reteste 03 independente sobre o HEAD final. Merge e ADRs permanecem bloqueados.
+Executar o Reteste 03 independente da `LEA-19` sobre o HEAD final do PR `#40`. Merge e ADRs permanecem bloqueados.
