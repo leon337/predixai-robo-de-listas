@@ -1,34 +1,37 @@
 schema_version: "1.0.3"
-state_revision: 1
+state_revision: 3
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
+observed_main_head: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "IDLE_AFTER_PTP_MEM_1"
-active_linear_issue: null
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
+active_mission: "LEA-8 — Reconciliar e revisar PTM V2.5"
+active_stage: "CHECKPOINT_LEA_8_POST_REVIEW_RECORDED"
+active_linear_issue: "LEA-8"
+active_review_issue: "LEA-13"
+active_pull_request: 33
+working_branch: "leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25"
+observed_pr_head: "684e4813be9effac39356e8437aa9e574dd71bf8"
+pr_mode: "DRAFT"
+active_checkpoint: "docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md"
 
-current_gate: "PTP_MEM_1_COMPLETE"
-gate_status: "PASS"
-next_action: "START_LEA_8_ONLY_AFTER_EXPLICIT_AUTHORIZATION"
+current_gate: "EXPLICIT_MERGE_AUTHORIZATION_REQUIRED"
+gate_status: "PASS_REVIEW_MERGE_PENDING"
+next_action: "START_NEW_CHAT_AND_RUN_INICIAR"
 blockers: []
 
-transition_id: "PTP-MEM.1-T02"
-transition_status: "COMPLETE"
-from_state: "PTP-MEM.1_MAIN_PR_MERGED"
-to_state: "PTP-MEM.1_COMPLETE"
-baseline_main_sha: "4d3f7e33d8927c80240b5f48e130158ee98c258f"
+transition_id: "LEA-8-T01"
+transition_status: "IN_PROGRESS"
+from_state: "PTP-MEM.1_COMPLETE"
+to_state: "PTM_V2_5_REVIEWED_CHECKPOINTED_AWAITING_EXPLICIT_MERGE_DECISION"
+baseline_main_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 baseline_state_revision: 1
-bound_transition_id: "PTP-MEM.1-T02"
+bound_transition_id: "LEA-8-T01"
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-16T23:51:44Z"
+last_sync_at_utc: "2026-07-17T01:30:19Z"
 
 mission_lock:
   locked: false
@@ -36,19 +39,21 @@ mission_lock:
   concurrency_model: "OPTIMISTIC"
   owner: null
   session_id: null
-  base_sha: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
-  observed_pr_head: null
-  state_revision_snapshot: 1
-  transition_id_snapshot: "PTP-MEM.1-T02"
+  base_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
+  observed_pr_head: "684e4813be9effac39356e8437aa9e574dd71bf8"
+  state_revision_snapshot: 3
+  transition_id_snapshot: "LEA-8-T01"
   started_at_utc: null
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T23:51:44Z"
+  heartbeat_at_utc: "2026-07-17T01:30:19Z"
 
 implementation_authorized: false
 code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
 real_click_authorized: false
+merge_authorized: false
+ptm_v2_6_start_authorized: false
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
@@ -60,19 +65,33 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "COMPLETE"
+  execution_status: "CHECKPOINT_RECORDED_AWAITING_NEW_CHAT_RECONSTRUCTION_AND_EXPLICIT_MERGE_AUTHORIZATION"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
   persisted_expected_fields_prohibited: true
+  builder_self_review: "PASS"
   independent_critical_review: "PASS"
+  independent_review_issue: "LEA-13"
+  independent_review_issue_status: "DONE"
   critical_blockers: 0
+  major_findings: 0
+  minor_findings: 2
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
-  main_pr_merged: true
-  handoff_activated: true
-  post_merge_receipt_merged: true
-  post_merge_receipt_merge_commit: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
-  transition_complete: true
-  next_product_issue: "LEA-8"
-  next_product_issue_status: "TODO_NOT_STARTED"
+  application_code_changed: false
+  sql_or_migrations_created: false
+  real_click_executed: false
+  main_pr_merged: false
+  handoff_activated: false
+  post_merge_receipt_merged: false
+  transition_complete: false
+  current_product_issue: "LEA-8"
+  current_product_issue_status: "IN_PROGRESS"
+  ptm_v2_5_reconciliation_draft_complete: true
+  ptm_v2_5_post_review_document_sync: true
+  checkpoint_recorded: true
+  checkpoint_path: "docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md"
+  documental_ready_for_merge: true
+  ptm_v2_5_definitive: false
+  ptm_v2_6_started: false
