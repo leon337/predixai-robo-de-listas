@@ -7,18 +7,18 @@ observed_main_head: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-16"
-active_stage: "PTM_V2_7_RETEST_02_READY"
+active_stage: "PTM_V2_7_RETEST_02_BOUND_TO_HEAD"
 active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
 active_pull_request: 37
 working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
+observed_pr_head: "fce5e8e5c8db436ab8abd9796446dadd8f30dadc"
 pr_mode: "ready_for_independent_retest_02"
 active_checkpoint: null
 
 current_gate: "PTM_V2_7_INDEPENDENT_RETEST_02"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_INDEPENDENT_RETEST_02_LEA_17_ON_PR_37"
+next_action: "EXECUTE_INDEPENDENT_RETEST_02_LEA_17_ON_PR_37_HEAD_FCE5E8E"
 blockers:
   - "INDEPENDENT_CRITICAL_RETEST_02_PENDING"
 
@@ -36,7 +36,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T04:07:00Z"
+last_sync_at_utc: "2026-07-17T04:12:00Z"
 
 mission_lock:
   locked: true
@@ -45,12 +45,12 @@ mission_lock:
   owner: "LEA-16"
   session_id: "lea16-20260716"
   base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
+  observed_pr_head: "fce5e8e5c8db436ab8abd9796446dadd8f30dadc"
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-16-T01"
   started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T04:07:00Z"
+  heartbeat_at_utc: "2026-07-17T04:12:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -86,7 +86,8 @@ safety:
   independent_review_issue_status: "IN_PROGRESS"
   reviewed_pr_head: "510e6a1e19ac6b3dc4778797b3f003fcd9d20afb"
   retest_01_superseded: true
-  retest_02_candidate_head: "73cb73216eb5e1020360a5f4a7fe810fea0a5d9f"
+  retest_02_candidate_head: "fce5e8e5c8db436ab8abd9796446dadd8f30dadc"
+  retest_02_binding_semantics: "CONTENT_HEAD_PLUS_OPERATIONAL_BINDING_COMMIT"
   critical_blockers: 0
   major_findings: 2
   minor_findings: 2
