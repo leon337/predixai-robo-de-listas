@@ -11,7 +11,7 @@ ACTIVE_MISSION=LEA-16
 ACTIVE_MISSION_NAME=PTM_V2.7_Execucao_Controlada_e_Gates_de_Seguranca
 ACTIVE_REVIEW_ISSUE=LEA-17
 ACTIVE_PULL_REQUEST=37
-ACTIVE_PULL_REQUEST_MODE=CHANGES_REQUESTED
+ACTIVE_PULL_REQUEST_MODE=DRAFT_REMEDIATION_REQUIRED
 WORKING_BRANCH=leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca
 TRANSITION_ID=LEA-16-T01
 TRANSITION_STATUS=IN_PROGRESS
@@ -23,7 +23,7 @@ PTM_V2_7_CRITICAL_REVIEW=FAIL
 PTM_V2_7_DEFINITIVE=NO
 ```
 
-A PTM V2.7 foi construída no PR `#37` e revisada pela `LEA-17`. A revisão crítica independente resultou em `FAIL` com quatro achados maiores bloqueantes. O PR permanece aberto, sem autorização de merge, aguardando remediação documental e novo reteste.
+A PTM V2.7 foi construída no PR `#37` e revisada pela `LEA-17`. A revisão crítica independente resultou em `FAIL` com quatro achados maiores bloqueantes. O PR permanece em rascunho, sem autorização de merge, aguardando remediação documental e novo reteste.
 
 ## Fronteiras preservadas
 
@@ -132,7 +132,7 @@ RETEST_REQUIRED=YES
 CURRENT_GATE=PTM_V2_7_REMEDIATION
 GATE_STATUS=FAIL
 ACTIVE_PULL_REQUEST=37
-ACTIVE_PULL_REQUEST_MODE=CHANGES_REQUESTED
+ACTIVE_PULL_REQUEST_MODE=DRAFT_REMEDIATION_REQUIRED
 ACTIVE_REVIEW_ISSUE=LEA-17
 MISSION_LOCK=LOCKED_ADVISORY
 AUTOMATIC_ADVANCE=NO
