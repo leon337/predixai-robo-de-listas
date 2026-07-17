@@ -12,7 +12,7 @@ active_linear_issue: "LEA-8"
 active_review_issue: "LEA-13"
 active_pull_request: 33
 working_branch: "leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25"
-observed_pr_head: "0cff86bcf81528ac6c4ca7d1cee764f308555a3a"
+observed_pr_head: "0d19b9c3c60899a7a0b5d560bd16a004a60dc37e"
 pr_mode: "DRAFT"
 active_checkpoint: "docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md"
 
@@ -30,7 +30,7 @@ baseline_state_revision: 1
 bound_transition_id: "LEA-8-T01"
 
 github_sync_status: "PASS"
-linear_sync_status: "PENDING_CHECKPOINT_COMMENT"
+linear_sync_status: "PASS"
 last_sync_at_utc: "2026-07-17T01:30:19Z"
 
 mission_lock:
@@ -40,7 +40,7 @@ mission_lock:
   owner: null
   session_id: null
   base_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
-  observed_pr_head: "0cff86bcf81528ac6c4ca7d1cee764f308555a3a"
+  observed_pr_head: "0d19b9c3c60899a7a0b5d560bd16a004a60dc37e"
   state_revision_snapshot: 3
   transition_id_snapshot: "LEA-8-T01"
   started_at_utc: null
