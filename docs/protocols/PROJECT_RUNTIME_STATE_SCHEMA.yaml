@@ -1,4 +1,4 @@
-schema_version: "1.0.2"
+schema_version: "1.0.3"
 title: "PROJECT_RUNTIME_STATE contract"
 required:
   - schema_version
@@ -6,7 +6,7 @@ required:
   - project
   - repository
   - main_branch
-  - main_head
+  - observed_main_head
   - real_version
   - active_mission
   - active_stage
@@ -40,7 +40,7 @@ types:
   project: string
   repository: string
   main_branch: string
-  main_head: string
+  observed_main_head: [string, null]
   real_version: string
   active_mission: string
   active_stage: string
@@ -75,10 +75,20 @@ persisted_field_policy:
     - BOUND_IDENTITY
     - OBSERVED_INFORMATIONAL_SNAPSHOT
   prohibited_fields:
+    - main_head
     - expected_main_sha
     - expected_pr_head
     - expected_state_revision
     - expected_transition_id
+
+main_head_contract:
+  persisted_field: "observed_main_head"
+  persisted_semantics: "informational snapshot of the last confirmed main head"
+  pre_write_expected_field: "PRE_WRITE_EXPECTED_MAIN_SHA"
+  pre_write_expected_persistence: false
+  current_field: "CURRENT_MAIN_SHA"
+  current_source: "live GitHub query immediately before write"
+  self_referential_current_head_prohibited: true
 
 state_revision_contract:
   minimum: 0
