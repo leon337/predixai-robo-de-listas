@@ -27,6 +27,7 @@ Quais bloqueios estão abertos?
 O que falta até os ADRs?
 O que falta até o Documento Mestre?
 Qual é a próxima ação?
+Quando o snapshot foi atualizado?
 ```
 
 ## 3. Autoridade
@@ -54,7 +55,11 @@ REAL_VERSION
 ACTIVE_MISSION
 ACTIVE_REVIEW
 ACTIVE_PULL_REQUEST
+ACTIVE_PR_HEAD
 PR_STATUS
+STATE_REVISION
+SNAPSHOT_AT
+STATE_SOURCE
 CURRENT_PHASE
 CURRENT_GATE
 CRITICAL_FINDINGS
@@ -69,8 +74,6 @@ Informação histórica ou instrução de instalação não pode aparecer antes 
 
 ## 5. Mapa obrigatório da campanha
 
-O painel deve mostrar, no mínimo:
-
 ```text
 AUDITORIA MESTRA
 → PTM V2.5
@@ -84,7 +87,7 @@ AUDITORIA MESTRA
 → PRONTIDÃO PARA IMPLEMENTAÇÃO
 ```
 
-Cada etapa usa somente estados reais:
+Estados válidos:
 
 ```text
 ✅ concluída
@@ -101,11 +104,11 @@ Cada etapa usa somente estados reais:
 
 ## 6. Conteúdo obrigatório
 
-O README deve conter seções para:
+O README deve conter:
 
 1. estado atual;
 2. mapa da campanha;
-3. progresso visual;
+3. progresso auditável;
 4. entregas concluídas;
 5. bloqueios abertos;
 6. caminho até os ADRs;
@@ -115,23 +118,39 @@ O README deve conter seções para:
 10. próxima ação;
 11. legado executável, quando existir.
 
-## 7. Progresso
+## 7. Progresso auditável
 
-Percentuais e barras representam gates ou entregas reais. Não usar progresso arbitrário.
+Percentuais ou barras só podem existir quando uma fórmula determinística, fonte e pesos estiverem publicados. Na ausência de fórmula, usar contagem objetiva de gates ou entregas.
 
 ```text
 README_PROGRESS_SOURCE=REAL_GATES_AND_DELIVERABLES
+README_PROGRESS_FORMULA_REQUIRED_FOR_PERCENTAGE=YES
+README_PROGRESS_REPRODUCIBLE=YES
+README_PROGRESS_SOURCE_TRACEABLE=YES
 ARBITRARY_PROGRESS=PROHIBITED
 ```
 
+Forma preferencial:
+
+```text
+COMPLETED_GATES=<n>/<total>
+CURRENT_BOSS_GATE=<gate>_<status>
+```
+
+É proibido publicar um percentual inferido apenas por percepção visual ou estimativa informal.
+
 ## 8. Política de automação visível
 
-O painel deve mostrar a síntese da política vigente:
+O painel deve mostrar a síntese vigente:
 
 ```text
 MODE_A=CONTROLLED_OR_SIMULATED_ALLOWED
 MODE_B=SUPPORTED_BY_SEPARATE_LIVE_GATE
 MODE_B_DEFAULT=DISABLED
+MODE_B_COMMERCIAL_LEGAL_GATE_REQUIRED=YES
+MODE_B_PLATFORM_COMPLIANCE_GATE_REQUIRED=YES
+MODE_B_ACCOUNT_ELIGIBILITY_GATE_REQUIRED=YES
+MODE_B_EXPLICIT_SCOPE_GATE_REQUIRED=YES
 ```
 
 Não reproduzir proibições globais supersedidas contra análise de gráficos, captura, OCR, replay, ponteiro, teclado, preenchimento, clique ou autenticação controlada.
@@ -147,11 +166,12 @@ LEGACY_CONTENT_PRESENTED_AS_CURRENT_STATE=NO
 
 ## 10. Gatilhos de sincronização
 
-Revisar e atualizar o README quando ocorrer qualquer alteração em:
+Revisar e atualizar o README quando ocorrer alteração em:
 
 - versão real;
 - missão ou revisão ativa;
-- branch ou PR ativo;
+- branch, PR ou HEAD ativo;
+- `state_revision`;
 - fase ou gate;
 - progresso;
 - achados e bloqueios;
@@ -182,19 +202,20 @@ pausar
 
 O aplicativo GitHub exibe por padrão o README da `main`.
 
-Trabalho em PR ainda não integrado pode ser refletido no painel como estado transitório, desde que identificado:
+Trabalho não integrado pode ser refletido como estado transitório somente com metadados de frescor:
 
 ```text
 ACTIVE_WORK_SOURCE=PR_AND_LINEAR
 INTEGRATION_STATUS=UNMERGED
-SNAPSHOT_TIMESTAMP_REQUIRED=WHEN_AMBIGUOUS
+STATE_REVISION_REQUIRED=YES
+ACTIVE_PR_HEAD_REQUIRED=YES
+SNAPSHOT_AT_REQUIRED=YES
+STATE_SOURCE_REQUIRED=YES
 ```
 
 O README não deve declarar como integrado aquilo que existe apenas no PR.
 
 ## 13. Drift e falha
-
-Quando o README divergir das fontes vivas:
 
 ```text
 README_STATE_DRIFT=YES
@@ -211,6 +232,7 @@ Correção do painel não altera fatos históricos nem inventa estado novo.
 README_CURRENT_STATE_REVIEWED=YES
 README_UPDATE_REQUIRED=YES|NO
 README_SYNC_STATUS=PASS
+README_SNAPSHOT_METADATA=PASS
 ```
 
 Quando `README_UPDATE_REQUIRED=YES`, o checkpoint não pode ser declarado publicamente completo antes da atualização.
@@ -247,6 +269,12 @@ README_MISSION_SYNC=PASS
 README_PHASE_SYNC=PASS
 README_GATE_SYNC=PASS
 README_PROGRESS_SYNC=PASS
+README_PROGRESS_REPRODUCIBLE=PASS
+README_PROGRESS_SOURCE_TRACEABLE=PASS
+README_SNAPSHOT_METADATA=PASS
+README_STATE_REVISION_VISIBLE=PASS
+README_ACTIVE_PR_HEAD_VISIBLE=PASS
+README_SNAPSHOT_SOURCE_VISIBLE=PASS
 README_COMPLETED_WORK_VISIBLE=PASS
 README_BLOCKERS_SYNC=PASS
 README_PATH_TO_MASTER_DOCUMENT=PASS
@@ -258,10 +286,10 @@ MOBILE_FIRST_READABILITY=PASS
 
 ## 18. Regra final
 
-A primeira página do GitHub deve funcionar como mapa do projeto.
-
 ```text
 PAST=COMPLETED_WORK
 PRESENT=MISSION_PHASE_GATE_BLOCKERS
 FUTURE=ADRS_MASTER_DOCUMENT_ARCHITECTURE_IMPLEMENTATION
 ```
+
+A primeira página do GitHub deve funcionar como mapa do projeto e permitir detectar visualmente quando o snapshot ficou obsoleto.
