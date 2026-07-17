@@ -56,18 +56,58 @@ REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
 ```text
 G1_PRECONDITIONS_PASS=PASS
 G2_SOURCE_INVENTORY_COMPLETE=PASS
-G3_DOMAIN_BOUNDARIES_CONSOLIDATED=IN_PROGRESS
-G4_REQUIREMENTS_TRACEABILITY_COMPLETE=NOT_STARTED
+G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS_BUILDER
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=IN_PROGRESS
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=NOT_STARTED
 G6_CONSOLIDATED_DOCUMENT_READY=NOT_STARTED
 G7_INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
 ```
 
+## Resultado G3
+
+```text
+CANONICAL_DOMAIN_COUNT=16
+MANDATORY_HANDOFF_COUNT=12
+DOMAIN_AUTHORITY_DEFINED=PASS
+DOMAIN_INPUT_OUTPUT_DEFINED=PASS
+DOMAIN_STATES_DEFINED=PASS
+DOMAIN_BLOCKERS_DEFINED=PASS
+FORBIDDEN_BYPASS_PATHS_DEFINED=PASS
+V2_5_V2_6_V2_7_SCOPE_SEPARATION=PASS_BUILDER
+ANALYSIS_EXECUTION_SEPARATION=PASS_BUILDER
+CONTROLLED_UI_FINANCIAL_EFFECT_SEPARATION=PASS_BUILDER
+DOMAIN_BOUNDARY_BLOCKERS=0
+```
+
+O mapa fixa a cadeia:
+
+```text
+LISTAS E PERFIS
+→ OBSERVAÇÃO E FRAME
+→ VALIDAÇÃO E EXTRAÇÃO
+→ ANÁLISE A–H
+→ CANDIDATO E SINAL
+→ COMANDO E AUTORIZAÇÃO
+→ ALVO E ADAPTADOR
+→ DISPATCH, RECIBO E RECONCILIAÇÃO
+```
+
+Invariantes principais:
+
+- servidor é autoridade global;
+- Android e UI são clientes;
+- frame inválido não alimenta análise;
+- candidato não é sinal;
+- sinal não é comando;
+- coordenada não é autorização;
+- recibo isolado não é verdade global;
+- ação `CONTROLLED_UI` não autoriza efeito financeiro real.
+
 ## Entregas
 
 - ✅ `docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
-- 🟧 mapa unificado de domínios e fronteiras;
-- ⬜ matriz consolidada de requisitos e rastreabilidade;
+- ✅ `docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md`
+- 🟧 matriz consolidada de requisitos e rastreabilidade;
 - ⬜ registro de conflitos, supersessões e precedência;
 - ⬜ catálogo de decisões candidatas a ADR;
 - ⬜ documento de consolidação cruzada;
@@ -79,4 +119,4 @@ Não existe um relatório Markdown final separado para a revisão V2.5 com o nom
 
 ## Próxima ação
 
-Construir o mapa unificado de domínios, autoridades, entradas, saídas, estados e blockers.
+Construir a matriz consolidada de requisitos e rastreabilidade, preservando os IDs existentes das PTMs e vinculando cada requisito aos domínios e handoffs canônicos.
