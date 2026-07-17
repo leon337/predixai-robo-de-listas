@@ -7,25 +7,25 @@ observed_main_head: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-18"
-active_stage: "CROSS_CONSOLIDATION_INDEPENDENT_CRITICAL_REVIEW"
+active_stage: "CROSS_CONSOLIDATION_INDEPENDENT_RETEST"
 active_linear_issue: "LEA-18"
 active_review_issue: "LEA-19"
 active_pull_request: 40
 working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
-observed_pr_head: "8f73d7f804f182f69a7f4205c2e11b66500797f4"
-pr_mode: "independent_critical_review"
+observed_pr_head: "0c7c5904ed753765d4861341f7dd18d838d91ff9"
+pr_mode: "independent_critical_retest"
 active_checkpoint: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
 
 current_gate: "G7_INDEPENDENT_CRITICAL_REVIEW"
-gate_status: "AWAITING_INDEPENDENT_REVIEW"
-next_action: "EXECUTE_LEA_19_INDEPENDENT_CRITICAL_REVIEW_ON_PR_40"
+gate_status: "IN_PROGRESS"
+next_action: "EXECUTE_LEA_19_INDEPENDENT_RETEST_ON_PR_40"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
+  - "INDEPENDENT_CRITICAL_RETEST_REQUIRED"
 
 transition_id: "LEA-18-T01"
-transition_status: "IN_PROGRESS"
+transition_status: "READY_FOR_INDEPENDENT_REVIEW"
 from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
-to_state: "CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_REVIEW"
+to_state: "CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST"
 baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
 baseline_state_revision: 6
 bound_transition_id: "LEA-18-T01"
@@ -36,7 +36,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T11:51:00Z"
+last_sync_at_utc: "2026-07-17T12:22:16Z"
 
 mission_lock:
   locked: true
@@ -45,18 +45,19 @@ mission_lock:
   owner: "LEA-18"
   session_id: "lea18-cross-consolidation-20260717"
   base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
-  observed_pr_head: "8f73d7f804f182f69a7f4205c2e11b66500797f4"
+  observed_pr_head: "0c7c5904ed753765d4861341f7dd18d838d91ff9"
   state_revision_snapshot: 7
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T11:51:00Z"
+  heartbeat_at_utc: "2026-07-17T12:22:16Z"
 
 implementation_authorized: false
 code_change_authorized: false
 test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
+real_click_authorized: false
 controlled_ui_action_in_mission_authorized: false
 real_financial_effect_authorized: false
 merge_authorized: false
@@ -77,6 +78,7 @@ source_authority:
   consolidated_architecture_document: "docs/architecture/CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   builder_self_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
   independent_review_package: "docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
+  independent_review_result: "docs/history/reviews/REVISAO_CRITICA_CONSOLIDACAO_CRUZADA_LEA-19_20260717.md"
   controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   transversal_addendum: "docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md"
   task_status_and_dependencies: "Linear LEA-18 and LEA-19"
@@ -85,9 +87,13 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_INDEPENDENT_CRITICAL_REVIEW"
+  execution_status: "AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
-  independent_critical_review: "PENDING_LEA_19"
+  independent_critical_review: "RETEST_REQUESTED_LEA_19"
+  previous_independent_review_status: "FAIL"
+  remediated_major_findings: 3
+  open_major_findings: 0
+  retest_required: true
   critical_blockers: 0
   application_code_changed: false
   test_code_changed: false
