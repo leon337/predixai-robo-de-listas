@@ -1,108 +1,103 @@
 schema_version: "1.0.3"
-state_revision: 6
+state_revision: 7
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+observed_main_head: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "PTM_V2_7_COMPLETE"
-active_linear_issue: null
+active_mission: "LEA-18"
+active_stage: "CROSS_CONSOLIDATION_SOURCE_INVENTORY"
+active_linear_issue: "LEA-18"
 active_review_issue: null
 active_pull_request: null
-working_branch: null
+working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
 observed_pr_head: null
-pr_mode: null
-active_checkpoint: null
+pr_mode: "builder_documentation"
+active_checkpoint: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
 
-current_gate: "PTM_V2_7_COMPLETE"
-gate_status: "PASS"
-next_action: "START_CROSS_CONSOLIDATION_DOCUMENTATION"
+current_gate: "G2_SOURCE_INVENTORY_COMPLETE"
+gate_status: "IN_PROGRESS"
+next_action: "BUILD_CANONICAL_SOURCE_INVENTORY"
 blockers: []
 
-transition_id: "LEA-16-T02"
-transition_status: "COMPLETE"
-from_state: "PTM_V2_7_APPROVED_FOR_MERGE"
-to_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
-baseline_main_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
-baseline_state_revision: 5
-bound_transition_id: "LEA-16-T02"
-main_pr: 37
-main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
-post_merge_receipt_pr: 38
-post_merge_receipt_merge_commit: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+transition_id: "LEA-18-T01"
+transition_status: "IN_PROGRESS"
+from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
+to_state: "CROSS_CONSOLIDATION_IN_PROGRESS"
+baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+baseline_state_revision: 6
+bound_transition_id: "LEA-18-T01"
+main_pr: null
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS"
+github_sync_status: "IN_PROGRESS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T04:23:00Z"
+last_sync_at_utc: "2026-07-17T11:02:35Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "closed-lea16"
-  base_sha: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+  owner: "LEA-18"
+  session_id: "lea18-cross-consolidation-20260717"
+  base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
   observed_pr_head: null
-  state_revision_snapshot: 6
-  transition_id_snapshot: "LEA-16-T02"
-  started_at_utc: "2026-07-17T04:18:00Z"
+  state_revision_snapshot: 7
+  transition_id_snapshot: "LEA-18-T01"
+  started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T04:23:00Z"
+  heartbeat_at_utc: "2026-07-17T11:02:35Z"
 
 implementation_authorized: false
 code_change_authorized: false
+test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
-real_click_authorized: true
+controlled_ui_action_in_mission_authorized: false
+real_financial_effect_authorized: false
 merge_authorized: false
-ptm_v2_7_start_authorized: true
+cross_consolidation_authorized: true
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  mission_opening_record: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
   controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
-  final_review: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_PTM_V2.7_LEA-17_20260717.md"
-  post_merge_receipt: "docs/history/ptp/RECIBO_POS_MERGE_LEA-16_PTM_V2.7_20260717.md"
-  task_status_and_dependencies: "Linear"
-  unmerged_work: "none"
+  transversal_addendum: "docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md"
+  task_status_and_dependencies: "Linear LEA-18"
+  unmerged_work: "working branch without PR"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "COMPLETE"
-  automatic_advance: false
-  independent_critical_review: "PASS"
+  execution_status: "IN_PROGRESS"
+  automatic_advance: true
+  independent_critical_review: "PENDING"
   critical_blockers: 0
-  major_findings: 0
-  minor_findings: 4
-  structural_requirements: 32
-  functional_requirements: 52
-  total_requirement_ids: 84
-  controlled_automation_policy_active: true
-  controlled_ui_normative_contract_defined: true
-  controlled_capture_ocr_authorized: true
-  controlled_replay_authorized: true
-  controlled_pointer_keyboard_click_authorized: true
-  controlled_test_authentication_authorized: true
-  financial_effect_simulated_only: true
-  production_monetary_effect_requires_separate_authorization_all_targets: true
   application_code_changed: false
   test_code_changed: false
   workflows_changed: false
   sql_or_migrations_created: false
-  main_pr_merged: true
-  post_merge_receipt_recorded: true
-  post_merge_receipt_integrated: true
-  handoff_activated: true
-  transition_complete: true
-  last_completed_product_issue: "LEA-16"
-  last_completed_product_issue_status: "DONE"
-  current_product_issue: "NONE"
+  documentation_only: true
+  financial_effect_simulated_only: true
+  production_monetary_effect_requires_separate_authorization_all_targets: true
   ptm_v2_5_definitive: true
   ptm_v2_6_definitive: true
-  ptm_v2_7_critical_review_complete: true
   ptm_v2_7_definitive: true
   cross_consolidation_ready: true
+  cross_consolidation_started: true
+  g1_preconditions_pass: true
+  g2_source_inventory_complete: false
+  g3_domain_boundaries_consolidated: false
+  g4_requirements_traceability_complete: false
+  g5_conflicts_and_supersessions_resolved: false
+  g6_consolidated_document_ready: false
+  g7_independent_critical_review: false
+  last_completed_product_issue: "LEA-16"
+  last_completed_product_issue_status: "DONE"
+  current_product_issue: "LEA-18"
+  current_product_issue_status: "IN_PROGRESS"
