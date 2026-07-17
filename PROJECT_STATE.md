@@ -5,6 +5,7 @@
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
 - HEAD da integração principal observado: `c826f98973afe975ff6e6c1bc59eb80f69bebfd7`
+- Recibo pós-merge integrado: PR `#34`, commit `408c03d525e3ef1ed73fae079209987668ddc493`
 - Versão real do legado: `V2.4.3-R1`
 - Missão ativa: nenhuma
 - Última missão concluída: `LEA-8 — Reconciliar e revisar PTM V2.5`
@@ -23,9 +24,12 @@ LEA_13_STATUS=DONE
 PR_33_READY_FOR_REVIEW=PASS
 PR_33_MERGED=PASS
 PR_33_MERGE_COMMIT=c826f98973afe975ff6e6c1bc59eb80f69bebfd7
+POST_MERGE_RECEIPT_PR=34
+POST_MERGE_RECEIPT_MERGED=PASS
+POST_MERGE_RECEIPT_MERGE_COMMIT=408c03d525e3ef1ed73fae079209987668ddc493
 POST_MERGE_CONFIRMATION=PASS
 GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PENDING_RECEIPT_FINALIZATION
+LINEAR_SYNC_STATUS=PASS
 PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
 PTM_V2_6_STARTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
@@ -71,7 +75,7 @@ V2_7_SCOPE=CONTROLLED_EXECUTION_AFTER_OWN_GATES
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
 5. revisão crítica independente registrada na PR `#33`;
 6. `docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md`;
-7. recibo pós-merge da LEA-8.
+7. `docs/history/ptp/RECIBO_POS_MERGE_LEA-8_PTM_V2.5_20260716.md`.
 
 ## Escopo e segurança
 
