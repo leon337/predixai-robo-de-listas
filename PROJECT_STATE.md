@@ -9,7 +9,7 @@
 - Missão ativa: `LEA-8 — Reconciliar e revisar PTM V2.5`
 - Status Linear: `In Progress`
 - Branch de trabalho: `leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25`
-- PR ativo: ainda não aberto neste snapshot
+- PR ativo: `#33`, Draft
 - Transição: `LEA-8-T01`, em andamento
 - Etapa: draft reconciliado pronto para revisão crítica independente
 
@@ -28,7 +28,9 @@ HANDOFF_PARA_PTM_V2_5=PASS
 
 1. `docs/architecture/PTM_V2.5_RECONCILIADA_LEA-8_20260716.md`;
 2. `docs/architecture/PTM_V2.5_MATRIZ_RASTREABILIDADE_LEA-8_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`.
+3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
+4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
+5. PR Draft `#33`.
 
 ## Resultado da reconciliação
 
@@ -95,13 +97,14 @@ IMPLEMENTATION_AUTHORIZED=NO
 ```text
 CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
 GATE_STATUS=PENDING
+ACTIVE_PULL_REQUEST=33
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 AUTOMATIC_ADVANCE=NO
 ```
 
 ## Próxima ação
 
-Abrir PR documental em modo Draft, vincular à `LEA-8` e solicitar revisão crítica independente da PTM V2.5 reconciliada.
+Executar revisão crítica independente no PR `#33`. Corrigir bloqueadores, se houver. Não integrar enquanto `PTM_V2_5_CRITICAL_REVIEW=PENDING|FAIL`.
 
 ## Proibições vigentes
 
@@ -111,6 +114,7 @@ NÃO gerar SQL ou migrations.
 NÃO executar aplicação, cursor ou clique real.
 NÃO declarar os quatro requisitos adicionais como definitivos antes da revisão.
 NÃO declarar PTM_V2_5_CRITICAL_REVIEW=PASS pelo builder.
+NÃO fazer merge antes do Boss Gate independente.
 NÃO avançar para PTM V2.6 antes do Boss Gate independente.
 NÃO autorizar implementação por esta missão documental.
 ```
