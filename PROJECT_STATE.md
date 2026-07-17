@@ -11,7 +11,9 @@
 - Branch de trabalho: `leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25`
 - PR ativo: `#33`, Draft
 - Transição: `LEA-8-T01`, em andamento
-- Etapa: draft reconciliado pronto para revisão crítica independente
+- Etapa: draft reconciliado aguardando revisão crítica independente
+- Issue de revisão: `LEA-13 — PTM V2.5-RC`, `Todo`
+- Dependência: `LEA-8` bloqueada por `LEA-13`
 
 ## Pré-condições confirmadas
 
@@ -98,13 +100,17 @@ IMPLEMENTATION_AUTHORIZED=NO
 CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
 GATE_STATUS=PENDING
 ACTIVE_PULL_REQUEST=33
+ACTIVE_REVIEW_ISSUE=LEA-13
+LEA_8_BLOCKED_BY=LEA-13
+PR_33_REVIEWS=0
+PR_33_REVIEW_THREADS=0
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 AUTOMATIC_ADVANCE=NO
 ```
 
 ## Próxima ação
 
-Executar revisão crítica independente no PR `#33`. Corrigir bloqueadores, se houver. Não integrar enquanto `PTM_V2_5_CRITICAL_REVIEW=PENDING|FAIL`.
+Executar a `LEA-13 — PTM V2.5-RC` em chat independente e registrar a decisão no PR `#33`. Corrigir bloqueadores, se houver. Não integrar enquanto `PTM_V2_5_CRITICAL_REVIEW=PENDING|FAIL`.
 
 ## Proibições vigentes
 
