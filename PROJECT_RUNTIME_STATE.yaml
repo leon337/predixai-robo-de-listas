@@ -12,7 +12,7 @@ active_linear_issue: "LEA-18"
 active_review_issue: "LEA-19"
 active_pull_request: 40
 working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
-observed_pr_head: "ed4dce3105693b343868c302974abd18610f8ed5"
+observed_pr_head: "1091721fd98970a54792d80634bd1e985aca63b2"
 pr_mode: "independent_critical_retest_02"
 active_checkpoint: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
 
@@ -36,7 +36,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T12:57:42Z"
+last_sync_at_utc: "2026-07-17T13:04:30Z"
 
 mission_lock:
   locked: true
@@ -45,12 +45,12 @@ mission_lock:
   owner: "LEA-18"
   session_id: "lea18-cross-consolidation-20260717"
   base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
-  observed_pr_head: "ed4dce3105693b343868c302974abd18610f8ed5"
+  observed_pr_head: "1091721fd98970a54792d80634bd1e985aca63b2"
   state_revision_snapshot: 7
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T12:57:42Z"
+  heartbeat_at_utc: "2026-07-17T13:04:30Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -71,6 +71,10 @@ source_authority:
   individual_requirement_index: "docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   consolidated_architecture_document: "docs/architecture/CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   independent_retest_01_result: "docs/history/reviews/REVISAO_CRITICA_RETESTE_01_CONSOLIDACAO_CRUZADA_LEA-19_20260717.md"
+  retest_01_remediation_report: "docs/history/reviews/REMEDIACAO_RETESTE_01_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
+  pre_retest_02_consolidation_snapshot: "docs/history/snapshots/LEA-18_PRE_RETESTE_02_CONSOLIDACAO_CRUZADA_20260717.md"
+  pre_retest_02_trunk_snapshot: "docs/history/snapshots/LEA-18_PRE_RETESTE_02_TRONCO_MULTICHAT_20260717.md"
+  pre_retest_02_runtime_snapshot: "docs/history/snapshots/LEA-18_PRE_RETESTE_02_PROJECT_RUNTIME_STATE_20260717.yaml"
   task_status_and_dependencies: "Linear LEA-18 and LEA-19"
   unmerged_work: "PR #40"
   consolidated_code_and_docs: "GitHub main"
@@ -104,6 +108,7 @@ safety:
   duplicate_requirement_ids: 0
   orphan_requirement_ids: 0
   unresolved_normative_conflicts: 0
+  historical_content_loss: false
   ready_for_independent_critical_review: true
   ready_for_merge: false
   ready_for_adrs: false
