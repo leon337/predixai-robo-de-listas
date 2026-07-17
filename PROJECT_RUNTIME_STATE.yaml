@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 2
+state_revision: 3
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,30 +7,31 @@ observed_main_head: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-8 — Reconciliar e revisar PTM V2.5"
-active_stage: "PTM_V2_5_CRITICAL_REVIEW_PASS_POST_REVIEW_SYNC_COMPLETE"
+active_stage: "CHECKPOINT_LEA_8_POST_REVIEW_RECORDED"
 active_linear_issue: "LEA-8"
 active_review_issue: "LEA-13"
 active_pull_request: 33
 working_branch: "leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25"
-observed_pr_head: "b0b430c5ce1e1573a430ca3370b38619299bc1a3"
+observed_pr_head: "0cff86bcf81528ac6c4ca7d1cee764f308555a3a"
 pr_mode: "DRAFT"
+active_checkpoint: "docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md"
 
 current_gate: "EXPLICIT_MERGE_AUTHORIZATION_REQUIRED"
 gate_status: "PASS_REVIEW_MERGE_PENDING"
-next_action: "AWAIT_EXPLICIT_MERGE_AUTHORIZATION_FOR_PR_33"
+next_action: "START_NEW_CHAT_AND_RUN_INICIAR"
 blockers: []
 
 transition_id: "LEA-8-T01"
 transition_status: "IN_PROGRESS"
 from_state: "PTP-MEM.1_COMPLETE"
-to_state: "PTM_V2_5_REVIEWED_READY_FOR_EXPLICIT_MERGE_DECISION"
+to_state: "PTM_V2_5_REVIEWED_CHECKPOINTED_AWAITING_EXPLICIT_MERGE_DECISION"
 baseline_main_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 baseline_state_revision: 1
 bound_transition_id: "LEA-8-T01"
 
 github_sync_status: "PASS"
-linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T01:21:04Z"
+linear_sync_status: "PENDING_CHECKPOINT_COMMENT"
+last_sync_at_utc: "2026-07-17T01:30:19Z"
 
 mission_lock:
   locked: false
@@ -39,12 +40,12 @@ mission_lock:
   owner: null
   session_id: null
   base_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
-  observed_pr_head: "b0b430c5ce1e1573a430ca3370b38619299bc1a3"
-  state_revision_snapshot: 2
+  observed_pr_head: "0cff86bcf81528ac6c4ca7d1cee764f308555a3a"
+  state_revision_snapshot: 3
   transition_id_snapshot: "LEA-8-T01"
   started_at_utc: null
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T01:21:04Z"
+  heartbeat_at_utc: "2026-07-17T01:30:19Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -64,7 +65,7 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_EXPLICIT_MERGE_AUTHORIZATION"
+  execution_status: "CHECKPOINT_RECORDED_AWAITING_NEW_CHAT_RECONSTRUCTION_AND_EXPLICIT_MERGE_AUTHORIZATION"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
@@ -89,6 +90,8 @@ safety:
   current_product_issue_status: "IN_PROGRESS"
   ptm_v2_5_reconciliation_draft_complete: true
   ptm_v2_5_post_review_document_sync: true
+  checkpoint_recorded: true
+  checkpoint_path: "docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md"
   documental_ready_for_merge: true
   ptm_v2_5_definitive: false
   ptm_v2_6_started: false
