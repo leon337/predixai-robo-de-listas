@@ -4,80 +4,89 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD da integração principal observado: `c826f98973afe975ff6e6c1bc59eb80f69bebfd7`
-- Recibo pós-merge integrado: PR `#34`, commit `408c03d525e3ef1ed73fae079209987668ddc493`
+- HEAD consolidado observado: `1ca1be40b570b3ba458cf28efc73113da2031e8d`
 - Versão real do legado: `V2.4.3-R1`
-- Missão ativa: nenhuma
-- Última missão concluída: `LEA-8 — Reconciliar e revisar PTM V2.5`
-- Issue de revisão concluída: `LEA-13 — PTM V2.5-RC`
-- PR principal: `#33`, integrada
-- Próxima etapa disponível: `PTM V2.6`, não iniciada e dependente de autorização explícita
+- Missão ativa: `LEA-14 — PTM V2.6 — Observação, análise e sinais`
+- Fase: builder draft pronto para revisão crítica independente
+- Issue de revisão: `LEA-15 — PTM V2.6-RC`
+- PR ativo: `#35`, draft, não autorizado para merge
+- Branch de trabalho: `leonpcsn/lea-14-ptm-v26-observacao-analise-e-sinais`
+- Próxima etapa: executar a revisão crítica independente da PTM V2.6
 
-## Fechamento da LEA-8
-
-```text
-STATE_REVISION=4
-TRANSITION_ID=LEA-8-T01
-TRANSITION_STATUS=COMPLETE
-LEA_8_STATUS=DONE
-LEA_13_STATUS=DONE
-PR_33_READY_FOR_REVIEW=PASS
-PR_33_MERGED=PASS
-PR_33_MERGE_COMMIT=c826f98973afe975ff6e6c1bc59eb80f69bebfd7
-POST_MERGE_RECEIPT_PR=34
-POST_MERGE_RECEIPT_MERGED=PASS
-POST_MERGE_RECEIPT_MERGE_COMMIT=408c03d525e3ef1ed73fae079209987668ddc493
-POST_MERGE_CONFIRMATION=PASS
-GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PASS
-PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
-PTM_V2_6_STARTED=NO
-IMPLEMENTATION_AUTHORIZED=NO
-```
-
-## Resultado aprovado
+## Transição ativa
 
 ```text
-STRUCTURAL_BASELINE_REQUIREMENTS=29
-FUNCTIONAL_BASELINE_REQUIREMENTS=23
-TOTAL_BASELINE_REQUIREMENTS=52
-ADDITIONAL_GAP_REQUIREMENTS_ACCEPTED=4
-TOTAL_REQUIREMENT_IDS=56
-REQUIREMENT_ID_UNIQUENESS=PASS
-TRACEABILITY_COMPLETENESS=PASS
-LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-SCOPE_V2_5_V2_6_V2_7_SEPARATION=PASS
-PTM_V2_5_CRITICAL_REVIEW=PASS
-CRITICAL_BLOCKERS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=2
+STATE_REVISION=5
+TRANSITION_ID=LEA-14-T01
+TRANSITION_STATUS=IN_PROGRESS
+FROM_STATE=PTM_V2_5_DOCUMENTALLY_DEFINITIVE
+TO_STATE=PTM_V2_6_DOCUMENTAL_DRAFT_UNDER_REVIEW
+BASE_MAIN_SHA=1ca1be40b570b3ba458cf28efc73113da2031e8d
+ACTIVE_LINEAR_ISSUE=LEA-14
+ACTIVE_REVIEW_ISSUE=LEA-15
+ACTIVE_PULL_REQUEST=35
+PR_MODE=DRAFT
+MISSION_LOCK=LOCKED_ADVISORY
 ```
 
-## Decisões preservadas
+A PTM V2.5 permanece documentalmente definitiva. A PTM V2.6 foi autorizada por Leo e está em construção documental no PR `#35`; ainda não é definitiva.
+
+## Escopo da PTM V2.6
 
 ```text
-REAL_CLICK_EXCLUDED_FROM_V2_5=PASS
-POINTER_MOVEMENT_EXCLUDED_FROM_V2_5=PASS
-JSON_AS_FINAL_SOURCE_OF_TRUTH=SUBSTITUIR
-JSON_AS_MIGRATION_SOURCE=ADAPTAR
-PATCH_CHAIN=SUBSTITUIR
-PHYSICAL_SCHEMA=PROGRESSIVE_ONLY
-V2_5_VALIDATION_LEVELS=R0_R1_R2
-V2_6_SCOPE=OBSERVATION_ANALYSIS_SIGNALS
-V2_7_SCOPE=CONTROLLED_EXECUTION_AFTER_OWN_GATES
+V2_6_SCOPE=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
+STRUCTURAL_REQUIREMENTS=28
+FUNCTIONAL_REQUIREMENTS=50
+TOTAL_REQUIREMENT_IDS=78
 ```
 
-## Artefatos consolidados
+Domínios cobertos:
 
-1. `docs/architecture/PTM_V2.5_RECONCILIADA_LEA-8_20260716.md`;
-2. `docs/architecture/PTM_V2.5_MATRIZ_RASTREABILIDADE_LEA-8_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
-4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
-5. revisão crítica independente registrada na PR `#33`;
-6. `docs/history/ptp/CHECKPOINT_LEA-8_PTM_V2.5_POS_REVISAO_SEM_MERGE_20260716.md`;
-7. `docs/history/ptp/RECIBO_POS_MERGE_LEA-8_PTM_V2.5_20260716.md`.
+1. sessões e contextos de observação;
+2. referências e validação de frames;
+3. qualidade, estabilidade e confidence caps;
+4. extração visual, séries e mapeamentos estimados;
+5. motores A–H;
+6. Strategy-001 explicável;
+7. candidatos, arbitragem e sinais simulados;
+8. invalidação, expiração e supersessão;
+9. contratos progressivos, replay seguro e observabilidade;
+10. segurança visual e prova negativa de execução.
 
-## Escopo e segurança
+## Resultado do builder
+
+```text
+V2_6_SCOPE_BOUNDARY=PASS_BUILDER
+REQUIREMENT_ID_UNIQUENESS=PASS_BUILDER
+TRACEABILITY_COMPLETENESS=PASS_BUILDER
+OBSERVATION_QUALITY_MODEL=PASS_BUILDER
+ANALYSIS_ENGINE_CONTRACTS=PASS_BUILDER
+SIGNAL_LIFECYCLE=PASS_BUILDER
+EXECUTION_EXCLUSION=PASS_BUILDER
+BUILDER_SELF_REVIEW=PASS
+READY_FOR_INDEPENDENT_REVIEW=YES
+READY_FOR_MERGE=NO
+PTM_V2_6_DEFINITIVE=NO
+```
+
+A auto-revisão detectou e corrigiu uma contagem funcional inicial incorreta: `55` foi substituído pelo total factual `50`.
+
+## Artefatos ativos
+
+1. `docs/architecture/PTM_V2.6_OBSERVACAO_ANALISE_SINAIS_LEA-14_20260716.md`;
+2. `docs/architecture/PTM_V2.6_MATRIZ_RASTREABILIDADE_LEA-14_20260716.md`;
+3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.6_LEA-14_20260716.md`;
+4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
+5. PR `#35`;
+6. Linear `LEA-14` e `LEA-15`.
+
+## Fronteiras preservadas
+
+```text
+V2_5=FOUNDATION_AND_SAFE_MIGRATION_DESIGN
+V2_6=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
+V2_7=CONTROLLED_EXECUTION_AFTER_OWN_GATES
+```
 
 ```text
 APPLICATION_CODE_CHANGED=NO
@@ -87,32 +96,50 @@ APPLICATION_EXECUTED=NO
 RUNTIME_VALIDATION=NOT_EXECUTED
 SQL_GENERATED=NO
 MIGRATIONS_GENERATED=NO
-REAL_CLICK_EXECUTED=NO
+PHYSICAL_SCHEMA_DEFINED=NO
+POINTER_MOVEMENT_ALLOWED=NO
+REAL_CLICK_ALLOWED=NO
+REAL_ORDER_ALLOWED=NO
+PTM_V2_7_STARTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 ```
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=LEA_8_COMPLETE
-GATE_STATUS=PASS
-ACTIVE_PULL_REQUEST=NONE
-ACTIVE_REVIEW_ISSUE=NONE
-MISSION_LOCK=RELEASED
+CURRENT_GATE=PTM_V2_6_INDEPENDENT_CRITICAL_REVIEW
+GATE_STATUS=PENDING
+REVIEW_ISSUE=LEA-15
+PULL_REQUEST=35
+MERGE_AUTHORIZATION=BLOCKED
 AUTOMATIC_ADVANCE=NO
-PTM_V2_6_STARTED=NO
 ```
+
+A revisão independente deve confrontar os 78 requisitos, a matriz, a Auditoria Mestra, a PTM V2.5, as fronteiras de versão, qualidade, contratos A–H, Strategy-001, lifecycle de sinais, replay, segurança e exclusão de execução.
+
+## Condição de avanço
+
+```text
+PTM_V2_6_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+MAJOR_FINDINGS=0
+READY_FOR_MERGE=YES
+```
+
+Somente após o Boss Gate independente poderão ocorrer correções finais, mudança do PR para pronto e solicitação de autorização de merge. A PTM V2.7 não inicia automaticamente.
 
 ## Próxima ação
 
-Executar `@GitHub @Linear iniciar` em novo chat para confirmar o fechamento da LEA-8. A PTM V2.6 somente poderá ser iniciada mediante autorização explícita e missão própria.
+Executar `@GitHub @Linear revisar LEA-15 PR #35` em contexto independente.
 
 ## Proibições vigentes
 
 ```text
-NÃO alterar código da aplicação sem missão autorizada.
-NÃO gerar SQL ou migrations.
-NÃO executar aplicação, cursor ou clique real.
-NÃO iniciar automaticamente a PTM V2.6.
-NÃO declarar validação de runtime sem execução e evidência.
+NÃO alterar código da aplicação.
+NÃO gerar SQL, schema físico ou migrations.
+NÃO executar captura, OCR, aplicação ou replay contra fonte real.
+NÃO mover ponteiro, clicar, digitar ou operar saldo real.
+NÃO aprovar o Boss Gate pelo próprio builder.
+NÃO fazer merge sem revisão independente PASS e autorização.
+NÃO iniciar a PTM V2.7.
 ```
