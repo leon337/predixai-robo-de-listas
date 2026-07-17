@@ -11,9 +11,9 @@
 - Branch de trabalho: `leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25`
 - PR ativo: `#33`, Draft
 - Transição: `LEA-8-T01`, em andamento
-- Etapa: draft reconciliado aguardando revisão crítica independente
-- Issue de revisão: `LEA-13 — PTM V2.5-RC`, `Todo`
-- Dependência: `LEA-8` bloqueada por `LEA-13`
+- Etapa: revisão crítica independente aprovada e sincronização documental pós-revisão concluída
+- Issue de revisão: `LEA-13 — PTM V2.5-RC`, `Done`
+- Dependência: `LEA-8` não está mais bloqueada por `LEA-13`; merge depende de autorização explícita
 
 ## Pré-condições confirmadas
 
@@ -24,17 +24,21 @@ CRITICAL_BLOCKERS_DA_AUDITORIA=0
 PR_29_MERGED=PASS
 LEA_10=DONE
 HANDOFF_PARA_PTM_V2_5=PASS
+LEA_13=DONE
+PTM_V2_5_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS_DA_REVISAO_PTM_V2_5=0
 ```
 
-## Entregas do builder
+## Entregas da LEA-8
 
 1. `docs/architecture/PTM_V2.5_RECONCILIADA_LEA-8_20260716.md`;
 2. `docs/architecture/PTM_V2.5_MATRIZ_RASTREABILIDADE_LEA-8_20260716.md`;
 3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
-5. PR Draft `#33`.
+5. revisão crítica independente registrada na PR `#33`;
+6. sincronização documental pós-revisão registrada na branch da PR `#33`.
 
-## Resultado da reconciliação
+## Resultado da reconciliação e revisão crítica
 
 ```text
 STRUCTURAL_BASELINE_REQUIREMENTS=29
@@ -42,15 +46,23 @@ FUNCTIONAL_BASELINE_REQUIREMENTS=23
 TOTAL_BASELINE_REQUIREMENTS=52
 STRUCTURAL_REQUIREMENTS_RECONCILED=29
 FUNCTIONAL_REQUIREMENTS_RECONCILED=23
-ADDITIONAL_GAP_REQUIREMENTS_PROPOSED=4
+ADDITIONAL_GAP_REQUIREMENTS_ACCEPTED=4
 TOTAL_REQUIREMENT_IDS=56
 REQUIREMENT_ID_UNIQUENESS=PASS
-TRACEABILITY_COMPLETENESS=PASS_BUILDER
+TRACEABILITY_COMPLETENESS=PASS
+LEGACY_CLASSIFICATION_CONSISTENCY=PASS
+LEGACY_FUTURE_SEPARATION=PASS
+SCOPE_V2_5_V2_6_V2_7_SEPARATION=PASS
 BUILDER_SELF_REVIEW=PASS
 BUILDER_CRITICAL_BLOCKERS=0
-PTM_V2_5_RECONCILIATION_DRAFT_COMPLETE=PASS_BUILDER
-PTM_V2_5_READY_FOR_INDEPENDENT_CRITICAL_REVIEW=YES
-PTM_V2_5_CRITICAL_REVIEW=PENDING
+PTM_V2_5_RECONCILIATION_DRAFT_COMPLETE=PASS
+PTM_V2_5_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=2
+PTM_V2_5_POST_REVIEW_DOCUMENT_SYNC=PASS
+DOCUMENTAL_READY_FOR_MERGE=YES
+MERGE_AUTHORIZED=NO
 PTM_V2_5_DEFINITIVE=NO
 ```
 
@@ -69,16 +81,20 @@ V2_6_SCOPE=OBSERVATION_ANALYSIS_SIGNALS
 V2_7_SCOPE=CONTROLLED_EXECUTION_AFTER_OWN_GATES
 ```
 
-## Requisitos adicionais propostos
-
-Os itens abaixo derivam de lacunas factuais, mas dependem de aceitação na revisão independente:
+## Requisitos adicionais aceitos na revisão independente
 
 ```text
 V25-SEC-001=BLOCK_REAL_POINTER_AND_CLICK
 V25-QA-001=AGGREGATED_TEST_GATE
 V25-QA-002=SAFE_LIST_END_TO_END_WITH_NULL_ADAPTER
 V25-DOC-001=OPERATIONAL_DOCUMENTATION_CONSISTENCY
+ADDITIONAL_REQUIREMENTS_DECISION=ACCEPT
 ```
+
+## Avisos não bloqueantes preservados
+
+1. Contratos finais, entidades físicas, produtores, consumidores e IDs de testes permanecem pendentes para etapas posteriores autorizadas.
+2. Runtime, banco, API, SQL e migrations não foram executados nem declarados como concluídos.
 
 ## Verificação de escopo
 
@@ -92,25 +108,33 @@ SQL_GENERATED=NO
 MIGRATIONS_GENERATED=NO
 REAL_CLICK_EXECUTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
+PTM_V2_6_STARTED=NO
 ```
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
-GATE_STATUS=PENDING
+CURRENT_GATE=EXPLICIT_MERGE_AUTHORIZATION_REQUIRED
+GATE_STATUS=PASS_REVIEW_WITH_MERGE_PENDING
 ACTIVE_PULL_REQUEST=33
 ACTIVE_REVIEW_ISSUE=LEA-13
-LEA_8_BLOCKED_BY=LEA-13
-PR_33_REVIEWS=0
+LEA_13_STATUS=DONE
+LEA_8_BLOCKED_BY=NONE
+PR_33_MODE=DRAFT
+PR_33_REVIEWS=1
 PR_33_REVIEW_THREADS=0
+PTM_V2_5_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+DOCUMENTAL_READY_FOR_MERGE=YES
+MERGE_AUTHORIZED=NO
+MERGE_EXECUTED=NO
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 AUTOMATIC_ADVANCE=NO
 ```
 
 ## Próxima ação
 
-Executar a `LEA-13 — PTM V2.5-RC` em chat independente e registrar a decisão no PR `#33`. Corrigir bloqueadores, se houver. Não integrar enquanto `PTM_V2_5_CRITICAL_REVIEW=PENDING|FAIL`.
+Aguardar autorização explícita para retirar a PR `#33` do modo Draft e/ou realizar o merge documental. Não integrar automaticamente e não iniciar a PTM V2.6 nesta etapa.
 
 ## Proibições vigentes
 
@@ -118,9 +142,8 @@ Executar a `LEA-13 — PTM V2.5-RC` em chat independente e registrar a decisão 
 NÃO alterar código da aplicação.
 NÃO gerar SQL ou migrations.
 NÃO executar aplicação, cursor ou clique real.
-NÃO declarar os quatro requisitos adicionais como definitivos antes da revisão.
-NÃO declarar PTM_V2_5_CRITICAL_REVIEW=PASS pelo builder.
-NÃO fazer merge antes do Boss Gate independente.
-NÃO avançar para PTM V2.6 antes do Boss Gate independente.
+NÃO fazer merge sem autorização explícita.
+NÃO iniciar PTM V2.6 nesta etapa.
 NÃO autorizar implementação por esta missão documental.
+NÃO declarar PTM V2.5 definitiva antes da integração e confirmação pós-merge.
 ```
