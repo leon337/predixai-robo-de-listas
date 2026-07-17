@@ -1,0 +1,116 @@
+# AUTO-REVISÃO DO BUILDER — PAINEL README E POLÍTICA A+B
+
+## LEA-20 / PR #41
+
+## 1. Controle
+
+```text
+REVIEW_TYPE=BUILDER_SELF_REVIEW_PRELIMINARY
+BUILDER_ISSUE=LEA-20
+PULL_REQUEST=41
+REVIEWED_CONTENT_HEAD=409930eee8df84e4191d6c4e7c1d0c4dc4d74821
+BASE_MAIN_SHA=98bb1d33b9d8eca702fb4e52bdde02686021c766
+DOCUMENTATION_ONLY=YES
+CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+WORKFLOW_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+```
+
+## 2. Entregas verificadas
+
+```text
+README_OPERATIONAL_DASHBOARD=PASS_PRELIMINARY
+REAL_VERSION_VISIBLE=PASS
+CURRENT_STATE_VISIBLE=PASS
+CAMPAIGN_MAP_VISIBLE=PASS
+COMPLETED_WORK_VISIBLE=PASS
+CURRENT_BLOCKERS_VISIBLE=PASS
+PATH_TO_ADRS_VISIBLE=PASS
+PATH_TO_MASTER_DOCUMENT_VISIBLE=PASS
+LEGACY_CONTENT_PRESERVED=PASS
+LEGACY_CONTENT_SEPARATED=PASS
+MOBILE_FIRST_STRUCTURE=PASS_PRELIMINARY
+```
+
+## 3. Política A+B
+
+```text
+MODE_A_CONTROLLED_AUTOMATION=PASS
+CHART_ANALYSIS_ALLOWED=PASS
+CAPTURE_OCR_REPLAY_ALLOWED=PASS
+POINTER_KEYBOARD_FIELDS_CLICK_ALLOWED=PASS
+CONTROLLED_AUTHENTICATION_ALLOWED=PASS
+SIMULATED_ORDER_ALLOWED=PASS
+MODE_B_ARCHITECTURAL_SUPPORT=PASS
+MODE_B_DEFAULT_DISABLED=PASS
+MODE_B_SEPARATE_LIVE_GATE=PASS
+SILENT_ESCALATION_PROHIBITED=PASS
+SECRETS_IN_GIT_PROHIBITED=PASS
+UNAUTHORIZED_TARGET_ACTION_PROHIBITED=PASS
+```
+
+A política reconhece o Modo B, mas não arma sessão LIVE, não implementa adaptador financeiro e não autoriza elevação automática.
+
+## 4. Sincronização
+
+```text
+README_SYNC_PROTOCOL_CREATED=PASS
+PROJECT_INSTRUCTIONS_REFERENCES_PROTOCOL=PASS
+SKILLS_REQUIRE_README_SYNC=PASS
+CHECKPOINT_REQUIRES_README_REVIEW=PASS
+CLOSURE_REQUIRES_README_SYNC=PASS
+README_CANONICAL_AUTHORITY=NO
+README_REQUIRED_PUBLIC_PROJECTION=YES
+```
+
+## 5. Estado projetado
+
+O README exibe o estado transitório do trabalho ativo:
+
+```text
+REAL_VERSION=V2.4.3-R1
+ACTIVE_MISSION=LEA-18
+ACTIVE_REVIEW=LEA-19
+ACTIVE_PR=40
+PR_STATUS=DRAFT
+RETEST_03=FAIL
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=2
+MINOR_FINDINGS=1
+```
+
+Esse estado deriva do PR #40 e do Linear, embora ainda não esteja integrado na `main`. O README identifica o PR como trabalho ativo não integrado.
+
+Após qualquer avanço do PR #40, o novo protocolo exigirá atualização do painel.
+
+## 6. Validação automatizada
+
+```text
+CI_WORKFLOWS=9_OF_9_SUCCESS
+PR_MERGEABLE=YES
+```
+
+## 7. Condição de revisão independente
+
+O builder não emite o Boss Gate final.
+
+Verificações obrigatórias da revisão:
+
+1. precisão do estado exibido;
+2. legibilidade mobile-first;
+3. completude do mapa da campanha;
+4. coerência entre política, instruções e Skills;
+5. ausência de proibição genérica supersedida nos documentos vivos alterados;
+6. separação Modo A / Modo B;
+7. Modo B desligado por padrão;
+8. ausência de autorização automática de implementação ou sessão LIVE;
+9. clareza da separação entre estado atual e legado executável;
+10. funcionamento dos links internos do README.
+
+```text
+BUILDER_SELF_REVIEW=PASS_PRELIMINARY
+INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+MERGE_AUTHORIZED=NO
+```

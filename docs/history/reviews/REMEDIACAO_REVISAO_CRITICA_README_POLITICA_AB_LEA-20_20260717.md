@@ -1,0 +1,110 @@
+# REMEDIAÇÃO DA REVISÃO CRÍTICA — PAINEL README E POLÍTICA A+B
+
+## LEA-20 / LEA-21 / PR #41
+
+## 1. Controle
+
+```text
+REMEDIATION_TYPE=DOCUMENTATION_ONLY
+BUILDER_ISSUE=LEA-20
+REVIEW_ISSUE=LEA-21
+PULL_REQUEST=41
+FAILED_REVIEW_HEAD=bff7d70195829dd895f9c9c6f3e3181edbf5af57
+FAILED_REVIEW_REPORT_COMMIT=76054eb7f0212350eb8e783a4a0f778c19f7863c
+REMEDIATED_CONTENT_HEAD=dca511c5a90d84347c15a7f14360da25ece30bc1
+BASE_MAIN_SHA=98bb1d33b9d8eca702fb4e52bdde02686021c766
+REMEDIATION_DATE=2026-07-17
+```
+
+## 2. Resultado
+
+```text
+MAJOR_01_REMEDIATED=YES
+MAJOR_02_REMEDIATED=YES
+MINOR_01_REMEDIATED=YES
+CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+WORKFLOW_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+LIVE_MODE_ARMED=NO
+```
+
+## 3. MAJOR-01 — gate comercial, legal e de conformidade
+
+A política, as instruções, as Skills e o README agora exigem, para qualquer futura ativação do Modo B:
+
+```text
+COMMERCIAL_AND_LEGAL_DECISION_RECORDED=PASS
+PLATFORM_TERMS_AND_JURISDICTION_VALIDATED=PASS
+ACCOUNT_HOLDER_ELIGIBILITY_VALIDATED=PASS
+EXPLICIT_LIVE_SCOPE_AND_AUTHORIZATION=PASS
+```
+
+Os gates técnicos anteriores permanecem. A autorização A+B continua válida, o Modo A continua disponível e o Modo B continua desligado por padrão.
+
+```text
+MODE_B_DEFAULT_DISABLED=PASS
+AUTO_ENABLE_PROHIBITED=PASS
+GENERIC_POLICY_AUTHORIZATION_NOT_LIVE_AUTHORIZATION=PASS
+TECHNICAL_GATE_NOT_COMMERCIAL_LEGAL_APPROVAL=PASS
+```
+
+## 4. MAJOR-02 — progresso reproduzível
+
+O percentual `80%` foi removido. O painel usa a contagem objetiva dos gates da LEA-18:
+
+```text
+CONSOLIDACAO_GATES=6/7
+BOSS_GATE=G7_FAIL
+README_PROGRESS_SOURCE=LEA-18_GATES
+ARBITRARY_PROGRESS=NO
+```
+
+O protocolo agora proíbe percentuais sem fórmula publicada e rastreável.
+
+```text
+README_PROGRESS_FORMULA_REQUIRED_FOR_PERCENTAGE=YES
+README_PROGRESS_REPRODUCIBLE=YES
+README_PROGRESS_SOURCE_TRACEABLE=YES
+```
+
+## 5. MINOR-01 — metadados de frescor
+
+A primeira dobra do README agora exibe:
+
+```text
+STATE_REVISION=7
+ACTIVE_PR_HEAD=c1ff8b19da966d6bb4b48ad237ea52db77c60d06
+SNAPSHOT_AT=2026-07-17
+STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+PR_40+LINEAR
+```
+
+O protocolo torna esses campos obrigatórios para estado transitório não integrado.
+
+## 6. Arquivos remediados
+
+1. `README.md`;
+2. `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`;
+3. `PREDIXAI_ROBO_LISTAS_PROJECT_INSTRUCTIONS.md`;
+4. `docs/protocols/README_OPERATIONAL_DASHBOARD.md`;
+5. `docs/protocols/PREDIXAI_ROBO_LISTAS_SKILLS.md`.
+
+## 7. Validação automatizada
+
+```text
+CI_HEAD=dca511c5a90d84347c15a7f14360da25ece30bc1
+CI_WORKFLOWS=9_OF_9_SUCCESS
+PR_MERGEABLE=YES
+```
+
+## 8. Handoff para Reteste 01
+
+```text
+RETEST_SEQUENCE=01
+RETEST_REQUIRED=YES
+EXPECTED_RESULT=README_POLICY_CRITICAL_REVIEW_PASS
+MERGE_AUTHORIZED_BEFORE_RETEST=NO
+```
+
+O Reteste 01 deve verificar novamente todos os critérios da LEA-21 e somente liberar o merge se não houver achado crítico ou maior aberto.
