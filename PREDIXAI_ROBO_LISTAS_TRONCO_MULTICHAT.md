@@ -11,37 +11,45 @@ PTM_V2_5_DEFINITIVE=YES_DOCUMENTAL
 
 ACTIVE_MISSION=LEA-14
 ACTIVE_MISSION_NAME=PTM_V2.6_Observacao_Analise_e_Sinais
-ACTIVE_STAGE=BUILDER_DRAFT_READY_FOR_INDEPENDENT_REVIEW
+ACTIVE_STAGE=POST_REVIEW_SYNC_COMPLETE_AWAITING_MERGE_AUTHORIZATION
 ACTIVE_PULL_REQUEST=35
-ACTIVE_PULL_REQUEST_MODE=DRAFT
-ACTIVE_REVIEW_ISSUE=LEA-15
+ACTIVE_PULL_REQUEST_MODE=READY
+COMPLETED_REVIEW_ISSUE=LEA-15
 TRANSITION_ID=LEA-14-T01
 TRANSITION_STATUS=IN_PROGRESS
 STATE_REVISION=5
 ```
 
-A `main` conserva o fechamento definitivo da PTM V2.5. O trabalho transitório da PTM V2.6 está na branch `leonpcsn/lea-14-ptm-v26-observacao-analise-e-sinais` e no PR `#35`.
+A `main` conserva o fechamento definitivo da PTM V2.5. A PTM V2.6 está aprovada documentalmente no PR `#35`, mas ainda não foi integrada nem confirmada pós-merge.
 
-## PTM V2.6 — builder draft
+## PTM V2.6 — resultado da revisão
 
 ```text
 V2_6_SCOPE=OBSERVATION_ANALYSIS_AND_SIMULATED_SIGNALS
 STRUCTURAL_REQUIREMENTS=28
 FUNCTIONAL_REQUIREMENTS=50
 TOTAL_REQUIREMENT_IDS=78
-REQUIREMENT_ID_UNIQUENESS=PASS_BUILDER
-TRACEABILITY_COMPLETENESS=PASS_BUILDER
-OBSERVATION_QUALITY_MODEL=PASS_BUILDER
-ANALYSIS_ENGINE_CONTRACTS=PASS_BUILDER
-SIGNAL_LIFECYCLE=PASS_BUILDER
-EXECUTION_EXCLUSION=PASS_BUILDER
+REQUIREMENT_ID_UNIQUENESS=PASS
+TRACEABILITY_COMPLETENESS=PASS
+LEGACY_CLASSIFICATION_CONSISTENCY=PASS
+OBSERVATION_QUALITY_MODEL=PASS
+ANALYSIS_ENGINE_CONTRACTS=PASS
+SIGNAL_LIFECYCLE=PASS
+EXECUTION_EXCLUSION=PASS
 BUILDER_SELF_REVIEW=PASS
-INDEPENDENT_CRITICAL_REVIEW=PENDING
-READY_FOR_MERGE=NO
+INDEPENDENT_CRITICAL_REVIEW=PASS
+CRITICAL_BLOCKERS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=2
+DOCUMENTAL_READY_FOR_MERGE=YES
+MERGE_AUTHORIZATION=BLOCKED
 PTM_V2_6_DEFINITIVE=NO
 ```
 
-A V2.6 cobre observação visual fail-closed, referências e validação de frames, qualidade e caps, extração e séries estimadas, motores A–H, Strategy-001, arbitragem, sinais simulados, replay seguro, contratos progressivos e segurança visual.
+Achados menores não bloqueantes:
+
+1. ampliar a granularidade funcional da matriz antes do Documento Mestre ou da vinculação definitiva aos testes;
+2. uniformizar a prova negativa para ponteiro, teclado, clique e ordem.
 
 ## Fronteiras
 
@@ -53,10 +61,13 @@ V2_7=CONTROLLED_EXECUTION_AFTER_OWN_GATES
 
 ```text
 APPLICATION_CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+WORKFLOWS_CHANGED=NO
 APPLICATION_EXECUTED=NO
 SQL_GENERATED=NO
 MIGRATIONS_GENERATED=NO
 POINTER_MOVEMENT_ALLOWED=NO
+KEYBOARD_INPUT_ALLOWED=NO
 REAL_CLICK_ALLOWED=NO
 REAL_ORDER_ALLOWED=NO
 IMPLEMENTATION_AUTHORIZED=NO
@@ -70,9 +81,8 @@ PTM_V2_7_STARTED=NO
 ✅ PTP-MEM.1 — continuidade endurecida e concluída
 ✅ PTM V2.5 / LEA-8 — reconciliada, revisada e integrada
 ✅ PTM V2.5-RC / LEA-13 — revisão crítica independente PASS
-🟨 PTM V2.6 / LEA-14 — builder draft no PR #35
-🟧 PTM V2.6-RC / LEA-15 — revisão independente pendente
-⬜ correções pós-revisão, se necessárias
+🟨 PTM V2.6 / LEA-14 — PR #35 pronto, aguardando autorização de merge
+✅ PTM V2.6-RC / LEA-15 — revisão crítica independente PASS
 ⬜ merge e confirmação pós-merge da PTM V2.6
 ⬜ PTM V2.7
 ⬜ PTM V2.7-RC
@@ -90,16 +100,19 @@ PTM_V2_7_STARTED=NO
 2. `docs/architecture/PTM_V2.6_MATRIZ_RASTREABILIDADE_LEA-14_20260716.md`;
 3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.6_LEA-14_20260716.md`;
 4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.6_LEA-14_20260716.md`;
-5. PR `#35`;
-6. Linear `LEA-14` e `LEA-15`.
+5. `docs/history/reviews/REVISAO_CRITICA_PTM_V2.6_LEA-15_20260716.md`;
+6. revisão formal registrada no PR `#35`;
+7. Linear `LEA-14` e `LEA-15`.
 
 ## Gate atual
 
 ```text
-CURRENT_GATE=PTM_V2_6_INDEPENDENT_CRITICAL_REVIEW
+CURRENT_GATE=PTM_V2_6_MERGE_AUTHORIZATION
 GATE_STATUS=PENDING
-REVIEW_ISSUE=LEA-15
+REVIEW_ISSUE=LEA-15_DONE
 PULL_REQUEST=35
+PR_READY_FOR_REVIEW=YES
+GITHUB_MERGEABILITY=MERGEABLE
 MISSION_LOCK=LOCKED_ADVISORY
 MERGE_AUTHORIZATION=BLOCKED
 AUTOMATIC_ADVANCE=NO
@@ -107,10 +120,10 @@ AUTOMATIC_ADVANCE=NO
 
 ## Continuidade multichat
 
-Executar em contexto independente:
+A próxima decisão é humana e explícita:
 
 ```text
-@GitHub @Linear revisar LEA-15 PR #35
+@GitHub @Linear autorizar merge PR #35
 ```
 
-A revisão deve emitir `PASS` ou `FAIL`, severidades, evidências e `READY_FOR_MERGE`. Não iniciar PTM V2.7 e não implementar código.
+O merge deve validar novamente `main`, HEAD do PR, `STATE_REVISION=5` e `TRANSITION_ID=LEA-14-T01`. A PTM V2.7 não inicia automaticamente.
