@@ -12,8 +12,8 @@ active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
 active_pull_request: 37
 working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "abd099a1bf606ecedb770d8d8967ce5af58d390f"
-pr_mode: "draft"
+observed_pr_head: "82f8229f19dc6c2fe4e696f6ced349496432c2bb"
+pr_mode: "ready_for_review"
 active_checkpoint: null
 
 current_gate: "PTM_V2_7_INDEPENDENT_CRITICAL_REVIEW"
@@ -37,7 +37,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS_IN_PROGRESS"
 linear_sync_status: "PASS_IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T03:00:00Z"
+last_sync_at_utc: "2026-07-17T03:02:00Z"
 
 mission_lock:
   locked: true
@@ -46,12 +46,12 @@ mission_lock:
   owner: "LEA-16"
   session_id: "lea16-20260716"
   base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "abd099a1bf606ecedb770d8d8967ce5af58d390f"
+  observed_pr_head: "82f8229f19dc6c2fe4e696f6ced349496432c2bb"
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-16-T01"
   started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T03:00:00Z"
+  heartbeat_at_utc: "2026-07-17T03:02:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -90,7 +90,7 @@ safety:
   total_requirement_ids: 84
   documental_ready_for_independent_review: true
   documental_ready_for_merge: false
-  pr_ready_for_review: false
+  pr_ready_for_review: true
   merge_authorization_pending: true
   merge_authorization_recorded: false
   runtime_r8_r24: "NOT_EXECUTED"
