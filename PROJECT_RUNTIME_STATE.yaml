@@ -9,14 +9,16 @@ real_version: "V2.4.3-R1"
 active_mission: "LEA-8 — Reconciliar e revisar PTM V2.5"
 active_stage: "PTM_V2_5_READY_FOR_INDEPENDENT_CRITICAL_REVIEW"
 active_linear_issue: "LEA-8"
+active_review_issue: "LEA-13"
 active_pull_request: 33
 working_branch: "leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25"
-observed_pr_head: "21911c6101b72866f1c1d4db9a00dde2b37d3452"
+observed_pr_head: "dc70cef4362e7cbc9787b61db4f6ef9e9be73536"
 
 current_gate: "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
 gate_status: "PENDING"
 next_action: "EXECUTE_INDEPENDENT_CRITICAL_REVIEW_ON_PR_33"
-blockers: []
+blockers:
+  - "LEA-13 — PTM V2.5-RC"
 
 transition_id: "LEA-8-T01"
 transition_status: "IN_PROGRESS"
@@ -28,21 +30,21 @@ bound_transition_id: "LEA-8-T01"
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T00:35:00Z"
+last_sync_at_utc: "2026-07-17T00:51:41Z"
 
 mission_lock:
-  locked: true
+  locked: false
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "GPT builder chat"
-  session_id: "LEA-8-RECONCILIATION-01"
+  owner: null
+  session_id: null
   base_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
-  observed_pr_head: "21911c6101b72866f1c1d4db9a00dde2b37d3452"
+  observed_pr_head: "dc70cef4362e7cbc9787b61db4f6ef9e9be73536"
   state_revision_snapshot: 1
   transition_id_snapshot: "LEA-8-T01"
-  started_at_utc: "2026-07-17T00:26:40Z"
+  started_at_utc: null
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T00:35:00Z"
+  heartbeat_at_utc: "2026-07-17T00:51:41Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -67,6 +69,7 @@ safety:
   persisted_expected_fields_prohibited: true
   builder_self_review: "PASS"
   independent_critical_review: "PENDING"
+  independent_review_issue: "LEA-13"
   critical_blockers: 0
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
