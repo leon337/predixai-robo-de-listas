@@ -9,6 +9,8 @@ ACTIVE_MISSION=LEA-8
 ACTIVE_MISSION_NAME=Reconciliar_e_revisar_PTM_V2.5
 LINEAR_STATUS=IN_PROGRESS
 WORKING_BRANCH=leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25
+ACTIVE_PULL_REQUEST=33
+PULL_REQUEST_MODE=DRAFT
 TRANSITION_ID=LEA-8-T01
 TRANSITION_STATUS=IN_PROGRESS
 PTM_V2_5_RECONCILIATION_DRAFT=PASS_BUILDER
@@ -39,8 +41,9 @@ PATCH_CHAIN=SUBSTITUIR
 ```text
 ✅ PTP-GOV.6-RC — Auditoria Mestra aprovada
 ✅ PTP-MEM.1 — continuidade endurecida e concluída
-🟨 PTM V2.5 / LEA-8 — draft reconciliado pelo builder
+🟨 PTM V2.5 / LEA-8 — draft reconciliado no PR #33
 🟧 PTM V2.5-RC — revisão crítica independente pendente
+⬜ remediação do PR #33, se necessária
 ⬜ integração documental da PTM V2.5 após PASS
 ⬜ confirmação pós-merge e handoff
 ⬜ PTM V2.6
@@ -59,16 +62,20 @@ PATCH_CHAIN=SUBSTITUIR
 
 1. `docs/architecture/PTM_V2.5_RECONCILIADA_LEA-8_20260716.md`;
 2. `docs/architecture/PTM_V2.5_MATRIZ_RASTREABILIDADE_LEA-8_20260716.md`;
-3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`.
+3. `docs/history/reviews/AUTO_REVISAO_BUILDER_PTM_V2.5_LEA-8_20260716.md`;
+4. `docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_PTM_V2.5_LEA-8_20260716.md`;
+5. PR Draft `#33`.
 
 ## Gate atual
 
 ```text
 CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
+ACTIVE_PULL_REQUEST=33
 BUILDER_SELF_REVIEW=PASS
 BUILDER_CRITICAL_BLOCKERS=0
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
 PTM_V2_5_CRITICAL_REVIEW=PENDING
+READY_FOR_MERGE=NO
 AUTOMATIC_ADVANCE=NO
 ```
 
@@ -87,7 +94,7 @@ IMPLEMENTATION_AUTHORIZED=NO
 
 ## Condição para avanço
 
-A PTM V2.5 somente poderá ser integrada e preparar handoff quando uma revisão independente confirmar:
+O PR `#33` somente poderá sair de Draft e ser considerado para integração quando uma revisão independente confirmar:
 
 ```text
 PTM_V2_5_CRITICAL_REVIEW=PASS
@@ -95,8 +102,9 @@ CRITICAL_BLOCKERS=0
 REQUIREMENT_TRACEABILITY=PASS
 SCOPE_SEPARATION=PASS
 REAL_CLICK_EXCLUSION=PASS
+READY_FOR_MERGE=YES
 ```
 
 ## Próxima ação
 
-Abrir PR documental em modo Draft e executar revisão crítica independente. Nenhum merge ou avanço para V2.6 é automático.
+Executar revisão crítica independente no PR `#33`. Nenhum merge ou avanço para V2.6 é automático.
