@@ -3,46 +3,46 @@ state_revision: 1
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
+observed_main_head: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "IDLE_AFTER_PTP_MEM_1"
-active_linear_issue: null
+active_mission: "LEA-8 — Reconciliar e revisar PTM V2.5"
+active_stage: "PTM_V2_5_READY_FOR_INDEPENDENT_CRITICAL_REVIEW"
+active_linear_issue: "LEA-8"
 active_pull_request: null
-working_branch: null
-observed_pr_head: null
+working_branch: "leonpcsn/lea-8-reconciliar-e-revisar-ptm-v25"
+observed_pr_head: "4d61f7ce48a3173e44321b9e5ad7d657c0571658"
 
-current_gate: "PTP_MEM_1_COMPLETE"
-gate_status: "PASS"
-next_action: "START_LEA_8_ONLY_AFTER_EXPLICIT_AUTHORIZATION"
+current_gate: "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
+gate_status: "PENDING"
+next_action: "OPEN_DRAFT_PR_AND_REQUEST_INDEPENDENT_CRITICAL_REVIEW"
 blockers: []
 
-transition_id: "PTP-MEM.1-T02"
-transition_status: "COMPLETE"
-from_state: "PTP-MEM.1_MAIN_PR_MERGED"
-to_state: "PTP-MEM.1_COMPLETE"
-baseline_main_sha: "4d3f7e33d8927c80240b5f48e130158ee98c258f"
+transition_id: "LEA-8-T01"
+transition_status: "IN_PROGRESS"
+from_state: "PTP-MEM.1_COMPLETE"
+to_state: "PTM_V2_5_RECONCILED_READY_FOR_CRITICAL_REVIEW"
+baseline_main_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
 baseline_state_revision: 1
-bound_transition_id: "PTP-MEM.1-T02"
+bound_transition_id: "LEA-8-T01"
 
-github_sync_status: "PASS"
+github_sync_status: "IN_PROGRESS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-16T23:51:44Z"
+last_sync_at_utc: "2026-07-17T00:32:42Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: null
-  session_id: null
-  base_sha: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
-  observed_pr_head: null
+  owner: "GPT builder chat"
+  session_id: "LEA-8-RECONCILIATION-01"
+  base_sha: "7f7434ffd9f9424ab929ad6afe7d1fc76e1d67c9"
+  observed_pr_head: "4d61f7ce48a3173e44321b9e5ad7d657c0571658"
   state_revision_snapshot: 1
-  transition_id_snapshot: "PTP-MEM.1-T02"
-  started_at_utc: null
+  transition_id_snapshot: "LEA-8-T01"
+  started_at_utc: "2026-07-17T00:26:40Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-16T23:51:44Z"
+  heartbeat_at_utc: "2026-07-17T00:32:42Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -60,19 +60,24 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "COMPLETE"
+  execution_status: "AWAITING_INDEPENDENT_CRITICAL_REVIEW"
   automatic_advance: false
   stale_write_protection: "SESSION_PRE_WRITE_SNAPSHOT_PLUS_SHA_AND_STATE_REVISION"
   lock_enforcement: "ADVISORY"
   persisted_expected_fields_prohibited: true
-  independent_critical_review: "PASS"
+  builder_self_review: "PASS"
+  independent_critical_review: "PENDING"
   critical_blockers: 0
   runtime_r8_r24: "NOT_EXECUTED"
   schema_runtime_validation: "NOT_EXECUTED"
-  main_pr_merged: true
-  handoff_activated: true
-  post_merge_receipt_merged: true
-  post_merge_receipt_merge_commit: "6d37cee2e63fefb631b5b17b9d4717e54ebef93f"
-  transition_complete: true
-  next_product_issue: "LEA-8"
-  next_product_issue_status: "TODO_NOT_STARTED"
+  application_code_changed: false
+  sql_or_migrations_created: false
+  real_click_executed: false
+  main_pr_merged: false
+  handoff_activated: false
+  post_merge_receipt_merged: false
+  transition_complete: false
+  current_product_issue: "LEA-8"
+  current_product_issue_status: "IN_PROGRESS"
+  ptm_v2_5_reconciliation_draft_complete: true
+  ptm_v2_5_definitive: false
