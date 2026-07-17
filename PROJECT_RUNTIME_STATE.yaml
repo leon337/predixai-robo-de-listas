@@ -12,8 +12,8 @@ active_linear_issue: "LEA-16"
 active_review_issue: "LEA-17"
 active_pull_request: 37
 working_branch: "leonpcsn/lea-16-ptm-v27-execucao-controlada-e-gates-de-seguranca"
-observed_pr_head: "1d1a6de9875d76c1d6a52f1fa6d5200f5a7568eb"
-pr_mode: "changes_requested"
+observed_pr_head: "f4f682162018d1333abe145a852c623e10e27dfe"
+pr_mode: "draft_remediation_required"
 active_checkpoint: null
 
 current_gate: "PTM_V2_7_REMEDIATION"
@@ -39,7 +39,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-17T03:16:46Z"
+last_sync_at_utc: "2026-07-17T03:20:44Z"
 
 mission_lock:
   locked: true
@@ -48,12 +48,12 @@ mission_lock:
   owner: "LEA-16"
   session_id: "lea16-20260716"
   base_sha: "f3c84d97523c1c631392cefb69b6cb3e8f6a56e2"
-  observed_pr_head: "1d1a6de9875d76c1d6a52f1fa6d5200f5a7568eb"
+  observed_pr_head: "f4f682162018d1333abe145a852c623e10e27dfe"
   state_revision_snapshot: 5
   transition_id_snapshot: "LEA-16-T01"
   started_at_utc: "2026-07-17T02:50:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T03:16:46Z"
+  heartbeat_at_utc: "2026-07-17T03:20:44Z"
 
 implementation_authorized: false
 code_change_authorized: false
