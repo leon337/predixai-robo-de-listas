@@ -16,6 +16,8 @@ TRANSITION_STATUS=IN_PROGRESS
 PTM_V2_5_RECONCILIATION_DRAFT=PASS_BUILDER
 BUILDER_SELF_REVIEW=PASS
 INDEPENDENT_CRITICAL_REVIEW=PENDING
+ACTIVE_REVIEW_ISSUE=LEA-13
+LEA_8_BLOCKED_BY=LEA-13
 IMPLEMENTACAO=NAO_AUTORIZADA
 ```
 
@@ -42,7 +44,7 @@ PATCH_CHAIN=SUBSTITUIR
 ✅ PTP-GOV.6-RC — Auditoria Mestra aprovada
 ✅ PTP-MEM.1 — continuidade endurecida e concluída
 🟨 PTM V2.5 / LEA-8 — draft reconciliado no PR #33
-🟧 PTM V2.5-RC — revisão crítica independente pendente
+🟧 PTM V2.5-RC / LEA-13 — revisão crítica independente pendente
 ⬜ remediação do PR #33, se necessária
 ⬜ integração documental da PTM V2.5 após PASS
 ⬜ confirmação pós-merge e handoff
@@ -71,6 +73,10 @@ PATCH_CHAIN=SUBSTITUIR
 ```text
 CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
 ACTIVE_PULL_REQUEST=33
+ACTIVE_REVIEW_ISSUE=LEA-13
+LEA_8_BLOCKED_BY=LEA-13
+PR_33_REVIEWS=0
+PR_33_REVIEW_THREADS=0
 BUILDER_SELF_REVIEW=PASS
 BUILDER_CRITICAL_BLOCKERS=0
 FINAL_BOSS_GATE_BY_BUILDER_ALONE=PROHIBITED
@@ -107,4 +113,4 @@ READY_FOR_MERGE=YES
 
 ## Próxima ação
 
-Executar revisão crítica independente no PR `#33`. Nenhum merge ou avanço para V2.6 é automático.
+Executar a `LEA-13 — PTM V2.5-RC` em chat independente e registrar a decisão no PR `#33`. Nenhum merge ou avanço para V2.6 é automático.
