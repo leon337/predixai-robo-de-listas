@@ -42,8 +42,8 @@ Para conflitos sobre captura, OCR, replay, ponteiro, teclado, clique, autentica�
 
 ```text
 1. docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md
-2. docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md
-3. docs/architecture/PTM_V2.7_ADENDO_RETESTE_02_CONTROLLED_UI_CLOCK_LEA-17_20260717.md
+2. docs/architecture/PTM_V2.7_ADENDO_RETESTE_02_CONTROLLED_UI_CLOCK_LEA-17_20260717.md
+3. docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md
 4. docs/architecture/PTM_V2.7_ADENDO_REMEDIACAO_LEA-17_LEA-16_20260717.md
 5. documentos-pai e matrizes das PTMs para cláusulas não supersedidas
 6. revisões, checkpoints e recibos históricos como evidência do estado anterior
@@ -69,7 +69,7 @@ CONTROLLED_UI_ACTION_DOES_NOT_IMPLY_FINANCIAL_EFFECT=TRUE
 | GOV-05 | `docs/protocols/AUTORIDADE_POR_DOMINIO.md` | resolução de autoridade e drift | normativa | aplicar por domínio |
 | GOV-06 | `docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md` | capacidade e limites de automação | normativa ativa de maior precedência no tema | prevalece sobre proibições genéricas antigas |
 | GOV-07 | Linear `LEA-18` | tarefa, dependências, bloqueios e progresso | operacional | manter alinhado ao PR `#40` |
-| GOV-08 | GitHub PR `#40` | trabalho documental não integrado | autoridade do conteúdo em construção | manter Draft até revisão aplicável |
+| GOV-08 | GitHub PR `#40` | trabalho documental não integrado | autoridade do conteúdo em construção | usar Draft durante remediação e marcar pronto somente na solicitação formal de reteste |
 
 ## 6. Fundação factual herdada
 
