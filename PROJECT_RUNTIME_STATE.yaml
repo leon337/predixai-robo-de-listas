@@ -7,18 +7,18 @@ observed_main_head: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-18"
-active_stage: "CROSS_CONSOLIDATION_REQUIREMENTS_TRACEABILITY"
+active_stage: "CROSS_CONSOLIDATION_CONFLICTS_AND_SUPERSESSIONS"
 active_linear_issue: "LEA-18"
 active_review_issue: null
 active_pull_request: 40
 working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
-observed_pr_head: "a7b1cf47136860cf6b7a9ff15263a2f474dfd0e5"
+observed_pr_head: "3258e4ada18a271ebef89a40cfa85f2d447ad417"
 pr_mode: "builder_documentation"
 active_checkpoint: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
 
-current_gate: "G4_REQUIREMENTS_TRACEABILITY_COMPLETE"
+current_gate: "G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED"
 gate_status: "IN_PROGRESS"
-next_action: "BUILD_CONSOLIDATED_REQUIREMENTS_TRACEABILITY_MATRIX_IN_PR_40"
+next_action: "BUILD_CONFLICT_SUPERSESSION_PRECEDENCE_REGISTER_IN_PR_40"
 blockers: []
 
 transition_id: "LEA-18-T01"
@@ -35,7 +35,7 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T11:30:00Z"
+last_sync_at_utc: "2026-07-17T11:36:00Z"
 
 mission_lock:
   locked: true
@@ -44,12 +44,12 @@ mission_lock:
   owner: "LEA-18"
   session_id: "lea18-cross-consolidation-20260717"
   base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
-  observed_pr_head: "a7b1cf47136860cf6b7a9ff15263a2f474dfd0e5"
+  observed_pr_head: "3258e4ada18a271ebef89a40cfa85f2d447ad417"
   state_revision_snapshot: 7
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T11:30:00Z"
+  heartbeat_at_utc: "2026-07-17T11:36:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -68,6 +68,7 @@ source_authority:
   mission_opening_record: "docs/history/ptp/ABERTURA_LEA-18_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_20260717.md"
   canonical_source_inventory: "docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   unified_domain_boundary_map: "docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  consolidated_requirements_traceability: "docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   transversal_addendum: "docs/architecture/ADENDO_TRANSVERSAL_AUTOMACAO_CONTROLADA_PTM_V2.5_V2.7_20260717.md"
   task_status_and_dependencies: "Linear LEA-18"
@@ -95,14 +96,19 @@ safety:
   g1_preconditions_pass: true
   g2_source_inventory_complete: true
   g3_domain_boundaries_consolidated: true
-  g4_requirements_traceability_complete: false
+  g4_requirements_traceability_complete: true
   g5_conflicts_and_supersessions_resolved: false
   g6_consolidated_document_ready: false
   g7_independent_critical_review: false
   source_inventory_blockers: 0
   domain_boundary_blockers: 0
+  traceability_blockers: 0
   canonical_domain_count: 16
   mandatory_handoff_count: 12
+  cross_version_total_requirement_ids: 218
+  duplicate_requirement_ids: 0
+  orphan_requirement_ids: 0
+  new_requirement_ids_created: 0
   missing_v2_5_review_markdown_documented: true
   last_completed_product_issue: "LEA-16"
   last_completed_product_issue_status: "DONE"
