@@ -5,35 +5,39 @@
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
 - Versão real: `V2.4.3-R1`
-- Missão em fechamento: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
+- Missão ativa: nenhuma
+- Última missão concluída: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
 - Revisão concluída: `LEA-19 — Reteste 05 independente`, `PASS`
 - PR principal: `#40`, integrado
 - HEAD final do PR principal: `2efa65b708f88789b57d5ecf888b8eb318f797fc`
 - Merge principal: `3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9`
-- PR de recibo e sincronização: `#44`, em andamento
-- ADRs: não iniciados; aguardam confirmação pós-merge e nova autorização
+- PR do recibo: `#44`, integrado
+- Merge do recibo: `48244a45d9a6ae3376237ff1df1efc1a80d9bc26`
+- Confirmação final: PR `#45`
+- Próximo estágio: ADRs prontos para nova autorização, ainda não iniciados
 
-## Transição ativa
+## Transição concluída
 
 ```text
-STATE_REVISION=7
+STATE_REVISION=8
 TRANSITION_ID=LEA-18-T01
-TRANSITION_STATUS=MERGED_PENDING_POST_MERGE_CONFIRMATION
+TRANSITION_STATUS=COMPLETE
 FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-TO_STATE=CROSS_CONSOLIDATION_MERGED_PENDING_POST_MERGE_CONFIRMATION
-MISSION_LOCK=LEA-18
+TO_STATE=CROSS_CONSOLIDATION_COMPLETE
+MISSION_LOCK=NONE
 ```
 
-## Escopo
+## Escopo vigente
 
 ```text
-DOCUMENTATION_ONLY=YES
+DOCUMENTATION_ONLY=YES_FOR_CLOSED_MISSION
 CODE_CHANGE_AUTHORIZED=NO
 TEST_CODE_CHANGE_AUTHORIZED=NO
 SQL_AUTHORIZED=NO
 MIGRATION_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
-MERGE_AUTHORIZED=YES_AND_EXECUTED_FOR_PR_40
+MERGE_AUTHORIZED=NO_ACTIVE_MERGE
+ADRS_READY_FOR_NEW_AUTHORIZATION=YES
 ADRS_START_AUTHORIZED=NO
 MODE_A_POLICY=AUTHORIZED
 MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
@@ -42,9 +46,9 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-A política A+B permanece normativa. Esta etapa não executa a aplicação, não arma o Modo B e não produz efeito financeiro.
+A política A+B permanece normativa. O encerramento documental não executou a aplicação, não armou o Modo B e não produziu efeito financeiro.
 
-## Gates
+## Gates concluídos
 
 ```text
 G1_PRECONDITIONS_PASS=PASS
@@ -54,10 +58,10 @@ G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS
 G6_CONSOLIDATED_DOCUMENT_READY=PASS
 G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05_LEA_19
-POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
+POST_MERGE_CONFIRMATION=PASS
 ```
 
-## Resultado final da revisão
+## Resultado final
 
 ```text
 CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS
@@ -72,9 +76,10 @@ TRACEABILITY_COMPLETENESS=PASS
 CONFLICT_SUPERSESSION_RESOLUTION=PASS
 CONTROLLED_AUTOMATION_SECURITY=PASS
 REAL_FINANCIAL_EFFECT_SEPARATION=PASS
-GITHUB_LINEAR_ALIGNMENT=PASS_AT_REVIEW
-DOCUMENTAL_READY_FOR_MERGE=YES
+GITHUB_LINEAR_ALIGNMENT=PASS
+DOCUMENTAL_READY_FOR_MERGE=YES_AND_MERGED
 RETEST_REQUIRED=NO
+MISSION_CLOSURE=PASS
 ```
 
 ## Resultado documental integrado
@@ -89,15 +94,20 @@ CROSS_VERSION_TOTAL_COVERED=218/218
 INDIVIDUAL_REQUIREMENT_ROWS=218
 V2_7_STRUCTURAL_IDS_AUDITED=32/32
 V2_7_FUNCTIONAL_IDS_AUDITED=52/52
+PTM_V27_003_PRIMARY_DOMAIN=DOM-14
+PTM_V27_031_PRIMARY_DOMAIN=DOM-16
+PTM_V27_032_PRIMARY_DOMAIN=DOM-01
 DOM_13_PRIMARY_IDS=26
 DOM_14_PRIMARY_IDS=7
 DOM_15_PRIMARY_IDS=27
 DOM_16_PRIMARY_IDS=38
 DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
+NEW_REQUIREMENT_IDS=0
 UNRESOLVED_NORMATIVE_CONFLICTS=0
 POLICY_A_B_ALIGNMENT=PASS
-MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS_IN_BRANCH
+MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS
+README_SYNC=PASS
 DOCUMENTAL_BLOCKERS=0
 ```
 
@@ -112,8 +122,10 @@ DOCUMENTAL_BLOCKERS=0
 - ✅ todos os achados remediados;
 - ✅ Reteste 05 da LEA-19 aprovado;
 - ✅ PR #40 integrado na `main`;
-- 🟧 recibo e sincronização pós-merge no PR #44;
-- ⬜ ADRs após confirmação final e nova autorização.
+- ✅ recibo pós-merge publicado pelo PR #44;
+- ✅ GitHub, Linear, manifesto, estado humano, tronco e README sincronizados;
+- ✅ LEA-18 e LEA-19 concluídas;
+- ⏳ ADRs aguardando missão e autorização próprias.
 
 ## Evidências
 
@@ -122,4 +134,4 @@ DOCUMENTAL_BLOCKERS=0
 
 ## Próxima ação
 
-Integrar o PR `#44`, confirmar o merge do recibo e encerrar a transição `LEA-18-T01`. Não iniciar ADRs automaticamente.
+Aguardar autorização humana para abrir uma missão separada de ADRs. Não iniciar ADRs nem implementação automaticamente.
