@@ -8,29 +8,35 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_EM_FECHAMENTO=LEA-18 — Consolidação cruzada PTM V2.5/V2.6/V2.7
-REVISÃO_CONCLUÍDA=LEA-19 — RETESTE_05_PASS
+MISSÃO_ATIVA=NONE
+ÚLTIMA_MISSÃO=LEA-18 — Consolidação cruzada PTM V2.5/V2.6/V2.7
+ÚLTIMA_REVISÃO=LEA-19 — RETESTE_05_PASS
 PR_PRINCIPAL=40
 PR_PRINCIPAL_STATUS=MERGED
 PR_PRINCIPAL_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
 PR_RECIBO=44
-PR_RECIBO_STATUS=IN_PROGRESS
-FASE=POST_MERGE_CONFIRMATION
-GATE=POST_MERGE_CONFIRMATION
+PR_RECIBO_STATUS=MERGED
+PR_RECIBO_MERGE_COMMIT=48244a45d9a6ae3376237ff1df1efc1a80d9bc26
+CONFIRMAÇÃO_FINAL=PR_45
+FASE=CROSS_CONSOLIDATION_COMPLETE
+GATE=POST_MERGE_CONFIRMATION_PASS
 CONSOLIDACAO_GATES=7/7
 BOSS_GATE=PASS
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
 MINOR_FINDINGS=0
-STATE_REVISION=7
+STATE_REVISION=8
 SNAPSHOT_AT=2026-07-18
 STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+GITHUB+LINEAR
+LEA_18=Done
+LEA_19=Done
+ADRS_READY_FOR_NEW_AUTHORIZATION=YES
 ADRS_AUTORIZADOS=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-A consolidação cruzada foi aprovada no Reteste 05 e integrada na `main`. A etapa atual publica o recibo pós-merge, fecha a LEA-18 e prepara os ADRs para uma nova autorização humana.
+A consolidação cruzada foi aprovada, integrada e sincronizada. O próximo estágio são os ADRs, que dependem de missão e autorização próprias.
 
 ## 🗺️ Mapa da campanha
 
@@ -48,12 +54,14 @@ PTM V2.7 — Execução controlada e segurança
       ✅ revisada e aprovada
       ↓
 CONSOLIDAÇÃO CRUZADA V2.5 + V2.6 + V2.7
+      ✅ 7/7 gates
       ✅ Boss Gate PASS
       ✅ PR #40 integrado
-      🟧 recibo e sincronização pós-merge — PR #44
+      ✅ recibo PR #44 integrado
+      ✅ sincronização pós-merge
       ↓
 ADRs — decisões arquiteturais formais
-      ⏳ aguardando fechamento da LEA-18 e nova autorização
+      ⏳ prontos para nova autorização
       ↓
 DOCUMENTO MESTRE
       ⬜ não iniciado
@@ -81,14 +89,17 @@ G4_REQUIREMENTS_TRACEABILITY=PASS
 G5_CONFLICTS_AND_SUPERSESSIONS=PASS
 G6_CONSOLIDATED_DOCUMENT=PASS
 G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05
+POST_MERGE_CONFIRMATION=PASS
 
 CONSOLIDACAO_GATES=7/7
-POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
+CURRENT_BLOCKER=ADRS_START_AUTHORIZATION_REQUIRED
 ```
 
-## ✅ Entregas consolidadas
+---
 
-### Auditoria e memória do legado
+# 🧩 O que já foi construído
+
+## Auditoria e memória do legado
 
 ```text
 ✅ inventário factual do legado
@@ -100,7 +111,7 @@ POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ✅ DESCONTINUAR
 ```
 
-### PTM V2.5 — Fundação
+## PTM V2.5 — Fundação
 
 ```text
 ✅ configuração, identidade e segredos
@@ -109,7 +120,7 @@ POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ✅ perfis e calibração
 ```
 
-### PTM V2.6 — Observação e inteligência
+## PTM V2.6 — Observação, inteligência e sinais
 
 ```text
 ✅ sessão de observação
@@ -120,7 +131,7 @@ POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ✅ estratégia, candidatos e sinais
 ```
 
-### PTM V2.7 — Ação controlada
+## PTM V2.7 — Ação controlada
 
 ```text
 ✅ comando e autorização
@@ -131,7 +142,7 @@ POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ✅ auditoria, observabilidade e contenção
 ```
 
-### Consolidação cruzada
+## Consolidação cruzada
 
 ```text
 ✅ inventário canônico das fontes
@@ -146,6 +157,8 @@ POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ✅ política A+B reconciliada
 ✅ Reteste 05 — PASS
 ✅ PR #40 — MERGED
+✅ recibo PR #44 — MERGED
+✅ GitHub–Linear–README sincronizados
 ```
 
 ## 🔢 Métricas consolidadas
@@ -170,32 +183,62 @@ DOM_15=27
 DOM_16=38
 ```
 
-## 🧭 Estado dos gates e PRs
+## 🧭 Fechamento da fase
 
 ```text
+LEA_18=Done
 LEA_19=Done_PASS_RETEST_05
-LEA_18=In_Progress_POST_MERGE_SYNC
 PR_40=MERGED
 PR_40_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
 PR_43=CLOSED_SUPERSEDED
-PR_44=POST_MERGE_RECEIPT_IN_PROGRESS
+PR_44=MERGED
+PR_44_MERGE_COMMIT=48244a45d9a6ae3376237ff1df1efc1a80d9bc26
+PR_45=FINAL_CONFIRMATION
 OPEN_REVIEW_FINDINGS=0
+TRANSITION_STATUS=COMPLETE
+MISSION_CLOSURE=PASS
 ```
 
-## 🛣️ Próxima sequência
+---
+
+# 🛣️ Caminho até o Documento Mestre
+
+## Etapa A — ADRs
 
 ```text
-1. 🟧 publicar o recibo pós-merge no PR #44
-2. ⬜ confirmar o merge do recibo
-3. ⬜ sincronizar GitHub, Linear, manifesto, PROJECT_STATE, tronco e README
-4. ⬜ fechar formalmente a LEA-18
-5. ⬜ apresentar a missão de ADRs para nova autorização
-6. ⬜ construir e revisar os ADRs
-7. ⬜ produzir o Documento Mestre
-8. ⬜ congelar a Arquitetura V1.0 após revisão crítica
+ADRS_CANDIDATOS=18
+ADRS_CRIADOS=0
+ADRS_READY_FOR_NEW_AUTHORIZATION=YES
+ADRS_AUTORIZADOS=NO
 ```
 
-ADRs não são iniciados automaticamente. A próxima missão exige autorização própria.
+Decisões previstas incluem autoridade do servidor, sinal/comando/autorização, single-writer, adaptadores, idempotência, timeout, `UNKNOWN_EFFECT`, kill switch, recovery e gates do modo LIVE.
+
+## Etapa B — Documento Mestre
+
+O Documento Mestre reunirá visão do produto, limites, 16 domínios, 12 handoffs, contratos das PTMs, ADRs, modelo conceitual de dados, estados, segurança, observabilidade, testes, recovery e roadmap de implementação.
+
+```text
+CONSOLIDAÇÃO APROVADA E INTEGRADA
+        ↓
+ADRs AUTORIZADOS E APROVADOS
+        ↓
+DOCUMENTO MESTRE — DRAFT
+        ↓
+REVISÃO CRÍTICA INDEPENDENTE
+        ↓
+DOCUMENTO MESTRE — PASS
+        ↓
+ARQUITETURA V1.0 CONGELADA
+```
+
+## Próxima ação objetiva
+
+```text
+NEXT_ACTION=AWAIT_HUMAN_AUTHORIZATION_TO_START_ADR_MISSION
+```
+
+Nenhum ADR ou implementação será iniciado automaticamente.
 
 ---
 
@@ -221,7 +264,7 @@ ORDEM_SIMULADA=AUTORIZADA
 
 ## Modo B — possível efeito financeiro real
 
-O modo `LIVE` é suportado arquiteturalmente, permanece desligado por padrão e não é armado por esta fase documental.
+O modo `LIVE` é suportado arquiteturalmente, permanece desligado por padrão e não é armado pela fase documental concluída.
 
 ```text
 REAL_FINANCIAL_MODE=SUPPORTED_BY_SEPARATE_GATE
@@ -246,6 +289,12 @@ EXPLICIT_LIVE_SESSION_CONFIRMATION_REQUIRED=YES
 
 Sem todos os gates, o Modo B permanece desativado e qualquer efeito financeiro fica bloqueado.
 
+```text
+CLIQUE CONTROLADO
+├── modo simulado/controlado → autorizado
+└── modo financeiro LIVE     → condicionado a todos os gates LIVE
+```
+
 Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
 
 ---
@@ -253,7 +302,7 @@ Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`
 # 🔄 Sincronização obrigatória do painel
 
 ```text
-README_OPERATIONAL_DASHBOARD=PASS_IN_BRANCH
+README_OPERATIONAL_DASHBOARD=PASS
 README_VERSION_SYNC=PASS
 README_MISSION_SYNC=PASS
 README_PHASE_SYNC=PASS
@@ -263,7 +312,7 @@ README_BLOCKERS_SYNC=PASS
 README_NEXT_ACTION_SYNC=PASS
 README_SNAPSHOT_METADATA=PASS
 README_AUTOMATION_POLICY_SYNC=PASS
-README_SYNC=PENDING_PR_44_MERGE
+README_SYNC=PASS
 ```
 
 Fontes oficiais:
@@ -272,8 +321,9 @@ Fontes oficiais:
 - [`PROJECT_STATE.md`](PROJECT_STATE.md) — visão humana detalhada;
 - [`PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`](PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md) — roadmap e continuidade;
 - [PR #40](../../pull/40) — consolidação integrada;
-- [PR #44](../../pull/44) — recibo e sincronização pós-merge;
-- Linear `LEA-18` e `LEA-19` — missão e revisão.
+- [PR #44](../../pull/44) — recibo pós-merge integrado;
+- [PR #45](../../pull/45) — confirmação final;
+- Linear `LEA-18` e `LEA-19` — missão e revisão concluídas.
 
 Protocolo: [`docs/protocols/README_OPERATIONAL_DASHBOARD.md`](docs/protocols/README_OPERATIONAL_DASHBOARD.md).
 
