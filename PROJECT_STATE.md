@@ -7,70 +7,89 @@
 - HEAD observado da `main`: `c339ef253c2558300388901a67faf18734e2735f`
 - Versão real: `V2.4.3-R1`
 - Missão ativa: `LEA-26 — ADRs P0 da Arquitetura V1.0`
-- Revisão concluída: `LEA-27 — Reteste 02 PASS`
+- Revisão ativa: `LEA-27 — Reteste 03`
 - Branch de trabalho: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
-- PR ativo: `#46`, aberto e pronto para merge documental
-- Snapshot de conteúdo comum: `6f1ac10005e7231e9efe88da9c7a27931038a989`
-- HEAD revisado no Reteste 02: `c4bfc336027f8e8aa76c686f460431a531a8dc69`
-- Relatório do Reteste 02: commit `216c8d2b485aed72c77e05b401fe06ecaa1eb6c9`
-- Merge: não autorizado
+- PR ativo: `#46`, aberto e Draft
+- Último HEAD autorizado para merge: `decb578bd9b4c4bbe9d62947359eb59569d89020`
+- Merge desse HEAD: não executado
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
+
+## Motivo do bloqueio pré-merge
+
+A reconfirmação imediatamente anterior ao merge detectou duas threads novas:
+
+```text
+FINDING_01=PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_INCOMPATIBILITY
+FINDING_02=STALE_OPERATIONAL_RETEST_REFERENCES_IN_ADR_SOURCES
+OPEN_REVIEW_THREADS_AT_BLOCK=2
+MERGE_EXECUTED=NO
+```
+
+A autorização anterior estava vinculada ao HEAD `decb578...`. Qualquer correção gera novo HEAD e exige novo `PASS` independente e nova autorização humana de merge.
 
 ## Transição ativa
 
 ```text
 STATE_REVISION=11
 TRANSITION_ID=LEA-26-T01
-TRANSITION_STATUS=REVIEW_PASS_AWAITING_MERGE
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
 FROM_STATE=CROSS_CONSOLIDATION_COMPLETE
-TO_STATE=ADR_P0_REVIEWED_PASS_PROPOSED_FOR_MERGE
+TO_STATE=ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW
 MISSION_LOCK=LEA-26
-CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW
-GATE_STATUS=PASS_RETEST_02
+CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_03
+GATE_STATUS=IN_PROGRESS
+RETEST_03_AUTHORIZED=YES
 ```
 
-## Contrato do HEAD
+## Contrato de estado
 
 ```text
-SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
-SNAPSHOT_CONTENT_HEAD_SEMANTICS=COMMON_PERSISTED_SNAPSHOT_BEFORE_RETEST_02_SYNC
+SCHEMA_VERSION=1.0.3
+OBSERVED_PR_HEAD=decb578bd9b4c4bbe9d62947359eb59569d89020
+OBSERVED_PR_HEAD_SEMANTICS=INFORMATIONAL_SNAPSHOT
 LIVE_PR_HEAD_SOURCE=GITHUB_API
-RETEST_02_REVIEWED_HEAD=c4bfc336027f8e8aa76c686f460431a531a8dc69
+SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
 SELF_REFERENTIAL_FINAL_COMMIT_SHA_IN_FILE=PROHIBITED
 ```
 
-## Resultado oficial
+O manifesto volta a usar os campos obrigatórios `observed_pr_head` no nível superior e no `mission_lock`. `transition_status`, status de sincronização, gate e execução usam apenas valores permitidos pelo schema 1.0.3.
+
+## Estado das revisões
 
 ```text
-ADR_P0_CRITICAL_REVIEW=PASS
-RETEST_SEQUENCE=02
+INITIAL_REVIEW=FAIL
+RETEST_01=FAIL
+RETEST_02=PASS_THEN_REVOKED_BY_NEW_PRE_MERGE_FINDINGS
+RETEST_03=IN_PROGRESS
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
-MINOR_FINDINGS=0
-OPEN_FINDINGS=0
-DOCUMENTAL_READY_FOR_MERGE=YES
-DOCUMENT_MASTER_READY_TO_START=NO
-RETEST_REQUIRED=NO
+MINOR_FINDINGS_OPEN=2
+DOCUMENTAL_READY_FOR_MERGE=NO
+RETEST_REQUIRED=YES
 ```
 
-## Validações
+As quatro remediações maiores continuam tecnicamente aprovadas:
 
 ```text
 MAJOR_01_TRACEABILITY_218=PASS
 MAJOR_02_DEPENDENCY_DAG=PASS
 MAJOR_03_FOUR_FSMS=PASS
 MAJOR_04_IDEMPOTENCY_COLLISION=PASS
-MINOR_01_COMMON_SNAPSHOT=PASS
-OPEN_REVIEW_THREADS=0
-CI_WORKFLOWS=9_OF_9_SUCCESS
-REQUIREMENT_ROWS=218
-UNIQUE_REQUIREMENT_IDS=218
-DUPLICATE_REQUIREMENT_IDS=0
-ORPHAN_REQUIREMENT_IDS=0
-UNJUSTIFIED_NO_P0_MAPPING=0
-DEPENDS_ON_CYCLE_COUNT=0
 ```
+
+## Fontes operacionais atuais
+
+```text
+OPERATIONAL_STATE=PROJECT_RUNTIME_STATE.yaml
+RUNTIME_SCHEMA=docs/protocols/PROJECT_RUNTIME_STATE_SCHEMA.yaml
+HUMAN_STATE=PROJECT_STATE.md
+CHAT_SEQUENCE=PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md
+PUBLIC_PROJECTION=README.md
+RETEST_03_REMEDIATION=docs/history/reviews/REMEDIACAO_SCHEMA_E_FONTES_ADRS_P0_LEA-26_20260718.md
+```
+
+Plano, índice, matriz e apêndice são evidências arquiteturais de conteúdo. O gate operacional vigente é definido pelo manifesto, estado humano, tronco, README, PR vivo e Linear.
 
 ## Escopo
 
@@ -90,40 +109,6 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## Gates da missão
-
-```text
-A1_PRECONDITIONS=PASS
-A2_TEMPLATE_AND_INDEX=PASS
-A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS
-A5_CROSS_ADR_CONSISTENCY=PASS
-A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_02
-ADR_GATES=7/7
-```
-
-## Entregas
-
-- ✅ ADR-0001 a ADR-0012;
-- ✅ rastreabilidade `218/218`;
-- ✅ grafo acíclico;
-- ✅ quatro FSMs;
-- ✅ idempotência divergente bloqueada;
-- ✅ snapshot comum sincronizado;
-- ✅ thread respondida e resolvida;
-- ✅ CI `9/9`;
-- ✅ Reteste 02 aprovado;
-- ⏳ nova autorização humana de merge;
-- ⬜ recibo pós-merge;
-- ⬜ autorização do Documento Mestre.
-
-## Evidências
-
-- `docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md`;
-- `docs/history/reviews/REMEDIACAO_MINOR_01_SNAPSHOT_ADRS_P0_LEA-26_20260718.md`;
-- `docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P0_LEA-27_20260718.md`.
-
 ## Próxima ação
 
-Aguardar nova autorização humana explícita para integrar o PR #46. Não iniciar o Documento Mestre nem implementação antes do merge e do recibo pós-merge.
+Concluir a correção das fontes, responder e resolver as duas threads, validar CI e executar `LEA-27 — Reteste 03`. Não integrar o PR #46 sem novo `PASS` e nova autorização humana explícita para o novo HEAD.
