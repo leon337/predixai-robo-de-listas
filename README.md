@@ -8,24 +8,27 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=LEA-30 — confirmação pós-merge dos ADRs P1/P2
+MISSÃO_ATIVA=NONE
+ÚLTIMA_MISSÃO_CONCLUÍDA=LEA-30 — ADRs P1/P2 da Arquitetura V1.0
 ÚLTIMA_REVISÃO=LEA-31 — RETESTE_02_PASS
 MAIN_PULL_REQUEST=49
 MAIN_PR_MERGE_COMMIT=915ad721a9fd264fe186fae0c810dfb0af957b9c
 POST_MERGE_RECEIPT_PR=50
-FASE=ADR_P1_P2_PUBLISHED_PENDING_CONFIRMATION
-GATE=POST_MERGE_CONFIRMATION_IN_PROGRESS
+POST_MERGE_RECEIPT_MERGE_COMMIT=e2040a8a6c6b86faf4b644c3beeb4510f6100535
+FINAL_CONFIRMATION_PR=51
+FASE=ADR_P1_P2_PUBLISHED_AWAITING_NEXT_MISSION_AUTHORIZATION
+GATE=POST_MERGE_CONFIRMATION_PASS
 STATE_REVISION=15
 TRANSITION_ID=LEA-30-T01
-TRANSITION_STATUS=MERGED_PENDING_POST_MERGE_CONFIRMATION
-EXECUTION_STATUS=AWAITING_POST_MERGE_CONFIRMATION
+TRANSITION_STATUS=COMPLETE
+EXECUTION_STATUS=COMPLETE
 DOCUMENTO_MESTRE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 ```
 
-## ✅ ADRs P1/P2 integrados
+## ✅ ADRs P1/P2 publicados
 
 ```text
 ADR_COUNT=6/6
@@ -41,17 +44,18 @@ P1_P2_DEFERRED_MISASSIGNED=0
 INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_02
 MISSION_GATES=7/7
 MAIN_PR_MERGED=YES
-POST_MERGE_CONFIRMATION=IN_PROGRESS
+POST_MERGE_RECEIPT_MERGED=YES
+MISSION_CLOSURE=PASS
 ```
 
 | ADR | Prioridade | Decisão | Estado |
 |---|---|---|---|
-| [ADR-0013](docs/architecture/adrs/ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | integrado, aguardando confirmação |
-| [ADR-0014](docs/architecture/adrs/ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | integrado, aguardando confirmação |
-| [ADR-0015](docs/architecture/adrs/ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | integrado, aguardando confirmação |
-| [ADR-0016](docs/architecture/adrs/ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | integrado, aguardando confirmação |
-| [ADR-0017](docs/architecture/adrs/ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | integrado, aguardando confirmação |
-| [ADR-0018](docs/architecture/adrs/ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | integrado, aguardando confirmação |
+| [ADR-0013](docs/architecture/adrs/ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | publicado |
+| [ADR-0014](docs/architecture/adrs/ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | publicado |
+| [ADR-0015](docs/architecture/adrs/ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | publicado |
+| [ADR-0016](docs/architecture/adrs/ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | publicado |
+| [ADR-0017](docs/architecture/adrs/ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | publicado |
+| [ADR-0018](docs/architecture/adrs/ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | publicado |
 
 ## 🗺️ Mapa da campanha
 
@@ -69,12 +73,10 @@ ADRs P0 — LEA-26 / LEA-27
       ✅ publicados e revisados
       ↓
 ADRs P1/P2 — LEA-30 / LEA-31
-      ✅ Reteste 02 PASS
-      ✅ PR #49 integrado
-      ⏳ PR #50 — recibo pós-merge
+      ✅ publicados e confirmados
       ↓
 DOCUMENTO MESTRE
-      ⛔ não autorizado
+      ⛔ aguardando autorização explícita
       ↓
 ARQUITETURA V1.0 CONGELADA
       ⬜ não iniciada
@@ -84,6 +86,7 @@ ARQUITETURA V1.0 CONGELADA
 
 - [Reteste 02 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md)
 - [Recibo pós-merge do PR #49](docs/history/receipts/RECIBO_POS_MERGE_LEA-30_LEA-31_PR-49_20260718.md)
+- [Confirmação final](docs/history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md)
 
 ## Limites ativos
 
@@ -102,6 +105,6 @@ LIVE_MODE_ARMED=NO
 ## Próxima ação
 
 ```text
-NEXT_ACTION=VALIDATE_AND_MERGE_POST_MERGE_RECEIPT_PR_50
-FINAL_CONFIRMATION_REQUIRED=YES
+NEXT_ACTION=AWAIT_EXPLICIT_DOCUMENT_MASTER_AUTHORIZATION
+AUTOMATIC_ADVANCE=NO
 ```
