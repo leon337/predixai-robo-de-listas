@@ -4,25 +4,23 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- Baseline da missão: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
-- HEAD observado da `main`: `236bc5df7f675ca5cf56d80c5812bd911d224651`
-- Versão do legado: `V2.4.3-R1`
-- Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
+- Versão real: `V2.4.3-R1`
+- Missão em fechamento: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
 - Revisão concluída: `LEA-19 — Reteste 05 independente`, `PASS`
-- Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
-- PR ativo: `#40`, aberto, pronto para merge documental após autorização humana
-- Conteúdo aprovado no Reteste 05: `201ac816eecfa4fd7e4b94ebd184285bc31b83e2`
-- Merge: não autorizado
-- ADRs: não autorizados antes do merge e sincronização pós-merge
+- PR principal: `#40`, integrado
+- HEAD final do PR principal: `2efa65b708f88789b57d5ecf888b8eb318f797fc`
+- Merge principal: `3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9`
+- PR de recibo e sincronização: `#44`, em andamento
+- ADRs: não iniciados; aguardam confirmação pós-merge e nova autorização
 
 ## Transição ativa
 
 ```text
 STATE_REVISION=7
 TRANSITION_ID=LEA-18-T01
-TRANSITION_STATUS=APPROVED_FOR_MERGE
+TRANSITION_STATUS=MERGED_PENDING_POST_MERGE_CONFIRMATION
 FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-TO_STATE=CROSS_CONSOLIDATION_APPROVED_FOR_MERGE
+TO_STATE=CROSS_CONSOLIDATION_MERGED_PENDING_POST_MERGE_CONFIRMATION
 MISSION_LOCK=LEA-18
 ```
 
@@ -35,7 +33,7 @@ TEST_CODE_CHANGE_AUTHORIZED=NO
 SQL_AUTHORIZED=NO
 MIGRATION_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
-MERGE_AUTHORIZED=NO
+MERGE_AUTHORIZED=YES_AND_EXECUTED_FOR_PR_40
 ADRS_START_AUTHORIZED=NO
 MODE_A_POLICY=AUTHORIZED
 MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
@@ -44,7 +42,7 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-A política A+B permanece normativa. Esta missão documental não executa a aplicação, não arma o Modo B e não produz efeito financeiro.
+A política A+B permanece normativa. Esta etapa não executa a aplicação, não arma o Modo B e não produz efeito financeiro.
 
 ## Gates
 
@@ -56,6 +54,7 @@ G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS
 G6_CONSOLIDATED_DOCUMENT_READY=PASS
 G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05_LEA_19
+POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ```
 
 ## Resultado final da revisão
@@ -73,12 +72,12 @@ TRACEABILITY_COMPLETENESS=PASS
 CONFLICT_SUPERSESSION_RESOLUTION=PASS
 CONTROLLED_AUTOMATION_SECURITY=PASS
 REAL_FINANCIAL_EFFECT_SEPARATION=PASS
-GITHUB_LINEAR_ALIGNMENT=PASS
+GITHUB_LINEAR_ALIGNMENT=PASS_AT_REVIEW
 DOCUMENTAL_READY_FOR_MERGE=YES
 RETEST_REQUIRED=NO
 ```
 
-## Resultado documental
+## Resultado documental integrado
 
 ```text
 CANONICAL_DOMAIN_COUNT=16
@@ -98,7 +97,7 @@ DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
 UNRESOLVED_NORMATIVE_CONFLICTS=0
 POLICY_A_B_ALIGNMENT=PASS
-MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS
+MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS_IN_BRANCH
 DOCUMENTAL_BLOCKERS=0
 ```
 
@@ -110,15 +109,17 @@ DOCUMENTAL_BLOCKERS=0
 - ✅ auditoria estrutural V2.7 `32/32`;
 - ✅ auditoria funcional V2.7 `52/52`;
 - ✅ política normativa A+B reconciliada;
-- ✅ `MAJOR-07`, `MAJOR-08`, `MINOR-04`, `MAJOR-09` e `MINOR-05` remediados;
+- ✅ todos os achados remediados;
 - ✅ Reteste 05 da LEA-19 aprovado;
-- ⏳ merge do PR #40 aguardando autorização humana;
-- ⬜ ADRs após merge e sincronização pós-merge.
+- ✅ PR #40 integrado na `main`;
+- 🟧 recibo e sincronização pós-merge no PR #44;
+- ⬜ ADRs após confirmação final e nova autorização.
 
-## Evidência final
+## Evidências
 
-`docs/history/reviews/REVISAO_CRITICA_RETESTE_05_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md`
+- `docs/history/reviews/REVISAO_CRITICA_RETESTE_05_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md`
+- `docs/history/receipts/RECIBO_POS_MERGE_LEA-18_LEA-19_PR-40_20260718.md`
 
 ## Próxima ação
 
-Aguardar autorização humana explícita para integrar o PR `#40`. Não iniciar ADRs antes do merge, recibo pós-merge e sincronização das fontes vivas.
+Integrar o PR `#44`, confirmar o merge do recibo e encerrar a transição `LEA-18-T01`. Não iniciar ADRs automaticamente.
