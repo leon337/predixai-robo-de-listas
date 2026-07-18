@@ -15,19 +15,22 @@ P1_P2_ADR_SET=P1_P2_ARCHITECTURE_V1_COMPLEMENT
 P1_P2_ADR_COUNT=6/6
 P1_COUNT=5/5
 P2_COUNT=1/1
-P1_P2_ADR_SET_STATUS=REMEDIATED_READY_FOR_RETEST_01
+P1_P2_ADR_SET_STATUS=REMEDIATED_READY_FOR_RETEST_02
 P1_P2_BUILDER_ISSUE=LEA-30
 P1_P2_REVIEW_ISSUE=LEA-31
 P1_P2_INITIAL_REVIEW=FAIL_3_MAJOR
-P1_P2_CRITICAL_REVIEW=RETEST_01_REQUIRED
+P1_P2_RETEST_01=FAIL_1_MAJOR
+P1_P2_CRITICAL_REVIEW=RETEST_02_REQUIRED
 P1_P2_DEFERRED_REQUIREMENTS=31/31
+SCHEMA_CONTRACT_ALIGNMENT=REMEDIATED_BUILDER
 
 IMPLEMENTATION_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
+MERGE_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
 ```
 
-Os 12 ADRs P0 permanecem publicados como base revisada. Os seis ADRs P1/P2 foram remediados após a primeira revisão da LEA-31, mas continuam propostas documentais até Reteste 01 PASS, autorização humana de merge e confirmação pós-merge.
+Os 12 ADRs P0 permanecem publicados como base revisada. Os seis ADRs P1/P2 continuam propostas documentais. Os três achados da revisão inicial foram fechados no Reteste 01; o MAJOR-04 identificado nesse reteste foi remediado pelo builder e aguarda Reteste 02 independente.
 
 ## Índice P0 publicado
 
@@ -50,17 +53,17 @@ Os 12 ADRs P0 permanecem publicados como base revisada. Os seis ADRs P1/P2 foram
 
 | ADR | Prioridade | Decisão | Candidato | Domínios primários | Estado |
 |---|---|---|---|---|---|
-| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | DOM-03 | remediado para Reteste 01 |
-| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | DOM-08 | remediado para Reteste 01 |
-| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | DOM-15 | remediado para Reteste 01 |
-| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | DOM-13, DOM-15 | remediado para Reteste 01 |
-| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | DOM-09, DOM-11, DOM-12 | remediado para Reteste 01 |
-| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | DOM-16 | remediado para Reteste 01 |
+| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | DOM-03 | aguardando Reteste 02 |
+| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | DOM-08 | aguardando Reteste 02 |
+| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | DOM-15 | aguardando Reteste 02 |
+| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | DOM-13, DOM-15 | aguardando Reteste 02 |
+| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | DOM-09, DOM-11, DOM-12 | aguardando Reteste 02 |
+| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | DOM-16 | aguardando Reteste 02 |
 
 ## Semântica das relações
 
 ```text
-DEPENDS_ON=PRE_REQUISITO_ACICLICO
+DEPENDS_ON=PRE_REQUISITO_ACICLO
 MUST_ALIGN_WITH=COERENCIA_BIDIRECIONAL_SEM_ORDEM
 GOVERNS=DECISAO_QUE_RESTRINGE_OUTRA
 ```
@@ -114,7 +117,7 @@ P1_P2_DEFERRED_MISASSIGNED=0
 BUILDER_ISSUE=LEA-30_IN_PROGRESS_REMEDIATED
 BUILDER_GATES=6/7
 INDEPENDENT_REVIEW_ISSUE=LEA-31_IN_PROGRESS
-ADR_P1_P2_CRITICAL_REVIEW=RETEST_01_REQUIRED
+ADR_P1_P2_CRITICAL_REVIEW=RETEST_02_REQUIRED
 MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
