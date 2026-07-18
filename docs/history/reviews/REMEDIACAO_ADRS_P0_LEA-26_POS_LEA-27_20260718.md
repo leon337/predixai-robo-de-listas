@@ -1,0 +1,137 @@
+# REMEDIAÇÃO DOS ADRs P0 — LEA-26
+
+## Pós-revisão LEA-27 — preparação do Reteste 01
+
+## 1. Controle
+
+```text
+REMEDIATION_ISSUE=LEA-26
+REVIEW_ISSUE=LEA-27
+PULL_REQUEST=46
+FAILED_REVIEW_HEAD=2c9c2432058c5f119bd1802c3ba00e845c6a5ca0
+FAILED_REVIEW_REPORT_COMMIT=65ca19dfc71d497294581342303d96ae00453e32
+TRANSITION_ID=LEA-26-T01
+STATE_REVISION=9
+DOCUMENTATION_ONLY=YES
+MERGE_AUTHORIZED=NO
+DOCUMENT_MASTER_START_AUTHORIZED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+LIVE_MODE_ARMED=NO
+```
+
+## 2. Resultado do builder
+
+```text
+MAJOR_01_REMEDIATED=PASS_BUILDER
+MAJOR_02_REMEDIATED=PASS_BUILDER
+MAJOR_03_REMEDIATED=PASS_BUILDER
+MAJOR_04_REMEDIATED=PASS_BUILDER
+MINOR_01_REMEDIATED=PASS_BUILDER_WITH_PR_HEAD_CONTRACT
+OPEN_BUILDER_CRITICAL_FINDINGS=0
+OPEN_BUILDER_MAJOR_FINDINGS=0
+OPEN_BUILDER_MINOR_FINDINGS=0
+RETEST_REQUIRED=YES_LEA_27_RETEST_01
+```
+
+O builder não emite o Boss Gate final.
+
+## 3. MAJOR-01 — rastreabilidade 218/218
+
+Foi criado o apêndice exaustivo:
+
+`docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`.
+
+```text
+REQUIREMENT_ROWS=218
+UNIQUE_REQUIREMENT_IDS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNJUSTIFIED_NO_P0_MAPPING=0
+```
+
+Cada linha informa domínio primário, ADR P0 ou `NO_P0_ADR_REQUIRED`, candidato P1/P2 quando aplicável, relação, fonte e status.
+
+## 4. MAJOR-02 — grafo de decisões
+
+As relações foram separadas:
+
+```text
+DEPENDS_ON=PRE_REQUISITO_ACICLICO
+MUST_ALIGN_WITH=COERENCIA_BIDIRECIONAL_SEM_ORDEM
+GOVERNS=DECISAO_QUE_RESTRINGE_OUTRA
+```
+
+O grafo `DEPENDS_ON` possui 12 nós e zero ciclos. A dominância do kill switch foi registrada em `GOVERNS`, eliminando o falso ciclo ADR-0008 ↔ ADR-0010.
+
+## 5. MAJOR-03 — lifecycle completo
+
+O ADR-0008 agora define separadamente:
+
+```text
+COMMAND_FSM
+AUTHORIZATION_GRANT_FSM
+SESSION_ARMING_FSM
+EXECUTION_ATTEMPT_FSM
+```
+
+Foram incluídos `SUPERSEDED`, consumo, expiração, revogação, invalidação por mudança e `kill_epoch`, além da regra `IMMUTABLE_FIELDS!=IMMUTABLE_LIFECYCLE_STATE`.
+
+## 6. MAJOR-04 — colisão de idempotência
+
+O ADR-0011 agora exige fingerprint canônico versionado e distingue:
+
+```text
+SAME_KEY_AND_SAME_CANONICAL_FINGERPRINT=RETURN_EXISTING_ATTEMPT
+SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
+```
+
+Colisão divergente não cria tentativa e não chama adaptador.
+
+## 7. MINOR-01 — contrato de HEAD
+
+O estado persistido segue o contrato do schema 1.0.3:
+
+```text
+observed_pr_head=INFORMATIONAL_SNAPSHOT
+CURRENT_PR_HEAD=LIVE_GITHUB_QUERY_AT_RETEST_START
+SELF_REFERENTIAL_CURRENT_HEAD_IN_FILE=PROHIBITED
+```
+
+O README exibirá `ACTIVE_PR_HEAD` como último HEAD de conteúdo confirmado e indicará que o HEAD final exato deve ser obtido do PR vivo. O PR body e o Linear registrarão o HEAD final após o último commit de sincronização.
+
+Também ficam separados:
+
+```text
+BUILDER_MINOR_FINDINGS_FOUND=1
+BUILDER_MINOR_FINDINGS_REMEDIATED=1
+OPEN_BUILDER_MINOR_FINDINGS=0
+LEA_27_OPEN_FINDINGS_PENDING_RETEST=5
+```
+
+## 8. Auto-revisão
+
+```text
+A1_PRECONDITIONS=PASS
+A2_TEMPLATE_AND_INDEX=PASS
+A3_P0_ADRS=12/12
+A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
+```
+
+## 9. Escopo preservado
+
+```text
+CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+WORKFLOW_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+RUNTIME_EXECUTED=NO
+LIVE_MODE_ARMED=NO
+```
+
+## 10. Próxima ação
+
+Sincronizar as fontes vivas, confirmar CI e threads, marcar o PR pronto para revisão, reabrir a LEA-27 e solicitar o Reteste 01 sobre o HEAD final vivo.
