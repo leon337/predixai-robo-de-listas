@@ -2,39 +2,41 @@
 
 > Painel operacional, histórico arquitetural e mapa da campanha.
 >
-> Esta é a primeira visão do projeto no GitHub. O estado apresentado abaixo é uma projeção pública derivada das fontes vivas e não substitui o manifesto operacional.
+> O README projeta as fontes vivas para leitura rápida no GitHub. A autoridade operacional permanece em `PROJECT_RUNTIME_STATE.yaml`.
 
 ## 📍 Estado atual do projeto
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7
-REVISÃO=LEA-19 — Revisão crítica independente
-PULL_REQUEST=40
-ACTIVE_PR_HEAD=c1ff8b19da966d6bb4b48ad237ea52db77c60d06
-PR_STATUS=DRAFT
-FASE=CROSS_CONSOLIDATION
-GATE=G7 — RETESTE_03_FAIL
-CONSOLIDACAO_GATES=6/7
-BOSS_GATE=G7_FAIL
+MISSÃO_EM_FECHAMENTO=LEA-18 — Consolidação cruzada PTM V2.5/V2.6/V2.7
+REVISÃO_CONCLUÍDA=LEA-19 — RETESTE_05_PASS
+PR_PRINCIPAL=40
+PR_PRINCIPAL_STATUS=MERGED
+PR_PRINCIPAL_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
+PR_RECIBO=44
+PR_RECIBO_STATUS=IN_PROGRESS
+FASE=POST_MERGE_CONFIRMATION
+GATE=POST_MERGE_CONFIRMATION
+CONSOLIDACAO_GATES=7/7
+BOSS_GATE=PASS
 CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=2
-MINOR_FINDINGS=1
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=0
 STATE_REVISION=7
-SNAPSHOT_AT=2026-07-17
-STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+PR_40+LINEAR
-MERGE_AUTORIZADO=NO
+SNAPSHOT_AT=2026-07-18
+STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+GITHUB+LINEAR
 ADRS_AUTORIZADOS=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
+LIVE_MODE_ARMED=NO
 ```
 
-A consolidação cruzada já existe, mas ainda não é definitiva. A matriz e o índice de rastreabilidade precisam receber as correções do Reteste 03 antes do Reteste 04.
+A consolidação cruzada foi aprovada no Reteste 05 e integrada na `main`. A etapa atual publica o recibo pós-merge, fecha a LEA-18 e prepara os ADRs para uma nova autorização humana.
 
-## 🗺️ Onde o projeto está agora
+## 🗺️ Mapa da campanha
 
 ```text
 AUDITORIA MESTRA
-      ✅ concluída e revisada
+      ✅ concluída
       ↓
 PTM V2.5 — Fundação
       ✅ revisada e aprovada
@@ -46,10 +48,12 @@ PTM V2.7 — Execução controlada e segurança
       ✅ revisada e aprovada
       ↓
 CONSOLIDAÇÃO CRUZADA V2.5 + V2.6 + V2.7
-      🟧 etapa atual — 6/7 gates concluídos
+      ✅ Boss Gate PASS
+      ✅ PR #40 integrado
+      🟧 recibo e sincronização pós-merge — PR #44
       ↓
 ADRs — decisões arquiteturais formais
-      ⬜ não iniciados
+      ⏳ aguardando fechamento da LEA-18 e nova autorização
       ↓
 DOCUMENTO MESTRE
       ⬜ não iniciado
@@ -66,31 +70,25 @@ PRONTIDÃO PARA IMPLEMENTAÇÃO
 
 ## 📊 Progresso auditável
 
-O painel não usa percentual arbitrário. A unidade de progresso é gate documental concluído e verificável.
-
 ```text
-README_PROGRESS_SOURCE=LEA-18_GATES
+README_PROGRESS_SOURCE=REAL_GATES_AND_DELIVERABLES
 ARBITRARY_PROGRESS=NO
 
 G1_PRECONDITIONS=PASS
 G2_SOURCE_INVENTORY=PASS
-G3_DOMAIN_BOUNDARIES=PASS_PRE_RETEST_03
-G4_REQUIREMENTS_TRACEABILITY=PASS_PRE_RETEST_03
+G3_DOMAIN_BOUNDARIES=PASS
+G4_REQUIREMENTS_TRACEABILITY=PASS
 G5_CONFLICTS_AND_SUPERSESSIONS=PASS
 G6_CONSOLIDATED_DOCUMENT=PASS
-G7_INDEPENDENT_CRITICAL_REVIEW=FAIL_RETEST_03
+G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05
 
-CONSOLIDACAO_GATES=6/7
-CURRENT_BLOCKER=G7_INDEPENDENT_CRITICAL_REVIEW
+CONSOLIDACAO_GATES=7/7
+POST_MERGE_CONFIRMATION=IN_PROGRESS_PR_44
 ```
 
-Os gates G3 e G4 voltam a ser validados no Reteste 04 após as correções dos achados atuais.
+## ✅ Entregas consolidadas
 
----
-
-# 🧩 O que já foi construído
-
-## Auditoria e memória do legado
+### Auditoria e memória do legado
 
 ```text
 ✅ inventário factual do legado
@@ -102,185 +100,102 @@ Os gates G3 e G4 voltam a ser validados no Reteste 04 após as correções dos a
 ✅ DESCONTINUAR
 ```
 
-## PTM V2.5 — Fundação
+### PTM V2.5 — Fundação
 
 ```text
-✅ configuração
-✅ identidade e segredos
-✅ persistência
-✅ listas
-✅ clientes e dispositivos
+✅ configuração, identidade e segredos
+✅ persistência e recovery
+✅ listas, clientes e dispositivos
 ✅ perfis e calibração
-✅ backup e recovery
 ```
 
-## PTM V2.6 — Observação, inteligência e sinais
+### PTM V2.6 — Observação e inteligência
 
 ```text
 ✅ sessão de observação
-✅ captura de frames
+✅ captura e proveniência
 ✅ validação visual
 ✅ OCR e extração
 ✅ análise A–H
-✅ estratégia
-✅ candidatos e sinais
+✅ estratégia, candidatos e sinais
 ```
 
-## PTM V2.7 — Ação controlada
+### PTM V2.7 — Ação controlada
 
 ```text
-✅ comando
-✅ autorização
+✅ comando e autorização
 ✅ policy engine
-✅ alvo lógico
-✅ adaptadores
-✅ dispatch
-✅ recibo
-✅ reconciliação
-✅ auditoria e contenção
+✅ alvo lógico e adaptadores
+✅ dispatch e recibo
+✅ reconciliação e recovery
+✅ auditoria, observabilidade e contenção
 ```
 
-## Consolidação cruzada
+### Consolidação cruzada
 
 ```text
-✅ inventário das fontes oficiais
+✅ inventário canônico das fontes
 ✅ mapa de 16 domínios
 ✅ mapa de 12 handoffs
 ✅ matriz consolidada
 ✅ índice individual dos 218 requisitos
+✅ auditoria estrutural V2.7 — 32/32
+✅ auditoria funcional V2.7 — 52/52
 ✅ registro de conflitos e supersessões
-✅ catálogo preliminar de 18 ADRs
-✅ documento consolidado
+✅ catálogo de 18 ADRs candidatos
+✅ política A+B reconciliada
+✅ Reteste 05 — PASS
+✅ PR #40 — MERGED
 ```
 
-Cobertura preservada:
+## 🔢 Métricas consolidadas
 
 ```text
-PTM_V2_5=56 requisitos
-PTM_V2_6=78 requisitos
-PTM_V2_7=84 requisitos
-TOTAL=218
+PTM_V2_5=56/56
+PTM_V2_6=78/78
+PTM_V2_7=84/84
+TOTAL=218/218
 DUPLICADOS=0
 ÓRFÃOS=0
+NOVOS_REQUISITOS=0
+DOMÍNIOS=16
+HANDOFFS=12
+ADRS_CANDIDATOS=18
 ```
-
----
-
-# 🚧 Bloqueios atuais da consolidação
-
-## MAJOR-07 — matriz estrutural divergente
-
-`PTM-V27-003` pertence ao `DOM-14 — Alvo lógico e adaptadores`, mas a matriz consolidada ainda o mantém dentro de um agrupamento do `DOM-13`.
 
 ```text
-MATRIZ ATUAL
-PTM-V27-002...007 ─────────→ DOM-13
-             ↑
-             └── PTM-V27-003 está no agrupamento incorreto
-
-MATRIZ CORRETA
-PTM-V27-002,004,005,006,007 → DOM-13
-PTM-V27-003                 → DOM-14
+DOM_13=26
+DOM_14=7
+DOM_15=27
+DOM_16=38
 ```
 
-## MAJOR-08 — requisitos funcionais agrupados incorretamente
+## 🧭 Estado dos gates e PRs
 
 ```text
-V27-EXE
-├── DOM-14 — adaptador e capacidade
-├── DOM-15 — tentativa, dispatch, timeout e retry
-└── DOM-16 — kill switch e contenção
-
-V27-SAF
-├── DOM-13 — política e limites
-├── DOM-14 — geometria e payload do adaptador
-├── DOM-15 — fila e serialização
-└── DOM-16 — segurança, segredos e redaction
+LEA_19=Done_PASS_RETEST_05
+LEA_18=In_Progress_POST_MERGE_SYNC
+PR_40=MERGED
+PR_40_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
+PR_43=CLOSED_SUPERSEDED
+PR_44=POST_MERGE_RECEIPT_IN_PROGRESS
+OPEN_REVIEW_FINDINGS=0
 ```
 
-Contagens esperadas após a correção:
+## 🛣️ Próxima sequência
 
 ```text
-DOM-13=26
-DOM-14=7
-DOM-15=27
-DOM-16=38
-TOTAL=218
+1. 🟧 publicar o recibo pós-merge no PR #44
+2. ⬜ confirmar o merge do recibo
+3. ⬜ sincronizar GitHub, Linear, manifesto, PROJECT_STATE, tronco e README
+4. ⬜ fechar formalmente a LEA-18
+5. ⬜ apresentar a missão de ADRs para nova autorização
+6. ⬜ construir e revisar os ADRs
+7. ⬜ produzir o Documento Mestre
+8. ⬜ congelar a Arquitetura V1.0 após revisão crítica
 ```
 
-## MINOR-04 — reconciliação textual
-
-```text
-32 requisitos estruturais
-2 reclassificados
-30 permaneceram sem alteração
-```
-
----
-
-# 🛣️ Caminho até o Documento Mestre
-
-## Etapa A — concluir a consolidação cruzada
-
-```text
-1. ⬜ corrigir MAJOR-07
-2. ⬜ corrigir MAJOR-08
-3. ⬜ corrigir MINOR-04
-4. ⬜ auditar os 52/52 IDs funcionais V2.7
-5. ⬜ atualizar as contagens dos 16 domínios
-6. ⬜ sincronizar runtime, PROJECT_STATE, tronco e README
-7. ⬜ solicitar Reteste 04
-8. ⬜ obter RETESTE_04=PASS
-```
-
-Resultado necessário:
-
-```text
-CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-TRACEABILITY_COMPLETENESS=PASS
-DOMAIN_BOUNDARY_CONSISTENCY=PASS
-```
-
-## Etapa B — integrar a consolidação
-
-```text
-⬜ autorização humana para merge
-⬜ merge do PR #40
-⬜ recibo pós-merge
-⬜ atualização das fontes vivas
-⬜ sincronização GitHub–Linear–README
-⬜ fechamento da LEA-18 e LEA-19
-```
-
-## Etapa C — construir os ADRs
-
-```text
-ADRs_CANDIDATOS=18
-ADRs_CRIADOS=0
-ADRs_AUTORIZADOS=NO
-```
-
-Decisões previstas incluem autoridade do servidor, sinal/comando/autorização, single-writer, adaptadores, idempotência, timeout, `UNKNOWN_EFFECT`, kill switch, recovery e gates do modo LIVE.
-
-## Etapa D — construir o Documento Mestre
-
-O Documento Mestre reunirá visão do produto, limites, 16 domínios, 12 handoffs, contratos das PTMs, ADRs, modelo conceitual de dados, estados, segurança, observabilidade, testes, recovery e roadmap de implementação.
-
-```text
-CONSOLIDAÇÃO APROVADA
-        ↓
-ADRs APROVADOS
-        ↓
-DOCUMENTO MESTRE — DRAFT
-        ↓
-REVISÃO CRÍTICA INDEPENDENTE
-        ↓
-DOCUMENTO MESTRE — PASS
-        ↓
-ARQUITETURA V1.0 CONGELADA
-```
+ADRs não são iniciados automaticamente. A próxima missão exige autorização própria.
 
 ---
 
@@ -304,9 +219,9 @@ TESTE_E2E=AUTORIZADO
 ORDEM_SIMULADA=AUTORIZADA
 ```
 
-## Modo B — conta própria com possibilidade de efeito financeiro real
+## Modo B — possível efeito financeiro real
 
-O modo `LIVE` é uma capacidade arquitetural separada. Ele permanece desligado por padrão. A existência da política não arma sessão, não autoriza implementação e não substitui decisão comercial ou legal.
+O modo `LIVE` é suportado arquiteturalmente, permanece desligado por padrão e não é armado por esta fase documental.
 
 ```text
 REAL_FINANCIAL_MODE=SUPPORTED_BY_SEPARATE_GATE
@@ -331,24 +246,14 @@ EXPLICIT_LIVE_SESSION_CONFIRMATION_REQUIRED=YES
 
 Sem todos os gates, o Modo B permanece desativado e qualquer efeito financeiro fica bloqueado.
 
-```text
-CLIQUE CONTROLADO
-├── modo simulado/controlado → autorizado
-└── modo financeiro LIVE     → condicionado a todos os gates LIVE
-```
-
 Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
 
 ---
 
 # 🔄 Sincronização obrigatória do painel
 
-O README é uma projeção visual das fontes vivas. Ele não substitui o manifesto, o `PROJECT_STATE.md`, o tronco, o PR ou o Linear.
-
-Toda transição, checkpoint ou fechamento valida:
-
 ```text
-README_OPERATIONAL_DASHBOARD=PASS
+README_OPERATIONAL_DASHBOARD=PASS_IN_BRANCH
 README_VERSION_SYNC=PASS
 README_MISSION_SYNC=PASS
 README_PHASE_SYNC=PASS
@@ -358,6 +263,7 @@ README_BLOCKERS_SYNC=PASS
 README_NEXT_ACTION_SYNC=PASS
 README_SNAPSHOT_METADATA=PASS
 README_AUTOMATION_POLICY_SYNC=PASS
+README_SYNC=PENDING_PR_44_MERGE
 ```
 
 Fontes oficiais:
@@ -365,8 +271,9 @@ Fontes oficiais:
 - [`PROJECT_RUNTIME_STATE.yaml`](PROJECT_RUNTIME_STATE.yaml) — estado operacional estruturado;
 - [`PROJECT_STATE.md`](PROJECT_STATE.md) — visão humana detalhada;
 - [`PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`](PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md) — roadmap e continuidade;
-- [PR #40](../../pull/40) — trabalho ativo ainda não integrado;
-- Linear `LEA-18` e `LEA-19` — missão, revisão, bloqueios e progresso.
+- [PR #40](../../pull/40) — consolidação integrada;
+- [PR #44](../../pull/44) — recibo e sincronização pós-merge;
+- Linear `LEA-18` e `LEA-19` — missão e revisão.
 
 Protocolo: [`docs/protocols/README_OPERATIONAL_DASHBOARD.md`](docs/protocols/README_OPERATIONAL_DASHBOARD.md).
 
@@ -444,7 +351,7 @@ CHANGELOG.md
 1. Estado atual
 2. Mapa da campanha
 3. Progresso auditável
-4. Bloqueios
+4. Entregas e métricas
 5. Próxima sequência
 6. Política de automação
 7. Fontes oficiais
