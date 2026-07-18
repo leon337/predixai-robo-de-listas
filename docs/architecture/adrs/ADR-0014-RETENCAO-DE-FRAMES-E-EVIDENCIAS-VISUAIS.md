@@ -6,10 +6,13 @@
 ADR_ID=ADR-0014
 CANDIDATE_ID=ADR-CAND-007
 PRIORITY=P1
-STATUS=PROPOSED_FOR_REVIEW
+STATUS=ACCEPTED
 MISSION=LEA-30
 REVIEW_ISSUE=LEA-31
 DATE=2026-07-18
+ACCEPTED_AT=2026-07-18
+ACCEPTANCE_EVIDENCE=docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md
+PUBLICATION_EVIDENCE=docs/history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md
 IMPLEMENTATION_AUTHORIZED=NO
 DEPENDS_ON=ADR-0005|ADR-0012
 MUST_ALIGN_WITH=ADR-0006|ADR-0017|ADR-0018
@@ -153,4 +156,4 @@ RUNTIME_CAPTURE_EXECUTED=NO
 
 ## Estado da decisão
 
-Permanece `PROPOSED_FOR_REVIEW` até `LEA-31=PASS`, autorização humana de merge e confirmação pós-merge.
+Status `ACCEPTED`. A decisão foi aprovada pela revisão crítica independente `LEA-31` no Reteste 02 e publicada com confirmação final da LEA-30. A aceitação não autoriza captura runtime nem retenção de imagens reais.
