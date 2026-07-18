@@ -5,25 +5,27 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=BUILDER_REMEDIATED_READY_FOR_RETEST_01
+DOCUMENT_STATUS=CONTENT_COMPLETE_OPERATIONAL_HANDOFF_RETEST_03
 MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 PULL_REQUEST=46
 REPOSITORY=leon337/predixai-robo-de-listas
 BASE_BRANCH=main
 BASE_MAIN_SHA=c339ef253c2558300388901a67faf18734e2735f
-STATE_REVISION=9
+STATE_REVISION=11
 TRANSITION_ID=LEA-26-T01
-PREVIOUS_TRANSITION=LEA-18-T01_COMPLETE
 MISSION_SCOPE=DOCUMENTATION_ONLY
-HUMAN_AUTHORIZATION=RECEIVED_2026-07-18
+RETEST_SEQUENCE=03
+MERGE_AUTHORIZED=NO
 ```
+
+Este documento define conteúdo arquitetural. O status operacional vigente deve ser obtido de `PROJECT_RUNTIME_STATE.yaml`, `PROJECT_STATE.md`, PR #46 e Linear.
 
 ## 2. Objetivo
 
 Converter as 12 decisões P0 do catálogo consolidado em ADRs formais, coerentes entre si e rastreáveis aos 16 domínios, 12 handoffs e 218 requisitos aprovados.
 
-Os ADRs permanecem `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes da revisão crítica independente da LEA-27, autorização humana de merge e confirmação pós-merge.
+Os ADRs permanecem `PROPOSED_FOR_REVIEW` até revisão crítica independente válida para o HEAD atual, autorização humana de merge e confirmação pós-merge.
 
 ## 3. ADRs da missão
 
@@ -42,7 +44,7 @@ Os ADRs permanecem `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes d
 | ADR-0011 | ADR-CAND-014 | recibo, idempotência e reconciliação |
 | ADR-0012 | ADR-CAND-015 | observabilidade, auditoria e redaction |
 
-## 4. Semântica única de relações
+## 4. Semântica das relações
 
 ```text
 DEPENDS_ON=PRE_REQUISITO_ACICLICO
@@ -50,9 +52,7 @@ MUST_ALIGN_WITH=COERENCIA_BIDIRECIONAL_SEM_ORDEM
 GOVERNS=DECISAO_QUE_RESTRINGE_OUTRA
 ```
 
-`DEPENDS_ON` é o único campo usado para ordem de decisão. Ele deve formar um DAG. `MUST_ALIGN_WITH` não cria dependência. `GOVERNS` registra dominância normativa.
-
-## 5. Grafo autoritativo de DEPENDS_ON
+## 5. Grafo autoritativo de `DEPENDS_ON`
 
 ```text
 ADR-0001=NONE
@@ -63,13 +63,11 @@ ADR-0005=ADR-0001
 ADR-0006=ADR-0001|ADR-0003
 ADR-0007=ADR-0006
 ADR-0008=ADR-0001|ADR-0002|ADR-0007
-ADR-0009=ADR-0005|ADR-0008|ADR-0010
 ADR-0010=ADR-0001|ADR-0002
+ADR-0009=ADR-0005|ADR-0008|ADR-0010
 ADR-0011=ADR-0002|ADR-0008|ADR-0009|ADR-0010
 ADR-0012=ADR-0001|ADR-0002|ADR-0003|ADR-0008|ADR-0010|ADR-0011
 ```
-
-Validação topológica:
 
 ```text
 TOPOLOGICAL_ORDER=ADR-0001|ADR-0002|ADR-0003|ADR-0004|ADR-0005|ADR-0006|ADR-0007|ADR-0008|ADR-0010|ADR-0009|ADR-0011|ADR-0012
@@ -78,28 +76,7 @@ DEPENDS_ON_CYCLE_COUNT=0
 DEPENDS_ON_DAG=PASS
 ```
 
-## 6. Coerência transversal
-
-```text
-ADR-0008 MUST_ALIGN_WITH ADR-0010
-ADR-0009 MUST_ALIGN_WITH ADR-0010
-ADR-0008 MUST_ALIGN_WITH ADR-0011
-ADR-0009 MUST_ALIGN_WITH ADR-0011
-ADR-0010 MUST_ALIGN_WITH ADR-0011
-ADR-0011 MUST_ALIGN_WITH ADR-0012
-```
-
-```text
-ADR-0001 GOVERNS ADR-0002|ADR-0003|ADR-0004|ADR-0008|ADR-0010|ADR-0012
-ADR-0002 GOVERNS ADR-0003|ADR-0011|ADR-0012
-ADR-0008 GOVERNS ADR-0009|ADR-0011
-ADR-0010 GOVERNS ADR-0008|ADR-0009|ADR-0011
-ADR-0011 GOVERNS ADR-0012
-```
-
-A dominância do kill switch sobre comando, grant, fila, retry, dispatch e adaptador é uma regra `GOVERNS`, não um ciclo de `DEPENDS_ON`.
-
-## 7. Rastreabilidade
+## 6. Rastreabilidade
 
 ```text
 P0_ADR_COUNT=12/12
@@ -112,23 +89,21 @@ ORPHAN_REQUIREMENT_IDS=0
 UNJUSTIFIED_NO_P0_MAPPING=0
 ```
 
-Fonte exaustiva:
-
-`docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`
-
-## 8. Gates
+## 7. Gates
 
 ```text
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
-A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02
-A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
+A4_TRACEABILITY=PASS
+A5_CROSS_ADR_CONSISTENCY=PASS
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_03_REQUIRED
 ```
 
-## 9. Limites
+O `PASS_RETEST_02` foi invalidado por dois achados novos detectados na verificação pré-merge: incompatibilidade do manifesto com o schema 1.0.3 e referências operacionais antigas nas fontes arquiteturais.
+
+## 8. Limites
 
 ```text
 CODE_CHANGE_AUTHORIZED=NO
@@ -142,26 +117,6 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## 10. Política A+B
+## 9. Próxima ação
 
-```text
-MODE_A_POLICY=AUTHORIZED
-MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
-MODE_B_DEFAULT=DISABLED
-LIVE_ADAPTER_IMPLEMENTATION=OUT_OF_SCOPE
-LIVE_SESSION_ARMING=PROHIBITED_IN_THIS_MISSION
-```
-
-## 11. Condição de handoff
-
-```text
-MAJOR_01_REMEDIATED=PASS_BUILDER
-MAJOR_02_REMEDIATED=PASS_BUILDER
-MAJOR_03_REMEDIATED=PASS_BUILDER
-MAJOR_04_REMEDIATED=PASS_BUILDER
-MINOR_01_REMEDIATED=PASS_BUILDER
-PR_STATUS=READY_FOR_INDEPENDENT_REVIEW_AFTER_FINAL_SYNC
-MERGE_AUTHORIZED=NO
-```
-
-A próxima etapa é `LEA-27 — Reteste 01` sobre o HEAD final vivo do PR #46.
+Executar `LEA-27 — Reteste 03` sobre o novo HEAD vivo do PR #46. Um eventual `PASS` exigirá nova autorização humana explícita de merge porque o HEAD anteriormente autorizado foi alterado.
