@@ -6,10 +6,13 @@
 ADR_ID=ADR-0016
 CANDIDATE_ID=ADR-CAND-016
 PRIORITY=P1
-STATUS=PROPOSED_FOR_REVIEW
+STATUS=ACCEPTED
 MISSION=LEA-30
 REVIEW_ISSUE=LEA-31
 DATE=2026-07-18
+ACCEPTED_AT=2026-07-18
+ACCEPTANCE_EVIDENCE=docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md
+PUBLICATION_EVIDENCE=docs/history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md
 IMPLEMENTATION_AUTHORIZED=NO
 DEPENDS_ON=ADR-0008|ADR-0010|ADR-0011
 MUST_ALIGN_WITH=ADR-0015|ADR-0018
@@ -174,4 +177,4 @@ RUNTIME_TEST_EXECUTED=NO
 
 ## Estado da decisão
 
-Permanece `PROPOSED_FOR_REVIEW` até `LEA-31=PASS`, autorização humana de merge e confirmação pós-merge.
+Status `ACCEPTED`. A decisão foi aprovada pela revisão crítica independente `LEA-31` no Reteste 02 e publicada com confirmação final da LEA-30. A aceitação não executa testes de relógio, crash ou restart.

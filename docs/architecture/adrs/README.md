@@ -5,11 +5,13 @@
 ```text
 P0_ADR_SET=P0_ARCHITECTURE_V1
 P0_ADR_COUNT=12/12
+P0_ADR_ACCEPTED_COUNT=12/12
 P0_ADR_SET_STATUS=PUBLISHED_REVIEWED_P0_BASE
 P0_CRITICAL_REVIEW=PASS_RETEST_03
 
 P1_P2_ADR_SET=P1_P2_ARCHITECTURE_V1_COMPLEMENT
 P1_P2_ADR_COUNT=6/6
+P1_P2_ADR_ACCEPTED_COUNT=6/6
 P1_COUNT=5/5
 P2_COUNT=1/1
 P1_P2_ADR_SET_STATUS=PUBLISHED_REVIEWED_P1_P2_BASE
@@ -26,40 +28,63 @@ SCHEMA_CONTRACT_ALIGNMENT=PASS
 MISSION_GATES=7/7
 MISSION_CLOSURE=PASS
 
+TOTAL_ADR_COUNT=18/18
+TOTAL_ADR_ACCEPTED_COUNT=18/18
+ADR_LIFECYCLE_ALIGNMENT=PASS_BUILDER_LEA_33
+ADR_TEMPLATE_LIFECYCLE=DEFINED
+ADR_STATUS_REMEDIATION_ISSUE=LEA-33
+INDEPENDENT_RETEST_REQUIRED=YES_LEA_32
+
 IMPLEMENTATION_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
 ```
 
-Os 18 ADRs da Arquitetura V1.0 estão publicados como base documental revisada: 12 P0 e seis P1/P2. Isso não autoriza implementação nem início automático do Documento Mestre.
+Os 18 ADRs da Arquitetura V1.0 estão publicados como base documental revisada e, após a remediação LEA-33, os 18 arquivos individuais registram `STATUS=ACCEPTED`. Isso não autoriza implementação nem início automático do Documento Mestre. O Boss Gate pré-Documento Mestre permanece dependente do reteste independente da LEA-32.
+
+## Lifecycle canônico
+
+O template oficial é [`ADR_TEMPLATE.md`](ADR_TEMPLATE.md) e define:
+
+```text
+PROPOSED_FOR_REVIEW
+ACCEPTED
+SUPERSEDED
+DEPRECATED
+REJECTED
+```
+
+`ACCEPTED` significa decisão arquitetural aprovada e publicada. Não significa implementação autorizada, runtime validado ou Modo LIVE armado.
+
+<a id="indice-p0-publicado"></a>
 
 ## Índice P0 publicado
 
 | ADR | Decisão | Estado |
 |---|---|---|
-| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | publicado P0 |
-| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | publicado P0 |
-| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | publicado P0 |
-| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | publicado P0 |
-| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | publicado P0 |
-| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | publicado P0 |
-| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | publicado P0 |
-| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | publicado P0 remediado |
-| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | publicado P0 remediado |
-| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | publicado P0 remediado |
-| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | publicado P0 remediado |
-| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | publicado P0 |
+| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | `ACCEPTED` — publicado P0 |
+| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | `ACCEPTED` — publicado P0 |
+| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | `ACCEPTED` — publicado P0 |
+| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | `ACCEPTED` — publicado P0 |
+| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | `ACCEPTED` — publicado P0 |
+| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | `ACCEPTED` — publicado P0 |
+| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | `ACCEPTED` — publicado P0 |
+| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | `ACCEPTED` — publicado P0 remediado |
+| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | `ACCEPTED` — publicado P0 remediado |
+| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | `ACCEPTED` — publicado P0 remediado |
+| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | `ACCEPTED` — publicado P0 remediado |
+| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | `ACCEPTED` — publicado P0 |
 
 ## Índice P1/P2 publicado
 
 | ADR | Prioridade | Decisão | Candidato | Estado |
 |---|---|---|---|---|
-| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | publicado |
-| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | publicado |
-| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | publicado |
-| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | publicado |
-| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | publicado |
-| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | publicado |
+| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | `ACCEPTED` — publicado |
+| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | `ACCEPTED` — publicado |
+| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | `ACCEPTED` — publicado |
+| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | `ACCEPTED` — publicado |
+| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | `ACCEPTED` — publicado |
+| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | `ACCEPTED` — publicado |
 
 ## Grafo autoritativo `DEPENDS_ON`
 
@@ -94,6 +119,7 @@ DEPENDS_ON_DAG=PASS
 - [Reteste 02 — PASS](../../history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md)
 - [Recibo pós-merge](../../history/receipts/RECIBO_POS_MERGE_LEA-30_LEA-31_PR-49_20260718.md)
 - [Confirmação final](../../history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md)
+- [Remediação de lifecycle 18/18](../../history/reviews/REMEDIACAO_STATUS_DOCUMENTAL_18_ADRS_LEA-33_20260718.md)
 
 ```text
 CANONICAL_REQUIREMENT_ROWS=218
@@ -108,11 +134,14 @@ P1_P2_DEFERRED_MISASSIGNED=0
 ## Próximo gate
 
 ```text
-ACTIVE_MISSION=NONE
-LAST_COMPLETED_MISSION=LEA-30
-LAST_COMPLETED_REVIEW=LEA-31_RETEST_02_PASS
+ACTIVE_MISSION=LEA-33
+PARENT_REVIEW=LEA-32
+REMEDIATION_STATUS=READY_FOR_INDEPENDENT_RETEST
+ADR_STATUS_ACCEPTED=18/18
+LAST_VALID_P0_REVIEW=LEA-27_RETEST_03_PASS
+LAST_VALID_P1_P2_REVIEW=LEA-31_RETEST_02_PASS
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
-NEXT_ACTION=AWAIT_EXPLICIT_DOCUMENT_MASTER_AUTHORIZATION
+NEXT_ACTION=EXECUTE_LEA_32_INDEPENDENT_RETEST
 ```
