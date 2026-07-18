@@ -7,11 +7,11 @@
 - HEAD observado da `main`: `c339ef253c2558300388901a67faf18734e2735f`
 - Versão real: `V2.4.3-R1`
 - Missão ativa: `LEA-26 — ADRs P0 da Arquitetura V1.0`
-- Revisão: `LEA-27 — Reteste 01 pendente`
+- Revisão: `LEA-27 — Reteste 01 solicitado`
 - Branch de trabalho: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
-- PR ativo: `#46`, aberto, Draft durante a sincronização final
-- Último HEAD de conteúdo remediado confirmado: `c1c694f70d036104fee7b91addf7b68cc5d5ba58`
-- HEAD final de revisão: consultar o PR #46 ao vivo no início do Reteste 01
+- PR ativo: `#46`, aberto e pronto para revisão
+- Último HEAD de sincronização confirmado: `bf0cca680778d136e151bdf1ee15ee4970f9e5c9`
+- HEAD final do Reteste 01: consultar o PR #46 ao vivo no início da revisão
 - ADRs: `12/12`, status `PROPOSED_FOR_REVIEW`
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
@@ -27,18 +27,19 @@ TO_STATE=ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW
 MISSION_LOCK=LEA-26
 CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01
 GATE_STATUS=IN_PROGRESS
+RETEST_01_REQUESTED=YES
 ```
 
 ## Contrato do HEAD
 
 ```text
-OBSERVED_PR_HEAD=c1c694f70d036104fee7b91addf7b68cc5d5ba58
-OBSERVED_PR_HEAD_SEMANTICS=LAST_CONFIRMED_REMEDIATION_CONTENT_SNAPSHOT
+OBSERVED_PR_HEAD=bf0cca680778d136e151bdf1ee15ee4970f9e5c9
+OBSERVED_PR_HEAD_SEMANTICS=LAST_CONFIRMED_SYNC_SNAPSHOT
 CURRENT_PR_HEAD_SOURCE=LIVE_GITHUB_QUERY_AT_RETEST_START
 SELF_REFERENTIAL_FINAL_COMMIT_SHA_IN_FILE=PROHIBITED
 ```
 
-O PR body e o Linear devem registrar o HEAD final exato após o último commit de sincronização. O revisor reconfirma esse HEAD ao iniciar o Reteste 01.
+O PR body e o Linear registram o HEAD final exato após o último commit documental. O revisor deve reconfirmar esse HEAD ao iniciar o Reteste 01.
 
 ## Escopo
 
@@ -82,9 +83,7 @@ OPEN_BUILDER_FINDINGS=0
 INDEPENDENT_CLEARANCE=PENDING_RETEST_01
 ```
 
-### MAJOR-01
-
-Foi publicada rastreabilidade exaustiva requisito–domínio–ADR:
+## Validações
 
 ```text
 REQUIREMENT_ROWS=218
@@ -92,33 +91,13 @@ UNIQUE_REQUIREMENT_IDS=218
 DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
 UNJUSTIFIED_NO_P0_MAPPING=0
-```
-
-### MAJOR-02
-
-```text
 RELATIONS=DEPENDS_ON|MUST_ALIGN_WITH|GOVERNS
 DEPENDS_ON_NODE_COUNT=12
 DEPENDS_ON_CYCLE_COUNT=0
-DEPENDS_ON_DAG=PASS_BUILDER
-```
-
-### MAJOR-03
-
-```text
 COMMAND_FSM=DEFINED
 AUTHORIZATION_GRANT_FSM=DEFINED
 SESSION_ARMING_FSM=DEFINED
 EXECUTION_ATTEMPT_FSM=DEFINED
-SUPERSEDED=DEFINED
-KILL_EPOCH_INVALIDATION=DEFINED
-RESTART_NO_REARM_OR_REDISPATCH=PASS
-```
-
-### MAJOR-04
-
-```text
-SAME_KEY_AND_SAME_CANONICAL_FINGERPRINT=RETURN_EXISTING_ATTEMPT
 SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
 ```
 
@@ -131,13 +110,12 @@ A3_P0_ADRS=12/12
 A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
 A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUESTED
 ```
 
 ## Entregas
 
 - ✅ plano reconciliado;
-- ✅ template e índice;
 - ✅ ADR-0001 a ADR-0012;
 - ✅ apêndice individual `218/218`;
 - ✅ grafo de dependências acíclico;
@@ -145,8 +123,10 @@ A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
 - ✅ idempotência divergente bloqueada;
 - ✅ auto-revisão repetida;
 - ✅ relatório de remediação;
-- ⏳ sincronização final de GitHub e Linear;
-- ⏳ Reteste 01 da LEA-27;
+- ✅ PR #46 pronto para revisão;
+- ✅ LEA-27 reaberta em `Todo`;
+- ✅ Reteste 01 solicitado;
+- ⏳ Reteste 01 independente;
 - ⬜ merge após PASS e nova autorização humana;
 - ⬜ Documento Mestre após fechamento dos ADRs.
 
@@ -162,4 +142,4 @@ A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
 
 ## Próxima ação
 
-Reabrir a `LEA-27`, marcar o PR #46 pronto para revisão e executar o `Reteste 01` no HEAD vivo final. Não realizar merge nem iniciar o Documento Mestre antes de `ADR_P0_CRITICAL_REVIEW=PASS` e nova autorização humana.
+Executar o `LEA-27 — Reteste 01` sobre o HEAD vivo final do PR #46. Não realizar merge nem iniciar o Documento Mestre antes de `ADR_P0_CRITICAL_REVIEW=PASS` e nova autorização humana.
