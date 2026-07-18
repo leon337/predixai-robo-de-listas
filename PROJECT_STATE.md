@@ -4,76 +4,121 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD confirmado após recibo: `3c6330cf27ca973f5ec42591c9266dbf2b28e750`
+- Baseline da missão: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
+- HEAD observado da `main`: `236bc5df7f675ca5cf56d80c5812bd911d224651`
 - Versão do legado: `V2.4.3-R1`
-- Missão ativa: nenhuma
-- Última missão concluída: `LEA-16 — PTM V2.7`
-- Revisão concluída: `LEA-17 — PTM V2.7-RC`, `PASS`
-- PR principal: `#37`, integrado em `4f7fb106db95c3a33583440fd1bf52fe6603b529`
-- Recibo pós-merge: PR `#38`, integrado em `3c6330cf27ca973f5ec42591c9266dbf2b28e750`
-- Próxima etapa: consolidação cruzada da documentação
+- Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
+- Revisão concluída: `LEA-19 — Reteste 05 independente`, `PASS`
+- Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
+- PR ativo: `#40`, aberto, pronto para merge documental após autorização humana
+- Conteúdo aprovado no Reteste 05: `201ac816eecfa4fd7e4b94ebd184285bc31b83e2`
+- Merge: não autorizado
+- ADRs: não autorizados antes do merge e sincronização pós-merge
 
-## Transição concluída
+## Transição ativa
 
 ```text
-STATE_REVISION=6
-TRANSITION_ID=LEA-16-T02
-TRANSITION_STATUS=COMPLETE
-FROM_STATE=PTM_V2_7_APPROVED_FOR_MERGE
-TO_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-GITHUB_SYNC_STATUS=PASS
-LINEAR_SYNC_STATUS=PASS
-MISSION_LOCK=RELEASED
+STATE_REVISION=7
+TRANSITION_ID=LEA-18-T01
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
+TO_STATE=CROSS_CONSOLIDATION_APPROVED_FOR_MERGE
+MISSION_LOCK=LEA-18
 ```
 
-## Resultado definitivo da PTM V2.7
+## Escopo
 
 ```text
-PTM_V2_7_CRITICAL_REVIEW=PASS
+DOCUMENTATION_ONLY=YES
+CODE_CHANGE_AUTHORIZED=NO
+TEST_CODE_CHANGE_AUTHORIZED=NO
+SQL_AUTHORIZED=NO
+MIGRATION_AUTHORIZED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+MERGE_AUTHORIZED=NO
+ADRS_START_AUTHORIZED=NO
+MODE_A_POLICY=AUTHORIZED
+MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
+MODE_B_DEFAULT=DISABLED
+LIVE_MODE_ARMED=NO
+FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
+```
+
+A política A+B permanece normativa. Esta missão documental não executa a aplicação, não arma o Modo B e não produz efeito financeiro.
+
+## Gates
+
+```text
+G1_PRECONDITIONS_PASS=PASS
+G2_SOURCE_INVENTORY_COMPLETE=PASS
+G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS
+G6_CONSOLIDATED_DOCUMENT_READY=PASS
+G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05_LEA_19
+```
+
+## Resultado final da revisão
+
+```text
+CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS
+RETEST_SEQUENCE=05
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
-MINOR_FINDINGS=4
-STRUCTURAL_REQUIREMENTS=32
-FUNCTIONAL_REQUIREMENTS=52
-TOTAL_REQUIREMENT_IDS=84
-REQUIREMENT_ID_UNIQUENESS=PASS
+MINOR_FINDINGS=0
+SOURCE_INVENTORY_COMPLETENESS=PASS
+AUTHORITY_BY_DOMAIN_CONSISTENCY=PASS
+DOMAIN_BOUNDARY_CONSISTENCY=PASS
 TRACEABILITY_COMPLETENESS=PASS
-LEGACY_CLASSIFICATION_CONSISTENCY=PASS
-PTM_V2_7_DOCUMENTALLY_DEFINITIVE=YES
+CONFLICT_SUPERSESSION_RESOLUTION=PASS
+CONTROLLED_AUTOMATION_SECURITY=PASS
+REAL_FINANCIAL_EFFECT_SEPARATION=PASS
+GITHUB_LINEAR_ALIGNMENT=PASS
+DOCUMENTAL_READY_FOR_MERGE=YES
+RETEST_REQUIRED=NO
 ```
 
-## Escopo controlado consolidado
+## Resultado documental
 
 ```text
-CONTROLLED_SCREEN_CAPTURE=ALLOWED
-CONTROLLED_OCR=ALLOWED
-CONTROLLED_REPLAY=ALLOWED
-CONTROLLED_POINTER_MOVEMENT=ALLOWED
-CONTROLLED_KEYBOARD_INPUT=ALLOWED
-CONTROLLED_CLICK=ALLOWED
-CONTROLLED_TEST_AUTHENTICATION=ALLOWED
-CONTROLLED_END_TO_END_TESTS=ALLOWED
-CONTROLLED_UI_CHANNEL=ALLOWED
-FINANCIAL_EFFECT_BASELINE=SIMULATED_ONLY
-PRODUCTION_MONETARY_EFFECT_REQUIRES_SEPARATE_AUTHORIZATION_IN_ALL_TARGET_CLASSES=YES
+CANONICAL_DOMAIN_COUNT=16
+MANDATORY_HANDOFF_COUNT=12
+V2_5_TOTAL_COVERED=56/56
+V2_6_TOTAL_COVERED=78/78
+V2_7_TOTAL_COVERED=84/84
+CROSS_VERSION_TOTAL_COVERED=218/218
+INDIVIDUAL_REQUIREMENT_ROWS=218
+V2_7_STRUCTURAL_IDS_AUDITED=32/32
+V2_7_FUNCTIONAL_IDS_AUDITED=52/52
+DOM_13_PRIMARY_IDS=26
+DOM_14_PRIMARY_IDS=7
+DOM_15_PRIMARY_IDS=27
+DOM_16_PRIMARY_IDS=38
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNRESOLVED_NORMATIVE_CONFLICTS=0
+POLICY_A_B_ALIGNMENT=PASS
+MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS
+DOCUMENTAL_BLOCKERS=0
 ```
 
-## Contratos consolidados
+## Entregas
 
-- canal e estado `CONTROLLED_UI`;
-- autorização vinculada a alvo, ação e allowlist;
-- adaptador `NULL|SIMULATED|CONTROLLED_UI`;
-- recibo com dimensões de UI e monetária separadas;
-- invalidação de comando anterior após qualquer restart;
-- prova negativa contra bypass, alvo não autorizado, segredo e resultado monetário de produção.
+- ✅ inventário canônico de fontes;
+- ✅ mapa de 16 domínios e 12 handoffs;
+- ✅ matriz consolidada e índice individual `218/218`;
+- ✅ auditoria estrutural V2.7 `32/32`;
+- ✅ auditoria funcional V2.7 `52/52`;
+- ✅ política normativa A+B reconciliada;
+- ✅ `MAJOR-07`, `MAJOR-08`, `MINOR-04`, `MAJOR-09` e `MINOR-05` remediados;
+- ✅ Reteste 05 da LEA-19 aprovado;
+- ⏳ merge do PR #40 aguardando autorização humana;
+- ⬜ ADRs após merge e sincronização pós-merge.
 
-## Pendências não bloqueantes
+## Evidência final
 
-1. taxonomia integral de `target_logical_id`;
-2. limites numéricos após benchmark;
-3. ADR da topologia do kill switch;
-4. matriz integral de transições antes da implementação.
+`docs/history/reviews/REVISAO_CRITICA_RETESTE_05_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md`
 
 ## Próxima ação
 
-Iniciar a consolidação cruzada das PTMs V2.5, V2.6 e V2.7 para preparação dos ADRs e do Documento Mestre.
+Aguardar autorização humana explícita para integrar o PR `#40`. Não iniciar ADRs antes do merge, recibo pós-merge e sincronização das fontes vivas.

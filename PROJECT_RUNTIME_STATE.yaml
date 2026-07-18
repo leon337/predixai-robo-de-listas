@@ -1,108 +1,161 @@
 schema_version: "1.0.3"
-state_revision: 6
+state_revision: 7
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+observed_main_head: "236bc5df7f675ca5cf56d80c5812bd911d224651"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "PTM_V2_7_COMPLETE"
-active_linear_issue: null
-active_review_issue: null
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
-pr_mode: null
-active_checkpoint: null
+active_mission: "LEA-18"
+active_stage: "CROSS_CONSOLIDATION_APPROVED_FOR_MERGE"
+active_linear_issue: "LEA-18"
+active_review_issue: "LEA-19"
+active_pull_request: 40
+working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
+observed_pr_head: "201ac816eecfa4fd7e4b94ebd184285bc31b83e2"
+pr_mode: "approved_for_merge_pending_human_authorization"
+active_checkpoint: "docs/history/reviews/REVISAO_CRITICA_RETESTE_05_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md"
 
-current_gate: "PTM_V2_7_COMPLETE"
+current_gate: "G7_INDEPENDENT_CRITICAL_REVIEW"
 gate_status: "PASS"
-next_action: "START_CROSS_CONSOLIDATION_DOCUMENTATION"
-blockers: []
+next_action: "AWAIT_HUMAN_MERGE_AUTHORIZATION_FOR_PR_40"
+blockers:
+  - "HUMAN_MERGE_AUTHORIZATION_REQUIRED"
 
-transition_id: "LEA-16-T02"
-transition_status: "COMPLETE"
-from_state: "PTM_V2_7_APPROVED_FOR_MERGE"
-to_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
-baseline_main_sha: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
-baseline_state_revision: 5
-bound_transition_id: "LEA-16-T02"
-main_pr: 37
-main_pr_merge_commit: "4f7fb106db95c3a33583440fd1bf52fe6603b529"
-post_merge_receipt_pr: 38
-post_merge_receipt_merge_commit: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
+transition_id: "LEA-18-T01"
+transition_status: "APPROVED_FOR_MERGE"
+from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
+to_state: "CROSS_CONSOLIDATION_APPROVED_FOR_MERGE"
+baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+baseline_state_revision: 6
+bound_transition_id: "LEA-18-T01"
+main_pr: 40
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-last_sync_at_utc: "2026-07-17T04:23:00Z"
+readme_sync_status: "PENDING"
+last_sync_at_utc: "2026-07-18T06:23:02Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "closed-lea16"
-  base_sha: "3c6330cf27ca973f5ec42591c9266dbf2b28e750"
-  observed_pr_head: null
-  state_revision_snapshot: 6
-  transition_id_snapshot: "LEA-16-T02"
-  started_at_utc: "2026-07-17T04:18:00Z"
+  owner: "LEA-18"
+  session_id: "lea18-cross-consolidation-20260717"
+  base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+  observed_pr_head: "201ac816eecfa4fd7e4b94ebd184285bc31b83e2"
+  state_revision_snapshot: 7
+  transition_id_snapshot: "LEA-18-T01"
+  started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T04:23:00Z"
+  heartbeat_at_utc: "2026-07-18T06:23:02Z"
 
 implementation_authorized: false
 code_change_authorized: false
+test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
-real_click_authorized: true
+real_click_authorized: false
 merge_authorized: false
-ptm_v2_7_start_authorized: true
+cross_consolidation_authorized: true
+adrs_start_authorized: false
+
+mode_a_policy_authorized: true
+controlled_chart_analysis_policy: "ALLOWED_MODE_A"
+controlled_screen_capture_policy: "ALLOWED_MODE_A"
+controlled_ocr_policy: "ALLOWED_MODE_A"
+controlled_replay_policy: "ALLOWED_MODE_A"
+controlled_pointer_keyboard_fields_click_policy: "ALLOWED_MODE_A"
+controlled_authentication_policy: "ALLOWED_MODE_A"
+controlled_ui_action_in_current_mission_authorized: false
+mode_b_architectural_support_authorized: true
+mode_b_default_disabled: true
+live_mode_armed: false
+real_financial_effect_runtime_authorized: false
+financial_effect_status: "BLOCKED_UNTIL_ALL_LIVE_GATES_PASS"
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  controlled_automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
-  final_review: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_PTM_V2.7_LEA-17_20260717.md"
-  post_merge_receipt: "docs/history/ptp/RECIBO_POS_MERGE_LEA-16_PTM_V2.7_20260717.md"
-  task_status_and_dependencies: "Linear"
-  unmerged_work: "none"
+  automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
+  source_inventory: "docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  domain_boundary_map: "docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  individual_requirement_index: "docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  consolidated_traceability: "docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  consolidated_architecture_document: "docs/architecture/CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  retest_05_result: "docs/history/reviews/REVISAO_CRITICA_RETESTE_05_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md"
+  retest_04_result: "docs/history/reviews/REVISAO_CRITICA_RETESTE_04_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md"
+  retest_04_remediation: "docs/history/reviews/REMEDIACAO_RETESTE_04_CONSOLIDACAO_CRUZADA_LEA-18_20260718.md"
+  v2_7_functional_audit: "docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md"
+  task_status_and_dependencies: "Linear LEA-18 and LEA-19"
+  unmerged_work: "PR #40"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "COMPLETE"
+  execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
   automatic_advance: false
-  independent_critical_review: "PASS"
-  critical_blockers: 0
-  major_findings: 0
-  minor_findings: 4
-  structural_requirements: 32
-  functional_requirements: 52
-  total_requirement_ids: 84
-  controlled_automation_policy_active: true
-  controlled_ui_normative_contract_defined: true
-  controlled_capture_ocr_authorized: true
-  controlled_replay_authorized: true
-  controlled_pointer_keyboard_click_authorized: true
-  controlled_test_authentication_authorized: true
-  financial_effect_simulated_only: true
-  production_monetary_effect_requires_separate_authorization_all_targets: true
-  application_code_changed: false
-  test_code_changed: false
-  workflows_changed: false
-  sql_or_migrations_created: false
-  main_pr_merged: true
-  post_merge_receipt_recorded: true
-  post_merge_receipt_integrated: true
-  handoff_activated: true
-  transition_complete: true
-  last_completed_product_issue: "LEA-16"
-  last_completed_product_issue_status: "DONE"
-  current_product_issue: "NONE"
-  ptm_v2_5_definitive: true
-  ptm_v2_6_definitive: true
-  ptm_v2_7_critical_review_complete: true
-  ptm_v2_7_definitive: true
-  cross_consolidation_ready: true
+  independent_critical_review: "PASS_RETEST_05_LEA_19"
+  previous_independent_review_status: "FAIL_RETEST_04"
+  retest_05_critical_findings: 0
+  retest_05_major_findings: 0
+  retest_05_minor_findings: 0
+  open_critical_findings: 0
+  open_major_findings: 0
+  open_minor_findings: 0
+  retest_required: false
+  documentation_only: true
+  policy_a_b_alignment: true
+  mode_a_authorized: true
+  mode_b_supported: true
+  mode_b_armed: false
+  live_without_all_gates_blocked: true
+  g1_preconditions_pass: true
+  g2_source_inventory_complete: true
+  g3_domain_boundaries_consolidated: true
+  g4_requirements_traceability_complete: true
+  g5_conflicts_and_supersessions_resolved: true
+  g6_consolidated_document_ready: true
+  g7_independent_critical_review: true
+  canonical_domain_count: 16
+  mandatory_handoff_count: 12
+  cross_version_total_requirement_ids: 218
+  individual_requirement_rows: 218
+  v2_7_structural_ids_expected: 32
+  v2_7_structural_ids_audited: 32
+  v2_7_functional_ids_expected: 52
+  v2_7_functional_ids_audited: 52
+  ptm_v27_003_primary_domain: "DOM-14"
+  ptm_v27_031_primary_domain: "DOM-16"
+  ptm_v27_032_primary_domain: "DOM-01"
+  dom_01_primary_ids: 7
+  dom_02_primary_ids: 13
+  dom_03_primary_ids: 22
+  dom_04_primary_ids: 6
+  dom_05_primary_ids: 3
+  dom_06_primary_ids: 5
+  dom_07_primary_ids: 6
+  dom_08_primary_ids: 5
+  dom_09_primary_ids: 8
+  dom_10_primary_ids: 7
+  dom_11_primary_ids: 22
+  dom_12_primary_ids: 16
+  dom_13_primary_ids: 26
+  dom_14_primary_ids: 7
+  dom_15_primary_ids: 27
+  dom_16_primary_ids: 38
+  duplicate_requirement_ids: 0
+  orphan_requirement_ids: 0
+  unresolved_normative_conflicts: 0
+  historical_content_loss: false
+  ready_for_independent_critical_review: false
+  ready_for_merge: true
+  ready_for_adrs: false
+  current_product_issue: "LEA-18"
+  current_product_issue_status: "IN_PROGRESS_PENDING_MERGE"
+  current_review_issue: "LEA-19"
+  current_review_issue_status: "DONE_PASS_RETEST_05"
