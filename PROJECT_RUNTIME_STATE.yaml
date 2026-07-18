@@ -12,13 +12,13 @@ active_linear_issue: "LEA-26"
 active_review_issue: "LEA-27"
 active_pull_request: 46
 working_branch: "leonpcsn/lea-26-adrs-p0-arquitetura-v1"
-observed_pr_head: "d4668e646efac02d62988a396d9916030893bf28"
+observed_pr_head: "f05b455b77d54348c1c1115efc6b9a76723cb5aa"
 snapshot_content_head: "6f1ac10005e7231e9efe88da9c7a27931038a989"
 snapshot_content_head_semantics: "COMMON_PERSISTED_CONTENT_SNAPSHOT"
 live_pr_head_source: "GITHUB_API"
 self_referential_head_in_versioned_file: false
-retest_03_reviewed_head: "43357ca9974c97cb9ffad50633f6b37580025b57"
-retest_03_report_commit: "0e60a6a605a6a6dff08f9f0a91d11dc270c67f1d"
+retest_03_reviewed_head: "72741b4a1994bea521a91bc6a9dfa8fdb33bb839"
+retest_03_report_commit: "dd123dcd75d86d520210e9da51e8fa7f5910a0b5"
 pr_mode: "ready_for_merge_not_authorized"
 active_checkpoint: "docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md"
 
@@ -44,21 +44,21 @@ post_merge_receipt_merge_commit: null
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T15:40:00Z"
+last_sync_at_utc: "2026-07-18T15:48:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-26"
-  session_id: "lea26-adrs-p0-retest03-pass-20260718"
+  session_id: "lea26-adrs-p0-retest03-pass-final-20260718"
   base_sha: "c339ef253c2558300388901a67faf18734e2735f"
-  observed_pr_head: "d4668e646efac02d62988a396d9916030893bf28"
+  observed_pr_head: "f05b455b77d54348c1c1115efc6b9a76723cb5aa"
   state_revision_snapshot: 11
   transition_id_snapshot: "LEA-26-T01"
   started_at_utc: "2026-07-18T15:27:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T15:40:00Z"
+  heartbeat_at_utc: "2026-07-18T15:48:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -105,6 +105,7 @@ safety:
   snapshot_contract_alignment: true
   schema_contract_alignment: true
   source_authority_current: true
+  adr_status_gate_reference_current: true
   execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
   automatic_advance: false
   independent_critical_review: "PASS_RETEST_03"
@@ -112,13 +113,13 @@ safety:
   retest_01_report_commit: "6f1ac10005e7231e9efe88da9c7a27931038a989"
   retest_02_reviewed_head: "c4bfc336027f8e8aa76c686f460431a531a8dc69"
   retest_02_report_commit: "216c8d2b485aed72c77e05b401fe06ecaa1eb6c9"
-  retest_03_reviewed_head: "43357ca9974c97cb9ffad50633f6b37580025b57"
-  retest_03_report_commit: "0e60a6a605a6a6dff08f9f0a91d11dc270c67f1d"
+  retest_03_reviewed_head: "72741b4a1994bea521a91bc6a9dfa8fdb33bb839"
+  retest_03_report_commit: "dd123dcd75d86d520210e9da51e8fa7f5910a0b5"
   open_critical_findings: 0
   open_major_findings: 0
   open_minor_findings: 0
   builder_remediated_major_findings: 4
-  builder_remediated_minor_findings: 3
+  builder_remediated_minor_findings: 4
   builder_open_findings: 0
   retest_required: false
   retest_sequence: 3
