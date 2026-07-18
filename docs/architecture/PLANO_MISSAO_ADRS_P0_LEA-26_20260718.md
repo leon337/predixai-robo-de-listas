@@ -5,7 +5,7 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=CONTENT_COMPLETE_OPERATIONAL_HANDOFF_RETEST_03
+DOCUMENT_STATUS=CONTENT_APPROVED_RETEST_03_AWAITING_MERGE_AUTHORIZATION
 MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 PULL_REQUEST=46
@@ -16,6 +16,7 @@ STATE_REVISION=11
 TRANSITION_ID=LEA-26-T01
 MISSION_SCOPE=DOCUMENTATION_ONLY
 RETEST_SEQUENCE=03
+ADR_P0_CRITICAL_REVIEW=PASS
 MERGE_AUTHORIZED=NO
 ```
 
@@ -25,7 +26,7 @@ Este documento define conteúdo arquitetural. O status operacional vigente deve 
 
 Converter as 12 decisões P0 do catálogo consolidado em ADRs formais, coerentes entre si e rastreáveis aos 16 domínios, 12 handoffs e 218 requisitos aprovados.
 
-Os ADRs permanecem `PROPOSED_FOR_REVIEW` até revisão crítica independente válida para o HEAD atual, autorização humana de merge e confirmação pós-merge.
+Os ADRs permanecem `PROPOSED_FOR_REVIEW` até autorização humana de merge e confirmação pós-merge. O conteúdo foi aprovado no Reteste 03.
 
 ## 3. ADRs da missão
 
@@ -98,10 +99,9 @@ A3_P0_ADRS=12/12
 A4_TRACEABILITY=PASS
 A5_CROSS_ADR_CONSISTENCY=PASS
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_03_REQUIRED
+A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_03
+ADR_GATES=7/7
 ```
-
-O `PASS_RETEST_02` foi invalidado por dois achados novos detectados na verificação pré-merge: incompatibilidade do manifesto com o schema 1.0.3 e referências operacionais antigas nas fontes arquiteturais.
 
 ## 8. Limites
 
@@ -119,4 +119,4 @@ FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 
 ## 9. Próxima ação
 
-Executar `LEA-27 — Reteste 03` sobre o novo HEAD vivo do PR #46. Um eventual `PASS` exigirá nova autorização humana explícita de merge porque o HEAD anteriormente autorizado foi alterado.
+Aguardar nova autorização humana explícita para o HEAD final sincronizado do PR #46. A autorização anterior estava vinculada a um HEAD substituído e não pode ser reutilizada.
