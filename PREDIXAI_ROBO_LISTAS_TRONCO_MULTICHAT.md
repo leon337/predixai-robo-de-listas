@@ -10,7 +10,7 @@ ACTIVE_LINEAR_ISSUE=LEA-33
 COMPLETED_REVIEW_ISSUE=LEA-32_PASS_RETEST_01
 MAIN_PULL_REQUEST=53_MERGED
 MAIN_PR_MERGE_COMMIT=50e9455b8d0bfa86b40f0a6f132ad66bee8d2334
-POST_MERGE_CONFIRMATION_PR=54_DRAFT
+POST_MERGE_CONFIRMATION_PR=54_READY_FOR_REVIEW
 WORKING_BRANCH=leonpcsn/lea-33-confirmacao-pos-merge-pr53
 STATE_REVISION=17
 TRANSITION_ID=LEA-32-T01
@@ -29,7 +29,7 @@ MAJOR_FINDINGS=0
 MINOR_FINDINGS=0
 OPEN_BLOCKING_FINDINGS=0
 MAIN_PR_MERGED=YES
-POST_MERGE_CONFIRMATION=IN_PROGRESS
+POST_MERGE_CONFIRMATION=READY_FOR_REVIEW
 ```
 
 ## Remediação integrada
@@ -75,7 +75,7 @@ POLICY_A_B_ALIGNMENT=PASS
 ✅ 18 ADRs revisados, publicados e ACCEPTED
 ✅ Boss Gate pré-Documento Mestre — LEA-32 Reteste 01 PASS
 ✅ PR #53 integrado
-🟨 PR #54 — confirmação pós-merge
+🟨 PR #54 — confirmação pós-merge pronta para revisão
 ⛔ Documento Mestre — aguarda confirmação e autorização humana específica
 ⬜ revisão crítica do Documento Mestre
 ⬜ congelamento da Arquitetura V1.0
