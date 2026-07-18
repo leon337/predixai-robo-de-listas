@@ -3,15 +3,34 @@
 ## Controle
 
 ```text
-ADR_ID=ADR-NNNN
-CANDIDATE_ID=ADR-CAND-NNN
-STATUS=PROPOSED_FOR_REVIEW
-MISSION=LEA-26
-REVIEW_ISSUE=LEA-27
-DATE=2026-07-18
+ADR_ID=<ADR-NNNN>
+CANDIDATE_ID=<ADR-CAND-NNN|N/A>
+STATUS=<PROPOSED_FOR_REVIEW|ACCEPTED|SUPERSEDED|DEPRECATED|REJECTED>
+MISSION=<LEA-NN>
+REVIEW_ISSUE=<LEA-NN|N/A>
+DATE=<YYYY-MM-DD>
+ACCEPTED_AT=<YYYY-MM-DD|N/A>
+ACCEPTANCE_EVIDENCE=<caminho ou referência verificável|N/A>
+PUBLICATION_EVIDENCE=<caminho ou referência verificável|N/A>
+SUPERSEDES=<ADR IDs|NONE>
+SUPERSEDED_BY=<ADR ID|NONE>
 DECISION_SCOPE=ARCHITECTURE_ONLY
 IMPLEMENTATION_AUTHORIZED=NO
 ```
+
+## Lifecycle documental
+
+```text
+PROPOSED_FOR_REVIEW=decisão redigida, ainda dependente de revisão crítica e publicação
+ACCEPTED=decisão aprovada, publicada e vigente como base arquitetural
+SUPERSEDED=decisão substituída por ADR posterior identificado
+DEPRECATED=decisão ainda histórica, mas desencorajada e programada para substituição
+REJECTED=proposta recusada e não normativa
+```
+
+Transições devem ser registradas, justificadas e rastreáveis. `ACCEPTED` exige revisão crítica independente válida, autorização humana de integração quando aplicável e evidência de publicação. Mudança para `SUPERSEDED`, `DEPRECATED` ou `REJECTED` exige missão documental própria e referência explícita ao motivo ou ADR sucessor.
+
+O status documental não autoriza código, runtime, SQL, migrations, cliques reais, Modo LIVE ou efeito financeiro.
 
 ## Contexto
 
@@ -80,4 +99,4 @@ ACCEPTANCE_2=PASS|FAIL
 
 ## Estado da decisão
 
-Este ADR permanece `PROPOSED_FOR_REVIEW` até revisão crítica independente, autorização humana de merge e confirmação pós-merge.
+Declarar o mesmo `STATUS` do bloco de controle, as evidências que justificam o estado e os limites preservados. Um ADR `ACCEPTED` é normativo para arquitetura, mas não concede autorização de implementação.
