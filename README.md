@@ -9,13 +9,13 @@
 ```text
 VERSÃO_REAL=V2.4.3-R1
 MISSÃO_ATIVA=LEA-26 — ADRs P0 da Arquitetura V1.0
-REVISÃO=LEA-27 — RETESTE_01_PENDING
+REVISÃO=LEA-27 — RETESTE_01_REQUESTED
 PULL_REQUEST=46
-PR_STATUS=DRAFT_PENDING_FINAL_SYNC
-ACTIVE_PR_HEAD=c1c694f70d036104fee7b91addf7b68cc5d5ba58
-ACTIVE_PR_HEAD_SEMANTICS=LAST_CONFIRMED_REMEDIATION_CONTENT_SNAPSHOT
+PR_STATUS=READY_FOR_REVIEW
+ACTIVE_PR_HEAD=853ac4b5e1ed897eee3c43c85f0925dd544d3b38
+ACTIVE_PR_HEAD_SEMANTICS=LAST_CONFIRMED_SYNC_SNAPSHOT
 CURRENT_PR_HEAD_SOURCE=LIVE_GITHUB_QUERY_AT_RETEST_START
-FASE=ADR_P0_REMEDIATED_READY_FOR_RETEST_01
+FASE=ADR_P0_REMEDIATED_RETEST_01_REQUESTED
 GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01
 ADR_GATES=6/7
 STATE_REVISION=9
@@ -27,7 +27,7 @@ IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-O HEAD exato do Reteste 01 deve ser confirmado na página viva do PR #46. Um arquivo versionado não pode conter o SHA do próprio commit que o cria; por isso o campo acima registra o último snapshot de conteúdo confirmado e declara a fonte viva do HEAD final.
+O HEAD exato do Reteste 01 deve ser confirmado no PR #46. O campo `ACTIVE_PR_HEAD` registra o último snapshot sincronizado porque um arquivo versionado não consegue conter o SHA do próprio commit que o cria.
 
 ## 🚧 Revisão inicial e remediação
 
@@ -46,7 +46,7 @@ OPEN_BUILDER_MINOR_FINDINGS=0
 INDEPENDENT_CLEARANCE=PENDING_RETEST_01
 ```
 
-Os cinco achados permanecem pendentes de baixa independente até a LEA-27 executar o Reteste 01.
+Os achados somente serão baixados definitivamente por revisão independente.
 
 ## 🗺️ Mapa da campanha
 
@@ -64,8 +64,7 @@ PTM V2.7 — Execução controlada e segurança
       ✅ aprovada
       ↓
 CONSOLIDAÇÃO CRUZADA
-      ✅ 7/7 gates
-      ✅ PR #40, recibo #44 e fechamento #45 integrados
+      ✅ 7/7 gates e publicação concluída
       ↓
 ADRs P0 — LEA-26 / LEA-27
       ✅ 12/12 ADRs propostos
@@ -74,7 +73,8 @@ ADRs P0 — LEA-26 / LEA-27
       ✅ quatro FSMs completas
       ✅ idempotência divergente bloqueada
       ✅ auto-revisão pós-remediação
-      🟧 LEA-27 Reteste 01
+      ✅ Reteste 01 solicitado
+      🟧 Reteste 01 independente
       ↓
 DOCUMENTO MESTRE
       ⛔ não autorizado
@@ -94,15 +94,13 @@ PRONTIDÃO PARA IMPLEMENTAÇÃO
 ```text
 README_PROGRESS_SOURCE=LEA_26_REAL_GATES
 ARBITRARY_PROGRESS=NO
-
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
 A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
 A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
-
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUESTED
 ADR_GATES=6/7
 CURRENT_BLOCKER=INDEPENDENT_CRITICAL_RETEST_01_REQUIRED
 ```
@@ -139,10 +137,10 @@ HANDOFF_REFERENCE_COVERAGE=12/12
 NEW_REQUIREMENT_IDS=0
 ```
 
-- [Matriz resumida dos ADRs](docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md)
+- [Matriz resumida](docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md)
 - [Apêndice individual dos 218 requisitos](docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md)
 
-## 🧭 Dependências e governança
+## 🧭 Dependências, FSMs e idempotência
 
 ```text
 DEPENDS_ON=PRE_REQUISITO_ACICLICO
@@ -151,19 +149,12 @@ GOVERNS=DECISAO_QUE_RESTRINGE_OUTRA
 DEPENDS_ON_NODE_COUNT=12
 DEPENDS_ON_CYCLE_COUNT=0
 DEPENDS_ON_DAG=PASS_BUILDER
-```
 
-A dominância do kill switch é relação `GOVERNS`; não cria ciclo inverso no grafo de pré-requisitos.
-
-## 🔄 FSMs e idempotência
-
-```text
 COMMAND_FSM=DEFINED
 AUTHORIZATION_GRANT_FSM=DEFINED
 SESSION_ARMING_FSM=DEFINED
 EXECUTION_ATTEMPT_FSM=DEFINED
 SUPERSEDED=DEFINED
-GRANT_REVOCATION_EXPIRATION_CONSUMPTION=DEFINED
 KILL_EPOCH_INVALIDATION=DEFINED
 RESTART_NO_REARM_OR_REDISPATCH=PASS
 
@@ -181,11 +172,9 @@ AUTO_ENABLE=PROHIBITED
 LIVE_WITHOUT_ALL_GATES=BLOCKED
 ```
 
-Modo A permite análise, captura, OCR, replay, ponteiro, teclado, preenchimento, clique, autenticação controlada, E2E e ordem simulada em alvo autorizado e sem efeito financeiro real.
+Modo A permite análise, captura, OCR, replay e ação controlada apenas em alvo autorizado e sem efeito financeiro real. Modo B permanece capacidade arquitetural desligada e condicionada aos gates técnicos, humanos, comerciais, legais e de conformidade.
 
-Modo B permanece apenas como capacidade arquitetural condicionada. Exige decisão comercial/legal, termos e jurisdição, elegibilidade, allowlists, limites, kill switch, auditoria, isolamento de segredos, arming humano e confirmação explícita da sessão.
-
-Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
+Política: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
 
 ## 🧾 Evidências
 
@@ -197,15 +186,12 @@ Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`
 ## 🛣️ Próxima sequência
 
 ```text
-1. sincronizar o HEAD final do PR #46
-2. marcar o PR pronto para revisão
-3. reabrir a LEA-27
-4. solicitar Reteste 01
-5. validar CI e threads
-6. obter ADR_P0_CRITICAL_REVIEW=PASS
-7. solicitar nova autorização humana de merge
-8. publicar recibo pós-merge
-9. decidir ADRs P1/P2 ou Documento Mestre
+1. executar LEA-27 Reteste 01 sobre o HEAD vivo final
+2. corrigir novos achados, caso existam
+3. obter ADR_P0_CRITICAL_REVIEW=PASS
+4. solicitar nova autorização humana de merge
+5. integrar PR #46 e publicar recibo pós-merge
+6. decidir ADRs P1/P2 ou Documento Mestre
 ```
 
 ```text
