@@ -8,43 +8,85 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=NONE
-ÚLTIMA_MISSÃO_CONCLUÍDA=LEA-26 — ADRs P0 da Arquitetura V1.0
-ÚLTIMA_REVISÃO=LEA-27 — RETESTE_03_PASS
-MAIN_PULL_REQUEST=46
-MAIN_PR_MERGE_COMMIT=ff726709d13b8acca0961cc17160e38430c6d26f
-POST_MERGE_RECEIPT_PR=47
-POST_MERGE_RECEIPT_MERGE_COMMIT=0963c512f369126548cf339146dd9f8186ca0c6c
-FINAL_CONFIRMATION_PR=48
-FASE=ADR_P0_PUBLISHED_AWAITING_NEXT_MISSION_AUTHORIZATION
-GATE=POST_MERGE_CONFIRMATION_PASS
-STATE_REVISION=12
+MISSÃO_ATIVA=LEA-30 — ADRs P1/P2 da Arquitetura V1.0
+REVISÃO=LEA-31 — RETESTE_02_PASS
+PULL_REQUEST_ATIVO=49_READY_FOR_AUTHORIZED_MERGE
+BRANCH=leonpcsn/lea-30-adrs-p1-p2-arquitetura-v1
+BASE_MAIN_SHA=dff0c0f0c26e820756804af92dd7b3641121d51b
+REVIEWED_PR_HEAD=fd18979bb295a310fc7a9ea3c78f885a23758b1b
+PR_HEAD_SNAPSHOT=e16d7044767e40a8ec8b111db8b62f786eb2a014
+FASE=ADR_P1_P2_REVIEWED_PASS_READY_FOR_MERGE
+GATE=ADR_P1_P2_MERGE_AUTHORIZATION_PASS
+STATE_REVISION=15
+TRANSITION_ID=LEA-30-T01
+TRANSITION_STATUS=APPROVED_FOR_MERGE
+EXECUTION_STATUS=AUTHORIZED_DOCUMENTATION_ONLY
 DOCUMENTO_MESTRE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
+MERGE_AUTORIZADO=YES_DOCUMENTATION_ONLY_PR_49
 LIVE_MODE_ARMED=NO
+STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 ```
 
-## ✅ ADRs P0 publicados
+## ✅ ADRs P1/P2 aprovados documentalmente
 
 ```text
-ADR_P0_CRITICAL_REVIEW=PASS_RETEST_03
-ADR_COUNT=12/12
-ADR_SET_STATUS=PUBLISHED_REVIEWED_P0_BASE
-REQUIREMENT_TRACEABILITY=218/218
-UNIQUE_REQUIREMENT_IDS=218
-DUPLICATE_REQUIREMENT_IDS=0
-ORPHAN_REQUIREMENT_IDS=0
-CANONICAL_DOMAIN_COVERAGE=16/16
-HANDOFF_REFERENCE_COVERAGE=12/12
+ADR_COUNT=6/6
+P1_COUNT=5/5
+P2_COUNT=1/1
+CANDIDATE_MAPPING=6/6
+DEPENDENCY_DAG=PASS
 DEPENDS_ON_CYCLE_COUNT=0
-FOUR_FSMS=PASS
-DIVERGENT_IDEMPOTENCY_COLLISION=PASS_BLOCKED
-GITHUB_SYNC=PASS
-LINEAR_SYNC=PASS
-MISSION_CLOSURE=PASS
+NEW_REQUIREMENT_IDS=0
+CANONICAL_REQUIREMENT_TOTAL=218
+P1_P2_DEFERRED_REQUIREMENTS=31/31
+P1_P2_DEFERRED_UNMAPPED=0
+P1_P2_DEFERRED_MISASSIGNED=0
+BUILDER_SELF_REVIEW=PASS_PRELIMINARY_REMEDIATED
+INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_02
+MISSION_GATES=7/7
+CI_STATUS=PASS_9_OF_9
 ```
 
-O conjunto P0 revisado está publicado como base documental da Arquitetura V1.0. Isso não autoriza código, operação real ou início automático do Documento Mestre.
+| ADR | Prioridade | Decisão | Estado |
+|---|---|---|---|
+| [ADR-0013](docs/architecture/adrs/ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | aprovado para merge documental |
+| [ADR-0014](docs/architecture/adrs/ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | aprovado para merge documental |
+| [ADR-0015](docs/architecture/adrs/ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | aprovado para merge documental |
+| [ADR-0016](docs/architecture/adrs/ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | aprovado para merge documental |
+| [ADR-0017](docs/architecture/adrs/ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | aprovado para merge documental |
+| [ADR-0018](docs/architecture/adrs/ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | aprovado para merge documental |
+
+A aprovação é exclusivamente documental. O conjunto somente será considerado publicado após o merge do PR #49 e a confirmação pós-merge.
+
+## 🧪 Histórico da revisão
+
+```text
+INITIAL_REVIEWED_HEAD=8ca08eaee367140a67ede7082e315b2844beab06
+INITIAL_REVIEW_RESULT=FAIL_3_MAJOR
+RETEST_01_REVIEWED_HEAD=15f13005af3b219afb1a2ffffbb2de912ea2a5b4
+RETEST_01_RESULT=FAIL_1_MAJOR
+RETEST_02_REVIEWED_HEAD=fd18979bb295a310fc7a9ea3c78f885a23758b1b
+RETEST_02_RESULT=PASS
+MAJOR_01_TRACEABILITY=CLOSED_PASS
+MAJOR_02_PLAN_STATE_SYNC=CLOSED_PASS
+MAJOR_03_LINEAR_DEPENDENCY_CYCLE=CLOSED_PASS
+MAJOR_04_SCHEMA_CONTRACT_ALIGNMENT=CLOSED_PASS
+OPEN_FINDINGS=0
+RETEST_REQUIRED=NO
+```
+
+## ✅ Base P0 preservada
+
+```text
+LAST_COMPLETED_MISSION=LEA-26
+LAST_COMPLETED_REVIEW=LEA-27_RETEST_03_PASS
+P0_ADR_COUNT=12/12
+P0_ADR_SET_STATUS=PUBLISHED_REVIEWED_P0_BASE
+P0_MAIN_PR=46
+P0_RECEIPT_PR=47
+P0_FINAL_CONFIRMATION_PR=48
+```
 
 ## 🗺️ Mapa da campanha
 
@@ -59,14 +101,14 @@ CONSOLIDAÇÃO CRUZADA
       ✅ concluída
       ↓
 ADRs P0 — LEA-26 / LEA-27
-      ✅ 12/12 ADRs
-      ✅ Reteste 03 PASS
-      ✅ PR #46 integrado
-      ✅ PR #47 — recibo integrado
-      ✅ PR #48 — confirmação final
+      ✅ publicados e revisados
       ↓
-ADRs P1/P2
-      ⬜ autorização pendente
+ADRs P1/P2 — LEA-30 / LEA-31
+      ✅ 6/6 ADRs
+      ✅ rastreabilidade 31/31
+      ✅ Reteste 02 PASS
+      ✅ merge documental autorizado
+      ⏳ integração e confirmação pós-merge
       ↓
 DOCUMENTO MESTRE
       ⛔ não autorizado
@@ -78,27 +120,10 @@ PRONTIDÃO PARA IMPLEMENTAÇÃO
       ⬜ não iniciada
 ```
 
-## 🧱 ADRs P0
-
-| ADR | Decisão | Estado do conjunto |
-|---|---|---|
-| [ADR-0001](docs/architecture/adrs/ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | publicado P0 |
-| [ADR-0002](docs/architecture/adrs/ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | persistência e escritor único | publicado P0 |
-| [ADR-0003](docs/architecture/adrs/ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST, eventos e versionamento | publicado P0 |
-| [ADR-0004](docs/architecture/adrs/ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento | publicado P0 |
-| [ADR-0005](docs/architecture/adrs/ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | publicado P0 |
-| [ADR-0006](docs/architecture/adrs/ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H | publicado P0 |
-| [ADR-0007](docs/architecture/adrs/ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e sinais | publicado P0 |
-| [ADR-0008](docs/architecture/adrs/ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs | publicado P0 remediado |
-| [ADR-0009](docs/architecture/adrs/ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e separação A/B | publicado P0 remediado |
-| [ADR-0010](docs/architecture/adrs/ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | publicado P0 remediado |
-| [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência e reconciliação | publicado P0 remediado |
-| [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | publicado P0 |
-
 ## 🎛️ Política A+B
 
 ```text
-MODE_A=CONTROLLED_OR_SIMULATED_ALLOWED
+MODE_A=CONTROLLED_OR_SIMULATED_ALLOWED_BY_AUTHORIZED_MISSION
 MODE_B=SUPPORTED_BY_SEPARATE_LIVE_GATE
 MODE_B_DEFAULT=DISABLED
 AUTO_ENABLE=PROHIBITED
@@ -109,13 +134,31 @@ Nenhuma sessão LIVE, operação real ou implementação foi autorizada.
 
 ## 🧾 Evidências
 
-- [Reteste 03 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md)
-- [Recibo pós-merge do PR #46](docs/history/receipts/RECIBO_POS_MERGE_LEA-26_LEA-27_PR-46_20260718.md)
-- [Confirmação final](docs/history/receipts/CONFIRMACAO_FINAL_LEA-26_PR-47_20260718.md)
+- [Plano LEA-30](docs/architecture/PLANO_MISSAO_ADRS_P1_P2_LEA-30_20260718.md)
+- [Índice dos ADRs](docs/architecture/adrs/README.md)
+- [Matriz P1/P2](docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md)
+- [Apêndice individual P1/P2](docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md)
+- [Reteste 02 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md)
+
+## Limites ativos
+
+```text
+APPLICATION_CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+RUNTIME_EXECUTED=NO
+REAL_CLICK_EXECUTED=NO
+BENCHMARK_EXECUTED=NO
+TEST_RUNTIME_EXECUTED=NO
+MERGE_AUTHORIZED=YES_DOCUMENTATION_ONLY_PR_49
+DOCUMENT_MASTER_START_AUTHORIZED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+```
 
 ## Próxima ação
 
 ```text
-NEXT_ACTION=AWAIT_HUMAN_AUTHORIZATION_FOR_ADRS_P1_P2_OR_DOCUMENT_MASTER
-DOCUMENT_MASTER_START_AUTHORIZED=NO
+NEXT_ACTION=EXECUTE_AUTHORIZED_MERGE_PR_49
+POST_MERGE_CONFIRMATION_REQUIRED=YES
 ```

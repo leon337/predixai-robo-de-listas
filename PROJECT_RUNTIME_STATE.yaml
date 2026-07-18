@@ -1,55 +1,54 @@
 schema_version: "1.0.3"
-state_revision: 12
+state_revision: 15
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "0963c512f369126548cf339146dd9f8186ca0c6c"
+observed_main_head: "dff0c0f0c26e820756804af92dd7b3641121d51b"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "ADR_P0_PUBLISHED_AWAITING_NEXT_MISSION_AUTHORIZATION"
-active_linear_issue: null
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
-current_gate: "POST_MERGE_CONFIRMATION"
+active_mission: "LEA-30"
+active_stage: "MERGE_AUTHORIZED_AWAITING_EXECUTION"
+active_linear_issue: "LEA-30"
+active_pull_request: 49
+working_branch: "leonpcsn/lea-30-adrs-p1-p2-arquitetura-v1"
+observed_pr_head: "b653157b7c107f061757423adbee7ca8a6872408"
+current_gate: "ADR_P1_P2_MERGE_AUTHORIZATION"
 gate_status: "PASS"
-next_action: "AWAIT_HUMAN_AUTHORIZATION_FOR_ADRS_P1_P2_OR_DOCUMENT_MASTER"
-blockers:
-  - "NEXT_MISSION_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
+next_action: "EXECUTE_AUTHORIZED_MERGE_PR_49"
+blockers: []
 
-transition_id: "LEA-26-T02"
-transition_status: "COMPLETE"
-from_state: "ADR_P0_REVIEWED_PASS_PROPOSED_FOR_MERGE"
-to_state: "ADR_P0_PUBLISHED_POST_MERGE_CONFIRMED"
-baseline_main_sha: "ff726709d13b8acca0961cc17160e38430c6d26f"
-baseline_state_revision: 11
-bound_transition_id: "LEA-26-T02"
-main_pr: 46
-main_pr_head: "d92a96163f2a81c2eb5202b90581a7f65f9a8272"
-main_pr_merge_commit: "ff726709d13b8acca0961cc17160e38430c6d26f"
-post_merge_receipt_pr: 47
-post_merge_receipt_merge_commit: "0963c512f369126548cf339146dd9f8186ca0c6c"
-final_confirmation_pr: 48
+transition_id: "LEA-30-T01"
+transition_status: "APPROVED_FOR_MERGE"
+from_state: "ADR_P0_PUBLISHED_POST_MERGE_CONFIRMED"
+to_state: "ADR_P1_P2_REVIEWED_PASS_READY_FOR_MERGE"
+baseline_main_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
+baseline_state_revision: 12
+bound_transition_id: "LEA-30-T01"
+main_pr: 49
+main_pr_head: "fd18979bb295a310fc7a9ea3c78f885a23758b1b"
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
+final_confirmation_pr: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T17:02:00Z"
+last_sync_at_utc: "2026-07-18T21:35:00Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "lea26-closed-post-merge-20260718"
-  base_sha: "0963c512f369126548cf339146dd9f8186ca0c6c"
-  observed_pr_head: null
-  state_revision_snapshot: 12
-  transition_id_snapshot: "LEA-26-T02"
-  started_at_utc: "2026-07-18T16:53:00Z"
+  owner: "LEA-30"
+  session_id: "lea30-adrs-p1-p2-merge-authorized-20260718"
+  base_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
+  observed_pr_head: "b653157b7c107f061757423adbee7ca8a6872408"
+  state_revision_snapshot: 15
+  transition_id_snapshot: "LEA-30-T01"
+  started_at_utc: "2026-07-18T17:41:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T17:02:00Z"
+  heartbeat_at_utc: "2026-07-18T21:35:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -57,11 +56,11 @@ test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
 real_click_authorized: false
-merge_authorized: false
+merge_authorized: true
 cross_consolidation_authorized: false
-adrs_start_authorized: false
+adrs_start_authorized: true
 document_master_start_authorized: false
-post_merge_receipt_authorized: false
+post_merge_receipt_authorized: true
 
 mode_a_policy_authorized: true
 mode_b_architectural_support_authorized: true
@@ -77,43 +76,60 @@ source_authority:
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
   adr_index: "docs/architecture/adrs/README.md"
-  retest_03_report: "docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md"
-  post_merge_receipt: "docs/history/receipts/RECIBO_POS_MERGE_LEA-26_LEA-27_PR-46_20260718.md"
-  final_confirmation: "docs/history/receipts/CONFIRMACAO_FINAL_LEA-26_PR-47_20260718.md"
-  task_status_and_dependencies: "Linear LEA-26 closing and LEA-27 Done PASS Retest 03"
-  consolidated_code_and_docs: "GitHub main observed at 0963c512f369126548cf339146dd9f8186ca0c6c before final confirmation merge"
+  mission_plan: "docs/architecture/PLANO_MISSAO_ADRS_P1_P2_LEA-30_20260718.md"
+  traceability_matrix: "docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md"
+  traceability_appendix: "docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md"
+  builder_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P1_P2_LEA-30_20260718.md"
+  independent_review_prompt: "docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_ADRS_P1_P2_LEA-31_20260718.md"
+  initial_remediation_report: "docs/history/reviews/REMEDIACAO_ADRS_P1_P2_LEA-30_POS_LEA-31_20260718.md"
+  retest_01_remediation_report: "docs/history/reviews/REMEDIACAO_ADRS_P1_P2_LEA-30_POS_RETESTE_01_LEA-31_20260718.md"
+  retest_02_report: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md"
+  task_status_and_dependencies: "Linear LEA-30 In Progress; LEA-31 Done PASS Retest 02; no blocking cycle"
+  unmerged_work: "GitHub PR #49 approved and authorized for documentation-only merge"
+  consolidated_code_and_docs: "GitHub main at dff0c0f0c26e820756804af92dd7b3641121d51b"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "COMPLETE"
+  execution_status: "AUTHORIZED_DOCUMENTATION_ONLY"
   automatic_advance: false
-  independent_critical_review: "PASS_RETEST_03"
+  independent_critical_review: "PASS_RETEST_02"
+  reviewed_pr_head: "fd18979bb295a310fc7a9ea3c78f885a23758b1b"
   open_critical_findings: 0
   open_major_findings: 0
   open_minor_findings: 0
   retest_required: false
   documentation_only: true
+  human_merge_authorization: true
+  merge_authorization_scope: "PR_49_DOCUMENTATION_ONLY"
   policy_a_b_alignment: true
   mode_a_authorized: true
   mode_b_supported: true
   mode_b_armed: false
   live_without_all_gates_blocked: true
-  main_pr_merged: true
-  main_pr_merge_commit_confirmed: true
-  post_merge_receipt_published: true
-  post_merge_receipt_merge_commit_confirmed: true
-  mission_closure: true
+  main_pr_merged: false
+  post_merge_receipt_recorded: false
+  transition_complete: false
   p0_adr_count: 12
+  p1_p2_adr_count: 6
+  total_adr_count: 18
+  p1_count: 5
+  p2_count: 1
   requirement_rows: 218
   unique_requirement_ids: 218
+  new_requirement_ids: 0
   duplicate_requirement_ids: 0
   orphan_requirement_ids: 0
+  p1_p2_deferred_requirement_rows: 31
+  p1_p2_deferred_unmapped: 0
+  p1_p2_deferred_misassigned: 0
   depends_on_cycle_count: 0
-  adr_set_status: "PUBLISHED_REVIEWED_P0_BASE"
-  ready_for_merge: false
+  adr_set_status: "P1_P2_REVIEWED_PASS_APPROVED_FOR_MERGE"
+  builder_gates_passed: 7
+  builder_gates_total: 7
+  ready_for_merge: true
   ready_for_document_master: false
-  current_product_issue: "LEA-26"
-  current_product_issue_status: "CLOSING_COMPLETE"
-  current_review_issue: "LEA-27"
-  current_review_issue_status: "DONE_PASS_RETEST_03"
+  current_product_issue: "LEA-30"
+  current_product_issue_status: "IN_PROGRESS_MERGE_AUTHORIZED"
+  current_review_issue: "LEA-31"
+  current_review_issue_status: "DONE_PASS_RETEST_02"
