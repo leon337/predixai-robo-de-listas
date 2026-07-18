@@ -7,16 +7,16 @@ observed_main_head: "ff726709d13b8acca0961cc17160e38430c6d26f"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-26"
-active_stage: "ADR_P0_MERGED_POST_MERGE_RECEIPT_PUBLICATION"
+active_stage: "ADR_P0_MERGED_POST_MERGE_RECEIPT_PR_47"
 active_linear_issue: "LEA-26"
-active_pull_request: null
+active_pull_request: 47
 working_branch: "leonpcsn/lea-26-post-merge-receipt-pr-46"
-observed_pr_head: null
+observed_pr_head: "beec94187dbfbd10a4b33bdf9eb6693af4ad4e31"
 current_gate: "POST_MERGE_CONFIRMATION"
 gate_status: "IN_PROGRESS"
-next_action: "PUBLISH_AND_MERGE_POST_MERGE_RECEIPT"
+next_action: "VALIDATE_AND_MERGE_RECEIPT_PR_47"
 blockers:
-  - "POST_MERGE_RECEIPT_PR_PENDING"
+  - "RECEIPT_PR_47_REQUIRES_CI_AND_MERGE"
 
 transition_id: "LEA-26-T02"
 transition_status: "MERGED_PENDING_POST_MERGE_CONFIRMATION"
@@ -28,27 +28,27 @@ bound_transition_id: "LEA-26-T02"
 main_pr: 46
 main_pr_head: "d92a96163f2a81c2eb5202b90581a7f65f9a8272"
 main_pr_merge_commit: "ff726709d13b8acca0961cc17160e38430c6d26f"
-post_merge_receipt_pr: null
+post_merge_receipt_pr: 47
 post_merge_receipt_merge_commit: null
 
 github_sync_status: "IN_PROGRESS"
 linear_sync_status: "IN_PROGRESS"
-readme_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-18T16:53:00Z"
+readme_sync_status: "PASS"
+last_sync_at_utc: "2026-07-18T16:58:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-26"
-  session_id: "lea26-post-merge-receipt-pr46-20260718"
+  session_id: "lea26-post-merge-receipt-pr47-20260718"
   base_sha: "ff726709d13b8acca0961cc17160e38430c6d26f"
-  observed_pr_head: null
+  observed_pr_head: "beec94187dbfbd10a4b33bdf9eb6693af4ad4e31"
   state_revision_snapshot: 12
   transition_id_snapshot: "LEA-26-T02"
   started_at_utc: "2026-07-18T16:53:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T16:53:00Z"
+  heartbeat_at_utc: "2026-07-18T16:58:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -80,6 +80,7 @@ source_authority:
   post_merge_receipt: "docs/history/receipts/RECIBO_POS_MERGE_LEA-26_LEA-27_PR-46_20260718.md"
   task_status_and_dependencies: "Linear LEA-26 In Progress and LEA-27 Done PASS Retest 03"
   consolidated_code_and_docs: "GitHub main at ff726709d13b8acca0961cc17160e38430c6d26f"
+  unmerged_work: "PR #47 post-merge receipt"
 
 safety:
   manifest_documentation_drift: false
@@ -110,6 +111,6 @@ safety:
   ready_for_merge: false
   ready_for_document_master: false
   current_product_issue: "LEA-26"
-  current_product_issue_status: "IN_PROGRESS_POST_MERGE_RECEIPT"
+  current_product_issue_status: "IN_PROGRESS_POST_MERGE_RECEIPT_PR_47"
   current_review_issue: "LEA-27"
   current_review_issue_status: "DONE_PASS_RETEST_03"
