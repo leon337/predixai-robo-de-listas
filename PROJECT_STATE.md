@@ -8,10 +8,11 @@
 - HEAD observado da `main`: `236bc5df7f675ca5cf56d80c5812bd911d224651`
 - Versão do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
-- Revisão ativa: `LEA-19 — Reteste 04 independente do PR #40`
+- Revisão ativa: `LEA-19 — Reteste 05 independente do PR #40`
 - Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
-- PR ativo: `#40`, Draft, remediado para Reteste 04
-- HEAD observado antes desta sincronização: `592bd48b5a705c1206f3e325c1064af295791855`
+- PR ativo: `#40`, Draft após o Reteste 04, em remediação para o Reteste 05
+- Reteste 04 revisou o HEAD: `ab8e02bc6f07d8822012f667ac0a8f1f02a63941`
+- Relatório do Reteste 04: commit `5b548d8e10e75cf9578cc150ea7c86c38f62a203`
 - Merge: não autorizado
 - ADRs: não autorizados
 
@@ -20,9 +21,9 @@
 ```text
 STATE_REVISION=7
 TRANSITION_ID=LEA-18-T01
-TRANSITION_STATUS=READY_FOR_INDEPENDENT_RETEST_04
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
 FROM_STATE=PTM_V2_7_DOCUMENTALLY_DEFINITIVE
-TO_STATE=CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_04
+TO_STATE=CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_05
 MISSION_LOCK=LEA-18
 ```
 
@@ -53,11 +54,11 @@ Esta missão é exclusivamente documental: ela não executa a aplicação, não 
 ```text
 G1_PRECONDITIONS_PASS=PASS
 G2_SOURCE_INVENTORY_COMPLETE=PASS
-G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS_BUILDER_REMEDIATED
-G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS_BUILDER_REMEDIATED_FOR_RETEST_04
-G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER_REMEDIATED
-G6_CONSOLIDATED_DOCUMENT_READY=PASS_BUILDER_REMEDIATED_FOR_RETEST_04
-G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_04_REQUIRED_LEA_19
+G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS
+G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS
+G6_CONSOLIDATED_DOCUMENT_READY=PASS
+G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_05_REQUIRED_LEA_19
 ```
 
 ## Histórico do Boss Gate
@@ -67,15 +68,16 @@ INITIAL_REVIEW_RESULT=FAIL
 RETEST_01_RESULT=FAIL
 RETEST_02_RESULT=FAIL
 RETEST_03_RESULT=FAIL
-RETEST_03_CRITICAL_FINDINGS=0
-RETEST_03_MAJOR_FINDINGS=2
-RETEST_03_MINOR_FINDINGS=1
-RETEST_03_MAJOR_REMEDIATED=2/2
-RETEST_03_MINOR_REMEDIATED=1/1
+RETEST_04_RESULT=FAIL
+RETEST_04_CRITICAL_FINDINGS=0
+RETEST_04_MAJOR_FINDINGS=1
+RETEST_04_MINOR_FINDINGS=1
+MAJOR_09_REMEDIATED=PASS_BUILDER
+MINOR_05_REMEDIATED=PASS_BUILDER
 OPEN_CRITICAL_FINDINGS=0
 OPEN_MAJOR_FINDINGS=0
 OPEN_MINOR_FINDINGS=0
-RETEST_04_REQUIRED=YES
+RETEST_05_REQUIRED=YES
 ```
 
 ## Resultado documental do builder
@@ -101,12 +103,13 @@ DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
 NEW_REQUIREMENT_IDS=0
 UNRESOLVED_NORMATIVE_CONFLICTS=0
-POLICY_A_B_ALIGNMENT=PASS_BUILDER
+POLICY_A_B_ALIGNMENT=PASS
+MANIFEST_PROJECT_STATE_TRUNK_ALIGNMENT=PASS_BUILDER
 ADRS_CREATED=NO
 DOCUMENTAL_BLOCKERS=0
 ```
 
-O builder não emite o Boss Gate final. A consolidação permanece não definitiva até o Reteste 04 independente da `LEA-19`.
+O builder não emite o Boss Gate final. A consolidação permanece não definitiva até o Reteste 05 independente da `LEA-19`.
 
 ## Entregas
 
@@ -118,11 +121,15 @@ O builder não emite o Boss Gate final. A consolidação permanece não definiti
 - ✅ auditoria funcional V2.7 `52/52` com relatório individual;
 - ✅ remediação de `MAJOR-07`, `MAJOR-08` e `MINOR-04`;
 - ✅ alinhamento da LEA-18 à política normativa A+B;
-- 🟧 Reteste 04 independente `LEA-19`.
+- ✅ Reteste 04 executado e registrado;
+- ✅ remediação de `MAJOR-09` e `MINOR-05`;
+- 🟧 Reteste 05 independente `LEA-19`.
 
-## Evidência funcional
+## Evidências
 
-`docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md`
+- `docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md`
+- `docs/history/reviews/REVISAO_CRITICA_RETESTE_04_CONSOLIDACAO_CRUZADA_LEA-19_20260718.md`
+- `docs/history/reviews/REMEDIACAO_RETESTE_04_CONSOLIDACAO_CRUZADA_LEA-18_20260718.md`
 
 ## Condição para avançar
 
@@ -138,4 +145,4 @@ GITHUB_LINEAR_ALIGNMENT=PASS
 
 ## Próxima ação
 
-Executar o Reteste 04 da `LEA-19` no HEAD final do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
+Executar o Reteste 05 da `LEA-19` sobre o HEAD final do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
