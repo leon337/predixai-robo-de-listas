@@ -2,41 +2,33 @@
 
 > Painel operacional, histórico arquitetural e mapa da campanha.
 >
-> O README projeta as fontes vivas para leitura rápida no GitHub. A autoridade operacional permanece em `PROJECT_RUNTIME_STATE.yaml`.
+> O README projeta as fontes vivas para leitura rápida. A autoridade operacional permanece em `PROJECT_RUNTIME_STATE.yaml`.
 
-## 📍 Estado atual do projeto
+## 📍 Estado atual
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=NONE
-ÚLTIMA_MISSÃO=LEA-18 — Consolidação cruzada PTM V2.5/V2.6/V2.7
-ÚLTIMA_REVISÃO=LEA-19 — RETESTE_05_PASS
-PR_PRINCIPAL=40
-PR_PRINCIPAL_STATUS=MERGED
-PR_PRINCIPAL_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
-PR_RECIBO=44
-PR_RECIBO_STATUS=MERGED
-PR_RECIBO_MERGE_COMMIT=48244a45d9a6ae3376237ff1df1efc1a80d9bc26
-CONFIRMAÇÃO_FINAL=PR_45
-FASE=CROSS_CONSOLIDATION_COMPLETE
-GATE=POST_MERGE_CONFIRMATION_PASS
-CONSOLIDACAO_GATES=7/7
-BOSS_GATE=PASS
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=0
-STATE_REVISION=8
+MISSÃO_ATIVA=LEA-26 — ADRs P0 da Arquitetura V1.0
+REVISÃO=LEA-27 — revisão crítica independente
+PULL_REQUEST=46
+PR_STATUS=READY_FOR_REVIEW
+FASE=ADR_P0_INDEPENDENT_CRITICAL_REVIEW
+GATE=A7_INDEPENDENT_CRITICAL_REVIEW
+ADR_GATES=6/7
+ADR_P0=12/12_PROPOSED_FOR_REVIEW
+CRITICAL_FINDINGS=0_BUILDER
+MAJOR_FINDINGS=0_BUILDER
+MINOR_FINDINGS=0_BUILDER
+STATE_REVISION=9
 SNAPSHOT_AT=2026-07-18
-STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+GITHUB+LINEAR
-LEA_18=Done
-LEA_19=Done
-ADRS_READY_FOR_NEW_AUTHORIZATION=YES
-ADRS_AUTORIZADOS=NO
+STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+PR_46+LINEAR
+MERGE_AUTORIZADO=NO
+DOCUMENTO_MESTRE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-A consolidação cruzada foi aprovada, integrada e sincronizada. O próximo estágio são os ADRs, que dependem de missão e autorização próprias.
+Os 12 ADRs P0 foram produzidos e estão no PR #46. Eles permanecem **propostos**, não definitivos, até a revisão independente da LEA-27, autorização humana de merge e confirmação pós-merge.
 
 ## 🗺️ Mapa da campanha
 
@@ -53,18 +45,20 @@ PTM V2.6 — Observação, análise e sinais
 PTM V2.7 — Execução controlada e segurança
       ✅ revisada e aprovada
       ↓
-CONSOLIDAÇÃO CRUZADA V2.5 + V2.6 + V2.7
+CONSOLIDAÇÃO CRUZADA
       ✅ 7/7 gates
-      ✅ Boss Gate PASS
-      ✅ PR #40 integrado
-      ✅ recibo PR #44 integrado
-      ✅ sincronização pós-merge
+      ✅ Reteste 05 PASS
+      ✅ PR #40, recibo #44 e fechamento #45 integrados
       ↓
-ADRs — decisões arquiteturais formais
-      ⏳ prontos para nova autorização
+ADRs P0 — LEA-26 / LEA-27
+      ✅ plano, template e índice
+      ✅ ADR-0001 a ADR-0012
+      ✅ matriz de rastreabilidade
+      ✅ auto-revisão preliminar
+      🟧 revisão crítica independente
       ↓
 DOCUMENTO MESTRE
-      ⬜ não iniciado
+      ⬜ não autorizado
       ↓
 REVISÃO CRÍTICA DO DOCUMENTO MESTRE
       ⬜ não iniciada
@@ -76,175 +70,123 @@ PRONTIDÃO PARA IMPLEMENTAÇÃO
       ⬜ não iniciada
 ```
 
-## 📊 Progresso auditável
+## 📊 Progresso auditável da missão
 
 ```text
-README_PROGRESS_SOURCE=REAL_GATES_AND_DELIVERABLES
+README_PROGRESS_SOURCE=LEA_26_REAL_GATES
 ARBITRARY_PROGRESS=NO
 
-G1_PRECONDITIONS=PASS
-G2_SOURCE_INVENTORY=PASS
-G3_DOMAIN_BOUNDARIES=PASS
-G4_REQUIREMENTS_TRACEABILITY=PASS
-G5_CONFLICTS_AND_SUPERSESSIONS=PASS
-G6_CONSOLIDATED_DOCUMENT=PASS
-G7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_05
-POST_MERGE_CONFIRMATION=PASS
+A1_PRECONDITIONS=PASS
+A2_TEMPLATE_AND_INDEX=PASS
+A3_P0_ADRS=12/12
+A4_TRACEABILITY=PASS_BUILDER
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
+A7_INDEPENDENT_CRITICAL_REVIEW=PENDING_LEA_27
 
-CONSOLIDACAO_GATES=7/7
-CURRENT_BLOCKER=ADRS_START_AUTHORIZATION_REQUIRED
+ADR_GATES=6/7
+CURRENT_BLOCKER=INDEPENDENT_CRITICAL_REVIEW_REQUIRED
 ```
 
 ---
 
-# 🧩 O que já foi construído
+# 🧱 ADRs P0 propostos
 
-## Auditoria e memória do legado
+| ADR | Decisão principal | Estado |
+|---|---|---|
+| [ADR-0001](docs/architecture/adrs/ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor como autoridade global e monólito modular local | proposto |
+| [ADR-0002](docs/architecture/adrs/ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e fronteira de escritor único | proposto |
+| [ADR-0003](docs/architecture/adrs/ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON v1, SSE e snapshot de reconexão | proposto |
+| [ADR-0004](docs/architecture/adrs/ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | pareamento local, identidade e revogação | proposto |
+| [ADR-0005](docs/architecture/adrs/ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis versionados, ROIs e `target_logical_id` | proposto |
+| [ADR-0006](docs/architecture/adrs/ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos e snapshot imutável | proposto |
+| [ADR-0007](docs/architecture/adrs/ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias versionadas e lifecycle de sinais | proposto |
+| [ADR-0008](docs/architecture/adrs/ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | máquinas de estado de comando, grant e tentativa | proposto |
+| [ADR-0009](docs/architecture/adrs/ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores isolados e separação A/B | proposto |
+| [ADR-0010](docs/architecture/adrs/ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante por epoch | proposto |
+| [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | recibo e reconciliação multidimensional | proposto |
+| [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | logs, métricas, auditoria append-only e redaction | proposto |
+
+Índice: [`docs/architecture/adrs/README.md`](docs/architecture/adrs/README.md).
+
+## 🔗 Cobertura
 
 ```text
-✅ inventário factual do legado
-✅ riscos e classificações
-✅ fronteiras de segurança
-✅ REUTILIZAR
-✅ ADAPTAR
-✅ SUBSTITUIR
-✅ DESCONTINUAR
+P0_CANDIDATES=12
+P0_ADRS_PROPOSED=12
+P1_CANDIDATES_REMAINING=5
+P2_CANDIDATES_REMAINING=1
+CANONICAL_DOMAINS=16/16
+MANDATORY_HANDOFFS=12/12
+CROSS_VERSION_REQUIREMENTS=218/218
+NEW_REQUIREMENT_IDS=0
 ```
 
-## PTM V2.5 — Fundação
+Matriz: [`docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md`](docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md).
+
+## 🧭 Decisões estruturantes propostas
 
 ```text
-✅ configuração, identidade e segredos
-✅ persistência e recovery
-✅ listas, clientes e dispositivos
-✅ perfis e calibração
-```
-
-## PTM V2.6 — Observação, inteligência e sinais
-
-```text
-✅ sessão de observação
-✅ captura e proveniência
-✅ validação visual
-✅ OCR e extração
-✅ análise A–H
-✅ estratégia, candidatos e sinais
-```
-
-## PTM V2.7 — Ação controlada
-
-```text
-✅ comando e autorização
-✅ policy engine
-✅ alvo lógico e adaptadores
-✅ dispatch e recibo
-✅ reconciliação e recovery
-✅ auditoria, observabilidade e contenção
-```
-
-## Consolidação cruzada
-
-```text
-✅ inventário canônico das fontes
-✅ mapa de 16 domínios
-✅ mapa de 12 handoffs
-✅ matriz consolidada
-✅ índice individual dos 218 requisitos
-✅ auditoria estrutural V2.7 — 32/32
-✅ auditoria funcional V2.7 — 52/52
-✅ registro de conflitos e supersessões
-✅ catálogo de 18 ADRs candidatos
-✅ política A+B reconciliada
-✅ Reteste 05 — PASS
-✅ PR #40 — MERGED
-✅ recibo PR #44 — MERGED
-✅ GitHub–Linear–README sincronizados
-```
-
-## 🔢 Métricas consolidadas
-
-```text
-PTM_V2_5=56/56
-PTM_V2_6=78/78
-PTM_V2_7=84/84
-TOTAL=218/218
-DUPLICADOS=0
-ÓRFÃOS=0
-NOVOS_REQUISITOS=0
-DOMÍNIOS=16
-HANDOFFS=12
-ADRS_CANDIDATOS=18
-```
-
-```text
-DOM_13=26
-DOM_14=7
-DOM_15=27
-DOM_16=38
-```
-
-## 🧭 Fechamento da fase
-
-```text
-LEA_18=Done
-LEA_19=Done_PASS_RETEST_05
-PR_40=MERGED
-PR_40_MERGE_COMMIT=3b24115dd0b5d4a3a8ba3222b249dc5c3d8fd6f9
-PR_43=CLOSED_SUPERSEDED
-PR_44=MERGED
-PR_44_MERGE_COMMIT=48244a45d9a6ae3376237ff1df1efc1a80d9bc26
-PR_45=FINAL_CONFIRMATION
-OPEN_REVIEW_FINDINGS=0
-TRANSITION_STATUS=COMPLETE
-MISSION_CLOSURE=PASS
+SERVER_STATE=GLOBAL_AUTHORITY
+CLIENT_STATE=LOCAL_VIEW
+V1_TOPOLOGY=LOCAL_MODULAR_MONOLITH
+V1_DATABASE=SQLITE
+WRITE_AUTHORITY=SERVER_SINGLE_WRITER
+API=REST_JSON_V1
+SERVER_EVENTS=SSE
+TARGET_IDENTITY=TARGET_LOGICAL_ID
+ANALYSIS=IMMUTABLE_SNAPSHOT_AND_ENGINE_DAG
+SIGNAL!=COMMAND
+COMMAND!=GRANT
+GRANT!=ATTEMPT
+ATTEMPT!=CONFIRMED_EFFECT
+ADAPTER_TYPES=NULL|SIMULATED|CONTROLLED_UI|LIVE_GATED
+KILL_SWITCH=DOMINANT_PERSISTED_EPOCH
+TIMEOUT!=NO_EFFECT
+UNKNOWN_EFFECT=CORRELATED_ACTION_BLOCK
+AUDIT=APPEND_ONLY_WITH_REDACTION
 ```
 
 ---
 
-# 🛣️ Caminho até o Documento Mestre
-
-## Etapa A — ADRs
+# 🧩 Base já concluída
 
 ```text
-ADRS_CANDIDATOS=18
-ADRS_CRIADOS=0
-ADRS_READY_FOR_NEW_AUTHORIZATION=YES
-ADRS_AUTORIZADOS=NO
+✅ Auditoria Mestra
+✅ PTM V2.5 — 56/56
+✅ PTM V2.6 — 78/78
+✅ PTM V2.7 — 84/84
+✅ consolidação — 218/218
+✅ domínios — 16
+✅ handoffs — 12
+✅ auditoria V2.7 estrutural — 32/32
+✅ auditoria V2.7 funcional — 52/52
+✅ duplicados — 0
+✅ órfãos — 0
+✅ conflitos normativos abertos — 0
 ```
 
-Decisões previstas incluem autoridade do servidor, sinal/comando/autorização, single-writer, adaptadores, idempotência, timeout, `UNKNOWN_EFFECT`, kill switch, recovery e gates do modo LIVE.
-
-## Etapa B — Documento Mestre
-
-O Documento Mestre reunirá visão do produto, limites, 16 domínios, 12 handoffs, contratos das PTMs, ADRs, modelo conceitual de dados, estados, segurança, observabilidade, testes, recovery e roadmap de implementação.
+## 🛣️ Próxima sequência
 
 ```text
-CONSOLIDAÇÃO APROVADA E INTEGRADA
-        ↓
-ADRs AUTORIZADOS E APROVADOS
-        ↓
-DOCUMENTO MESTRE — DRAFT
-        ↓
-REVISÃO CRÍTICA INDEPENDENTE
-        ↓
-DOCUMENTO MESTRE — PASS
-        ↓
-ARQUITETURA V1.0 CONGELADA
+1. 🟧 executar LEA-27 sobre o HEAD final do PR #46
+2. ⬜ corrigir achados, caso existam
+3. ⬜ obter ADR_P0_CRITICAL_REVIEW=PASS
+4. ⬜ receber autorização humana de merge
+5. ⬜ integrar PR #46
+6. ⬜ publicar recibo e sincronização pós-merge
+7. ⬜ decidir missão de ADRs P1/P2 ou Documento Mestre
 ```
-
-## Próxima ação objetiva
 
 ```text
-NEXT_ACTION=AWAIT_HUMAN_AUTHORIZATION_TO_START_ADR_MISSION
+NEXT_ACTION=EXECUTE_LEA_27_INDEPENDENT_CRITICAL_REVIEW_ON_PR_46
 ```
-
-Nenhum ADR ou implementação será iniciado automaticamente.
 
 ---
 
 # 🎛️ Política de automação — modos A e B
 
-Automação de interface é uma capacidade legítima do projeto. O efeito permitido é determinado pelo modo ativo, pelo alvo autorizado e pelos gates da sessão.
+Automação de interface é uma capacidade legítima. O efeito permitido depende do modo, alvo, grant e gates da sessão.
 
 ## Modo A — aplicação própria, simulação ou ambiente controlado
 
@@ -263,8 +205,6 @@ ORDEM_SIMULADA=AUTORIZADA
 ```
 
 ## Modo B — possível efeito financeiro real
-
-O modo `LIVE` é suportado arquiteturalmente, permanece desligado por padrão e não é armado pela fase documental concluída.
 
 ```text
 REAL_FINANCIAL_MODE=SUPPORTED_BY_SEPARATE_GATE
@@ -289,20 +229,14 @@ EXPLICIT_LIVE_SESSION_CONFIRMATION_REQUIRED=YES
 
 Sem todos os gates, o Modo B permanece desativado e qualquer efeito financeiro fica bloqueado.
 
-```text
-CLIQUE CONTROLADO
-├── modo simulado/controlado → autorizado
-└── modo financeiro LIVE     → condicionado a todos os gates LIVE
-```
-
 Política normativa: [`docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md`](docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md).
 
 ---
 
-# 🔄 Sincronização obrigatória do painel
+# 🔄 Sincronização do painel
 
 ```text
-README_OPERATIONAL_DASHBOARD=PASS
+README_OPERATIONAL_DASHBOARD=PASS_IN_PR_46
 README_VERSION_SYNC=PASS
 README_MISSION_SYNC=PASS
 README_PHASE_SYNC=PASS
@@ -312,20 +246,15 @@ README_BLOCKERS_SYNC=PASS
 README_NEXT_ACTION_SYNC=PASS
 README_SNAPSHOT_METADATA=PASS
 README_AUTOMATION_POLICY_SYNC=PASS
-README_SYNC=PASS
 ```
 
 Fontes oficiais:
 
-- [`PROJECT_RUNTIME_STATE.yaml`](PROJECT_RUNTIME_STATE.yaml) — estado operacional estruturado;
-- [`PROJECT_STATE.md`](PROJECT_STATE.md) — visão humana detalhada;
-- [`PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`](PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md) — roadmap e continuidade;
-- [PR #40](../../pull/40) — consolidação integrada;
-- [PR #44](../../pull/44) — recibo pós-merge integrado;
-- [PR #45](../../pull/45) — confirmação final;
-- Linear `LEA-18` e `LEA-19` — missão e revisão concluídas.
-
-Protocolo: [`docs/protocols/README_OPERATIONAL_DASHBOARD.md`](docs/protocols/README_OPERATIONAL_DASHBOARD.md).
+- [`PROJECT_RUNTIME_STATE.yaml`](PROJECT_RUNTIME_STATE.yaml);
+- [`PROJECT_STATE.md`](PROJECT_STATE.md);
+- [`PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`](PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md);
+- [PR #46](https://github.com/leon337/predixai-robo-de-listas/pull/46);
+- Linear `LEA-26` e `LEA-27`.
 
 ---
 
@@ -363,7 +292,7 @@ bash install.sh
 bash run.sh
 ```
 
-## Criar ícone no menu e na área de trabalho
+## Criar ícone
 
 ```bash
 bash install_desktop.sh
@@ -391,19 +320,4 @@ install_desktop.sh
 run.sh
 VERSION
 CHANGELOG.md
-```
-
----
-
-# 📌 Regra de leitura rápida
-
-```text
-1. Estado atual
-2. Mapa da campanha
-3. Progresso auditável
-4. Entregas e métricas
-5. Próxima sequência
-6. Política de automação
-7. Fontes oficiais
-8. Legado executável
 ```
