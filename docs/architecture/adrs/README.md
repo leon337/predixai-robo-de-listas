@@ -9,7 +9,8 @@ ADR_STATUS=PROPOSED_FOR_REVIEW
 BUILDER_ISSUE=LEA-26
 REVIEW_ISSUE=LEA-27
 TRANSITION_ID=LEA-26-T01
-RETEST_SEQUENCE=03_PENDING
+RETEST_SEQUENCE=03_PASS
+ADR_P0_CRITICAL_REVIEW=PASS
 IMPLEMENTATION_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
@@ -102,15 +103,16 @@ CANONICAL_DOMAIN_COVERAGE=16/16
 HANDOFF_REFERENCE_COVERAGE=12/12
 ```
 
-O apêndice preserva evidência de conteúdo. Qualquer referência operacional antiga nele é superada pelo manifesto, pelo estado humano, pelo PR vivo e pelo Linear.
+O apêndice preserva evidência de conteúdo. Qualquer referência operacional histórica nele é superada pelo manifesto, pelo estado humano, pelo PR vivo e pelo Linear.
 
 ## Próximo gate
 
 ```text
-A7_INDEPENDENT_CRITICAL_REVIEW=LEA-27_RETEST_03
-ADR_P0_CRITICAL_REVIEW=PASS_REQUIRED_ON_NEW_HEAD
+A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_03
+ADR_P0_CRITICAL_REVIEW=PASS
+DOCUMENTAL_READY_FOR_MERGE=YES
 MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 ```
 
-O `PASS_RETEST_02` foi invalidado por achados novos detectados na verificação pré-merge. Nenhum merge pode ocorrer antes do Reteste 03 e de nova autorização humana para o novo HEAD.
+O novo HEAD final sincronizado exige nova autorização humana explícita de merge.
