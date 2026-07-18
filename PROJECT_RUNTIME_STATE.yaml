@@ -11,7 +11,7 @@ active_stage: "ADR_P1_P2_REMEDIATED_READY_FOR_RETEST_01"
 active_linear_issue: "LEA-30"
 active_pull_request: 49
 working_branch: "leonpcsn/lea-30-adrs-p1-p2-arquitetura-v1"
-observed_pr_head: "7460a46c5812a7345472970a3017050bba82dee1"
+observed_pr_head: "eb91592dd326a68eacdf6c49eef0e69d7e8d52ce"
 current_gate: "INDEPENDENT_CRITICAL_RETEST"
 gate_status: "IN_PROGRESS"
 next_action: "EXECUTE_LEA_31_RETEST_01_ON_PR_49_LIVE_HEAD"
@@ -36,7 +36,7 @@ final_confirmation_pr: null
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T19:55:00Z"
+last_sync_at_utc: "2026-07-18T19:57:00Z"
 
 mission_lock:
   locked: true
@@ -45,12 +45,12 @@ mission_lock:
   owner: "LEA-30"
   session_id: "lea30-adrs-p1-p2-remediation-20260718"
   base_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
-  observed_pr_head: "7460a46c5812a7345472970a3017050bba82dee1"
+  observed_pr_head: "eb91592dd326a68eacdf6c49eef0e69d7e8d52ce"
   state_revision_snapshot: 14
   transition_id_snapshot: "LEA-30-T01"
   started_at_utc: "2026-07-18T17:41:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T19:55:00Z"
+  heartbeat_at_utc: "2026-07-18T19:57:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
