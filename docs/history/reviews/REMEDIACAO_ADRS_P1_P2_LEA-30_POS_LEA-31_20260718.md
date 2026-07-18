@@ -1,0 +1,121 @@
+# REMEDIAÇÃO DOS ADRs P1/P2 — LEA-30 APÓS LEA-31
+
+## 1. Controle
+
+```text
+BUILDER_ISSUE=LEA-30
+REVIEW_ISSUE=LEA-31
+PULL_REQUEST=49
+INITIAL_REVIEWED_HEAD=8ca08eaee367140a67ede7082e315b2844beab06
+INITIAL_REVIEW_RESULT=FAIL
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=3
+MINOR_FINDINGS=0
+DOCUMENTATION_ONLY=YES
+CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+RUNTIME_EXECUTED=NO
+MERGE_EXECUTED=NO
+```
+
+## 2. Resultado da primeira revisão
+
+A LEA-31 reprovou o primeiro HEAD por três achados MAJOR:
+
+1. rastreabilidade P1/P2 incompleta e com `V27-SAF-008` atribuído ao ADR incorreto;
+2. plano da LEA-30 em estado anterior ao restante do PR;
+3. relação de bloqueio circular entre LEA-30 e LEA-31 no Linear.
+
+## 3. MAJOR-01 — rastreabilidade
+
+### Correções
+
+- criado o apêndice individual dos requisitos diferidos P1/P2;
+- reconciliados `31/31` IDs diferidos;
+- separados requisitos diferidos de vínculos complementares;
+- incluídos os 26 requisitos de observação, captura, validação e mapping no ADR-0014;
+- mantidos `V27-SAF-002..003` no ADR-0015;
+- movido `V27-SAF-008` para o ADR-0016;
+- mantido apenas `V27-SAF-001` como diferimento do ADR-0017;
+- explicitado `V25-QA-002` no ADR-0018;
+- explicitado que ADR-CAND-003 possui zero linhas diferidas e complementa o ADR-0002.
+
+```text
+P1_P2_DEFERRED_REQUIREMENT_ROWS=31
+P1_P2_DEFERRED_UNIQUE_IDS=31
+P1_P2_DEFERRED_DUPLICATE_IDS=0
+P1_P2_DEFERRED_UNMAPPED_IDS=0
+P1_P2_DEFERRED_MISASSIGNED_IDS=0
+MAJOR_01=REMEDIATED_BUILDER
+```
+
+Evidências:
+
+- `docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md`;
+- `docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md`;
+- `docs/architecture/adrs/ADR-0013*` a `ADR-0018*`.
+
+## 4. MAJOR-02 — sincronização do plano
+
+O plano foi convertido de `BUILDER_IN_PROGRESS` para `BUILDER_REMEDIATED_READY_FOR_RETEST_01`, com gates `6/7`, os três achados registrados e a próxima ação alterada para o reteste independente.
+
+```text
+PLAN_STATUS_SYNC=PASS_BUILDER_REMEDIATED
+MISSION_GATES=6/7
+NEXT_ACTION=EXECUTE_LEA_31_RETEST_01_ON_NEW_PR_49_HEAD
+MAJOR_02=REMEDIATED_BUILDER
+```
+
+Evidência:
+
+- `docs/architecture/PLANO_MISSAO_ADRS_P1_P2_LEA-30_20260718.md`.
+
+## 5. MAJOR-03 — dependência Linear
+
+A relação `LEA-30 blocks LEA-31` foi removida. As issues permanecem relacionadas como builder e revisão, sem impedir a execução do gate B7.
+
+```text
+LINEAR_BLOCKING_CYCLE=REMOVED
+LEA_30_STATUS=IN_PROGRESS
+LEA_31_STATUS=IN_PROGRESS
+BUILDER_REVIEW_RELATION=RELATED_NOT_BLOCKING
+MAJOR_03=REMEDIATED
+```
+
+## 6. Auto-validação da remediação
+
+```text
+ADR_COUNT=6/6
+ADR_STATUS=PROPOSED_FOR_REVIEW
+NUMBERING_AND_CANDIDATE_MAPPING=PASS_BUILDER
+CROSS_ADR_CONSISTENCY=PASS_BUILDER_REMEDIATED
+DEPENDENCY_DAG=PASS_BUILDER
+DEPENDENCY_CYCLE_COUNT=0
+TRACEABILITY=PASS_BUILDER_REMEDIATED
+MIGRATION_SAFETY=PASS_BUILDER
+VISUAL_EVIDENCE_PRIVACY=PASS_BUILDER
+EXECUTION_IDEMPOTENCY_ALIGNMENT=PASS_BUILDER
+TIME_AND_PROCESS_IDENTITY_ALIGNMENT=PASS_BUILDER_REMEDIATED
+THRESHOLD_CALIBRATION_SAFETY=PASS_BUILDER_REMEDIATED
+TEST_EVIDENCE_LAYERING=PASS_BUILDER
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
+README_AND_STATE_SYNC=PENDING_FINAL_STATE_SYNC
+CI_STATUS=PENDING_NEW_HEAD
+```
+
+## 7. Gate
+
+```text
+LEA_31_FINDINGS_REMEDIATED_BUILDER=3/3
+OPEN_FINDINGS_BUILDER_VIEW=0
+INDEPENDENT_FINDINGS_CLOSED=NO_UNTIL_RETEST
+RETEST_REQUIRED=YES
+DOCUMENTAL_READY_FOR_RETEST=YES
+DOCUMENTAL_READY_FOR_MERGE=NO
+DOCUMENT_MASTER_READY_TO_START=NO
+MERGE_AUTHORIZED=NO
+```
+
+A remediação não altera o resultado histórico da primeira revisão. Somente o reteste independente sobre o novo HEAD pode fechar os achados e alterar o gate final.
