@@ -56,6 +56,8 @@ REJECTED
 
 `ACCEPTED` significa decisão arquitetural aprovada e publicada. Não significa implementação autorizada, runtime validado ou Modo LIVE armado.
 
+<a id="indice-p0-publicado"></a>
+
 ## Índice P0 publicado
 
 | ADR | Decisão | Estado |
