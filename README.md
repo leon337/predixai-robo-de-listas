@@ -9,16 +9,17 @@
 ```text
 VERSÃO_REAL=V2.4.3-R1
 MISSÃO_ATIVA=LEA-26 — ADRs P0 da Arquitetura V1.0
-REVISÃO=LEA-27 — RETESTE_02_AUTHORIZED
+ÚLTIMA_REVISÃO=LEA-27 — RETESTE_02_PASS
 PULL_REQUEST=46
-PR_STATUS=DRAFT_DURING_FINAL_SYNC
+PR_STATUS=READY_FOR_MERGE_NOT_AUTHORIZED
 SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
-SNAPSHOT_CONTENT_HEAD_SEMANTICS=COMMON_PERSISTED_SNAPSHOT_BEFORE_RETEST_02_SYNC
 LIVE_PR_HEAD_SOURCE=GITHUB_API
-FASE=MINOR_01_REMEDIATED_PRE_RETEST_02
-GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_02
-ADR_GATES=6/7
-STATE_REVISION=10
+RETEST_02_REVIEWED_HEAD=c4bfc336027f8e8aa76c686f460431a531a8dc69
+RETEST_02_REPORT_COMMIT=216c8d2b485aed72c77e05b401fe06ecaa1eb6c9
+FASE=ADR_P0_REVIEW_PASS_AWAITING_MERGE_AUTHORIZATION
+GATE=A7_INDEPENDENT_CRITICAL_REVIEW_PASS_RETEST_02
+ADR_GATES=7/7
+STATE_REVISION=11
 SNAPSHOT_AT=2026-07-18
 STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+README+PR_46+LINEAR
 MERGE_AUTORIZADO=NO
@@ -27,42 +28,39 @@ IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-O snapshot persistido é o mesmo nas quatro fontes oficiais. O HEAD vivo do PR é consultado pela API do GitHub e permanece separado para evitar autorreferência em arquivos versionados.
+O snapshot persistido permanece comum às fontes oficiais. O HEAD vivo é consultado pela API do GitHub e não é tratado como campo autorreferencial dos arquivos versionados.
 
-## 🚧 Revisões e remediações
+## ✅ Resultado do Reteste 02
 
 ```text
-LEA_27_INITIAL_REVIEW=FAIL
-INITIAL_REVIEWED_HEAD=2c9c2432058c5f119bd1802c3ba00e845c6a5ca0
-INITIAL_CRITICAL_FINDINGS=0
-INITIAL_MAJOR_FINDINGS=4
-INITIAL_MINOR_FINDINGS=1
-
-RETEST_01_RESULT=FAIL
-RETEST_01_REVIEWED_HEAD=87d47ef5c4426d021a77dff2536946cfcd66eba8
-RETEST_01_REPORT_COMMIT=6f1ac10005e7231e9efe88da9c7a27931038a989
-RETEST_01_CRITICAL_FINDINGS=0
-RETEST_01_MAJOR_FINDINGS=0
-RETEST_01_MINOR_FINDINGS=1
-
-MAJOR_01=PASS
-MAJOR_02=PASS
-MAJOR_03=PASS
-MAJOR_04=PASS
-MINOR_01=REMEDIATED_BY_BUILDER_PENDING_RETEST_02
-OPEN_BUILDER_FINDINGS=0
+ADR_P0_CRITICAL_REVIEW=PASS
+RETEST_SEQUENCE=02
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=0
+OPEN_FINDINGS=0
+DOCUMENTAL_READY_FOR_MERGE=YES
+DOCUMENT_MASTER_READY_TO_START=NO
+RETEST_REQUIRED=NO
 ```
 
-## 🔄 Contrato comum do snapshot
+O Documento Mestre continua bloqueado até autorização humana de merge, integração do PR #46, recibo pós-merge e sincronização final.
+
+## 🔍 Validações aprovadas
 
 ```text
+MAJOR_01_TRACEABILITY_218=PASS
+MAJOR_02_DEPENDENCY_DAG=PASS
+MAJOR_03_FOUR_FSMS=PASS
+MAJOR_04_IDEMPOTENCY_COLLISION=PASS
+MINOR_01_COMMON_SNAPSHOT=PASS
 MANIFEST_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
 MISSION_LOCK_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
 PROJECT_STATE_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
 TRONCO_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
 README_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-LIVE_PR_HEAD_SOURCE=GITHUB_API
-COMMON_SNAPSHOT_ALIGNMENT=PASS_BUILDER
+OPEN_REVIEW_THREADS=0
+CI_WORKFLOWS=9_OF_9_SUCCESS
 ```
 
 ## 🗺️ Mapa da campanha
@@ -79,13 +77,13 @@ CONSOLIDAÇÃO CRUZADA
       ↓
 ADRs P0 — LEA-26 / LEA-27
       ✅ 12/12 ADRs propostos
-      ✅ rastreabilidade individual 218/218
+      ✅ rastreabilidade 218/218
       ✅ grafo DEPENDS_ON acíclico
       ✅ quatro FSMs completas
       ✅ idempotência divergente bloqueada
-      ✅ Reteste 01 executado
-      ✅ MINOR-01 remediado pelo builder
-      🟧 Reteste 02 autorizado
+      ✅ snapshot comum sincronizado
+      ✅ LEA-27 Reteste 02 PASS
+      🟧 autorização humana de merge
       ↓
 DOCUMENTO MESTRE
       ⛔ não autorizado
@@ -108,9 +106,9 @@ A3_P0_ADRS=12/12
 A4_TRACEABILITY=PASS
 A5_CROSS_ADR_CONSISTENCY=PASS
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_02_AUTHORIZED
-ADR_GATES=6/7
-CURRENT_BLOCKER=INDEPENDENT_CRITICAL_RETEST_02_REQUIRED
+A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_02
+ADR_GATES=7/7
+CURRENT_BLOCKER=NEW_HUMAN_MERGE_AUTHORIZATION_REQUIRED
 ```
 
 ## 🧱 ADRs P0 propostos
@@ -129,8 +127,6 @@ CURRENT_BLOCKER=INDEPENDENT_CRITICAL_RETEST_02_REQUIRED
 | [ADR-0010](docs/architecture/adrs/ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | proposto remediado |
 | [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | proposto remediado |
 | [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade, auditoria e redaction | proposto |
-
-Índice: [`docs/architecture/adrs/README.md`](docs/architecture/adrs/README.md).
 
 ## 🔗 Rastreabilidade e invariantes
 
@@ -151,10 +147,7 @@ EXECUTION_ATTEMPT_FSM=DEFINED
 SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
 ```
 
-- [Matriz resumida](docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md)
-- [Apêndice individual dos 218 requisitos](docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md)
-
-## 🎛️ Política de automação — Modos A e B
+## 🎛️ Política A+B
 
 ```text
 MODE_A=CONTROLLED_OR_SIMULATED_ALLOWED
@@ -164,28 +157,26 @@ AUTO_ENABLE=PROHIBITED
 LIVE_WITHOUT_ALL_GATES=BLOCKED
 ```
 
-Modo A permanece limitado a ambiente autorizado e sem efeito financeiro real. Modo B permanece apenas como capacidade arquitetural desligada e condicionada aos gates técnicos, humanos, comerciais, legais e de conformidade.
+Nenhuma sessão LIVE, operação real ou implementação foi autorizada.
 
 ## 🧾 Evidências
 
-- [Plano dos ADRs P0](docs/architecture/PLANO_MISSAO_ADRS_P0_LEA-26_20260718.md)
-- [Apêndice 218/218](docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md)
 - [Reteste 01 — FAIL](docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md)
 - [Remediação do MINOR-01](docs/history/reviews/REMEDIACAO_MINOR_01_SNAPSHOT_ADRS_P0_LEA-26_20260718.md)
+- [Reteste 02 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P0_LEA-27_20260718.md)
 
 ## 🛣️ Próxima sequência
 
 ```text
-1. responder e resolver a thread de sincronização
-2. confirmar CI 9/9 no novo HEAD
-3. marcar o PR pronto para revisão
-4. executar LEA-27 Reteste 02
-5. obter ADR_P0_CRITICAL_REVIEW=PASS
-6. solicitar nova autorização humana de merge
+1. aguardar autorização humana de merge
+2. integrar o PR #46 com proteção do HEAD
+3. publicar recibo pós-merge
+4. sincronizar GitHub e Linear
+5. decidir ADRs P1/P2 e autorização do Documento Mestre
 ```
 
 ```text
-NEXT_ACTION=RESOLVE_THREAD_VALIDATE_CI_AND_EXECUTE_LEA_27_RETEST_02
+NEXT_ACTION=AWAIT_NEW_HUMAN_AUTHORIZATION_TO_MERGE_PR_46
 ```
 
 ## 🗃️ Legado executável disponível
@@ -196,13 +187,4 @@ A aplicação desktop legada permanece fonte histórica auditada. Sua existênci
 ARQUIVO_DE_VERSÃO=2.4.3
 VERSÃO_DOCUMENTAL_REAL=V2.4.3-R1
 PLATAFORMA_LEGADA=Linux Mint / X11
-```
-
-```bash
-sudo apt update
-sudo apt install -y python3-venv python3-tk
-git clone https://github.com/leon337/predixai-robo-de-listas.git
-cd predixai-robo-de-listas
-bash install.sh
-bash run.sh
 ```
