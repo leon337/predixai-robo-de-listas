@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 13
+state_revision: 14
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,22 +7,22 @@ observed_main_head: "dff0c0f0c26e820756804af92dd7b3641121d51b"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-30"
-active_stage: "ADR_P1_P2_READY_FOR_INDEPENDENT_REVIEW"
+active_stage: "ADR_P1_P2_REMEDIATED_READY_FOR_RETEST_01"
 active_linear_issue: "LEA-30"
 active_pull_request: 49
 working_branch: "leonpcsn/lea-30-adrs-p1-p2-arquitetura-v1"
-observed_pr_head: "ef592068c45a53c0efc808545b9dfedb71adbfb1"
-current_gate: "INDEPENDENT_CRITICAL_REVIEW"
+observed_pr_head: "a0d236959ef4f9130187147796952100589a9199"
+current_gate: "INDEPENDENT_CRITICAL_RETEST"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_LEA_31_INDEPENDENT_CRITICAL_REVIEW_ON_PR_49_LIVE_HEAD"
+next_action: "EXECUTE_LEA_31_RETEST_01_ON_PR_49_LIVE_HEAD"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
+  - "INDEPENDENT_CRITICAL_RETEST_REQUIRED"
   - "MERGE_NOT_AUTHORIZED"
 
 transition_id: "LEA-30-T01"
-transition_status: "READY_FOR_INDEPENDENT_REVIEW"
+transition_status: "REMEDIATED_READY_FOR_RETEST_01"
 from_state: "ADR_P0_PUBLISHED_POST_MERGE_CONFIRMED"
-to_state: "ADR_P1_P2_PROPOSED_FOR_INDEPENDENT_REVIEW"
+to_state: "ADR_P1_P2_REMEDIATED_PROPOSED_FOR_RETEST"
 baseline_main_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
 baseline_state_revision: 12
 bound_transition_id: "LEA-30-T01"
@@ -36,21 +36,21 @@ final_confirmation_pr: null
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T17:51:00Z"
+last_sync_at_utc: "2026-07-18T19:49:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-30"
-  session_id: "lea30-adrs-p1-p2-builder-20260718"
+  session_id: "lea30-adrs-p1-p2-remediation-20260718"
   base_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
-  observed_pr_head: "ef592068c45a53c0efc808545b9dfedb71adbfb1"
-  state_revision_snapshot: 13
+  observed_pr_head: "a0d236959ef4f9130187147796952100589a9199"
+  state_revision_snapshot: 14
   transition_id_snapshot: "LEA-30-T01"
   started_at_utc: "2026-07-18T17:41:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T17:51:00Z"
+  heartbeat_at_utc: "2026-07-18T19:49:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -80,20 +80,22 @@ source_authority:
   adr_index: "docs/architecture/adrs/README.md"
   mission_plan: "docs/architecture/PLANO_MISSAO_ADRS_P1_P2_LEA-30_20260718.md"
   traceability_matrix: "docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md"
+  traceability_appendix: "docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md"
   builder_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P1_P2_LEA-30_20260718.md"
   independent_review_prompt: "docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_ADRS_P1_P2_LEA-31_20260718.md"
-  task_status_and_dependencies: "Linear LEA-30 In Progress blocks LEA-31 Todo"
-  unmerged_work: "GitHub PR #49 Draft"
+  remediation_report: "docs/history/reviews/REMEDIACAO_ADRS_P1_P2_LEA-30_POS_LEA-31_20260718.md"
+  task_status_and_dependencies: "Linear LEA-30 In Progress related to LEA-31 In Progress; no blocking cycle"
+  unmerged_work: "GitHub PR #49 Draft remediated for Retest 01"
   consolidated_code_and_docs: "GitHub main at dff0c0f0c26e820756804af92dd7b3641121d51b"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "AWAITING_INDEPENDENT_REVIEW"
+  execution_status: "REMEDIATED_AWAITING_INDEPENDENT_RETEST_01"
   automatic_advance: false
-  independent_critical_review: "PENDING_LEA_31"
+  independent_critical_review: "FAIL_REMEDIATED_AWAITING_RETEST_01"
   open_critical_findings: 0
-  open_major_findings: 0
+  open_major_findings: 3
   open_minor_findings: 0
   retest_required: true
   documentation_only: true
@@ -113,12 +115,12 @@ safety:
   duplicate_requirement_ids: 0
   orphan_requirement_ids: 0
   depends_on_cycle_count: 0
-  adr_set_status: "P1_P2_PROPOSED_FOR_INDEPENDENT_REVIEW"
+  adr_set_status: "P1_P2_REMEDIATED_READY_FOR_RETEST_01"
   builder_gates_passed: 6
   builder_gates_total: 7
   ready_for_merge: false
   ready_for_document_master: false
   current_product_issue: "LEA-30"
-  current_product_issue_status: "IN_PROGRESS_READY_FOR_REVIEW"
+  current_product_issue_status: "IN_PROGRESS_REMEDIATED_READY_FOR_RETEST"
   current_review_issue: "LEA-31"
-  current_review_issue_status: "TODO"
+  current_review_issue_status: "IN_PROGRESS_RETEST_REQUIRED"
