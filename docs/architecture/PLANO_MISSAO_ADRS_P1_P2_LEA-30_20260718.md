@@ -5,7 +5,7 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=BUILDER_IN_PROGRESS
+DOCUMENT_STATUS=BUILDER_REMEDIATED_READY_FOR_RETEST_01
 MISSION=LEA-30
 REVIEW_ISSUE=LEA-31
 REPOSITORY=leon337/predixai-robo-de-listas
@@ -15,10 +15,14 @@ STATE_REVISION_BASE=12
 TRANSITION_ID=LEA-30-T01
 MISSION_SCOPE=DOCUMENTATION_ONLY
 HUMAN_AUTHORIZATION=RECEIVED_2026-07-18
+INITIAL_REVIEWED_HEAD=8ca08eaee367140a67ede7082e315b2844beab06
+INITIAL_REVIEW_RESULT=FAIL_3_MAJOR
+REMEDIATION_STATUS=COMPLETE_BUILDER
+RETEST_REQUIRED=YES
 MERGE_AUTHORIZED=NO
 ```
 
-Este documento planeja conteúdo arquitetural. O estado operacional vigente permanece em `PROJECT_RUNTIME_STATE.yaml`, GitHub e Linear.
+Este documento registra o plano e o estado corrente da entrega documental. O estado operacional autoritativo permanece em `PROJECT_RUNTIME_STATE.yaml`, GitHub e Linear.
 
 ## 2. Objetivo
 
@@ -68,25 +72,46 @@ P1_P2_DEPENDS_ON_DAG=PASS_BUILDER
 1. seis ADRs completos;
 2. índice e grafo de dependências atualizados;
 3. matriz de rastreabilidade P1/P2;
-4. auto-revisão preliminar;
-5. prompt e issue de revisão independente;
-6. manifesto, estado humano, tronco e README sincronizados no PR;
-7. PR Draft sem autorização de merge.
+4. apêndice de rastreabilidade individual P1/P2;
+5. auto-revisão preliminar;
+6. prompt e issue de revisão independente;
+7. manifesto, estado humano, tronco e README sincronizados no PR;
+8. PR Draft sem autorização de merge.
 
-## 7. Gates
+## 7. Revisão LEA-31 e remediação
+
+A primeira revisão independente avaliou o HEAD `8ca08eaee367140a67ede7082e315b2844beab06` e registrou três achados MAJOR.
+
+```text
+MAJOR_01_TRACEABILITY=REMEDIATED_BUILDER
+MAJOR_02_PLAN_STATE_SYNC=REMEDIATED_BUILDER
+MAJOR_03_LINEAR_DEPENDENCY_CYCLE=REMEDIATED
+CRITICAL_FINDINGS=0
+OPEN_FINDINGS_BUILDER_VIEW=0
+INDEPENDENT_RETEST_REQUIRED=YES
+```
+
+Evidências:
+
+- `docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md`;
+- `docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md`;
+- seis ADRs com separação entre requisitos diferidos e complementares;
+- relação circular `LEA-30 blocks LEA-31` removida no Linear.
+
+## 8. Gates
 
 ```text
 B1_PRECONDITIONS=PASS
 B2_PLAN_AND_NUMBERING=PASS
-B3_P1_P2_ADRS=IN_PROGRESS
-B4_TRACEABILITY=IN_PROGRESS
-B5_CROSS_ADR_CONSISTENCY=IN_PROGRESS
-B6_BUILDER_SELF_REVIEW=PENDING
-B7_INDEPENDENT_CRITICAL_REVIEW=REQUIRED
-MISSION_GATES=2/7
+B3_P1_P2_ADRS=6/6
+B4_TRACEABILITY=PASS_BUILDER_REMEDIATED
+B5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_REMEDIATED
+B6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_REMEDIATED
+B7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
+MISSION_GATES=6/7
 ```
 
-## 8. Limites
+## 9. Limites
 
 ```text
 CODE_CHANGE_AUTHORIZED=NO
@@ -104,10 +129,14 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## 9. Rollback documental
+## 10. Rollback documental
 
 A branch pode ser descartada sem alterar a `main`. Nenhum ADR muda runtime, banco físico, infraestrutura, credenciais, interface real ou efeito financeiro.
 
-## 10. Próxima ação
+## 11. Próxima ação
 
-Produzir os seis ADRs, validar rastreabilidade e publicar PR Draft para `LEA-31`.
+```text
+NEXT_ACTION=EXECUTE_LEA_31_RETEST_01_ON_NEW_PR_49_HEAD
+AUTOMATIC_MERGE=NO
+DOCUMENT_MASTER_START=NO
+```
