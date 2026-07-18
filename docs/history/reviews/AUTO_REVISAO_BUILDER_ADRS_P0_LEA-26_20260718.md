@@ -1,11 +1,11 @@
 # AUTO-REVISÃO DO BUILDER — ADRs P0
 
-## LEA-26 — Arquitetura V1.0
+## LEA-26 — Remediação para o Reteste 01
 
 ## 1. Controle
 
 ```text
-REVIEW_TYPE=BUILDER_SELF_REVIEW_PRELIMINARY
+REVIEW_TYPE=BUILDER_SELF_REVIEW_PRELIMINARY_AFTER_LEA_27_FAIL
 MISSION=LEA-26
 INDEPENDENT_REVIEW_ISSUE=LEA-27
 PULL_REQUEST=46
@@ -20,16 +20,88 @@ FINAL_BOSS_GATE_BY_BUILDER=PROHIBITED
 ```text
 BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
 CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS_FOUND=1
-MINOR_FINDINGS_REMEDIATED=1
-OPEN_MINOR_FINDINGS=0
-RETEST_REQUIRED=NO_BUILDER
-INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+MAJOR_FINDINGS_FOUND_BY_LEA_27=4
+MAJOR_FINDINGS_REMEDIATED_BY_BUILDER=4
+OPEN_MAJOR_FINDINGS_BUILDER=0
+MINOR_FINDINGS_FOUND_BY_LEA_27=1
+MINOR_FINDINGS_REMEDIATED_BY_BUILDER=1
+OPEN_MINOR_FINDINGS_BUILDER=0
+RETEST_REQUIRED=YES_LEA_27_RETEST_01
 MERGE_AUTHORIZED=NO
 ```
 
-## 3. Verificações
+## 3. Remediações
+
+### MAJOR-01 — rastreabilidade individual
+
+```text
+REQUIREMENT_ROWS=218
+UNIQUE_REQUIREMENT_IDS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNJUSTIFIED_NO_P0_MAPPING=0
+P0_MAPPING_EXPLICIT=PASS
+P1_P2_DEFERRAL_EXPLICIT=PASS
+MAJOR_01_REMEDIATED=PASS_BUILDER
+```
+
+Evidência: `docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`.
+
+### MAJOR-02 — dependências
+
+```text
+RELATION_TYPES=DEPENDS_ON|MUST_ALIGN_WITH|GOVERNS
+DEPENDS_ON_NODE_COUNT=12
+DEPENDS_ON_CYCLE_COUNT=0
+DEPENDS_ON_DAG=PASS
+PLAN_INDEX_ADR_ALIGNMENT=PASS_BUILDER
+MAJOR_02_REMEDIATED=PASS_BUILDER
+```
+
+A dominância do kill switch é `GOVERNS`, não aresta inversa de `DEPENDS_ON`.
+
+### MAJOR-03 — FSMs
+
+```text
+COMMAND_FSM=DEFINED
+AUTHORIZATION_GRANT_FSM=DEFINED
+SESSION_ARMING_FSM=DEFINED
+EXECUTION_ATTEMPT_FSM=DEFINED
+SUPERSEDED=DEFINED
+GRANT_REVOCATION=DEFINED
+GRANT_EXPIRATION=DEFINED
+GRANT_CONSUMPTION=DEFINED
+KILL_EPOCH_INVALIDATION=DEFINED
+IMMUTABLE_FIELDS_LIFECYCLE_SEPARATION=PASS
+RESTART_NO_REARM_OR_REDISPATCH=PASS
+MAJOR_03_REMEDIATED=PASS_BUILDER
+```
+
+### MAJOR-04 — idempotência
+
+```text
+CANONICAL_FINGERPRINT=DEFINED_AND_VERSIONED
+SAME_KEY_AND_SAME_FINGERPRINT=RETURN_EXISTING_ATTEMPT
+SAME_KEY_AND_DIFFERENT_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
+DIVERGENT_REUSE_CALLS_ADAPTER=NO
+MAJOR_04_REMEDIATED=PASS_BUILDER
+```
+
+### MINOR-01 — snapshot
+
+```text
+ACTIVE_PR_HEAD_REQUIRED=YES
+OBSERVED_PR_HEAD_SEMANTICS=INFORMATIONAL_SNAPSHOT
+CURRENT_PR_HEAD_SOURCE=LIVE_GITHUB_QUERY
+BUILDER_MINOR_FINDINGS_FOUND=1
+BUILDER_MINOR_FINDINGS_REMEDIATED=1
+OPEN_BUILDER_MINOR_FINDINGS=0
+MINOR_01_REMEDIATED=PASS_BUILDER_PENDING_FINAL_STATE_SYNC
+```
+
+O manifesto e o README serão atualizados no último bloco documental. Como um arquivo versionado não pode conter o SHA do commit que o cria, o estado distingue `observed_pr_head` do `CURRENT_PR_HEAD` consultado ao vivo. O PR body e o Linear registrarão o HEAD final exato após o último commit.
+
+## 4. Verificações gerais
 
 | Verificação | Resultado |
 |---|---|
@@ -37,76 +109,26 @@ MERGE_AUTHORIZED=NO
 | status uniforme `PROPOSED_FOR_REVIEW` | PASS |
 | contexto, decisão e alternativas presentes | PASS |
 | consequências positivas e negativas presentes | PASS |
-| falha segura e recovery definidos | PASS |
-| domínios e handoffs rastreados | PASS após remediação |
-| grupos de requisitos vinculados | PASS preliminar |
-| autoridade do servidor preservada | PASS |
-| escritor único preservado | PASS |
-| sinal separado de comando e grant | PASS |
-| coordenada separada de alvo/autorização | PASS |
-| recibo separado de verdade global | PASS |
-| kill switch dominante | PASS |
-| restart sem rearm/redispatch automático | PASS |
-| Modo A e Modo B separados | PASS |
+| domínios e handoffs rastreados | PASS |
+| requisitos individuais rastreados | PASS 218/218 |
+| grafo `DEPENDS_ON` acíclico | PASS |
+| política A+B preservada | PASS |
 | Modo B desligado por padrão | PASS |
-| nenhum código, SQL ou migration | PASS |
+| código, SQL e migration ausentes | PASS |
 
-## 4. Remediação pré-handoff
-
-### MINOR-BUILDER-01 — associação incorreta do H-05
-
-A primeira versão da matriz listava o `ADR-0006` como controlador de `H-05`, embora o próprio ADR-0006 declare somente `H-06` e `H-07`.
-
-Correção aplicada:
-
-```text
-H05_ADR_0006_FALSE_ASSOCIATION=REMOVED
-H05_FUNCTIONAL_CONTRACT_AUTHORITY=CONSOLIDATED_DOMAIN_MAP
-H05_P0_AUDIT_LINK=ADR-0012
-HANDOFF_REFERENCE_COVERAGE=12/12
-OPEN_FINDING=NO
-```
-
-A matriz passou a distinguir vínculo de decisão/auditoria de propriedade funcional integral. O escopo do ADR-0006 não foi ampliado artificialmente.
-
-## 5. Consistência cruzada
-
-```text
-ADR_0001_SERVER_AUTHORITY -> ADR_0002_0003_0004_0008_0010_0012
-ADR_0002_SINGLE_WRITER -> ADR_0003_0011_0012
-ADR_0005_LOGICAL_TARGET -> ADR_0009_ADAPTERS
-ADR_0006_ANALYSIS -> ADR_0007_SIGNAL -> ADR_0008_COMMAND
-ADR_0008_0009_0010 -> ADR_0011_RECONCILIATION
-ADR_0011 -> ADR_0012_AUDIT
-CROSS_ADR_CONSISTENCY=PASS_PRELIMINARY
-```
-
-## 6. Riscos para foco do revisor
-
-Os itens abaixo não são achados abertos do builder; são pontos que exigem validação independente:
-
-1. confirmar se SQLite é o default correto para a V1.0 local e se os critérios de saída para PostgreSQL estão suficientemente explícitos;
-2. confirmar REST + SSE como combinação adequada para o painel mobile-first;
-3. validar se a separação entre Command/Grant FSM e Attempt FSM evita estados ambíguos;
-4. verificar se a dependência entre adaptadores e kill switch está completa;
-5. revisar a taxonomia multidimensional de reconciliação;
-6. validar o hash encadeado de auditoria como mecanismo proporcional ao escopo;
-7. procurar requisitos P0 não vinculados ou vínculos excessivamente amplos;
-8. confirmar que `H-05` permanece adequadamente coberto pelo mapa consolidado sem falso controlador P0.
-
-## 7. Gates do builder
+## 5. Gates
 
 ```text
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS_BUILDER_AFTER_REMEDIATION
-A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER
+A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
-A7_INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
 ```
 
-## 8. Escopo preservado
+## 6. Escopo preservado
 
 ```text
 CODE_CHANGED=NO
@@ -120,6 +142,6 @@ IMPLEMENTATION_AUTHORIZED=NO
 DOCUMENT_MASTER_STARTED=NO
 ```
 
-## 9. Próxima ação
+## 7. Próxima ação
 
-Entregar o HEAD final do PR #46 para revisão crítica independente da LEA-27.
+Sincronizar as fontes vivas, confirmar o HEAD e o CI, reabrir a LEA-27 e solicitar o Reteste 01.
