@@ -8,42 +8,43 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=LEA-32 — Revisão crítica geral pré-Documento Mestre
-ISSUE_ATIVA=LEA-32
-REMEDIAÇÃO_PREPARADA=LEA-33_TODO
-PULL_REQUEST_ATIVO=52_DRAFT
-BRANCH=leonpcsn/lea-32-revisao-geral-pre-documento-mestre
+MISSÃO_ATIVA=LEA-33 — Remediar status documental dos 18 ADRs
+REVISÃO_CONTROLADORA=LEA-32 — Boss Gate pré-Documento Mestre
+PULL_REQUEST_ATIVO=53_DRAFT
+PULL_REQUEST_SUPERSEDIDO=52_CLOSED_UNMERGED
+BRANCH=leonpcsn/lea-33-remediar-status-documental-dos-18-adrs
 REVIEWED_MAIN_HEAD=819f70f8f539b72c6ebe9176eb63601b7809b812
 STATE_REVISION=16
 TRANSITION_ID=LEA-32-T01
-TRANSITION_STATUS=BLOCKED
-GATE=PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_FAIL
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+GATE=PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_RETEST_IN_PROGRESS
 DOCUMENTO_MESTRE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-## 🟥 Boss Gate pré-Documento Mestre
+## 🟨 Boss Gate pré-Documento Mestre
 
 ```text
-PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW=FAIL
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=1
-MINOR_FINDINGS=1
-OPEN_BLOCKING_FINDINGS=1
-DOCUMENT_MASTER_READY_TO_START=NO
-RETEST_REQUIRED=YES
+INITIAL_REVIEW=FAIL_1_MAJOR
+MAJOR_01=ADR_LIFECYCLE_ALIGNMENT
+BUILDER_REMEDIATION=PASS
+ADR_STATUS_ACCEPTED=18/18
+ADR_ACCEPTANCE_EVIDENCE=18/18
+ADR_PUBLICATION_EVIDENCE=18/18
+INDEPENDENT_RETEST_REQUIRED=YES
+DOCUMENT_MASTER_READY_TO_START=NO_PENDING_RETEST
 ```
 
-### MAJOR-01 — lifecycle dos ADRs
+### Remediação concluída
 
-O índice dos ADRs declara os 18 documentos publicados e revisados. Entretanto, os 18 arquivos individuais ainda registram:
+O índice e os 18 arquivos individuais agora utilizam o mesmo estado documental:
 
 ```text
-STATUS=PROPOSED_FOR_REVIEW
+ADR-0001..ADR-0018=STATUS_ACCEPTED
 ```
 
-Antes do Documento Mestre, o template e `ADR-0001` a `ADR-0018` devem ser promovidos para um lifecycle canônico aceito, com evidência de revisão e publicação, sem alterar as decisões técnicas.
+O template oficial define o lifecycle `PROPOSED_FOR_REVIEW | ACCEPTED | SUPERSEDED | DEPRECATED | REJECTED`. A alteração não modificou decisões técnicas, dependências, rastreabilidade ou políticas de segurança.
 
 ## ✅ Base validada
 
@@ -78,25 +79,22 @@ CONSOLIDAÇÃO CRUZADA
       ✅ aprovada
       ↓
 18 ADRs
-      ✅ revisados e publicados no índice
-      🟥 lifecycle interno permanece PROPOSED_FOR_REVIEW
+      ✅ revisados, publicados e alinhados como ACCEPTED
       ↓
 BOSS GATE PRÉ-DOCUMENTO MESTRE
-      🟥 FAIL — 1 MAJOR
-      ↓
-REMEDIAÇÃO LEA-33
-      ⏳ aguardando autorização
+      🟨 reteste independente da LEA-32 no PR #53
       ↓
 DOCUMENTO MESTRE
-      ⛔ bloqueado
+      ⛔ bloqueado até PASS, merge, confirmação e autorização explícita
 ```
 
 ## 🧾 Evidências
 
 - [Revisão crítica geral](docs/history/reviews/REVISAO_CRITICA_GERAL_PRE_DOCUMENTO_MESTRE_LEA-32_20260718.md)
 - [Matriz de prontidão](docs/architecture/MATRIZ_PRONTIDAO_DOCUMENTO_MESTRE_LEA-32_20260718.md)
-- PR da revisão: `#52`
-- Issue de remediação: `LEA-33`
+- [Remediação dos 18 ADRs](docs/history/reviews/REMEDIACAO_STATUS_DOCUMENTAL_18_ADRS_LEA-33_20260718.md)
+- [Índice e lifecycle dos ADRs](docs/architecture/adrs/README.md)
+- PR de reteste: `#53`
 
 ## Limites ativos
 
@@ -108,7 +106,7 @@ MIGRATION_CREATED=NO
 RUNTIME_EXECUTED=NO
 REAL_CLICK_EXECUTED=NO
 MERGE_AUTHORIZED=NO
-REMEDIATION_START_AUTHORIZED=NO
+REMEDIATION_START_AUTHORIZED=YES
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
@@ -117,6 +115,6 @@ LIVE_MODE_ARMED=NO
 ## Próxima ação
 
 ```text
-NEXT_ACTION=AWAIT_EXPLICIT_AUTHORIZATION_FOR_LEA_33_ADR_STATUS_REMEDIATION
+NEXT_ACTION=EXECUTE_LEA_32_INDEPENDENT_RETEST_ON_PR_53
 AUTOMATIC_ADVANCE=NO
 ```
