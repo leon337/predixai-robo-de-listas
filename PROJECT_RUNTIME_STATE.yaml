@@ -1,55 +1,60 @@
 schema_version: "1.0.3"
-state_revision: 15
+state_revision: 16
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "e2040a8a6c6b86faf4b644c3beeb4510f6100535"
+observed_main_head: "819f70f8f539b72c6ebe9176eb63601b7809b812"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "ADR_P1_P2_PUBLISHED_AWAITING_NEXT_MISSION_AUTHORIZATION"
-active_linear_issue: null
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
-current_gate: "POST_MERGE_CONFIRMATION"
-gate_status: "PASS"
-next_action: "AWAIT_EXPLICIT_DOCUMENT_MASTER_AUTHORIZATION"
+active_mission: "LEA-32 — Revisão crítica geral pré-Documento Mestre"
+active_stage: "GENERAL_CRITICAL_REVIEW_FAIL_AWAITING_REMEDIATION"
+active_linear_issue: "LEA-32"
+active_review_issue: "LEA-32"
+active_pull_request: 52
+working_branch: "leonpcsn/lea-32-revisao-geral-pre-documento-mestre"
+observed_pr_head: "25112d323ce9c042c6916154de01e29681639bd1"
+pr_mode: "DRAFT"
+current_gate: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW"
+gate_status: "FAIL"
+next_action: "AWAIT_EXPLICIT_AUTHORIZATION_FOR_LEA_33_ADR_STATUS_REMEDIATION"
 blockers:
-  - "DOCUMENT_MASTER_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
+  - "MAJOR_01_ADR_LIFECYCLE_ALIGNMENT_OPEN"
+  - "DOCUMENT_MASTER_BLOCKED_UNTIL_REMEDIATION_AND_RETEST_PASS"
 
-transition_id: "LEA-30-T01"
-transition_status: "COMPLETE"
-from_state: "ADR_P0_PUBLISHED_POST_MERGE_CONFIRMED"
-to_state: "ADR_P1_P2_PUBLISHED_POST_MERGE_CONFIRMED"
-baseline_main_sha: "dff0c0f0c26e820756804af92dd7b3641121d51b"
-baseline_state_revision: 12
-bound_transition_id: "LEA-30-T01"
-main_pr: 49
-main_pr_head: "dff003c2b3b4a672a5e66f376481b4c875c4360e"
-main_pr_merge_commit: "915ad721a9fd264fe186fae0c810dfb0af957b9c"
-post_merge_receipt_pr: 50
-post_merge_receipt_merge_commit: "e2040a8a6c6b86faf4b644c3beeb4510f6100535"
-final_confirmation_pr: 51
+transition_id: "LEA-32-T01"
+transition_status: "BLOCKED"
+from_state: "ADR_P1_P2_PUBLISHED_POST_MERGE_CONFIRMED"
+to_state: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_FAIL_AWAITING_REMEDIATION"
+baseline_main_sha: "819f70f8f539b72c6ebe9176eb63601b7809b812"
+baseline_state_revision: 15
+bound_transition_id: "LEA-32-T01"
+main_pr: 52
+main_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
+
+previous_transition_id: "LEA-30-T01"
+previous_final_confirmation_pr: 51
+previous_final_confirmation_merge_commit: "819f70f8f539b72c6ebe9176eb63601b7809b812"
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T21:40:00Z"
+last_sync_at_utc: "2026-07-18T22:04:00Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "lea30-closed-post-merge-20260718"
-  base_sha: "e2040a8a6c6b86faf4b644c3beeb4510f6100535"
-  observed_pr_head: null
-  state_revision_snapshot: 15
-  transition_id_snapshot: "LEA-30-T01"
-  started_at_utc: "2026-07-18T17:41:00Z"
+  owner: "LEA-32"
+  session_id: "lea32-general-critical-review-20260718"
+  base_sha: "819f70f8f539b72c6ebe9176eb63601b7809b812"
+  observed_pr_head: "25112d323ce9c042c6916154de01e29681639bd1"
+  state_revision_snapshot: 16
+  transition_id_snapshot: "LEA-32-T01"
+  started_at_utc: "2026-07-18T21:53:25Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T21:40:00Z"
+  heartbeat_at_utc: "2026-07-18T22:04:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -58,10 +63,8 @@ sql_authorized: false
 migration_authorized: false
 real_click_authorized: false
 merge_authorized: false
-cross_consolidation_authorized: false
-adrs_start_authorized: false
 document_master_start_authorized: false
-post_merge_receipt_authorized: false
+remediation_start_authorized: false
 
 mode_a_policy_authorized: true
 mode_b_architectural_support_authorized: true
@@ -76,60 +79,54 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
+  task_status_and_dependencies: "Linear LEA-32 In Progress; LEA-33 Todo"
+  review_report: "docs/history/reviews/REVISAO_CRITICA_GERAL_PRE_DOCUMENTO_MESTRE_LEA-32_20260718.md"
+  readiness_matrix: "docs/architecture/MATRIZ_PRONTIDAO_DOCUMENTO_MESTRE_LEA-32_20260718.md"
   adr_index: "docs/architecture/adrs/README.md"
-  mission_plan: "docs/architecture/PLANO_MISSAO_ADRS_P1_P2_LEA-30_20260718.md"
-  traceability_matrix: "docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md"
-  traceability_appendix: "docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md"
-  retest_02_report: "docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md"
-  post_merge_receipt: "docs/history/receipts/RECIBO_POS_MERGE_LEA-30_LEA-31_PR-49_20260718.md"
-  final_confirmation: "docs/history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md"
-  task_status_and_dependencies: "Linear LEA-30 Done; LEA-31 Done PASS Retest 02; no blocking cycle"
-  unmerged_work: "none"
-  consolidated_code_and_docs: "GitHub main at e2040a8a6c6b86faf4b644c3beeb4510f6100535 before final confirmation merge"
+  reviewed_architecture: "GitHub main at 819f70f8f539b72c6ebe9176eb63601b7809b812"
+  unmerged_work: "PR #52 and branch leonpcsn/lea-32-revisao-geral-pre-documento-mestre"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "COMPLETE"
+  execution_status: "READ_ONLY"
   automatic_advance: false
-  independent_critical_review: "PASS_RETEST_02"
-  reviewed_pr_head: "fd18979bb295a310fc7a9ea3c78f885a23758b1b"
+  independent_critical_review: "FAIL_PRE_DOCUMENT_MASTER_GENERAL"
+  reviewed_main_head: "819f70f8f539b72c6ebe9176eb63601b7809b812"
+  critical_findings: 0
+  major_findings: 1
+  minor_findings: 1
   open_critical_findings: 0
-  open_major_findings: 0
-  open_minor_findings: 0
-  retest_required: false
+  open_major_findings: 1
+  open_minor_findings: 1
+  open_blocking_findings: 1
+  retest_required: true
   documentation_only: true
   policy_a_b_alignment: true
+  current_runtime_execution_authorized: false
   mode_a_authorized: true
   mode_b_supported: true
   mode_b_armed: false
   live_without_all_gates_blocked: true
-  main_pr_merged: true
-  handoff_activated: true
-  post_merge_receipt_recorded: true
-  post_merge_receipt_merged: true
-  transition_complete: true
-  p0_adr_count: 12
-  p1_p2_adr_count: 6
-  total_adr_count: 18
-  p1_count: 5
-  p2_count: 1
+  audit_master_review: "PASS"
+  cross_consolidation_review: "PASS_RETEST_05"
+  p0_adr_review: "PASS_RETEST_03"
+  p1_p2_adr_review: "PASS_RETEST_02"
   requirement_rows: 218
   unique_requirement_ids: 218
-  new_requirement_ids: 0
   duplicate_requirement_ids: 0
   orphan_requirement_ids: 0
-  p1_p2_deferred_requirement_rows: 31
-  p1_p2_deferred_unmapped: 0
-  p1_p2_deferred_misassigned: 0
-  depends_on_cycle_count: 0
-  adr_set_status: "PUBLISHED_REVIEWED_P1_P2_BASE"
-  builder_gates_passed: 7
-  builder_gates_total: 7
+  canonical_domain_count: 16
+  mandatory_handoff_count: 12
+  total_adr_count: 18
+  adr_index_published_count: 18
+  adr_files_proposed_status_count: 18
+  adr_lifecycle_alignment: false
   ready_for_merge: false
   ready_for_document_master: false
+  transition_complete: false
   last_completed_product_issue: "LEA-30"
   last_completed_product_issue_status: "DONE"
-  current_product_issue: "NONE"
-  current_review_issue: "LEA-31"
-  current_review_issue_status: "DONE_PASS_RETEST_02"
+  current_product_issue: "LEA-32"
+  current_review_issue: "LEA-32"
+  current_review_issue_status: "IN_PROGRESS_FAIL_AWAITING_REMEDIATION"
