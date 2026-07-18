@@ -9,7 +9,7 @@ REVIEW_ISSUE=LEA-27
 BUILDER_ISSUE=LEA-26
 PULL_REQUEST=46
 RETEST_SEQUENCE=03
-REVIEWED_PR_HEAD=43357ca9974c97cb9ffad50633f6b37580025b57
+REVIEWED_PR_HEAD=72741b4a1994bea521a91bc6a9dfa8fdb33bb839
 BASE_MAIN_SHA=c339ef253c2558300388901a67faf18734e2735f
 STATE_REVISION=11
 REVIEW_TYPE=INDEPENDENT_CRITICAL_RETEST
@@ -67,7 +67,19 @@ FINDING_02=PASS_CLOSED
 
 Plano, índice, matriz e apêndice permanecem evidências do conteúdo arquitetural. Eles não podem substituir o estado operacional vivo definido pelas fontes acima.
 
-## 5. Verificações preservadas
+## 5. Achado 03 — condição de estado dos ADRs
+
+```text
+AFFECTED_ADRS=ADR-0008|ADR-0011
+STALE_RETEST_01_REFERENCE=REMOVED
+INDEPENDENT_REVIEW_GATE=LEA-27_CURRENT_VALID_RETEST
+FINAL_STATE_CONDITION=PASS_DA_REVISAO_CRITICA_INDEPENDENTE_VIGENTE
+FINDING_03=PASS_CLOSED
+```
+
+Os ADRs não apontam mais para uma sequência fixa de reteste. A condição passou a referenciar o gate independente vigente, evitando obsolescência quando uma revisão é supersedida.
+
+## 6. Verificações preservadas
 
 ```text
 ADR_COUNT=12/12
@@ -86,18 +98,18 @@ POLICY_A_B_ALIGNMENT=PASS
 MODE_B_DEFAULT=DISABLED
 ```
 
-## 6. GitHub
+## 7. GitHub
 
 ```text
 PR_STATE=OPEN
 PR_MERGEABLE=YES
 PR_MERGED=NO
-CI_WORKFLOWS=9_OF_9_SUCCESS
+CI_WORKFLOWS=9_OF_9_SUCCESS_ON_REVIEWED_HEAD
 OPEN_REVIEW_THREADS=0
 HEAD_STABLE_DURING_RETEST=YES
 ```
 
-## 7. Decisão de merge
+## 8. Decisão de merge
 
 A autorização humana anterior estava vinculada ao HEAD `decb578bd9b4c4bbe9d62947359eb59569d89020`. As correções produziram um novo HEAD e, portanto, invalidaram aquela autorização por identidade.
 
@@ -108,6 +120,6 @@ NEW_HUMAN_MERGE_AUTHORIZATION_REQUIRED=YES
 MERGE_EXECUTED=NO
 ```
 
-## 8. Conclusão
+## 9. Conclusão
 
 O conteúdo documental está tecnicamente aprovado no Reteste 03. Após sincronização final das fontes e CI verde no novo HEAD, o PR poderá ser apresentado para uma nova autorização humana explícita de merge. O Documento Mestre, implementação e Modo LIVE permanecem bloqueados.
