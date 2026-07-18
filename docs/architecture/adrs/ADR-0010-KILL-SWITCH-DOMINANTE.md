@@ -10,24 +10,36 @@ MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 DATE=2026-07-18
 IMPLEMENTATION_AUTHORIZED=NO
+DEPENDS_ON=ADR-0001|ADR-0002
+MUST_ALIGN_WITH=ADR-0008|ADR-0009|ADR-0011|ADR-0012
+GOVERNS=ADR-0008|ADR-0009|ADR-0011
 ```
 
 ## Contexto
 
-Qualquer ação controlada precisa poder ser interrompida antes do dispatch e durante o fluxo. O kill switch deve dominar fila, grants, retries e adaptadores, inclusive diante de conexão móvel perdida ou estado parcialmente degradado.
+Qualquer ação controlada precisa poder ser interrompida antes do dispatch e durante o fluxo. O kill switch deve dominar arming, grants, filas, retries, dispatch, adaptadores e recovery, inclusive diante de conexão móvel perdida ou estado degradado.
 
 ## Decisão
 
-Adotar kill switch global, servidor-autoritativo, persistido e com **epoch de segurança**.
+Adotar kill switch global, servidor-autoritativo, persistido e associado a `kill_epoch` monotônico.
 
-A ativação incrementa o `kill_epoch`, muda o sistema para `KILLED`, invalida grants e comandos despacháveis e cancela filas ainda sem efeito. Cada tentativa e `adapter_request` carrega o epoch observado; o adaptador verifica o estado imediatamente antes do efeito.
+A ativação incrementa o epoch, muda o sistema para `KILLED`, invalida grants e comandos despacháveis, cancela filas sem efeito e exige reconciliação de tentativas abertas. Cada grant, tentativa e `adapter_request` carrega o epoch observado.
 
-Serão previstos dois caminhos independentes de ativação:
+Dois caminhos independentes de ativação são obrigatórios:
 
 1. comando autenticado no painel/servidor;
-2. caminho local no host, independente da sessão móvel, como hotkey, sinal do processo ou controle equivalente definido na implementação.
+2. caminho local no host independente da sessão móvel.
 
-Rearmar exige ação humana explícita, diagnóstico, reconciliação de tentativas pendentes e novo epoch. Nunca ocorre automaticamente após restart.
+Rearmar exige ação humana explícita, diagnóstico, reconciliação e novo epoch. Nunca ocorre automaticamente após restart.
+
+## Semântica das relações
+
+`ADR-0010 GOVERNS ADR-0008|ADR-0009|ADR-0011` significa que qualquer transição, dispatch ou reconciliação precisa respeitar o estado e o epoch do kill switch. Isso não cria dependência inversa em `DEPENDS_ON`.
+
+```text
+DEPENDS_ON_DAG_CYCLE_INTRODUCED=NO
+KILL_GOVERNANCE_IS_NOT_DEPENDENCY_BACK_EDGE=YES
+```
 
 ## Regras normativas
 
@@ -35,12 +47,13 @@ Rearmar exige ação humana explícita, diagnóstico, reconciliação de tentati
 KILL_SWITCH_AUTHORITY=SERVER
 KILL_STATE=PERSISTED
 KILL_EPOCH=MONOTONIC
-KILL_DOMINATES=ARMING|GRANTS|QUEUE|RETRY|DISPATCH|ADAPTER
+KILL_DOMINATES=ARMING|GRANTS|QUEUE|RETRY|DISPATCH|ADAPTER|RECOVERY
 ADAPTER_PRE_EFFECT_CHECK=REQUIRED
 ACTIVATION_PATHS_MINIMUM=2
 REARM=EXPLICIT_HUMAN_ACTION
 RESTART_DEFAULT=SAFE_IDLE_OR_KILLED
 KILL_EVENT=AUDIT_REQUIRED
+GRANT_FROM_OLD_EPOCH=INVALIDATED_BY_KILL_EPOCH
 ```
 
 ## Alternativas consideradas
@@ -51,11 +64,11 @@ Rejeitado por depender de rede, bateria e sessão do cliente.
 
 ### Flag somente em memória
 
-Rejeitada por perder estado em restart e permitir inconsistência com filas persistidas.
+Rejeitada por perder estado em restart.
 
 ### Kill apenas no adaptador
 
-Rejeitado porque não invalida grants, filas e retries no servidor.
+Rejeitado porque não invalida grants, fila, retries e arming no servidor.
 
 ## Consequências
 
@@ -63,14 +76,14 @@ Rejeitado porque não invalida grants, filas e retries no servidor.
 
 - contenção dominante em todos os modos;
 - invalidação clara por epoch;
-- ativação local mesmo sem celular;
+- ativação local independente;
 - recovery auditável.
 
 ### Negativas e custos
 
-- todos os pontos de dispatch precisam verificar o epoch;
+- cada ponto de dispatch precisa verificar o epoch;
 - rearm exige fluxo operacional próprio;
-- cancelamento não confirma ausência de efeito para tentativa já iniciada.
+- kill não prova ausência de efeito em tentativa já iniciada.
 
 ## Segurança, recovery e falha segura
 
@@ -89,9 +102,9 @@ KILL_SWITCH_FAILURE=CRITICAL_BLOCKER
 ```text
 PRIMARY_DOMAINS=DOM-16
 SECONDARY_DOMAINS=DOM-01|DOM-13|DOM-14|DOM-15
-HANDOFFS=H-12|H-10|H-11
+HANDOFFS=H-10|H-11|H-12
 REQUIREMENTS=V27-EXE-008|V27-SAF-004|V27-SAF-005|V27-SAF-007|PTM-V27-019|PTM-V27-026..028|V27-QA-001..007
-DEPENDS_ON=ADR-0001|ADR-0002
+TRACEABILITY_APPENDIX=APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md
 ```
 
 ## Critérios de aceitação
@@ -102,6 +115,7 @@ PERSISTED_KILL_EPOCH=PASS
 TWO_ACTIVATION_PATHS_REQUIRED=PASS
 ADAPTER_PRE_EFFECT_CHECK=PASS
 AUTOMATIC_REARM=NO
+DEPENDENCY_AND_GOVERNANCE_SEPARATED=PASS
 ```
 
 ## Fora de escopo
