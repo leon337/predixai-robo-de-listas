@@ -12,7 +12,7 @@ active_linear_issue: "LEA-18"
 active_review_issue: "LEA-19"
 active_pull_request: 40
 working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
-observed_pr_head: "662cd78f118252f16dbf7a552049ddf45364c1bc"
+observed_pr_head: "a4a5c344016b436742148ce919dd61c18147ed8d"
 pr_mode: "independent_critical_retest_05"
 active_checkpoint: "docs/history/reviews/REMEDIACAO_RETESTE_04_CONSOLIDACAO_CRUZADA_LEA-18_20260718.md"
 
@@ -36,8 +36,8 @@ post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
-readme_sync_status: "PENDING_UNTIL_PUBLIC_STATE_TRANSITION"
-last_sync_at_utc: "2026-07-18T06:10:26Z"
+readme_sync_status: "PENDING"
+last_sync_at_utc: "2026-07-18T06:21:34Z"
 
 mission_lock:
   locked: true
@@ -46,12 +46,12 @@ mission_lock:
   owner: "LEA-18"
   session_id: "lea18-cross-consolidation-20260717"
   base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
-  observed_pr_head: "662cd78f118252f16dbf7a552049ddf45364c1bc"
+  observed_pr_head: "a4a5c344016b436742148ce919dd61c18147ed8d"
   state_revision_snapshot: 7
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T06:10:26Z"
+  heartbeat_at_utc: "2026-07-18T06:21:34Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -159,4 +159,4 @@ safety:
   current_product_issue: "LEA-18"
   current_product_issue_status: "IN_PROGRESS"
   current_review_issue: "LEA-19"
-  current_review_issue_status: "TODO_RETEST_05"
+  current_review_issue_status: "IN_PROGRESS_RETEST_05"
