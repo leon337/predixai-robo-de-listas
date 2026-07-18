@@ -7,11 +7,11 @@
 - HEAD observado da `main`: `c339ef253c2558300388901a67faf18734e2735f`
 - Versão real: `V2.4.3-R1`
 - Missão ativa: `LEA-26 — ADRs P0 da Arquitetura V1.0`
-- Revisão: `LEA-27 — Reteste 01 solicitado`
+- Revisão: `LEA-27 — Reteste 02 autorizado`
 - Branch de trabalho: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
-- PR ativo: `#46`, aberto e pronto para revisão
-- Último HEAD de sincronização confirmado: `bf0cca680778d136e151bdf1ee15ee4970f9e5c9`
-- HEAD final do Reteste 01: consultar o PR #46 ao vivo no início da revisão
+- PR ativo: `#46`, aberto e Draft durante a correção final
+- Snapshot de conteúdo comum: `6f1ac10005e7231e9efe88da9c7a27931038a989`
+- HEAD vivo do PR: consultar a API do GitHub
 - ADRs: `12/12`, status `PROPOSED_FOR_REVIEW`
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
@@ -19,27 +19,54 @@
 ## Transição ativa
 
 ```text
-STATE_REVISION=9
+STATE_REVISION=10
 TRANSITION_ID=LEA-26-T01
-TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_RETEST_02
 FROM_STATE=CROSS_CONSOLIDATION_COMPLETE
 TO_STATE=ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW
 MISSION_LOCK=LEA-26
-CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01
+CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_02
 GATE_STATUS=IN_PROGRESS
-RETEST_01_REQUESTED=YES
+RETEST_02_AUTHORIZED=YES
 ```
 
 ## Contrato do HEAD
 
 ```text
-OBSERVED_PR_HEAD=bf0cca680778d136e151bdf1ee15ee4970f9e5c9
-OBSERVED_PR_HEAD_SEMANTICS=LAST_CONFIRMED_SYNC_SNAPSHOT
-CURRENT_PR_HEAD_SOURCE=LIVE_GITHUB_QUERY_AT_RETEST_START
+SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
+SNAPSHOT_CONTENT_HEAD_SEMANTICS=COMMON_PERSISTED_SNAPSHOT_BEFORE_RETEST_02_SYNC
+LIVE_PR_HEAD_SOURCE=GITHUB_API
 SELF_REFERENTIAL_FINAL_COMMIT_SHA_IN_FILE=PROHIBITED
 ```
 
-O PR body e o Linear registram o HEAD final exato após o último commit documental. O revisor deve reconfirmar esse HEAD ao iniciar o Reteste 01.
+`SNAPSHOT_CONTENT_HEAD` é idêntico no manifesto, mission lock, estado humano, tronco e README. O HEAD vivo é consultado no GitHub e não é duplicado como se fosse parte do snapshot persistido.
+
+## Resultado do Reteste 01
+
+```text
+ADR_P0_CRITICAL_REVIEW=FAIL_RETEST_01
+REVIEWED_PR_HEAD=87d47ef5c4426d021a77dff2536946cfcd66eba8
+REVIEW_REPORT_COMMIT=6f1ac10005e7231e9efe88da9c7a27931038a989
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS=1
+MAJOR_01=PASS
+MAJOR_02=PASS
+MAJOR_03=PASS
+MAJOR_04=PASS
+MINOR_01=FAIL_REMAINS_OPEN_UNTIL_RETEST_02
+```
+
+## Remediação final do builder
+
+```text
+MINOR_01_REMEDIATED=PASS_BUILDER
+COMMON_SNAPSHOT_CONTRACT=PASS
+MANIFEST_PROJECT_STATE_TRUNK_README_ALIGNMENT=PASS
+LIVE_HEAD_SOURCE_SEPARATION=PASS
+OPEN_BUILDER_FINDINGS=0
+INDEPENDENT_CLEARANCE=PENDING_RETEST_02
+```
 
 ## Escopo
 
@@ -53,6 +80,7 @@ IMPLEMENTATION_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 ADRS_START_AUTHORIZED=YES
+RETEST_02_AUTHORIZED=YES
 MODE_A_POLICY=AUTHORIZED
 MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
 MODE_B_DEFAULT=DISABLED
@@ -60,30 +88,7 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## Resultado da revisão inicial
-
-```text
-LEA_27_INITIAL_REVIEW=FAIL
-REVIEWED_HEAD=2c9c2432058c5f119bd1802c3ba00e845c6a5ca0
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=4
-MINOR_FINDINGS=1
-RETEST_REQUIRED=YES
-```
-
-## Remediação do builder
-
-```text
-MAJOR_01_REMEDIATED=PASS_BUILDER
-MAJOR_02_REMEDIATED=PASS_BUILDER
-MAJOR_03_REMEDIATED=PASS_BUILDER
-MAJOR_04_REMEDIATED=PASS_BUILDER
-MINOR_01_REMEDIATED=PASS_BUILDER_WITH_PR_HEAD_CONTRACT
-OPEN_BUILDER_FINDINGS=0
-INDEPENDENT_CLEARANCE=PENDING_RETEST_01
-```
-
-## Validações
+## Validações preservadas
 
 ```text
 REQUIREMENT_ROWS=218
@@ -107,39 +112,35 @@ SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
-A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
+A4_TRACEABILITY=PASS
+A5_CROSS_ADR_CONSISTENCY=PASS
 A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
-A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUESTED
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_02_AUTHORIZED
 ```
 
 ## Entregas
 
-- ✅ plano reconciliado;
 - ✅ ADR-0001 a ADR-0012;
-- ✅ apêndice individual `218/218`;
+- ✅ rastreabilidade individual `218/218`;
 - ✅ grafo de dependências acíclico;
 - ✅ quatro FSMs explícitas;
 - ✅ idempotência divergente bloqueada;
-- ✅ auto-revisão repetida;
-- ✅ relatório de remediação;
-- ✅ PR #46 pronto para revisão;
-- ✅ LEA-27 reaberta em `Todo`;
-- ✅ Reteste 01 solicitado;
-- ⏳ Reteste 01 independente;
+- ✅ Reteste 01 executado;
+- ✅ snapshot comum definido;
+- ✅ fontes documentais alinhadas pelo contrato comum;
+- ⏳ thread do README a responder e resolver;
+- ⏳ CI do novo HEAD;
+- ⏳ Reteste 02 independente;
 - ⬜ merge após PASS e nova autorização humana;
 - ⬜ Documento Mestre após fechamento dos ADRs.
 
 ## Evidências
 
 - `docs/architecture/PLANO_MISSAO_ADRS_P0_LEA-26_20260718.md`;
-- `docs/architecture/adrs/README.md`;
-- `docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md`;
 - `docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`;
-- `docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md`;
-- `docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md`;
-- `docs/history/reviews/REVISAO_CRITICA_ADRS_P0_LEA-27_20260718.md`.
+- `docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md`;
+- `docs/history/reviews/REMEDIACAO_MINOR_01_SNAPSHOT_ADRS_P0_LEA-26_20260718.md`.
 
 ## Próxima ação
 
-Executar o `LEA-27 — Reteste 01` sobre o HEAD vivo final do PR #46. Não realizar merge nem iniciar o Documento Mestre antes de `ADR_P0_CRITICAL_REVIEW=PASS` e nova autorização humana.
+Resolver a thread, confirmar CI e executar o `LEA-27 — Reteste 02` sobre o HEAD vivo do PR #46. Merge e Documento Mestre permanecem bloqueados.
