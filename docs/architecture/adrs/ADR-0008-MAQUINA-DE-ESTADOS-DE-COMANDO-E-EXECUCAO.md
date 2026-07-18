@@ -1,4 +1,4 @@
-# ADR-0008 — Máquina de estados de comando e execução
+# ADR-0008 — Máquinas de estados de comando, grant, arming e tentativa
 
 ## Controle
 
@@ -10,93 +10,261 @@ MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 DATE=2026-07-18
 IMPLEMENTATION_AUTHORIZED=NO
+DEPENDS_ON=ADR-0001|ADR-0002|ADR-0007
+MUST_ALIGN_WITH=ADR-0009|ADR-0010|ADR-0011
+GOVERNS=ADR-0009|ADR-0011
 ```
 
 ## Contexto
 
-A PTM V2.7 separa sinal, comando, grant, resolução de alvo, tentativa, recibo e efeito confirmado. Essa cadeia precisa de estados persistidos e transições explícitas para sobreviver a concorrência, timeout e restart sem duplicar ação.
+Sinal, comando, grant, arming de sessão, tentativa, recibo e efeito confirmado são artefatos distintos. Eles precisam sobreviver a concorrência, expiração, supersessão, revogação, kill switch, timeout e restart sem permitir rearmamento, redispatch ou retry ambíguo.
 
 ## Decisão
 
-Adotar duas máquinas relacionadas e servidor-autoritativas:
-
-1. **Command/Grant FSM**, responsável por elegibilidade, autorização e arming;
-2. **Execution Attempt FSM**, responsável por tentativa, recibo, reconciliação e resultado.
-
-Estados de comando:
+Adotar quatro máquinas servidor-autoritativas, persistidas e relacionadas por identidades explícitas:
 
 ```text
-DRAFT|VALIDATING|AUTHORIZED|READY|CANCELLED|EXPIRED|KILLED|BLOCKED
+COMMAND_FSM
+AUTHORIZATION_GRANT_FSM
+SESSION_ARMING_FSM
+EXECUTION_ATTEMPT_FSM
 ```
 
-Estados de arming da sessão:
+Campos normativos de comando e grant tornam-se imutáveis após sua criação/autorização, mas o estado de lifecycle continua evoluindo por transições registradas.
 
 ```text
-DISABLED|SAFE_IDLE|ARMED_DRY_RUN|ARMED_SIMULATED|ARMED_CONTROLLED_UI|ARMED_LIVE_GATED|KILLED
+IMMUTABLE_FIELDS!=IMMUTABLE_LIFECYCLE_STATE
 ```
 
-Estados da tentativa:
+## 1. COMMAND_FSM
+
+Estados:
 
 ```text
-CREATED|DISPATCHING|AWAITING_RECEIPT|RECONCILING|COMPLETED_NO_EFFECT|COMPLETED_SIMULATED|COMPLETED_CONTROLLED_UI|COMPLETED_LIVE_GATED|FAILED_NO_EFFECT|TIMED_OUT|UNKNOWN_EFFECT|KILLED
+DRAFT
+VALIDATING
+AUTHORIZED
+READY
+CANCELLED
+EXPIRED
+SUPERSEDED
+KILLED
+BLOCKED
 ```
 
-O comando e o grant são imutáveis após `AUTHORIZED`; qualquer alteração exige nova identidade. A tentativa é gravada antes do adaptador. Um restart invalida a despachabilidade de comandos anteriores e nunca retoma tentativa automaticamente.
+Transições permitidas:
 
-## Regras normativas
+```text
+DRAFT->VALIDATING
+DRAFT->CANCELLED
+VALIDATING->AUTHORIZED
+VALIDATING->BLOCKED
+VALIDATING->EXPIRED
+AUTHORIZED->READY
+AUTHORIZED->CANCELLED
+AUTHORIZED->EXPIRED
+AUTHORIZED->SUPERSEDED
+AUTHORIZED->KILLED
+READY->CANCELLED
+READY->EXPIRED
+READY->SUPERSEDED
+READY->KILLED
+READY->BLOCKED
+```
+
+Estados terminais: `CANCELLED|EXPIRED|SUPERSEDED|KILLED|BLOCKED`.
+
+Regras:
+
+```text
+TERMINAL_COMMAND=NEVER_REQUEUED
+COMMAND_MUTATION_AFTER_AUTHORIZED=NEW_COMMAND_ID_REQUIRED
+SUPERSESSION=NEW_COMMAND_REFERENCES_SUPERSEDED_COMMAND
+RESTART=AUTHORIZED_AND_READY_COMMANDS_LOSE_DISPATCHABILITY
+```
+
+## 2. AUTHORIZATION_GRANT_FSM
+
+Estados:
+
+```text
+ISSUED
+ACTIVE
+CONSUMED
+EXPIRED
+REVOKED
+INVALIDATED_BY_CHANGE
+INVALIDATED_BY_KILL_EPOCH
+CANCELLED
+```
+
+Transições permitidas:
+
+```text
+ISSUED->ACTIVE
+ISSUED->EXPIRED
+ISSUED->REVOKED
+ISSUED->INVALIDATED_BY_KILL_EPOCH
+ACTIVE->CONSUMED
+ACTIVE->EXPIRED
+ACTIVE->REVOKED
+ACTIVE->INVALIDATED_BY_CHANGE
+ACTIVE->INVALIDATED_BY_KILL_EPOCH
+ACTIVE->CANCELLED
+```
+
+Estados terminais: `CONSUMED|EXPIRED|REVOKED|INVALIDATED_BY_CHANGE|INVALIDATED_BY_KILL_EPOCH|CANCELLED`.
+
+Regras:
+
+```text
+GRANT_SCOPE=EXACT_COMMAND_HASH|MODE|TARGET|ADAPTER|POLICY|VALIDITY|KILL_EPOCH
+GRANT_FIELDS=IMMUTABLE
+GRANT_REVOCATION=LIFECYCLE_TRANSITION
+GRANT_EXPIRATION=LIFECYCLE_TRANSITION
+GRANT_CONSUMPTION=AT_MOST_ONCE_FOR_EFFECT_CAPABLE_ATTEMPT
+OLD_KILL_EPOCH_GRANT=INVALIDATED_BY_KILL_EPOCH
+RESTART=GRANT_REVALIDATION_REQUIRED_AND_NO_AUTOMATIC_REARM
+```
+
+## 3. SESSION_ARMING_FSM
+
+Estados:
+
+```text
+DISABLED
+SAFE_IDLE
+ARMED_DRY_RUN
+ARMED_SIMULATED
+ARMED_CONTROLLED_UI
+ARMED_LIVE_GATED
+KILLED
+```
+
+Transições normativas:
+
+```text
+DISABLED->SAFE_IDLE
+SAFE_IDLE->ARMED_DRY_RUN
+SAFE_IDLE->ARMED_SIMULATED
+SAFE_IDLE->ARMED_CONTROLLED_UI
+SAFE_IDLE->ARMED_LIVE_GATED_ONLY_AFTER_ALL_LIVE_GATES
+ARMED_*->SAFE_IDLE_BY_EXPLICIT_DISARM
+ANY->KILLED
+KILLED->SAFE_IDLE_ONLY_AFTER_HUMAN_REARM_AND_RECONCILIATION
+```
+
+```text
+DEFAULT_STATE=DISABLED
+RESTART_STATE=SAFE_IDLE_OR_KILLED
+AUTO_ARM=PROHIBITED
+MODE_B_DEFAULT=DISABLED
+LIVE_ARMING=ALL_GATES_AND_EXPLICIT_SESSION_CONFIRMATION_REQUIRED
+```
+
+## 4. EXECUTION_ATTEMPT_FSM
+
+Estados:
+
+```text
+CREATED
+DISPATCHING
+AWAITING_RECEIPT
+RECONCILING
+COMPLETED_NO_EFFECT
+COMPLETED_SIMULATED
+COMPLETED_CONTROLLED_UI
+COMPLETED_LIVE_GATED
+FAILED_NO_EFFECT
+TIMED_OUT
+UNKNOWN_EFFECT
+KILLED
+```
+
+Transições principais:
+
+```text
+CREATED->DISPATCHING
+DISPATCHING->AWAITING_RECEIPT
+DISPATCHING->FAILED_NO_EFFECT
+DISPATCHING->TIMED_OUT
+DISPATCHING->UNKNOWN_EFFECT
+AWAITING_RECEIPT->RECONCILING
+AWAITING_RECEIPT->TIMED_OUT
+AWAITING_RECEIPT->UNKNOWN_EFFECT
+RECONCILING->COMPLETED_NO_EFFECT
+RECONCILING->COMPLETED_SIMULATED
+RECONCILING->COMPLETED_CONTROLLED_UI
+RECONCILING->COMPLETED_LIVE_GATED
+RECONCILING->FAILED_NO_EFFECT
+RECONCILING->UNKNOWN_EFFECT
+ANY_NONTERMINAL->KILLED
+```
+
+```text
+ATTEMPT_WRITE_BEFORE_EFFECT=REQUIRED
+TIMEOUT!=NO_EFFECT
+UNKNOWN_EFFECT=NO_AUTOMATIC_RETRY
+FAILED_NO_EFFECT=ONLY_RETRY_ELIGIBLE_RESULT
+RESTART_WITH_OPEN_ATTEMPT=RECONCILE_NOT_REDISPATCH
+KILL_DURING_ATTEMPT=UNKNOWN_UNTIL_RECONCILED
+```
+
+## Regras cruzadas
 
 ```text
 SIGNAL!=COMMAND
 COMMAND!=GRANT
 GRANT!=ATTEMPT
-ATTEMPT!=EFFECT
-STATE_TRANSITION=SERVER_VALIDATED_AND_PERSISTED
-AUTHORIZED_COMMAND=IMMUTABLE
-ATTEMPT_WRITE_BEFORE_EFFECT=REQUIRED
-RESTART_INVALIDATES_DISPATCHABILITY=YES
-TIMEOUT!=NO_EFFECT
-UNKNOWN_EFFECT=NO_AUTOMATIC_RETRY
-LIVE_ARMING=ALL_GATES_REQUIRED
+ATTEMPT!=CONFIRMED_EFFECT
+STATE_TRANSITION=SERVER_VALIDATED_PERSISTED_AND_AUDITED
+COMMAND_READY_REQUIRES_ACTIVE_GRANT_AND_ARMED_COMPATIBLE_SESSION
+DISPATCH_REQUIRES_MATCHING_KILL_EPOCH
+KILL_SWITCH=DOMINANT
 ```
+
+O `kill_epoch` é capturado no comando/grant/tentativa aplicável. Mudança do epoch invalida grants, remove despachabilidade e impede retry ou rearmamento automático.
 
 ## Alternativas consideradas
 
-### Um único status genérico
+### Um status genérico
 
-Rejeitado por misturar autorização, tentativa e resultado, ocultando estados ambíguos.
+Rejeitado porque mistura autorização, sessão, tentativa e resultado.
 
-### Estado mantido somente em memória
+### Grant imutável sem lifecycle
 
-Rejeitado por tornar restart e auditoria inseguros.
+Rejeitado porque expiração, revogação, consumo e kill epoch precisam de estados auditáveis sem alterar os campos originais.
 
-### Retomar automaticamente após restart
+### Retomada automática após restart
 
-Rejeitado por risco de duplicação e efeito desconhecido.
+Rejeitada pelo risco de duplicidade e efeito desconhecido.
 
 ## Consequências
 
 ### Positivas
 
-- transições auditáveis;
-- recovery explícito;
-- separação entre Modo A e Modo B;
-- idempotência e kill switch integráveis.
+- supersessão, revogação e expiração explícitas;
+- arming separado de autorização;
+- recovery determinístico;
+- kill switch dominante;
+- nenhuma transição terminal retorna à fila.
 
 ### Negativas e custos
 
-- mais estados e reason codes;
-- interfaces precisam lidar com estados intermediários;
-- mudanças na FSM exigem versionamento e compatibilidade.
+- mais estados, reason codes e testes;
+- compatibilidade das FSMs precisa ser versionada;
+- UIs devem representar estados intermediários.
 
 ## Segurança, recovery e falha segura
 
 ```text
 INVALID_TRANSITION=REJECT_AND_AUDIT
 STALE_AGGREGATE_VERSION=CONFLICT
+UNKNOWN_STATE=BLOCK
 RESTART=SAFE_IDLE_AND_RECONCILIATION_REQUIRED
-KILL_SWITCH=DOMINANT_TERMINAL_TRANSITION
-UNKNOWN_EFFECT=CORRELATED_TARGET_BLOCK
-EXPIRED_GRANT=NO_DISPATCH
+OLD_KILL_EPOCH=BLOCK
+EXPIRED_OR_REVOKED_GRANT=NO_DISPATCH
+SUPERSEDED_COMMAND=NO_REQUEUE
 ```
 
 ## Rastreabilidade
@@ -106,27 +274,32 @@ PRIMARY_DOMAINS=DOM-13|DOM-15
 SECONDARY_DOMAINS=DOM-01|DOM-12|DOM-14|DOM-16
 HANDOFFS=H-08|H-09|H-10|H-11|H-12
 REQUIREMENTS=PTM-V27-001..007|V27-PRE-001..006|V27-CMD-001..006|V27-AUT-001..006|PTM-V27-010..018|PTM-V27-022..025|V27-REC-001..006
-DEPENDS_ON=ADR-0001|ADR-0002|ADR-0007
+TRACEABILITY_APPENDIX=APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md
 ```
 
 ## Critérios de aceitação
 
 ```text
-COMMAND_GRANT_ATTEMPT_SEPARATION=PASS
-PERSISTED_TRANSITIONS=PASS
-RESTART_FAIL_CLOSED=PASS
-TIMEOUT_UNKNOWN_EFFECT_SEPARATION=PASS
-LIVE_STATE_GATED=PASS
+COMMAND_FSM_COMPLETE=PASS_BUILDER
+GRANT_FSM_COMPLETE=PASS_BUILDER
+SESSION_ARMING_FSM_COMPLETE=PASS_BUILDER
+ATTEMPT_FSM_COMPLETE=PASS_BUILDER
+SUPERSEDED_STATE_DEFINED=PASS
+REVOCATION_EXPIRATION_CONSUMPTION_DEFINED=PASS
+KILL_EPOCH_INVALIDATION_DEFINED=PASS
+IMMUTABLE_FIELDS_LIFECYCLE_SEPARATED=PASS
+RESTART_NO_REARM_OR_REDISPATCH=PASS
+MAJOR_03_REMEDIATION=PASS_BUILDER
 ```
 
 ## Fora de escopo
 
-- código da FSM;
+- código das FSMs;
 - biblioteca de state machine;
 - tabelas físicas;
-- thresholds de timeout;
+- thresholds numéricos;
 - implementação de adaptador.
 
 ## Estado da decisão
 
-Permanece `PROPOSED_FOR_REVIEW`.
+Permanece `PROPOSED_FOR_REVIEW` até o Reteste 01 independente, autorização humana de merge e confirmação pós-merge.
