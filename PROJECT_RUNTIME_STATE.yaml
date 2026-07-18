@@ -6,33 +6,35 @@ main_branch: "main"
 observed_main_head: "819f70f8f539b72c6ebe9176eb63601b7809b812"
 real_version: "V2.4.3-R1"
 
-active_mission: "LEA-32 — Revisão crítica geral pré-Documento Mestre"
-active_stage: "GENERAL_CRITICAL_REVIEW_FAIL_AWAITING_REMEDIATION"
-active_linear_issue: "LEA-32"
+active_mission: "LEA-33 — Remediar status documental dos 18 ADRs"
+active_stage: "ADR_LIFECYCLE_REMEDIATED_READY_FOR_LEA_32_RETEST"
+active_linear_issue: "LEA-33"
 active_review_issue: "LEA-32"
-active_pull_request: 52
-working_branch: "leonpcsn/lea-32-revisao-geral-pre-documento-mestre"
-observed_pr_head: "25112d323ce9c042c6916154de01e29681639bd1"
+active_pull_request: 53
+working_branch: "leonpcsn/lea-33-remediar-status-documental-dos-18-adrs"
+observed_pr_head: "9729bfe1c8d01457e179cd74fde95f39a788f20a"
 pr_mode: "DRAFT"
-current_gate: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW"
-gate_status: "FAIL"
-next_action: "AWAIT_EXPLICIT_AUTHORIZATION_FOR_LEA_33_ADR_STATUS_REMEDIATION"
+current_gate: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_RETEST"
+gate_status: "IN_PROGRESS"
+next_action: "EXECUTE_LEA_32_INDEPENDENT_RETEST_ON_PR_53"
 blockers:
-  - "MAJOR_01_ADR_LIFECYCLE_ALIGNMENT_OPEN"
-  - "DOCUMENT_MASTER_BLOCKED_UNTIL_REMEDIATION_AND_RETEST_PASS"
+  - "DOCUMENT_MASTER_BLOCKED_UNTIL_LEA_32_RETEST_PASS"
+  - "HUMAN_MERGE_AUTHORIZATION_NOT_GRANTED"
 
 transition_id: "LEA-32-T01"
-transition_status: "BLOCKED"
-from_state: "ADR_P1_P2_PUBLISHED_POST_MERGE_CONFIRMED"
-to_state: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_FAIL_AWAITING_REMEDIATION"
+transition_status: "READY_FOR_INDEPENDENT_REVIEW"
+from_state: "PRE_DOCUMENT_MASTER_GENERAL_CRITICAL_REVIEW_FAIL_AWAITING_REMEDIATION"
+to_state: "ADR_LIFECYCLE_REMEDIATED_AWAITING_INDEPENDENT_RETEST"
 baseline_main_sha: "819f70f8f539b72c6ebe9176eb63601b7809b812"
 baseline_state_revision: 15
 bound_transition_id: "LEA-32-T01"
-main_pr: 52
+main_pr: 53
 main_pr_merge_commit: null
 post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
+superseded_review_pr: 52
+superseded_review_pr_status: "CLOSED_UNMERGED_SUPERSEDED_BY_PR_53"
 previous_transition_id: "LEA-30-T01"
 previous_final_confirmation_pr: 51
 previous_final_confirmation_merge_commit: "819f70f8f539b72c6ebe9176eb63601b7809b812"
@@ -40,21 +42,21 @@ previous_final_confirmation_merge_commit: "819f70f8f539b72c6ebe9176eb63601b7809b
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T22:04:00Z"
+last_sync_at_utc: "2026-07-18T22:29:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "LEA-32"
-  session_id: "lea32-general-critical-review-20260718"
-  base_sha: "819f70f8f539b72c6ebe9176eb63601b7809b812"
-  observed_pr_head: "25112d323ce9c042c6916154de01e29681639bd1"
+  owner: "LEA-33"
+  session_id: "lea33-adr-lifecycle-remediation-20260718"
+  base_sha: "16dac51fd1afa5bcb3aadef733ac6ece7ed004ed"
+  observed_pr_head: "9729bfe1c8d01457e179cd74fde95f39a788f20a"
   state_revision_snapshot: 16
   transition_id_snapshot: "LEA-32-T01"
-  started_at_utc: "2026-07-18T21:53:25Z"
+  started_at_utc: "2026-07-18T22:12:43Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T22:04:00Z"
+  heartbeat_at_utc: "2026-07-18T22:29:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -64,7 +66,7 @@ migration_authorized: false
 real_click_authorized: false
 merge_authorized: false
 document_master_start_authorized: false
-remediation_start_authorized: false
+remediation_start_authorized: true
 
 mode_a_policy_authorized: true
 mode_b_architectural_support_authorized: true
@@ -79,19 +81,20 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
-  task_status_and_dependencies: "Linear LEA-32 In Progress; LEA-33 Todo"
+  task_status_and_dependencies: "Linear LEA-32 In Progress awaiting retest; LEA-33 In Progress remediation complete"
   review_report: "docs/history/reviews/REVISAO_CRITICA_GERAL_PRE_DOCUMENTO_MESTRE_LEA-32_20260718.md"
   readiness_matrix: "docs/architecture/MATRIZ_PRONTIDAO_DOCUMENTO_MESTRE_LEA-32_20260718.md"
+  remediation_report: "docs/history/reviews/REMEDIACAO_STATUS_DOCUMENTAL_18_ADRS_LEA-33_20260718.md"
   adr_index: "docs/architecture/adrs/README.md"
   reviewed_architecture: "GitHub main at 819f70f8f539b72c6ebe9176eb63601b7809b812"
-  unmerged_work: "PR #52 and branch leonpcsn/lea-32-revisao-geral-pre-documento-mestre"
+  unmerged_work: "PR #53 and branch leonpcsn/lea-33-remediar-status-documental-dos-18-adrs"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "READ_ONLY"
+  execution_status: "AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
-  independent_critical_review: "FAIL_PRE_DOCUMENT_MASTER_GENERAL"
+  independent_critical_review: "RETEST_REQUIRED_AFTER_LEA_33"
   reviewed_main_head: "819f70f8f539b72c6ebe9176eb63601b7809b812"
   critical_findings: 0
   major_findings: 1
@@ -120,13 +123,19 @@ safety:
   mandatory_handoff_count: 12
   total_adr_count: 18
   adr_index_published_count: 18
-  adr_files_proposed_status_count: 18
-  adr_lifecycle_alignment: false
+  adr_files_proposed_status_count: 0
+  adr_files_accepted_status_count: 18
+  adr_acceptance_evidence_count: 18
+  adr_publication_evidence_count: 18
+  adr_lifecycle_alignment: true
+  adr_template_lifecycle_defined: true
+  major_01_builder_remediation: "PASS"
+  technical_decision_content_changed: false
   ready_for_merge: false
   ready_for_document_master: false
   transition_complete: false
   last_completed_product_issue: "LEA-30"
   last_completed_product_issue_status: "DONE"
-  current_product_issue: "LEA-32"
+  current_product_issue: "LEA-33"
   current_review_issue: "LEA-32"
-  current_review_issue_status: "IN_PROGRESS_FAIL_AWAITING_REMEDIATION"
+  current_review_issue_status: "IN_PROGRESS_AWAITING_INDEPENDENT_RETEST"
