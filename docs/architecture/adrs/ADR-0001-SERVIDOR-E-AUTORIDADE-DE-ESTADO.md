@@ -5,10 +5,13 @@
 ```text
 ADR_ID=ADR-0001
 CANDIDATE_ID=ADR-CAND-001
-STATUS=PROPOSED_FOR_REVIEW
+STATUS=ACCEPTED
 MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 DATE=2026-07-18
+ACCEPTED_AT=2026-07-18
+ACCEPTANCE_EVIDENCE=docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md
+PUBLICATION_EVIDENCE=docs/architecture/adrs/README.md#indice-p0-publicado
 IMPLEMENTATION_AUTHORIZED=NO
 ```
 
@@ -112,4 +115,4 @@ EXTERNAL_WORKER_DEPENDENCY=NO
 
 ## Estado da decisão
 
-Permanece `PROPOSED_FOR_REVIEW`.
+Status `ACCEPTED`. A decisão foi aprovada pela revisão crítica independente `LEA-27` no Reteste 03 e publicada no conjunto P0. A aceitação é arquitetural e não autoriza implementação, runtime ou efeito externo.
