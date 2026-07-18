@@ -4,13 +4,15 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD da `main` na abertura: `c339ef253c2558300388901a67faf18734e2735f`
+- HEAD observado da `main`: `c339ef253c2558300388901a67faf18734e2735f`
 - Versão real: `V2.4.3-R1`
 - Missão ativa: `LEA-26 — ADRs P0 da Arquitetura V1.0`
-- Revisão independente: `LEA-27`, pendente
-- Branch: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
-- PR ativo: `#46`, aberto, pronto para revisão
-- ADRs produzidos: `12/12`, status `PROPOSED_FOR_REVIEW`
+- Revisão: `LEA-27 — Reteste 01 pendente`
+- Branch de trabalho: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
+- PR ativo: `#46`, aberto, Draft durante a sincronização final
+- Último HEAD de conteúdo remediado confirmado: `c1c694f70d036104fee7b91addf7b68cc5d5ba58`
+- HEAD final de revisão: consultar o PR #46 ao vivo no início do Reteste 01
+- ADRs: `12/12`, status `PROPOSED_FOR_REVIEW`
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
 
@@ -21,9 +23,22 @@ STATE_REVISION=9
 TRANSITION_ID=LEA-26-T01
 TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
 FROM_STATE=CROSS_CONSOLIDATION_COMPLETE
-TO_STATE=ADR_P0_PROPOSED_FOR_REVIEW
+TO_STATE=ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW
 MISSION_LOCK=LEA-26
+CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01
+GATE_STATUS=IN_PROGRESS
 ```
+
+## Contrato do HEAD
+
+```text
+OBSERVED_PR_HEAD=c1c694f70d036104fee7b91addf7b68cc5d5ba58
+OBSERVED_PR_HEAD_SEMANTICS=LAST_CONFIRMED_REMEDIATION_CONTENT_SNAPSHOT
+CURRENT_PR_HEAD_SOURCE=LIVE_GITHUB_QUERY_AT_RETEST_START
+SELF_REFERENTIAL_FINAL_COMMIT_SHA_IN_FILE=PROHIBITED
+```
+
+O PR body e o Linear devem registrar o HEAD final exato após o último commit de sincronização. O revisor reconfirma esse HEAD ao iniciar o Reteste 01.
 
 ## Escopo
 
@@ -44,7 +59,68 @@ LIVE_MODE_ARMED=NO
 FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-A autorização recebida abriu a missão documental de ADRs. Ela não autoriza código, schema físico, migration, integração de produção ou sessão LIVE.
+## Resultado da revisão inicial
+
+```text
+LEA_27_INITIAL_REVIEW=FAIL
+REVIEWED_HEAD=2c9c2432058c5f119bd1802c3ba00e845c6a5ca0
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=4
+MINOR_FINDINGS=1
+RETEST_REQUIRED=YES
+```
+
+## Remediação do builder
+
+```text
+MAJOR_01_REMEDIATED=PASS_BUILDER
+MAJOR_02_REMEDIATED=PASS_BUILDER
+MAJOR_03_REMEDIATED=PASS_BUILDER
+MAJOR_04_REMEDIATED=PASS_BUILDER
+MINOR_01_REMEDIATED=PASS_BUILDER_WITH_PR_HEAD_CONTRACT
+OPEN_BUILDER_FINDINGS=0
+INDEPENDENT_CLEARANCE=PENDING_RETEST_01
+```
+
+### MAJOR-01
+
+Foi publicada rastreabilidade exaustiva requisito–domínio–ADR:
+
+```text
+REQUIREMENT_ROWS=218
+UNIQUE_REQUIREMENT_IDS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNJUSTIFIED_NO_P0_MAPPING=0
+```
+
+### MAJOR-02
+
+```text
+RELATIONS=DEPENDS_ON|MUST_ALIGN_WITH|GOVERNS
+DEPENDS_ON_NODE_COUNT=12
+DEPENDS_ON_CYCLE_COUNT=0
+DEPENDS_ON_DAG=PASS_BUILDER
+```
+
+### MAJOR-03
+
+```text
+COMMAND_FSM=DEFINED
+AUTHORIZATION_GRANT_FSM=DEFINED
+SESSION_ARMING_FSM=DEFINED
+EXECUTION_ATTEMPT_FSM=DEFINED
+SUPERSEDED=DEFINED
+KILL_EPOCH_INVALIDATION=DEFINED
+RESTART_NO_REARM_OR_REDISPATCH=PASS
+```
+
+### MAJOR-04
+
+```text
+SAME_KEY_AND_SAME_CANONICAL_FINGERPRINT=RETURN_EXISTING_ATTEMPT
+SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
+```
 
 ## Gates da missão
 
@@ -52,56 +128,26 @@ A autorização recebida abriu a missão documental de ADRs. Ela não autoriza c
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS_BUILDER
-A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER
-A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=PENDING_LEA_27
-```
-
-## Decisões propostas
-
-```text
-ADR-0001=SERVER_GLOBAL_AUTHORITY_AND_LOCAL_MODULAR_MONOLITH
-ADR-0002=SQLITE_V1_AND_SERVER_SINGLE_WRITER
-ADR-0003=REST_JSON_V1_PLUS_SSE_AND_SNAPSHOT_FALLBACK
-ADR-0004=LOCAL_REVOCABLE_DEVICE_PAIRING
-ADR-0005=VERSIONED_PROFILE_ROI_AND_TARGET_LOGICAL_ID
-ADR-0006=IMMUTABLE_ANALYSIS_SNAPSHOT_AND_ENGINE_DAG
-ADR-0007=VERSIONED_STRATEGY_AND_SIGNAL_LIFECYCLE
-ADR-0008=COMMAND_GRANT_AND_ATTEMPT_STATE_MACHINES
-ADR-0009=ISOLATED_NULL_SIMULATED_CONTROLLED_UI_LIVE_GATED_ADAPTERS
-ADR-0010=PERSISTED_DOMINANT_KILL_SWITCH_EPOCH
-ADR-0011=MULTIDIMENSIONAL_RECEIPT_AND_RECONCILIATION
-ADR-0012=STRUCTURED_LOGS_METRICS_AND_APPEND_ONLY_AUDIT
-```
-
-Todas permanecem propostas, não definitivas.
-
-## Rastreabilidade
-
-```text
-P0_ADR_COUNT=12
-P0_ADR_CREATED=12
-P0_ADR_STATUS=PROPOSED_FOR_REVIEW
-CANONICAL_DOMAIN_COVERAGE=16/16
-MANDATORY_HANDOFF_COVERAGE=12/12
-CROSS_VERSION_REQUIREMENTS_PRESERVED=218/218
-NEW_REQUIREMENT_IDS=0
-P1_CANDIDATES_REMAINING=5
-P2_CANDIDATES_REMAINING=1
+A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02_03_04
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
 ```
 
 ## Entregas
 
-- ✅ plano da missão LEA-26;
-- ✅ template normativo;
-- ✅ índice mestre;
+- ✅ plano reconciliado;
+- ✅ template e índice;
 - ✅ ADR-0001 a ADR-0012;
-- ✅ matriz de rastreabilidade;
-- ✅ auto-revisão preliminar;
-- ✅ PR #46 aberto e pronto para revisão;
-- ⏳ revisão crítica independente da LEA-27;
-- ⬜ merge após PASS e autorização humana;
+- ✅ apêndice individual `218/218`;
+- ✅ grafo de dependências acíclico;
+- ✅ quatro FSMs explícitas;
+- ✅ idempotência divergente bloqueada;
+- ✅ auto-revisão repetida;
+- ✅ relatório de remediação;
+- ⏳ sincronização final de GitHub e Linear;
+- ⏳ Reteste 01 da LEA-27;
+- ⬜ merge após PASS e nova autorização humana;
 - ⬜ Documento Mestre após fechamento dos ADRs.
 
 ## Evidências
@@ -109,8 +155,11 @@ P2_CANDIDATES_REMAINING=1
 - `docs/architecture/PLANO_MISSAO_ADRS_P0_LEA-26_20260718.md`;
 - `docs/architecture/adrs/README.md`;
 - `docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md`;
-- `docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md`.
+- `docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`;
+- `docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md`;
+- `docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md`;
+- `docs/history/reviews/REVISAO_CRITICA_ADRS_P0_LEA-27_20260718.md`.
 
 ## Próxima ação
 
-Executar a revisão crítica independente da `LEA-27` sobre o HEAD final do PR `#46`. Não realizar merge nem iniciar Documento Mestre antes do Boss Gate `PASS` e de autorização humana posterior.
+Reabrir a `LEA-27`, marcar o PR #46 pronto para revisão e executar o `Reteste 01` no HEAD vivo final. Não realizar merge nem iniciar o Documento Mestre antes de `ADR_P0_CRITICAL_REVIEW=PASS` e nova autorização humana.
