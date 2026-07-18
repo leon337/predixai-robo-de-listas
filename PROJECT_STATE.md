@@ -7,89 +7,84 @@
 - HEAD observado da `main`: `c339ef253c2558300388901a67faf18734e2735f`
 - Versão real: `V2.4.3-R1`
 - Missão ativa: `LEA-26 — ADRs P0 da Arquitetura V1.0`
-- Revisão ativa: `LEA-27 — Reteste 03`
+- Revisão concluída: `LEA-27 — Reteste 03 PASS`
 - Branch de trabalho: `leonpcsn/lea-26-adrs-p0-arquitetura-v1`
-- PR ativo: `#46`, aberto e Draft
-- Último HEAD autorizado para merge: `decb578bd9b4c4bbe9d62947359eb59569d89020`
-- Merge desse HEAD: não executado
+- PR ativo: `#46`, aberto e documentalmente pronto para merge
+- HEAD revisado no Reteste 03: `43357ca9974c97cb9ffad50633f6b37580025b57`
+- Relatório: `docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md`
+- Merge: não autorizado para o novo HEAD final
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
-
-## Motivo do bloqueio pré-merge
-
-A reconfirmação imediatamente anterior ao merge detectou duas threads novas:
-
-```text
-FINDING_01=PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_INCOMPATIBILITY
-FINDING_02=STALE_OPERATIONAL_RETEST_REFERENCES_IN_ADR_SOURCES
-OPEN_REVIEW_THREADS_AT_BLOCK=2
-MERGE_EXECUTED=NO
-```
-
-A autorização anterior estava vinculada ao HEAD `decb578...`. Qualquer correção gera novo HEAD e exige novo `PASS` independente e nova autorização humana de merge.
 
 ## Transição ativa
 
 ```text
 STATE_REVISION=11
 TRANSITION_ID=LEA-26-T01
-TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+TRANSITION_STATUS=APPROVED_FOR_MERGE
 FROM_STATE=CROSS_CONSOLIDATION_COMPLETE
-TO_STATE=ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW
+TO_STATE=ADR_P0_REVIEWED_PASS_PROPOSED_FOR_MERGE
 MISSION_LOCK=LEA-26
-CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_03
-GATE_STATUS=IN_PROGRESS
-RETEST_03_AUTHORIZED=YES
+CURRENT_GATE=A7_INDEPENDENT_CRITICAL_REVIEW
+GATE_STATUS=PASS
 ```
 
-## Contrato de estado
+## Resultado oficial
 
 ```text
-SCHEMA_VERSION=1.0.3
-OBSERVED_PR_HEAD=decb578bd9b4c4bbe9d62947359eb59569d89020
-OBSERVED_PR_HEAD_SEMANTICS=INFORMATIONAL_SNAPSHOT
-LIVE_PR_HEAD_SOURCE=GITHUB_API
-SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
-SELF_REFERENTIAL_FINAL_COMMIT_SHA_IN_FILE=PROHIBITED
-```
-
-O manifesto volta a usar os campos obrigatórios `observed_pr_head` no nível superior e no `mission_lock`. `transition_status`, status de sincronização, gate e execução usam apenas valores permitidos pelo schema 1.0.3.
-
-## Estado das revisões
-
-```text
-INITIAL_REVIEW=FAIL
-RETEST_01=FAIL
-RETEST_02=PASS_THEN_REVOKED_BY_NEW_PRE_MERGE_FINDINGS
-RETEST_03=IN_PROGRESS
+ADR_P0_CRITICAL_REVIEW=PASS
+RETEST_SEQUENCE=03
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
-MINOR_FINDINGS_OPEN=2
-DOCUMENTAL_READY_FOR_MERGE=NO
-RETEST_REQUIRED=YES
+MINOR_FINDINGS=0
+OPEN_FINDINGS=0
+DOCUMENTAL_READY_FOR_MERGE=YES
+DOCUMENT_MASTER_READY_TO_START=NO
+RETEST_REQUIRED=NO
 ```
 
-As quatro remediações maiores continuam tecnicamente aprovadas:
+## Achados pré-merge encerrados
 
 ```text
-MAJOR_01_TRACEABILITY_218=PASS
-MAJOR_02_DEPENDENCY_DAG=PASS
-MAJOR_03_FOUR_FSMS=PASS
-MAJOR_04_IDEMPOTENCY_COLLISION=PASS
+PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_COMPATIBILITY=PASS
+OPERATIONAL_SOURCE_AUTHORITY_CURRENT=PASS
+TOP_LEVEL_OBSERVED_PR_HEAD=PASS
+MISSION_LOCK_OBSERVED_PR_HEAD=PASS
+SCHEMA_ENUM_COMPATIBILITY=PASS
+PLAN_RETEST_REFERENCE=03
+ADR_INDEX_RETEST_REFERENCE=03
+TRACEABILITY_MATRIX_RETEST_REFERENCE=03
+OPEN_REVIEW_THREADS_AT_RETEST=0
+CI_WORKFLOWS_AT_RETEST=9_OF_9_SUCCESS
 ```
 
-## Fontes operacionais atuais
+## Conteúdo arquitetural aprovado
 
 ```text
-OPERATIONAL_STATE=PROJECT_RUNTIME_STATE.yaml
-RUNTIME_SCHEMA=docs/protocols/PROJECT_RUNTIME_STATE_SCHEMA.yaml
-HUMAN_STATE=PROJECT_STATE.md
-CHAT_SEQUENCE=PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md
-PUBLIC_PROJECTION=README.md
-RETEST_03_REMEDIATION=docs/history/reviews/REMEDIACAO_SCHEMA_E_FONTES_ADRS_P0_LEA-26_20260718.md
+ADR_COUNT=12/12
+REQUIREMENT_ROWS=218
+UNIQUE_REQUIREMENT_IDS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNJUSTIFIED_NO_P0_MAPPING=0
+CANONICAL_DOMAIN_COVERAGE=16/16
+HANDOFF_REFERENCE_COVERAGE=12/12
+DEPENDS_ON_NODE_COUNT=12
+DEPENDS_ON_CYCLE_COUNT=0
+FOUR_FSMS=PASS
+DIVERGENT_IDEMPOTENCY_COLLISION=PASS_BLOCKED
 ```
 
-Plano, índice, matriz e apêndice são evidências arquiteturais de conteúdo. O gate operacional vigente é definido pelo manifesto, estado humano, tronco, README, PR vivo e Linear.
+## Autorização
+
+A autorização humana recebida estava vinculada ao HEAD `decb578bd9b4c4bbe9d62947359eb59569d89020`. Ela não foi consumida porque o merge foi bloqueado antes da integração. As correções posteriores alteraram o HEAD.
+
+```text
+PREVIOUS_MERGE_AUTHORIZATION_CONSUMED=NO
+PREVIOUS_MERGE_AUTHORIZATION_VALID_FOR_NEW_HEAD=NO
+NEW_HUMAN_MERGE_AUTHORIZATION_REQUIRED=YES
+MERGE_EXECUTED=NO
+```
 
 ## Escopo
 
@@ -111,4 +106,4 @@ FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 
 ## Próxima ação
 
-Concluir a correção das fontes, responder e resolver as duas threads, validar CI e executar `LEA-27 — Reteste 03`. Não integrar o PR #46 sem novo `PASS` e nova autorização humana explícita para o novo HEAD.
+Confirmar CI e threads no HEAD final sincronizado e solicitar nova autorização humana explícita para integrar o PR #46. Depois do merge, publicar recibo pós-merge em PR documental separado.
