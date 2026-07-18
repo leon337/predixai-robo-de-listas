@@ -12,6 +12,7 @@ PULL_REQUEST=40
 REPOSITORY=leon337/predixai-robo-de-listas
 BASE_BRANCH=main
 BASE_MAIN_SHA=98bb1d33b9d8eca702fb4e52bdde02686021c766
+CURRENT_MAIN_OBSERVED=236bc5df7f675ca5cf56d80c5812bd911d224651
 STATE_REVISION=7
 TRANSITION_ID=LEA-18-T01
 LEGACY_VERSION=V2.4.3-R1
@@ -30,6 +31,7 @@ MAJOR_08_REMEDIATED=YES
 MINOR_04_REMEDIATED=YES
 V2_7_STRUCTURAL_IDS_AUDITED=32/32
 V2_7_FUNCTIONAL_IDS_AUDITED=52/52
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
 ```
 
 ## 2. Decisão executiva
@@ -40,7 +42,19 @@ V2.6=OBSERVATION_ANALYSIS_SIMULATED_SIGNALS
 V2.7=CONTROLLED_COMMAND_AUTHORIZATION_ACTION_RECEIPT_RECONCILIATION
 ```
 
-A integração preserva as responsabilidades de cada etapa, impede bypass entre análise e execução e mantém qualquer efeito financeiro real fora do escopo autorizado.
+A integração preserva as responsabilidades de cada etapa e impede bypass entre análise e execução.
+
+A política normativa A+B estabelece:
+
+```text
+MODE_A=CONTROLLED_OR_SIMULATED_AUTHORIZED
+MODE_B=LIVE_FINANCIAL_GATED_SUPPORTED
+MODE_B_DEFAULT=DISABLED
+LIVE_MODE_ARMED=NO
+FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
+```
+
+Assim, automação de interface controlada é capacidade legítima; o Modo B não é proibido arquiteturalmente, mas só pode ser armado depois da aprovação integral dos gates técnicos, comerciais, legais e de conformidade.
 
 ## 3. Autoridades documentais
 
@@ -51,6 +65,7 @@ ROADMAP=PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md
 TASK_STATUS=Linear
 INTEGRATED_CODE_AND_DOCS=GitHub_main
 UNMERGED_WORK=active_PR_and_branch
+AUTOMATION_POLICY=docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md
 ```
 
 Fontes integrantes:
@@ -61,8 +76,9 @@ Fontes integrantes:
 4. índice individual dos 218 requisitos;
 5. registro de conflitos e supersessões;
 6. catálogo de decisões candidatas a ADR;
-7. política de automação em ambiente controlado;
-8. documentos e matrizes definitivos das PTMs V2.5, V2.6 e V2.7.
+7. política normativa A+B;
+8. documentos e matrizes definitivos das PTMs V2.5, V2.6 e V2.7;
+9. auditoria individual dos `52/52` requisitos funcionais V2.7.
 
 ## 4. Cadeia arquitetural
 
@@ -110,12 +126,15 @@ ANALYSIS_DOES_NOT_AUTHORIZE_OR_DISPATCH
 SIGNAL_DOES_NOT_AUTOEXECUTE
 COORDINATE_DOES_NOT_AUTHORIZE
 ADAPTER_RECEIPT_DOES_NOT_CONFIRM_GLOBAL_TRUTH
-REAL_FINANCIAL_EFFECT=NOT_AUTHORIZED
+MODE_A_CONTROLLED_UI=AUTHORIZED
+MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
+MODE_B_DEFAULT=DISABLED
+LIVE_WITHOUT_ALL_GATES=BLOCKED
 RESTART_INVALIDATES_PREVIOUS_COMMAND_DISPATCHABILITY=YES
 UNKNOWN_EFFECT=CORRELATED_ACTION_BLOCK
 ```
 
-Automação em ambiente controlado permanece regida pela política normativa e pelos adendos aplicáveis. A presença de ferramentas de captura ou teste não altera as fronteiras de autoridade.
+Automação controlada permanece regida pela política normativa A+B. A responsabilidade de cada domínio não deve ser confundida com proibição global de análise visual, captura, OCR, ponteiro, teclado, preenchimento, clique ou autenticação controlada.
 
 ## 7. Cobertura e rastreabilidade
 
@@ -149,10 +168,14 @@ A auditoria integral dos requisitos estruturais V2.7 confirmou que:
 
 - `PTM-V27-003` pertence ao `DOM-14`, por definir ausência e fronteira do adaptador real;
 - `PTM-V27-031` pertence ao `DOM-16`, por definir prova negativa, auditoria e contenção;
-- `PTM-V27-032` permanece no `DOM-01`, por definir gate futuro de governança;
+- `PTM-V27-032` permanece no `DOM-01`, por definir o gate LIVE futuro de governança;
 - os outros 30 requisitos estruturais mantêm seus domínios primários anteriores.
 
 A auditoria integral dos `52/52` requisitos funcionais V2.7 confirmou a distribuição individual dos grupos `V27-EXE-*` e `V27-SAF-*` entre `DOM-13`, `DOM-14`, `DOM-15` e `DOM-16`, conforme comando/policy, adaptador, dispatch e contenção.
+
+Evidência detalhada:
+
+`docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md`
 
 ## 8. Conflitos e precedência
 
@@ -167,6 +190,8 @@ PRECEDENCE_ORDER=
   > DOCUMENTOS_PAI_NAO_CONFLITANTES
 ```
 
+A política A+B supersede interpretações genéricas anteriores. Exclusão de uma capacidade em determinada etapa significa `OUT_OF_SCOPE_FOR_STAGE`, não proibição global. O Modo B é `SUPPORTED_BY_MODE_B_GATE` e permanece `DISABLED_UNTIL_GATE_PASS`.
+
 ## 9. ADRs candidatos
 
 ```text
@@ -179,6 +204,8 @@ ADRS_START_AUTHORIZED=NO
 ```
 
 A consolidação prepara ADRs, mas não escolhe tecnologia, não cria banco, não gera SQL, não cria migration e não congela a Arquitetura V1.0.
+
+O suporte arquitetural ao Modo B está reconhecido, porém a implementação e ativação LIVE exigirão missão, gate, decisão comercial/legal, validação dos termos e jurisdição da plataforma, elegibilidade do titular, allowlists, limites, kill switch, auditoria e confirmação humana.
 
 ## 10. Resultado do builder remediado
 
@@ -197,6 +224,7 @@ RETEST_03_MAJOR_FINDINGS_REMEDIATED=2/2
 RETEST_03_MINOR_FINDINGS_REMEDIATED=1/1
 V2_7_STRUCTURAL_AUDIT=PASS_BUILDER
 V2_7_FUNCTIONAL_AUDIT=PASS_BUILDER
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
 INDEPENDENT_CRITICAL_REVIEW=RETEST_04_REQUIRED
 ```
 
@@ -216,4 +244,4 @@ O builder não pode emitir sozinho o Boss Gate final.
 
 ## 12. Próxima ação
 
-Executar o Reteste 04 independente da `LEA-19` sobre o novo HEAD do PR `#40`. Não realizar merge nem iniciar ADRs antes de `CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS` e autorização humana posterior.
+Executar o Reteste 04 independente da `LEA-19` sobre o HEAD final do PR `#40`. Não realizar merge nem iniciar ADRs antes de `CROSS_CONSOLIDATION_CRITICAL_REVIEW=PASS` e autorização humana posterior.
