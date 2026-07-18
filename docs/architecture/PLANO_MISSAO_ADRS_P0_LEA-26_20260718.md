@@ -5,13 +5,14 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=ACTIVE_MISSION_PLAN
+DOCUMENT_STATUS=BUILDER_DELIVERY_READY_FOR_INDEPENDENT_REVIEW
 MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
+PULL_REQUEST=46
 REPOSITORY=leon337/predixai-robo-de-listas
 BASE_BRANCH=main
 BASE_MAIN_SHA=c339ef253c2558300388901a67faf18734e2735f
-STATE_REVISION_BASE=8
+STATE_REVISION=9
 TRANSITION_ID=LEA-26-T01
 PREVIOUS_TRANSITION=LEA-18-T01_COMPLETE
 MISSION_SCOPE=DOCUMENTATION_ONLY
@@ -22,7 +23,7 @@ HUMAN_AUTHORIZATION=RECEIVED_2026-07-18
 
 Converter as 12 decisões P0 do catálogo consolidado em ADRs formais, coerentes entre si e rastreáveis aos 16 domínios, 12 handoffs e 218 requisitos aprovados.
 
-Os documentos serão produzidos com status `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes da revisão crítica independente da LEA-27, autorização humana de merge e confirmação pós-merge.
+Os documentos foram produzidos com status `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes da revisão crítica independente da LEA-27, autorização humana de merge e confirmação pós-merge.
 
 ## 3. ADRs da missão
 
@@ -61,17 +62,17 @@ A dependência define coerência documental, não ordem automática de implement
 
 ```text
 A1_PRECONDITIONS=PASS
-A2_TEMPLATE_AND_INDEX=IN_PROGRESS
-A3_P0_ADRS=0/12
-A4_TRACEABILITY=NOT_STARTED
-A5_CROSS_ADR_CONSISTENCY=NOT_STARTED
-A6_BUILDER_SELF_REVIEW=NOT_STARTED
+A2_TEMPLATE_AND_INDEX=PASS
+A3_P0_ADRS=12/12
+A4_TRACEABILITY=PASS_BUILDER
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
 A7_INDEPENDENT_CRITICAL_REVIEW=REQUIRED
 ```
 
-## 6. Critérios de qualidade por ADR
+## 6. Critérios de qualidade aplicados
 
-Cada ADR deve conter:
+Cada ADR contém:
 
 1. contexto e problema;
 2. decisão objetiva;
@@ -96,7 +97,7 @@ LIVE_MODE_ARMED=NO
 REAL_FINANCIAL_EFFECT_RUNTIME_AUTHORIZED=NO
 ```
 
-A missão pode definir contratos e decisões arquiteturais. Ela não produz implementação, schema físico, migration, credencial, integração de produção ou sessão LIVE.
+A missão define contratos e decisões arquiteturais. Ela não produz implementação, schema físico, migration, credencial, integração de produção ou sessão LIVE.
 
 ## 8. Política A+B
 
@@ -121,4 +122,4 @@ PR_STATUS=READY_FOR_INDEPENDENT_REVIEW
 MERGE_AUTHORIZED=NO
 ```
 
-A próxima etapa será a revisão crítica independente da LEA-27.
+A próxima etapa é a revisão crítica independente da LEA-27.
