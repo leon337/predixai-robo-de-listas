@@ -11,8 +11,8 @@
 - PR principal: `#46`, integrado
 - HEAD integrado: `d92a96163f2a81c2eb5202b90581a7f65f9a8272`
 - Merge commit: `ff726709d13b8acca0961cc17160e38430c6d26f`
+- Recibo pós-merge: `PR #47`, aberto
 - Branch do recibo: `leonpcsn/lea-26-post-merge-receipt-pr-46`
-- Recibo pós-merge: em publicação
 - Documento Mestre: não autorizado
 - Implementação: não autorizada
 
@@ -26,6 +26,7 @@ FROM_STATE=ADR_P0_REVIEWED_PASS_PROPOSED_FOR_MERGE
 TO_STATE=ADR_P0_PUBLISHED_POST_MERGE_CONFIRMED
 CURRENT_GATE=POST_MERGE_CONFIRMATION
 GATE_STATUS=IN_PROGRESS
+POST_MERGE_RECEIPT_PR=47
 ```
 
 ## Integração confirmada
@@ -57,7 +58,7 @@ FOUR_FSMS=PASS
 DIVERGENT_IDEMPOTENCY_COLLISION=PASS_BLOCKED
 ```
 
-Os arquivos individuais dos ADRs permanecem documentos arquiteturais propostos, mas o conjunto P0 revisado e integrado passa a constituir base documental aprovada para uma futura missão do Documento Mestre. Isso não autoriza implementação.
+Os arquivos individuais dos ADRs preservam o histórico documental de proposta. O conjunto P0 revisado e integrado constitui base documental aprovada para uma futura missão do Documento Mestre, sem autorizar implementação.
 
 ## Escopo preservado
 
@@ -80,7 +81,8 @@ FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ## Gate atual
 
 ```text
-POST_MERGE_RECEIPT=PENDING_PUBLICATION
+POST_MERGE_RECEIPT_PR=47
+POST_MERGE_RECEIPT_STATUS=AWAITING_CI_AND_MERGE
 GITHUB_SYNC=IN_PROGRESS
 LINEAR_SYNC=IN_PROGRESS
 MISSION_CLOSURE=PENDING_RECEIPT_MERGE
@@ -88,4 +90,4 @@ MISSION_CLOSURE=PENDING_RECEIPT_MERGE
 
 ## Próxima ação
 
-Publicar e integrar o recibo pós-merge do PR #46; depois confirmar o HEAD final da `main`, sincronizar a LEA-26 e encerrar a missão. O Documento Mestre e qualquer implementação permanecem dependentes de autorização separada.
+Validar e integrar o PR #47; depois confirmar o HEAD final da `main`, sincronizar a LEA-26 e encerrar a missão. O Documento Mestre e qualquer implementação permanecem dependentes de autorização separada.
