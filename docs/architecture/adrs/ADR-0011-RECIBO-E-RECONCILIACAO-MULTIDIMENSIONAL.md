@@ -13,6 +13,7 @@ IMPLEMENTATION_AUTHORIZED=NO
 DEPENDS_ON=ADR-0002|ADR-0008|ADR-0009|ADR-0010
 MUST_ALIGN_WITH=ADR-0008|ADR-0009|ADR-0010|ADR-0012
 GOVERNS=ADR-0012
+INDEPENDENT_REVIEW_GATE=LEA-27_CURRENT_VALID_RETEST
 ```
 
 ## Contexto
@@ -166,4 +167,4 @@ MAJOR_04_REMEDIATION=PASS_BUILDER
 
 ## Estado da decisão
 
-Permanece `PROPOSED_FOR_REVIEW` até o Reteste 01 independente, autorização humana de merge e confirmação pós-merge.
+Permanece `PROPOSED_FOR_REVIEW` até a revisão crítica independente vigente resultar em `PASS`, seguida de autorização humana de merge e confirmação pós-merge.
