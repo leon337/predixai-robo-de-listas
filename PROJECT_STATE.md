@@ -10,7 +10,7 @@
 - Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
 - Revisão ativa: `LEA-19 — Reteste 05 independente do PR #40`
 - Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
-- PR ativo: `#40`, Draft após o Reteste 04, em remediação para o Reteste 05
+- PR ativo: `#40`, aberto, pronto para revisão e remediado para o Reteste 05
 - Reteste 04 revisou o HEAD: `ab8e02bc6f07d8822012f667ac0a8f1f02a63941`
 - Relatório do Reteste 04: commit `5b548d8e10e75cf9578cc150ea7c86c38f62a203`
 - Merge: não autorizado
@@ -58,7 +58,7 @@ G3_DOMAIN_BOUNDARIES_CONSOLIDATED=PASS
 G4_REQUIREMENTS_TRACEABILITY_COMPLETE=PASS
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS
 G6_CONSOLIDATED_DOCUMENT_READY=PASS
-G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_05_REQUIRED_LEA_19
+G7_INDEPENDENT_CRITICAL_REVIEW=RETEST_05_IN_PROGRESS_LEA_19
 ```
 
 ## Histórico do Boss Gate
