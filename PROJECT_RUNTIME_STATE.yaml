@@ -3,7 +3,7 @@ state_revision: 7
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
+observed_main_head: "236bc5df7f675ca5cf56d80c5812bd911d224651"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-18"
@@ -12,18 +12,18 @@ active_linear_issue: "LEA-18"
 active_review_issue: "LEA-19"
 active_pull_request: 40
 working_branch: "leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27"
-observed_pr_head: null
+observed_pr_head: "b1cc770c244425d3dcc51f3819ec180fa2b31f74"
 pr_mode: "independent_critical_retest_04"
 active_checkpoint: "docs/history/reviews/REMEDIACAO_RETESTE_03_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
 
 current_gate: "G7_INDEPENDENT_CRITICAL_REVIEW"
-gate_status: "RETEST_04_REQUIRED"
+gate_status: "RETEST_04_REQUESTED"
 next_action: "EXECUTE_LEA_19_INDEPENDENT_RETEST_04_ON_PR_40"
 blockers:
   - "INDEPENDENT_CRITICAL_RETEST_04_REQUIRED"
 
 transition_id: "LEA-18-T01"
-transition_status: "READY_FOR_INDEPENDENT_RETEST_04"
+transition_status: "AWAITING_INDEPENDENT_RETEST_04"
 from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
 to_state: "CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_04"
 baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
@@ -34,9 +34,10 @@ main_pr_merge_commit: null
 post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS_PENDING_FINAL_HEAD_CONFIRMATION"
-linear_sync_status: "PENDING_RETEST_04_REQUEST"
-last_sync_at_utc: "2026-07-17T21:00:00Z"
+github_sync_status: "PASS_PENDING_PR_METADATA_CONFIRMATION"
+linear_sync_status: "PASS_LEA_19_REOPENED_FOR_RETEST_04"
+readme_sync_status: "SNAPSHOT_UPDATE_REQUIRED_AFTER_FINAL_RETEST_HANDOFF"
+last_sync_at_utc: "2026-07-18T05:40:00Z"
 
 mission_lock:
   locked: true
@@ -45,53 +46,74 @@ mission_lock:
   owner: "LEA-18"
   session_id: "lea18-cross-consolidation-20260717"
   base_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
-  observed_pr_head: null
+  observed_pr_head: "b1cc770c244425d3dcc51f3819ec180fa2b31f74"
   state_revision_snapshot: 7
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-17T21:00:00Z"
+  heartbeat_at_utc: "2026-07-18T05:40:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
 test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
-real_click_authorized: false
-controlled_ui_action_in_mission_authorized: false
-real_financial_effect_authorized: false
 merge_authorized: false
 cross_consolidation_authorized: true
 adrs_start_authorized: false
+
+mode_a_policy_authorized: true
+controlled_chart_analysis_policy: "ALLOWED_MODE_A"
+controlled_screen_capture_policy: "ALLOWED_MODE_A"
+controlled_ocr_policy: "ALLOWED_MODE_A"
+controlled_replay_policy: "ALLOWED_MODE_A"
+controlled_pointer_keyboard_fields_click_policy: "ALLOWED_MODE_A"
+controlled_authentication_policy: "ALLOWED_MODE_A"
+controlled_ui_action_in_current_mission_authorized: false
+mode_b_architectural_support_authorized: true
+mode_b_default_disabled: true
+live_mode_armed: false
+real_financial_effect_runtime_authorized: false
+financial_effect_status: "BLOCKED_UNTIL_ALL_LIVE_GATES_PASS"
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
+  source_inventory: "docs/architecture/INVENTARIO_FONTES_CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
+  domain_boundary_map: "docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   individual_requirement_index: "docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   consolidated_traceability: "docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   consolidated_architecture_document: "docs/architecture/CONSOLIDACAO_CRUZADA_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
   retest_03_result: "docs/history/reviews/REVISAO_CRITICA_RETESTE_03_CONSOLIDACAO_CRUZADA_LEA-19_20260717.md"
   retest_03_remediation: "docs/history/reviews/REMEDIACAO_RETESTE_03_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
+  v2_7_functional_audit: "docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md"
   task_status_and_dependencies: "Linear LEA-18 and LEA-19"
   unmerged_work: "PR #40"
   consolidated_code_and_docs: "GitHub main"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "READY_FOR_INDEPENDENT_RETEST_04"
+  execution_status: "AWAITING_INDEPENDENT_RETEST_04"
   automatic_advance: false
-  independent_critical_review: "RETEST_04_REQUIRED_LEA_19"
+  independent_critical_review: "RETEST_04_REQUESTED_LEA_19"
   previous_independent_review_status: "FAIL_RETEST_03"
   retest_03_critical_findings: 0
   retest_03_major_findings: 2
   retest_03_minor_findings: 1
   remediated_major_findings: 2
   remediated_minor_findings: 1
+  open_critical_findings: 0
   open_major_findings: 0
   open_minor_findings: 0
   retest_required: true
   documentation_only: true
+  policy_a_b_alignment: true
+  mode_a_authorized: true
+  mode_b_supported: true
+  mode_b_armed: false
+  live_without_all_gates_blocked: true
   g1_preconditions_pass: true
   g2_source_inventory_complete: true
   g3_domain_boundaries_consolidated: true
@@ -110,6 +132,18 @@ safety:
   ptm_v27_003_primary_domain: "DOM-14"
   ptm_v27_031_primary_domain: "DOM-16"
   ptm_v27_032_primary_domain: "DOM-01"
+  dom_01_primary_ids: 7
+  dom_02_primary_ids: 13
+  dom_03_primary_ids: 22
+  dom_04_primary_ids: 6
+  dom_05_primary_ids: 3
+  dom_06_primary_ids: 5
+  dom_07_primary_ids: 6
+  dom_08_primary_ids: 5
+  dom_09_primary_ids: 8
+  dom_10_primary_ids: 7
+  dom_11_primary_ids: 22
+  dom_12_primary_ids: 16
   dom_13_primary_ids: 26
   dom_14_primary_ids: 7
   dom_15_primary_ids: 27
@@ -124,4 +158,4 @@ safety:
   current_product_issue: "LEA-18"
   current_product_issue_status: "IN_PROGRESS"
   current_review_issue: "LEA-19"
-  current_review_issue_status: "RETEST_04_REQUIRED"
+  current_review_issue_status: "TODO_RETEST_04"
