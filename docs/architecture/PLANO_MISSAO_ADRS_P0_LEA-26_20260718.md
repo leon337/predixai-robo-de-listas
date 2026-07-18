@@ -5,7 +5,7 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=BUILDER_DELIVERY_READY_FOR_INDEPENDENT_REVIEW
+DOCUMENT_STATUS=BUILDER_REMEDIATED_READY_FOR_RETEST_01
 MISSION=LEA-26
 REVIEW_ISSUE=LEA-27
 PULL_REQUEST=46
@@ -23,7 +23,7 @@ HUMAN_AUTHORIZATION=RECEIVED_2026-07-18
 
 Converter as 12 decisões P0 do catálogo consolidado em ADRs formais, coerentes entre si e rastreáveis aos 16 domínios, 12 handoffs e 218 requisitos aprovados.
 
-Os documentos foram produzidos com status `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes da revisão crítica independente da LEA-27, autorização humana de merge e confirmação pós-merge.
+Os ADRs permanecem `PROPOSED_FOR_REVIEW`. Nenhum ADR se torna definitivo antes da revisão crítica independente da LEA-27, autorização humana de merge e confirmação pós-merge.
 
 ## 3. ADRs da missão
 
@@ -36,54 +36,99 @@ Os documentos foram produzidos com status `PROPOSED_FOR_REVIEW`. Nenhum ADR se t
 | ADR-0005 | ADR-CAND-006 | perfis, ROIs e alvo lógico |
 | ADR-0006 | ADR-CAND-008 | motores A–H e envelope de análise |
 | ADR-0007 | ADR-CAND-009 | estratégias e lifecycle de sinais |
-| ADR-0008 | ADR-CAND-010 | máquina de estados de comando e execução |
+| ADR-0008 | ADR-CAND-010 | FSMs de comando, grant, arming e tentativa |
 | ADR-0009 | ADR-CAND-011 | adaptadores e separação Modo A/Modo B |
 | ADR-0010 | ADR-CAND-012 | kill switch dominante |
-| ADR-0011 | ADR-CAND-014 | recibo e reconciliação multidimensional |
+| ADR-0011 | ADR-CAND-014 | recibo, idempotência e reconciliação |
 | ADR-0012 | ADR-CAND-015 | observabilidade, auditoria e redaction |
 
-## 4. Dependências de decisão
+## 4. Semântica única de relações
 
 ```text
-ADR-0001 -> ADR-0002|ADR-0003|ADR-0004|ADR-0008|ADR-0010|ADR-0012
-ADR-0002 -> ADR-0003|ADR-0011|ADR-0012
-ADR-0005 -> ADR-0009
-ADR-0006 -> ADR-0007
-ADR-0007 -> ADR-0008
-ADR-0008 -> ADR-0009|ADR-0010|ADR-0011
-ADR-0009 -> ADR-0011
-ADR-0010 -> ADR-0008|ADR-0009|ADR-0011
-ADR-0011 -> ADR-0012
+DEPENDS_ON=PRE_REQUISITO_ACICLICO
+MUST_ALIGN_WITH=COERENCIA_BIDIRECIONAL_SEM_ORDEM
+GOVERNS=DECISAO_QUE_RESTRINGE_OUTRA
 ```
 
-A dependência define coerência documental, não ordem automática de implementação.
+`DEPENDS_ON` é o único campo usado para ordem de decisão. Ele deve formar um DAG. `MUST_ALIGN_WITH` não cria dependência. `GOVERNS` registra dominância normativa.
 
-## 5. Gates
+## 5. Grafo autoritativo de DEPENDS_ON
+
+```text
+ADR-0001=NONE
+ADR-0002=ADR-0001
+ADR-0003=ADR-0001|ADR-0002
+ADR-0004=ADR-0001|ADR-0003
+ADR-0005=ADR-0001
+ADR-0006=ADR-0001|ADR-0003
+ADR-0007=ADR-0006
+ADR-0008=ADR-0001|ADR-0002|ADR-0007
+ADR-0009=ADR-0005|ADR-0008|ADR-0010
+ADR-0010=ADR-0001|ADR-0002
+ADR-0011=ADR-0002|ADR-0008|ADR-0009|ADR-0010
+ADR-0012=ADR-0001|ADR-0002|ADR-0003|ADR-0008|ADR-0010|ADR-0011
+```
+
+Validação topológica:
+
+```text
+TOPOLOGICAL_ORDER=ADR-0001|ADR-0002|ADR-0003|ADR-0004|ADR-0005|ADR-0006|ADR-0007|ADR-0008|ADR-0010|ADR-0009|ADR-0011|ADR-0012
+DEPENDS_ON_NODE_COUNT=12
+DEPENDS_ON_CYCLE_COUNT=0
+DEPENDS_ON_DAG=PASS
+```
+
+## 6. Coerência transversal
+
+```text
+ADR-0008 MUST_ALIGN_WITH ADR-0010
+ADR-0009 MUST_ALIGN_WITH ADR-0010
+ADR-0008 MUST_ALIGN_WITH ADR-0011
+ADR-0009 MUST_ALIGN_WITH ADR-0011
+ADR-0010 MUST_ALIGN_WITH ADR-0011
+ADR-0011 MUST_ALIGN_WITH ADR-0012
+```
+
+```text
+ADR-0001 GOVERNS ADR-0002|ADR-0003|ADR-0004|ADR-0008|ADR-0010|ADR-0012
+ADR-0002 GOVERNS ADR-0003|ADR-0011|ADR-0012
+ADR-0008 GOVERNS ADR-0009|ADR-0011
+ADR-0010 GOVERNS ADR-0008|ADR-0009|ADR-0011
+ADR-0011 GOVERNS ADR-0012
+```
+
+A dominância do kill switch sobre comando, grant, fila, retry, dispatch e adaptador é uma regra `GOVERNS`, não um ciclo de `DEPENDS_ON`.
+
+## 7. Rastreabilidade
+
+```text
+P0_ADR_COUNT=12/12
+CANONICAL_DOMAIN_COVERAGE=16/16
+HANDOFF_REFERENCE_COVERAGE=12/12
+REQUIREMENT_ROWS=218
+UNIQUE_REQUIREMENT_IDS=218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+UNJUSTIFIED_NO_P0_MAPPING=0
+```
+
+Fonte exaustiva:
+
+`docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md`
+
+## 8. Gates
 
 ```text
 A1_PRECONDITIONS=PASS
 A2_TEMPLATE_AND_INDEX=PASS
 A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS_BUILDER
-A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER
-A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+A4_TRACEABILITY=PASS_BUILDER_AFTER_MAJOR_01
+A5_CROSS_ADR_CONSISTENCY=PASS_BUILDER_AFTER_MAJOR_02
+A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY_AFTER_REMEDIATION
+A7_INDEPENDENT_CRITICAL_REVIEW=RETEST_01_REQUIRED
 ```
 
-## 6. Critérios de qualidade aplicados
-
-Cada ADR contém:
-
-1. contexto e problema;
-2. decisão objetiva;
-3. alternativas rejeitadas;
-4. consequências positivas e negativas;
-5. invariantes de segurança, recovery e autoridade;
-6. domínios, handoffs e requisitos relacionados;
-7. critérios verificáveis de aceitação;
-8. itens explicitamente fora de escopo.
-
-## 7. Limites da missão
+## 9. Limites
 
 ```text
 CODE_CHANGE_AUTHORIZED=NO
@@ -94,12 +139,10 @@ IMPLEMENTATION_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
-REAL_FINANCIAL_EFFECT_RUNTIME_AUTHORIZED=NO
+FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-A missão define contratos e decisões arquiteturais. Ela não produz implementação, schema físico, migration, credencial, integração de produção ou sessão LIVE.
-
-## 8. Política A+B
+## 10. Política A+B
 
 ```text
 MODE_A_POLICY=AUTHORIZED
@@ -107,19 +150,18 @@ MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
 MODE_B_DEFAULT=DISABLED
 LIVE_ADAPTER_IMPLEMENTATION=OUT_OF_SCOPE
 LIVE_SESSION_ARMING=PROHIBITED_IN_THIS_MISSION
-FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
 
-## 9. Condição de handoff
+## 11. Condição de handoff
 
 ```text
-ADR_P0_COUNT=12/12
-ADR_STATUS=PROPOSED_FOR_REVIEW
-TRACEABILITY_MATRIX=PASS_BUILDER
-CROSS_ADR_CONSISTENCY=PASS_BUILDER
-BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-PR_STATUS=READY_FOR_INDEPENDENT_REVIEW
+MAJOR_01_REMEDIATED=PASS_BUILDER
+MAJOR_02_REMEDIATED=PASS_BUILDER
+MAJOR_03_REMEDIATED=PASS_BUILDER
+MAJOR_04_REMEDIATED=PASS_BUILDER
+MINOR_01_REMEDIATED=PASS_BUILDER
+PR_STATUS=READY_FOR_INDEPENDENT_REVIEW_AFTER_FINAL_SYNC
 MERGE_AUTHORIZED=NO
 ```
 
-A próxima etapa é a revisão crítica independente da LEA-27.
+A próxima etapa é `LEA-27 — Reteste 01` sobre o HEAD final vivo do PR #46.
