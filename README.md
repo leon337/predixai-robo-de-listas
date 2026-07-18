@@ -9,126 +9,89 @@
 ```text
 VERSÃO_REAL=V2.4.3-R1
 MISSÃO_ATIVA=LEA-26 — ADRs P0 da Arquitetura V1.0
-ÚLTIMA_REVISÃO=LEA-27 — RETESTE_02_PASS
+REVISÃO_ATIVA=LEA-27 — RETESTE_03
 PULL_REQUEST=46
-PR_STATUS=READY_FOR_MERGE_NOT_AUTHORIZED
-SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
+PR_STATUS=DRAFT
+OBSERVED_PR_HEAD=decb578bd9b4c4bbe9d62947359eb59569d89020
 LIVE_PR_HEAD_SOURCE=GITHUB_API
-RETEST_02_REVIEWED_HEAD=c4bfc336027f8e8aa76c686f460431a531a8dc69
-RETEST_02_REPORT_COMMIT=216c8d2b485aed72c77e05b401fe06ecaa1eb6c9
-FASE=ADR_P0_REVIEW_PASS_AWAITING_MERGE_AUTHORIZATION
-GATE=A7_INDEPENDENT_CRITICAL_REVIEW_PASS_RETEST_02
-ADR_GATES=7/7
+SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
+FASE=SCHEMA_AND_SOURCE_AUTHORITY_REMEDIATION
+GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_03
 STATE_REVISION=11
-SNAPSHOT_AT=2026-07-18
-STATE_SOURCE=PROJECT_RUNTIME_STATE+PROJECT_STATE+TRONCO+README+PR_46+LINEAR
 MERGE_AUTORIZADO=NO
 DOCUMENTO_MESTRE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-O snapshot persistido permanece comum às fontes oficiais. O HEAD vivo é consultado pela API do GitHub e não é tratado como campo autorreferencial dos arquivos versionados.
+## ⛔ Bloqueio pré-merge
 
-## ✅ Resultado do Reteste 02
+A autorização recebida para o HEAD `decb578bd9b4c4bbe9d62947359eb59569d89020` não foi executada. A verificação imediatamente anterior ao merge encontrou duas threads novas:
 
 ```text
-ADR_P0_CRITICAL_REVIEW=PASS
-RETEST_SEQUENCE=02
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=0
-OPEN_FINDINGS=0
-DOCUMENTAL_READY_FOR_MERGE=YES
-DOCUMENT_MASTER_READY_TO_START=NO
-RETEST_REQUIRED=NO
+FINDING_01=PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_INCOMPATIBILITY
+FINDING_02=STALE_OPERATIONAL_RETEST_REFERENCES_IN_ADR_SOURCES
+OPEN_REVIEW_THREADS_AT_BLOCK=2
+MERGE_EXECUTED=NO
 ```
 
-O Documento Mestre continua bloqueado até autorização humana de merge, integração do PR #46, recibo pós-merge e sincronização final.
+As correções alteram o HEAD. Portanto, o novo HEAD exigirá Reteste 03 `PASS` e nova autorização humana explícita de merge.
 
-## 🔍 Validações aprovadas
+## 🔧 Remediação
+
+```text
+SCHEMA_VERSION=1.0.3
+TOP_LEVEL_OBSERVED_PR_HEAD=RESTORED
+MISSION_LOCK_OBSERVED_PR_HEAD=RESTORED
+TRANSITION_STATUS=SCHEMA_ENUM_COMPATIBLE
+SYNC_STATUS=SCHEMA_ENUM_COMPATIBLE
+GATE_STATUS=SCHEMA_ENUM_COMPATIBLE
+EXECUTION_STATUS=SCHEMA_ENUM_COMPATIBLE
+OPERATIONAL_SOURCE_AUTHORITY=REFRESHED
+STALE_ARCHITECTURE_STATUS=CONTENT_EVIDENCE_NOT_OPERATIONAL_GATE
+```
+
+## 📊 Revisões
+
+```text
+INITIAL_REVIEW=FAIL
+RETEST_01=FAIL
+RETEST_02=PASS_REVOKED_BY_NEW_PRE_MERGE_FINDINGS
+RETEST_03=IN_PROGRESS
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=0
+MINOR_FINDINGS_OPEN=2
+DOCUMENTAL_READY_FOR_MERGE=NO
+RETEST_REQUIRED=YES
+```
+
+As quatro correções maiores permanecem aprovadas:
 
 ```text
 MAJOR_01_TRACEABILITY_218=PASS
 MAJOR_02_DEPENDENCY_DAG=PASS
 MAJOR_03_FOUR_FSMS=PASS
 MAJOR_04_IDEMPOTENCY_COLLISION=PASS
-MINOR_01_COMMON_SNAPSHOT=PASS
-MANIFEST_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-MISSION_LOCK_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-PROJECT_STATE_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-TRONCO_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-README_SNAPSHOT=6f1ac10005e7231e9efe88da9c7a27931038a989
-OPEN_REVIEW_THREADS=0
-CI_WORKFLOWS=9_OF_9_SUCCESS
 ```
 
-## 🗺️ Mapa da campanha
-
-```text
-AUDITORIA MESTRA
-      ✅ concluída
-      ↓
-PTM V2.5 / V2.6 / V2.7
-      ✅ aprovadas
-      ↓
-CONSOLIDAÇÃO CRUZADA
-      ✅ concluída e publicada
-      ↓
-ADRs P0 — LEA-26 / LEA-27
-      ✅ 12/12 ADRs propostos
-      ✅ rastreabilidade 218/218
-      ✅ grafo DEPENDS_ON acíclico
-      ✅ quatro FSMs completas
-      ✅ idempotência divergente bloqueada
-      ✅ snapshot comum sincronizado
-      ✅ LEA-27 Reteste 02 PASS
-      🟧 autorização humana de merge
-      ↓
-DOCUMENTO MESTRE
-      ⛔ não autorizado
-      ↓
-ARQUITETURA V1.0 CONGELADA
-      ⬜ não iniciada
-      ↓
-PRONTIDÃO PARA IMPLEMENTAÇÃO
-      ⬜ não iniciada
-```
-
-## 📊 Progresso auditável
-
-```text
-README_PROGRESS_SOURCE=LEA_26_REAL_GATES
-ARBITRARY_PROGRESS=NO
-A1_PRECONDITIONS=PASS
-A2_TEMPLATE_AND_INDEX=PASS
-A3_P0_ADRS=12/12
-A4_TRACEABILITY=PASS
-A5_CROSS_ADR_CONSISTENCY=PASS
-A6_BUILDER_SELF_REVIEW=PASS_PRELIMINARY
-A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_02
-ADR_GATES=7/7
-CURRENT_BLOCKER=NEW_HUMAN_MERGE_AUTHORIZATION_REQUIRED
-```
-
-## 🧱 ADRs P0 propostos
+## 🧱 ADRs P0
 
 | ADR | Decisão | Estado |
 |---|---|---|
 | [ADR-0001](docs/architecture/adrs/ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | proposto |
-| [ADR-0002](docs/architecture/adrs/ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | proposto |
-| [ADR-0003](docs/architecture/adrs/ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON v1, SSE e snapshot | proposto |
-| [ADR-0004](docs/architecture/adrs/ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | proposto |
+| [ADR-0002](docs/architecture/adrs/ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | persistência e escritor único | proposto |
+| [ADR-0003](docs/architecture/adrs/ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST, eventos e versionamento | proposto |
+| [ADR-0004](docs/architecture/adrs/ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento | proposto |
 | [ADR-0005](docs/architecture/adrs/ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | proposto |
-| [ADR-0006](docs/architecture/adrs/ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H e snapshot imutável | proposto |
-| [ADR-0007](docs/architecture/adrs/ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | proposto |
-| [ADR-0008](docs/architecture/adrs/ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs explícitas | proposto remediado |
+| [ADR-0006](docs/architecture/adrs/ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H | proposto |
+| [ADR-0007](docs/architecture/adrs/ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e sinais | proposto |
+| [ADR-0008](docs/architecture/adrs/ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs | proposto remediado |
 | [ADR-0009](docs/architecture/adrs/ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e separação A/B | proposto remediado |
 | [ADR-0010](docs/architecture/adrs/ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | proposto remediado |
-| [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | proposto remediado |
-| [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade, auditoria e redaction | proposto |
+| [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência e reconciliação | proposto remediado |
+| [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | proposto |
 
-## 🔗 Rastreabilidade e invariantes
+## 🔗 Métricas preservadas
 
 ```text
 REQUIREMENT_ROWS=218
@@ -159,32 +122,31 @@ LIVE_WITHOUT_ALL_GATES=BLOCKED
 
 Nenhuma sessão LIVE, operação real ou implementação foi autorizada.
 
-## 🧾 Evidências
+## 🧾 Fontes operacionais
 
-- [Reteste 01 — FAIL](docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md)
-- [Remediação do MINOR-01](docs/history/reviews/REMEDIACAO_MINOR_01_SNAPSHOT_ADRS_P0_LEA-26_20260718.md)
-- [Reteste 02 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P0_LEA-27_20260718.md)
+- `PROJECT_RUNTIME_STATE.yaml`;
+- `docs/protocols/PROJECT_RUNTIME_STATE_SCHEMA.yaml`;
+- `PROJECT_STATE.md`;
+- `PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`;
+- `docs/history/reviews/REMEDIACAO_SCHEMA_E_FONTES_ADRS_P0_LEA-26_20260718.md`;
+- PR #46 vivo;
+- Linear LEA-26 e LEA-27.
 
-## 🛣️ Próxima sequência
+Plano, índice, matriz e apêndice preservam o conteúdo arquitetural. Status operacionais antigos nesses artefatos não substituem as fontes acima.
+
+## 🗺️ Próxima sequência
 
 ```text
-1. aguardar autorização humana de merge
-2. integrar o PR #46 com proteção do HEAD
-3. publicar recibo pós-merge
-4. sincronizar GitHub e Linear
-5. decidir ADRs P1/P2 e autorização do Documento Mestre
+1. concluir remediação do schema e das fontes
+2. responder e resolver as duas threads
+3. confirmar CI 9/9
+4. executar LEA-27 Reteste 03
+5. obter PASS sem achados
+6. solicitar nova autorização humana para o novo HEAD
+7. integrar PR #46
+8. publicar recibo pós-merge
 ```
 
 ```text
-NEXT_ACTION=AWAIT_NEW_HUMAN_AUTHORIZATION_TO_MERGE_PR_46
-```
-
-## 🗃️ Legado executável disponível
-
-A aplicação desktop legada permanece fonte histórica auditada. Sua existência não representa a arquitetura futura nem autoriza execução LIVE.
-
-```text
-ARQUIVO_DE_VERSÃO=2.4.3
-VERSÃO_DOCUMENTAL_REAL=V2.4.3-R1
-PLATAFORMA_LEGADA=Linux Mint / X11
+NEXT_ACTION=COMPLETE_REMEDIATION_AND_EXECUTE_LEA_27_RETEST_03
 ```
