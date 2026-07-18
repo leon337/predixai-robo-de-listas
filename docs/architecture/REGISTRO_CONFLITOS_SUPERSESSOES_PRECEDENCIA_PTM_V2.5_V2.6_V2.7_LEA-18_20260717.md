@@ -5,23 +5,24 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=BUILDER_CONFLICT_SUPERSESSION_REGISTER_COMPLETE
+DOCUMENT_STATUS=BUILDER_CONFLICT_SUPERSESSION_REGISTER_REMEDIATED_FOR_RETEST_04
 MISSION=LEA-18
 LINEAR_ISSUE=LEA-18
 PULL_REQUEST=40
 REPOSITORY=leon337/predixai-robo-de-listas
-BASE_MAIN_SHA=98bb1d33b9d8eca702fb4e52bdde02686021c766
-PRE_WRITE_EXPECTED_PR_HEAD=caadffe3974783229d62695273236e89e09a4a97
+BASELINE_MAIN_SHA=98bb1d33b9d8eca702fb4e52bdde02686021c766
+CURRENT_MAIN_OBSERVED=236bc5df7f675ca5cf56d80c5812bd911d224651
 STATE_REVISION=7
 TRANSITION_ID=LEA-18-T01
 DOCUMENTATION_ONLY=YES
 HISTORICAL_DOCUMENTS_REWRITTEN=NO
 IMPLEMENTATION_AUTHORIZED=NO
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
 ```
 
 ## 2. Método de resolução
 
-Não existe uma única precedência válida para todos os campos. Cada divergência é resolvida pela autoridade do domínio:
+Cada divergência é resolvida pela autoridade do domínio:
 
 | Domínio de informação | Autoridade vigente |
 |---|---|
@@ -31,13 +32,13 @@ Não existe uma única precedência válida para todos os campos. Cada divergên
 | tarefa, dependências e bloqueios | Linear |
 | código e documentação integrados | GitHub `main` |
 | trabalho ainda não integrado | branch e PR ativos |
-| política permanente de automação | `POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md` |
-| cláusulas arquiteturais específicas | PTM e adendo normativo aplicável |
+| política permanente de automação A+B | `POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md` |
+| cláusulas arquiteturais específicas | PTM e adendo aplicável |
 | evidência de decisão anterior | revisões, recibos e históricos |
 
 Histórico não é apagado. Uma redação superada permanece evidência do entendimento anterior, mas deixa de governar o presente.
 
-## 3. Precedência normativa explícita
+## 3. Precedência normativa
 
 ### 3.1 Automação e PTM V2.7
 
@@ -60,40 +61,36 @@ POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO
 > BUILDER_DRAFT_STATUS_AND_HISTORICAL_CHECKPOINTS
 ```
 
-Revisão e recibo comprovam aprovação e integração. O conteúdo normativo continua nos documentos arquiteturais e adendos aplicáveis.
-
 ## 4. Registro de divergências resolvidas
 
 | ID | Tema | Redação/estado anterior | Decisão vigente | Classificação | Impacto |
 |---|---|---|---|---|---|
-| CON-01 | `main` versus PR | `main` poderia ser lida como fonte de todo estado atual | `main` governa o integrado; PR `#40` governa somente a consolidação ainda não integrada | NO_CONFLICT_BY_DOMAIN | impede declarar o conteúdo do PR como consolidado antes do merge |
-| CON-02 | manifesto versus documentos vivos | divergência poderia ser ignorada por narrativa | manifesto governa campos operacionais; `PROJECT_STATE` e tronco devem refletir o manifesto | RESOLVED_BY_AUTHORITY | drift bloqueia avanço automático |
-| CON-03 | Linear versus GitHub | issue em andamento ou PR aberto poderiam ser tratados como equivalentes | status da tarefa e integração são confirmados separadamente | RESOLVED_BY_AUTHORITY | conclusão exige alinhamento dos dois sistemas |
-| CON-04 | status `BUILDER_DRAFT` nas PTMs | marcador histórico poderia ser interpretado como PTM ainda não aprovada | revisões independentes e recibos pós-merge tornam V2.5, V2.6 e V2.7 documentalmente definitivas | HISTORICAL_STATUS_SUPERSEDED | preserva o draft sem negar o gate final |
-| CON-05 | relatório final V2.5 ausente em Markdown | caminho presumido não existe | autoridade composta: revisão final do PR `#33` + Linear `LEA-13` + recibo pós-merge `LEA-8` | RESOLVED_WITH_COMPOSITE_EVIDENCE | proíbe inventar arquivo ausente |
-| CON-06 | exclusão de clique na V2.5 | `POINTER_MOVEMENT_ALLOWED=NO`, `REAL_CLICK_ALLOWED=NO` e equivalentes podiam sugerir proibição global | V2.5 não possui autoridade para ação de UI; geometria e harness controlado são permitidos; ação não controlada é bloqueada | NORMATIVELY_SUPERSEDED | mantém separação de etapa sem remover capacidade técnica controlada |
-| CON-07 | exclusão de input na V2.6 | prova negativa podia exigir ausência absoluta de bibliotecas de UI | motor analítico não aciona UI; captura, OCR, replay e harness controlado são permitidos fora da autoridade analítica | NORMATIVELY_SUPERSEDED | prova passa a buscar bypass e acoplamento oculto |
-| CON-08 | baseline V2.7 `SIMULATED_ONLY` | modo de execução e dimensão financeira eram tratados como uma única dimensão | `execution_channel=DRY_RUN|SIMULATED|CONTROLLED_UI`; `financial_effect_mode=NONE|SIMULATED_ONLY` | NORMATIVELY_SUPERSEDED | ação física de UI controlada não implica efeito financeiro real |
-| CON-09 | estados da V2.7 | fluxo centrado em `ARMED_SIMULATED` não representava UI controlada | estados incluem `ARMED_DRY_RUN`, `ARMED_SIMULATED`, `ARMED_CONTROLLED_UI` e terminais separados | NORMATIVELY_SUPERSEDED | impede mascarar ação física como simulação |
-| CON-10 | adaptadores V2.7 | contrato `NULL|SIMULATED` | contrato `NULL|SIMULATED|CONTROLLED_UI` com capacidades explícitas e fail-closed | NORMATIVELY_SUPERSEDED | biblioteca de UI só é alcançável pelo adaptador controlado |
-| CON-11 | comando de execução | `mode`, `action_simulated` e alvo mínimo não separavam canal, finanças e identidade | comando contém canal, dimensão financeira, classe/identidade do alvo, allowlist, ação sanitizada e identidade temporal/processual | NORMATIVELY_SUPERSEDED | grant e dispatch passam a ser vinculados ao comando exato |
-| CON-12 | grant de autorização | modo e validade eram insuficientes para UI controlada | grant vincula canal, dimensão financeira, alvo, ação/allowlist, política, ator, cliente e sessão | NORMATIVELY_SUPERSEDED | qualquer mudança material exige novo grant |
-| CON-13 | recibo de efeito | resultado único `NO_EFFECT|SIMULATED_EFFECT|UNKNOWN` | recibo separa `ui_result` e `financial_result` | NORMATIVELY_SUPERSEDED | efeito de UI não confirma resultado financeiro |
-| CON-14 | prazo e restart | monotônico local podia ser interpretado como autoridade após restart | qualquer mudança de `process_instance_id` invalida despachabilidade; UTC/TTL ficam para auditoria e expiração | NORMATIVELY_SUPERSEDED | comando anterior nunca é rearmado ou redespachado automaticamente |
-| CON-15 | timeout e retry | timeout poderia ser tratado como falha sem efeito | timeout produz `TIMED_OUT` ou `UNKNOWN_EFFECT`; retry exige prova de `FAILED_NO_EFFECT` | RESOLVED_NORMATIVELY | evita duplicidade de efeito |
-| CON-16 | prova negativa | ausência de `pynput`, `pyautogui`, Selenium ou OCR poderia ser exigida globalmente | prova busca ação fora da allowlist, bypass, alvo desconhecido, segredo e efeito financeiro real | NORMATIVELY_SUPERSEDED | ferramentas controladas não falham o gate apenas por existirem |
-| CON-17 | classe de alvo e efeito financeiro | sandbox ou aplicação própria poderiam parecer autorização financeira | efeito financeiro real exige gate comercial/legal separado em qualquer classe de alvo | RESOLVED_NORMATIVELY | bloqueio financeiro é independente do alvo |
-| CON-18 | coordenadas | pares X/Y poderiam ser tratados como destino executável | coordenada integra geometria versionada de `target_logical_id`; nunca autoriza ação isoladamente | RESOLVED_NORMATIVELY | resolução exige identidade e allowlist |
-| CON-19 | recibo versus verdade global | retorno do adaptador poderia encerrar fluxo | recibo é evidência; somente reconciliação do servidor confirma terminalidade | RESOLVED_NORMATIVELY | divergência resulta em `UNKNOWN_EFFECT` ou bloqueio |
-| CON-20 | Android/UI versus servidor | cliente poderia confirmar estado ou efeito | Android/UI são clientes; servidor é autoridade global | RESOLVED_NORMATIVELY | cache e presença não substituem estado confirmado |
-| CON-21 | catálogo conceitual versus schema físico | endpoint/entidade prevista poderia virar backlog físico automático | entidade física só existe com produtor, consumidor, requisito, teste e retenção | RESOLVED_NORMATIVELY | nenhum SQL ou migration nasce desta consolidação |
-| CON-22 | thresholds | valores preliminares poderiam ser congelados como definitivos | thresholds permanecem `PROVISIONAL` até benchmark reproduzível | DEFERRED_WITH_SAFE_DEFAULT | dúvida reduz capacidade e não aumenta confiança |
-| CON-23 | especificação versus runtime | teste especificado poderia ser declarado executado | `TEST_SPEC_CREATED` e `TEST_RUNTIME_EXECUTED` permanecem dimensões separadas | RESOLVED_NORMATIVELY | consolidação documental não aprova runtime |
-| CON-24 | mergeabilidade versus autorização | PR mergeável poderia ser tratado como autorizado | `GITHUB_MERGEABILITY` e `MERGE_AUTHORIZATION` são estados independentes | RESOLVED_BY_GOVERNANCE | PR `#40` permanece Draft e merge não autorizado |
+| CON-01 | `main` versus PR | `main` poderia ser lida como fonte de todo estado atual | `main` governa o integrado; PR `#40` governa a consolidação não integrada | NO_CONFLICT_BY_DOMAIN | impede declarar conteúdo do PR como consolidado antes do merge |
+| CON-02 | manifesto versus documentos vivos | divergência podia ser ignorada por narrativa | manifesto governa campos operacionais; estado e tronco o refletem | RESOLVED_BY_AUTHORITY | drift bloqueia avanço automático |
+| CON-03 | Linear versus GitHub | issue e PR podiam ser tratados como equivalentes | tarefa e integração são confirmadas separadamente | RESOLVED_BY_AUTHORITY | conclusão exige alinhamento dos dois sistemas |
+| CON-04 | status `BUILDER_DRAFT` nas PTMs | marcador histórico parecia indicar PTM não aprovada | revisões e recibos tornam V2.5, V2.6 e V2.7 definitivas | HISTORICAL_STATUS_SUPERSEDED | preserva o draft sem negar o gate final |
+| CON-05 | relatório final V2.5 ausente | caminho presumido não existe | autoridade composta: PR `#33` + Linear `LEA-13` + recibo `LEA-8` | RESOLVED_WITH_COMPOSITE_EVIDENCE | proíbe inventar arquivo ausente |
+| CON-06 | exclusão de clique na V2.5 | `POINTER_MOVEMENT_ALLOWED=NO`, `REAL_CLICK_ALLOWED=NO` sugeriam proibição global | V2.5 não possui autoridade para ação; Modo A permanece autorizado | NORMATIVELY_SUPERSEDED | mantém separação sem remover capacidade controlada |
+| CON-07 | exclusão de input na V2.6 | prova negativa exigia ausência de bibliotecas de UI | motor analítico não aciona UI; captura, OCR, replay e harness controlado são permitidos | NORMATIVELY_SUPERSEDED | prova busca bypass e acoplamento oculto |
+| CON-08 | baseline V2.7 `SIMULATED_ONLY` | canal e efeito financeiro eram uma dimensão única | canal e efeito são dimensões separadas; Modo A autorizado e Modo B gated | NORMATIVELY_SUPERSEDED | ação de UI não implica LIVE |
+| CON-09 | estados da V2.7 | fluxo centrado somente em `ARMED_SIMULATED` | estados incluem DRY_RUN, SIMULATED, CONTROLLED_UI e futuro LIVE_GATED | NORMATIVELY_SUPERSEDED | impede mascarar canal ou efeito |
+| CON-10 | adaptadores V2.7 | contrato `NULL|SIMULATED` | `NULL|SIMULATED|CONTROLLED_UI`; suporte LIVE exige gate próprio | NORMATIVELY_SUPERSEDED | biblioteca de UI fica na fronteira controlada |
+| CON-11 | comando de execução | campos não separavam canal, finanças e identidade | comando contém canal, modo financeiro, alvo, allowlist, ação e identidade temporal | NORMATIVELY_SUPERSEDED | grant e dispatch vinculados ao comando exato |
+| CON-12 | grant de autorização | modo e validade insuficientes | grant vincula canal, modo financeiro, alvo, ação, política, ator e sessão | NORMATIVELY_SUPERSEDED | mudança material exige novo grant |
+| CON-13 | recibo de efeito | resultado único | recibo separa `ui_result` e `financial_result` | NORMATIVELY_SUPERSEDED | efeito de UI não confirma finanças |
+| CON-14 | prazo e restart | monotônico local parecia autoridade após restart | mudança de `process_instance_id` invalida despachabilidade | NORMATIVELY_SUPERSEDED | comando anterior não é rearmado automaticamente |
+| CON-15 | timeout e retry | timeout podia ser falha sem efeito | timeout gera `TIMED_OUT` ou `UNKNOWN_EFFECT`; retry exige `FAILED_NO_EFFECT` | RESOLVED_NORMATIVELY | evita duplicidade |
+| CON-16 | prova negativa | ausência de ferramentas de UI era exigida | prova busca ação fora da allowlist, bypass, alvo desconhecido, segredo e LIVE sem gates | NORMATIVELY_SUPERSEDED | ferramentas controladas não falham por existir |
+| CON-17 | classe de alvo e Modo B | sandbox ou aplicação própria pareciam autorização financeira | Modo B requer todos os gates técnicos, comerciais, legais e de conformidade em qualquer classe de alvo | RESOLVED_NORMATIVELY | gate LIVE é independente da propriedade do alvo |
+| CON-18 | coordenadas | pares X/Y eram destino executável | coordenada integra geometria de `target_logical_id`; não autoriza isoladamente | RESOLVED_NORMATIVELY | exige identidade e allowlist |
+| CON-19 | recibo versus verdade global | retorno do adaptador encerrava fluxo | recibo é evidência; reconciliação do servidor confirma terminalidade | RESOLVED_NORMATIVELY | divergência vira `UNKNOWN_EFFECT` ou bloqueio |
+| CON-20 | Android/UI versus servidor | cliente podia confirmar estado | Android/UI são clientes; servidor é autoridade global | RESOLVED_NORMATIVELY | cache e presença não substituem estado |
+| CON-21 | catálogo versus schema físico | entidade prevista virava backlog físico | entidade física exige produtor, consumidor, requisito, teste e retenção | RESOLVED_NORMATIVELY | nenhum SQL nasce desta consolidação |
+| CON-22 | thresholds | valores preliminares podiam ser definitivos | thresholds permanecem provisórios até benchmark | DEFERRED_WITH_SAFE_DEFAULT | dúvida reduz capacidade |
+| CON-23 | especificação versus runtime | teste especificado era tratado como executado | especificação e execução são dimensões separadas | RESOLVED_NORMATIVELY | documentação não aprova runtime |
+| CON-24 | mergeabilidade versus autorização | PR mergeável parecia autorizado | mergeabilidade e autorização são estados independentes | RESOLVED_BY_GOVERNANCE | PR `#40` permanece Draft |
 
 ## 5. Cláusulas históricas preservadas, mas não governantes
-
-Os seguintes marcadores permanecem válidos apenas no contexto temporal em que foram escritos:
 
 ```text
 POINTER_MOVEMENT_ALLOWED=NO
@@ -112,30 +109,37 @@ Leitura vigente:
 
 ```text
 STAGE_DOES_NOT_OWN_UI_ACTION != GLOBAL_UI_CAPABILITY_PROHIBITION
-CONTROLLED_UI_ACTION != REAL_FINANCIAL_EFFECT
+MODE_A_CONTROLLED_UI_ACTION=AUTHORIZED
+MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
+MODE_B_DEFAULT=DISABLED
+LIVE_WITHOUT_ALL_GATES=BLOCKED
 UI_LIBRARY_PRESENT != UNCONTROLLED_ACTION
 RESTART != RESUME_PREVIOUS_DISPATCHABILITY
 ```
 
-## 6. Pendências deliberadas para ADR — não são conflitos abertos
+## 6. Pendências deliberadas para ADR
 
 | Tema | Default seguro vigente | Motivo para ADR posterior |
 |---|---|---|
-| topologia do servidor | servidor é autoridade única conceitual | definir processos, componentes e implantação |
-| tecnologia de persistência | escritor único e existência progressiva | selecionar engine, transações e migrations |
-| taxonomia de `target_logical_id` | alvo desconhecido bloqueia | definir hierarquia e compatibilidade |
-| topologia do kill switch | kill switch domina todos os fluxos | definir local/remoto, latência e autoridade |
-| limites numéricos | safe defaults conservadores | depender de benchmark reproduzível |
-| retenção de frames | conteúdo bruto mínimo por padrão | equilibrar diagnóstico, privacidade e custo |
-| contratos REST/eventos | existência vertical progressiva | definir fronteiras e versionamento final |
-| máquina de estados física | modelo documental aprovado | decidir persistência e concorrência de implementação |
-| recibo e reconciliação | dimensões UI/financeira separadas | definir armazenamento e estratégia operacional |
+| topologia do servidor | servidor é autoridade única conceitual | definir processos e implantação |
+| persistência | escritor único e existência progressiva | selecionar engine e transações |
+| `target_logical_id` | alvo desconhecido bloqueia | definir taxonomia e compatibilidade |
+| kill switch | domina todos os fluxos | definir local/remoto, latência e autoridade |
+| limites numéricos | defaults conservadores | benchmark reproduzível |
+| retenção de frames | conteúdo bruto mínimo | privacidade, diagnóstico e custo |
+| contratos REST/eventos | existência vertical progressiva | definir fronteiras e versionamento |
+| máquina de estados física | modelo documental aprovado | decidir persistência e concorrência |
+| recibo e reconciliação | UI e finanças separadas | definir armazenamento e operação |
+| gate LIVE | Modo B desligado por padrão | formalizar termos, elegibilidade, limites, arming e auditoria |
 
 ## 7. Verificações de consistência
 
 ```text
 CURRENT_POLICY_CONTRADICTS_CONTROLLED_UI=NO
-CONTROLLED_UI_IMPLIES_REAL_FINANCIAL_EFFECT=NO
+MODE_A_CONTROLLED_UI=AUTHORIZED
+MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
+MODE_B_AUTO_ENABLE=NO
+LIVE_WITHOUT_ALL_GATES=BLOCKED
 ANALYSIS_CAN_DIRECTLY_CALL_UI_ADAPTER=NO
 COORDINATE_IS_AUTHORIZATION=NO
 CLIENT_IS_GLOBAL_AUTHORITY=NO
@@ -154,17 +158,17 @@ NORMATIVE_SUPERSESSIONS_RECORDED=PASS
 AUTHORITY_BY_DOMAIN_RECORDED=PASS
 HISTORICAL_STATUS_PRESERVED=PASS
 CONTROLLED_AUTOMATION_PRECEDENCE=PASS
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
 V2_7_RETEST_02_PRECEDENCE=PASS
-REAL_FINANCIAL_EFFECT_SEPARATION=PASS
 RESTART_FAIL_CLOSED_SEMANTICS=PASS
 DOCUMENTAL_VS_RUNTIME_SEPARATION=PASS
 MERGEABILITY_VS_AUTHORIZATION_SEPARATION=PASS
 UNRESOLVED_NORMATIVE_CONFLICTS=0
 CONFLICT_RESOLUTION_BLOCKERS=0
-G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER
-INDEPENDENT_CRITICAL_REVIEW=PENDING
+G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER_REMEDIATED
+INDEPENDENT_CRITICAL_REVIEW=RETEST_04_REQUIRED
 ```
 
 ## 9. Próxima ação
 
-Publicar o catálogo formal de decisões candidatas a ADR e consolidar o documento arquitetural final da LEA-18.
+Executar o Reteste 04 independente da LEA-19 sobre o HEAD final do PR #40.
