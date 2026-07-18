@@ -10,7 +10,7 @@
 - Revisão concluída: `LEA-32 — Reteste 01 PASS`
 - PR principal: `#53`, integrado
 - Merge commit principal: `50e9455b8d0bfa86b40f0a6f132ad66bee8d2334`
-- PR de confirmação: `#54`, Draft
+- PR de confirmação: `#54`, pronto para revisão e mergeável
 - Documento Mestre: bloqueado até confirmação pós-merge e autorização humana específica
 - Implementação: não autorizada
 
@@ -98,7 +98,7 @@ LIVE_MODE_ARMED=NO
 ```text
 POST_MERGE_RECEIPT=docs/history/receipts/RECIBO_POS_MERGE_LEA-32_LEA-33_PR-53_20260718.md
 POST_MERGE_RECEIPT_PR=54
-POST_MERGE_CONFIRMATION=IN_PROGRESS
+POST_MERGE_CONFIRMATION=READY_FOR_REVIEW
 DOCUMENT_MASTER_INPUT_COMPLETENESS=PASS
 DOCUMENT_MASTER_READY_TO_START=NO_PENDING_CONFIRMATION_AND_EXPLICIT_AUTHORIZATION
 ```
