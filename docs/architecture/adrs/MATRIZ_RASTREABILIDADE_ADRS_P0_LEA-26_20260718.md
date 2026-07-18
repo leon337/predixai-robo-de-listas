@@ -57,22 +57,26 @@ IMPLEMENTATION_AUTHORIZED=NO
 
 Todos os 16 domínios possuem vínculo com ao menos um ADR P0. Isso não significa que toda decisão P1/P2 esteja resolvida.
 
-## 4. Handoffs e ADRs controladores
+## 4. Handoffs e ADRs vinculados
 
-| Handoff | ADRs controladores |
-|---|---|
-| H-01 | ADR-0001, 0003, 0004, 0012 |
-| H-02 | ADR-0005, 0012 |
-| H-03 | ADR-0005, 0012 |
-| H-04 | ADR-0005, 0012 |
-| H-05 | ADR-0006, 0012 |
-| H-06 | ADR-0006, 0012 |
-| H-07 | ADR-0006, 0007, 0012 |
-| H-08 | ADR-0007, 0008, 0012 |
-| H-09 | ADR-0005, 0008, 0009, 0012 |
-| H-10 | ADR-0005, 0008, 0009, 0010, 0011, 0012 |
-| H-11 | ADR-0002, 0008, 0009, 0010, 0011, 0012 |
-| H-12 | ADR-0001, 0004, 0008, 0009, 0010, 0011, 0012 |
+A tabela registra vínculo de decisão, governança ou auditoria. Ela não atribui automaticamente propriedade funcional integral do handoff ao ADR listado.
+
+| Handoff | ADRs vinculados | Observação |
+|---|---|---|
+| H-01 | ADR-0001, 0003, 0004, 0012 | autoridade, transporte, cliente e auditoria |
+| H-02 | ADR-0005, 0012 | perfil aprovado e auditoria |
+| H-03 | ADR-0005, 0012 | identidade visual e auditoria |
+| H-04 | ADR-0005, 0012 | perfil/proveniência e auditoria |
+| H-05 | ADR-0012 | contrato funcional permanece no mapa consolidado; ADR P0 cobre auditoria transversal |
+| H-06 | ADR-0006, 0012 | entrada do snapshot analítico e auditoria |
+| H-07 | ADR-0006, 0007, 0012 | análise, estratégia e auditoria |
+| H-08 | ADR-0007, 0008, 0012 | sinal, comando e auditoria |
+| H-09 | ADR-0005, 0008, 0009, 0012 | alvo, grant, adaptador e auditoria |
+| H-10 | ADR-0005, 0008, 0009, 0010, 0011, 0012 | alvo, dispatch, kill, reconciliação e auditoria |
+| H-11 | ADR-0002, 0008, 0009, 0010, 0011, 0012 | persistência, tentativa, kill, reconciliação e auditoria |
+| H-12 | ADR-0001, 0004, 0008, 0009, 0010, 0011, 0012 | autoridade, presença, estados, adaptadores, kill e reconciliação |
+
+A decisão funcional de `H-05 — DOM-09 → DOM-10` não pertence ao ADR-0006. O handoff continua normativo no mapa unificado e não foi promovido artificialmente ao escopo de análise A–H.
 
 ## 5. Decisões ainda não formalizadas nesta missão
 
@@ -89,7 +93,8 @@ Esses candidatos permanecem no catálogo para missão posterior. Os ADRs P0 não
 ADR_COUNT_MATCH=PASS
 P0_CANDIDATES_MAPPED=12/12
 DOMAIN_COVERAGE=16/16
-HANDOFF_COVERAGE=12/12
+HANDOFF_REFERENCE_COVERAGE=12/12
+H05_FALSE_CONTROLLER_ASSIGNMENT=REMOVED
 REQUIREMENT_GROUP_LINKS=PASS_PRELIMINARY
 NEW_REQUIREMENT_IDS=0
 MODE_A_MODE_B_SEPARATION=PASS_PRELIMINARY
