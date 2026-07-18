@@ -5,7 +5,7 @@
 ## 1. Controle
 
 ```text
-DOCUMENT_STATUS=BUILDER_CONFLICT_SUPERSESSION_REGISTER_REMEDIATED_FOR_RETEST_04
+DOCUMENT_STATUS=BUILDER_CONFLICT_SUPERSESSION_REGISTER_REMEDIATED_FOR_RETEST_05
 MISSION=LEA-18
 LINEAR_ISSUE=LEA-18
 PULL_REQUEST=40
@@ -88,7 +88,7 @@ POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO
 | CON-21 | catálogo versus schema físico | entidade prevista virava backlog físico | entidade física exige produtor, consumidor, requisito, teste e retenção | RESOLVED_NORMATIVELY | nenhum SQL nasce desta consolidação |
 | CON-22 | thresholds | valores preliminares podiam ser definitivos | thresholds permanecem provisórios até benchmark | DEFERRED_WITH_SAFE_DEFAULT | dúvida reduz capacidade |
 | CON-23 | especificação versus runtime | teste especificado era tratado como executado | especificação e execução são dimensões separadas | RESOLVED_NORMATIVELY | documentação não aprova runtime |
-| CON-24 | mergeabilidade versus autorização | PR mergeável parecia autorizado | mergeabilidade e autorização são estados independentes | RESOLVED_BY_GOVERNANCE | PR `#40` permanece Draft |
+| CON-24 | mergeabilidade versus autorização | PR mergeável parecia autorizado ou seu modo Draft/ready era tratado como permanente | mergeabilidade, autorização e modo operacional do PR são estados independentes e temporais | RESOLVED_BY_GOVERNANCE | após `FAIL` o PR retorna a Draft; no handoff de novo reteste pode voltar a ready sem conceder merge |
 
 ## 5. Cláusulas históricas preservadas, mas não governantes
 
@@ -148,6 +148,8 @@ PRE_RESTART_COMMAND_CAN_REARM=NO
 UNKNOWN_EFFECT_CAN_AUTORETRY=NO
 HISTORICAL_DOCUMENTS_REWRITTEN=NO
 UNRESOLVED_NORMATIVE_CONFLICTS=0
+PR_MODE_IS_TEMPORAL=YES
+MERGEABILITY_IS_NOT_AUTHORIZATION=YES
 ```
 
 ## 8. Resultado do builder — G5
@@ -163,12 +165,13 @@ V2_7_RETEST_02_PRECEDENCE=PASS
 RESTART_FAIL_CLOSED_SEMANTICS=PASS
 DOCUMENTAL_VS_RUNTIME_SEPARATION=PASS
 MERGEABILITY_VS_AUTHORIZATION_SEPARATION=PASS
+PR_DRAFT_READY_TEMPORAL_SEMANTICS=PASS_BUILDER
 UNRESOLVED_NORMATIVE_CONFLICTS=0
 CONFLICT_RESOLUTION_BLOCKERS=0
 G5_CONFLICTS_AND_SUPERSESSIONS_RESOLVED=PASS_BUILDER_REMEDIATED
-INDEPENDENT_CRITICAL_REVIEW=RETEST_04_REQUIRED
+INDEPENDENT_CRITICAL_REVIEW=RETEST_05_REQUIRED
 ```
 
 ## 9. Próxima ação
 
-Executar o Reteste 04 independente da LEA-19 sobre o HEAD final do PR #40.
+Executar o Reteste 05 independente da LEA-19 sobre o HEAD final do PR #40.
