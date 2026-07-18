@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 9
+state_revision: 10
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,26 +7,27 @@ observed_main_head: "c339ef253c2558300388901a67faf18734e2735f"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-26"
-active_stage: "ADR_P0_REMEDIATED_RETEST_01_REQUESTED"
+active_stage: "ADR_P0_MINOR_01_REMEDIATED_RETEST_02_AUTHORIZED"
 active_linear_issue: "LEA-26"
 active_review_issue: "LEA-27"
 active_pull_request: 46
 working_branch: "leonpcsn/lea-26-adrs-p0-arquitetura-v1"
-observed_pr_head: "1253be224eedf20b2f8b14cc98a9f96d5fe703f3"
-remediation_content_head: "c1c694f70d036104fee7b91addf7b68cc5d5ba58"
-current_pr_head_source: "LIVE_GITHUB_QUERY_AT_RETEST_START"
-pr_mode: "ready_for_independent_review_after_final_sync"
-active_checkpoint: "docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md"
+snapshot_content_head: "6f1ac10005e7231e9efe88da9c7a27931038a989"
+snapshot_content_head_semantics: "COMMON_PERSISTED_SNAPSHOT_BEFORE_RETEST_02_SYNC"
+live_pr_head_source: "GITHUB_API"
+self_referential_head_in_versioned_file: false
+pr_mode: "draft_until_thread_resolution_then_ready_for_retest_02"
+active_checkpoint: "docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md"
 
-current_gate: "A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01"
+current_gate: "A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_02"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_LEA_27_RETEST_01_ON_FINAL_LIVE_PR_46_HEAD"
+next_action: "RESOLVE_THREAD_VALIDATE_CI_AND_EXECUTE_LEA_27_RETEST_02"
 blockers:
-  - "INDEPENDENT_CRITICAL_RETEST_01_REQUIRED"
+  - "RETEST_02_RESULT_REQUIRED"
   - "MERGE_REQUIRES_PASS_AND_NEW_HUMAN_AUTHORIZATION"
 
 transition_id: "LEA-26-T01"
-transition_status: "READY_FOR_INDEPENDENT_REVIEW"
+transition_status: "READY_FOR_INDEPENDENT_RETEST_02"
 from_state: "CROSS_CONSOLIDATION_COMPLETE"
 to_state: "ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW"
 baseline_main_sha: "c339ef253c2558300388901a67faf18734e2735f"
@@ -37,24 +38,25 @@ main_pr_merge_commit: null
 post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS"
-linear_sync_status: "PASS"
-readme_sync_status: "PASS_IN_PR_46"
-last_sync_at_utc: "2026-07-18T14:28:00Z"
+github_sync_status: "PASS_BY_COMMON_SNAPSHOT_CONTRACT"
+linear_sync_status: "PASS_RETEST_02_AUTHORIZED"
+readme_sync_status: "PASS_BY_COMMON_SNAPSHOT_CONTRACT"
+last_sync_at_utc: "2026-07-18T14:55:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-26"
-  session_id: "lea26-adrs-p0-retest01-20260718"
+  session_id: "lea26-adrs-p0-retest02-20260718"
   base_sha: "c339ef253c2558300388901a67faf18734e2735f"
-  observed_pr_head: "1253be224eedf20b2f8b14cc98a9f96d5fe703f3"
-  state_revision_snapshot: 9
+  snapshot_content_head: "6f1ac10005e7231e9efe88da9c7a27931038a989"
+  live_pr_head_source: "GITHUB_API"
+  state_revision_snapshot: 10
   transition_id_snapshot: "LEA-26-T01"
-  started_at_utc: "2026-07-18T14:07:26Z"
+  started_at_utc: "2026-07-18T14:50:00Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T14:28:00Z"
+  heartbeat_at_utc: "2026-07-18T14:55:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -66,6 +68,7 @@ merge_authorized: false
 cross_consolidation_authorized: false
 adrs_start_authorized: true
 document_master_start_authorized: false
+retest_02_authorized: true
 
 mode_a_policy_authorized: true
 controlled_chart_analysis_policy: "ALLOWED_MODE_A"
@@ -85,6 +88,7 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+  public_projection: "README.md"
   automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   adr_mission_plan: "docs/architecture/PLANO_MISSAO_ADRS_P0_LEA-26_20260718.md"
   adr_index: "docs/architecture/adrs/README.md"
@@ -92,26 +96,29 @@ source_authority:
   adr_traceability_individual: "docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md"
   builder_self_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md"
   remediation_report: "docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md"
-  failed_review_report: "docs/history/reviews/REVISAO_CRITICA_ADRS_P0_LEA-27_20260718.md"
-  task_status_and_dependencies: "Linear LEA-26 In Progress and LEA-27 Todo Retest 01 requested"
+  retest_01_report: "docs/history/reviews/REVISAO_CRITICA_RETESTE_01_ADRS_P0_LEA-27_20260718.md"
+  task_status_and_dependencies: "Linear LEA-26 In Progress and LEA-27 Retest 02 authorized"
   unmerged_work: "PR #46"
   consolidated_code_and_docs: "GitHub main at c339ef253c2558300388901a67faf18734e2735f"
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_INDEPENDENT_REVIEW"
+  snapshot_contract_alignment: true
+  execution_status: "AWAITING_RETEST_02"
   automatic_advance: false
-  independent_critical_review: "FAIL_INITIAL_REVIEW_REMEDIATED_RETEST_01_REQUESTED"
-  previous_independent_review_status: "FAIL_ON_HEAD_2c9c2432058c5f119bd1802c3ba00e845c6a5ca0"
+  independent_critical_review: "FAIL_RETEST_01_MINOR_01_REMEDIATED_RETEST_02_AUTHORIZED"
+  retest_01_reviewed_head: "87d47ef5c4426d021a77dff2536946cfcd66eba8"
+  retest_01_report_commit: "6f1ac10005e7231e9efe88da9c7a27931038a989"
   open_critical_findings: 0
-  open_major_findings_pending_independent_retest: 4
-  open_minor_findings_pending_independent_retest: 1
+  open_major_findings: 0
+  open_minor_findings_pending_retest: 1
   builder_remediated_major_findings: 4
   builder_remediated_minor_findings: 1
   builder_open_findings: 0
   retest_required: true
-  retest_sequence: 1
+  retest_sequence: 2
   retest_requested: true
+  retest_authorized: true
   documentation_only: true
   policy_a_b_alignment: true
   mode_a_authorized: true
@@ -122,8 +129,8 @@ safety:
   a2_template_and_index_pass: true
   a3_p0_adrs_expected: 12
   a3_p0_adrs_created: 12
-  a4_traceability_builder_pass: true
-  a5_cross_adr_consistency_builder_pass: true
+  a4_traceability_pass: true
+  a5_cross_adr_consistency_pass: true
   a6_builder_self_review_pass_preliminary: true
   a7_independent_critical_review_pass: false
   requirement_rows: 218
@@ -152,6 +159,6 @@ safety:
   ready_for_merge: false
   ready_for_document_master: false
   current_product_issue: "LEA-26"
-  current_product_issue_status: "IN_PROGRESS_REMEDIATED_RETEST_01_REQUESTED"
+  current_product_issue_status: "IN_PROGRESS_MINOR_01_REMEDIATED"
   current_review_issue: "LEA-27"
-  current_review_issue_status: "TODO_RETEST_01_REQUESTED"
+  current_review_issue_status: "RETEST_02_AUTHORIZED"
