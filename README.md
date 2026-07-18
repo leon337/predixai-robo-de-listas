@@ -9,14 +9,14 @@
 ```text
 VERSÃO_REAL=V2.4.3-R1
 MISSÃO_ATIVA=LEA-26 — ADRs P0 da Arquitetura V1.0
-REVISÃO_ATIVA=LEA-27 — RETESTE_03
+ÚLTIMA_REVISÃO=LEA-27 — RETESTE_03_PASS
 PULL_REQUEST=46
-PR_STATUS=DRAFT
-OBSERVED_PR_HEAD=decb578bd9b4c4bbe9d62947359eb59569d89020
+PR_STATUS=READY_FOR_MERGE_NOT_AUTHORIZED
+RETEST_03_REVIEWED_HEAD=43357ca9974c97cb9ffad50633f6b37580025b57
 LIVE_PR_HEAD_SOURCE=GITHUB_API
-SNAPSHOT_CONTENT_HEAD=6f1ac10005e7231e9efe88da9c7a27931038a989
-FASE=SCHEMA_AND_SOURCE_AUTHORITY_REMEDIATION
-GATE=A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_03
+FASE=ADR_P0_RETEST_03_PASS_AWAITING_NEW_MERGE_AUTHORIZATION
+GATE=A7_INDEPENDENT_CRITICAL_REVIEW_PASS_RETEST_03
+ADR_GATES=7/7
 STATE_REVISION=11
 MERGE_AUTORIZADO=NO
 DOCUMENTO_MESTRE_AUTORIZADO=NO
@@ -24,54 +24,81 @@ IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-## ⛔ Bloqueio pré-merge
-
-A autorização recebida para o HEAD `decb578bd9b4c4bbe9d62947359eb59569d89020` não foi executada. A verificação imediatamente anterior ao merge encontrou duas threads novas:
+## ✅ Resultado do Reteste 03
 
 ```text
-FINDING_01=PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_INCOMPATIBILITY
-FINDING_02=STALE_OPERATIONAL_RETEST_REFERENCES_IN_ADR_SOURCES
-OPEN_REVIEW_THREADS_AT_BLOCK=2
-MERGE_EXECUTED=NO
-```
-
-As correções alteram o HEAD. Portanto, o novo HEAD exigirá Reteste 03 `PASS` e nova autorização humana explícita de merge.
-
-## 🔧 Remediação
-
-```text
-SCHEMA_VERSION=1.0.3
-TOP_LEVEL_OBSERVED_PR_HEAD=RESTORED
-MISSION_LOCK_OBSERVED_PR_HEAD=RESTORED
-TRANSITION_STATUS=SCHEMA_ENUM_COMPATIBLE
-SYNC_STATUS=SCHEMA_ENUM_COMPATIBLE
-GATE_STATUS=SCHEMA_ENUM_COMPATIBLE
-EXECUTION_STATUS=SCHEMA_ENUM_COMPATIBLE
-OPERATIONAL_SOURCE_AUTHORITY=REFRESHED
-STALE_ARCHITECTURE_STATUS=CONTENT_EVIDENCE_NOT_OPERATIONAL_GATE
-```
-
-## 📊 Revisões
-
-```text
-INITIAL_REVIEW=FAIL
-RETEST_01=FAIL
-RETEST_02=PASS_REVOKED_BY_NEW_PRE_MERGE_FINDINGS
-RETEST_03=IN_PROGRESS
+ADR_P0_CRITICAL_REVIEW=PASS
+RETEST_SEQUENCE=03
 CRITICAL_FINDINGS=0
 MAJOR_FINDINGS=0
-MINOR_FINDINGS_OPEN=2
-DOCUMENTAL_READY_FOR_MERGE=NO
-RETEST_REQUIRED=YES
+MINOR_FINDINGS=0
+OPEN_FINDINGS=0
+DOCUMENTAL_READY_FOR_MERGE=YES
+DOCUMENT_MASTER_READY_TO_START=NO
+RETEST_REQUIRED=NO
 ```
 
-As quatro correções maiores permanecem aprovadas:
+## 🔍 Validações aprovadas
 
 ```text
-MAJOR_01_TRACEABILITY_218=PASS
-MAJOR_02_DEPENDENCY_DAG=PASS
-MAJOR_03_FOUR_FSMS=PASS
-MAJOR_04_IDEMPOTENCY_COLLISION=PASS
+PROJECT_RUNTIME_STATE_SCHEMA_1_0_3_COMPATIBILITY=PASS
+OPERATIONAL_SOURCE_AUTHORITY_CURRENT=PASS
+TOP_LEVEL_OBSERVED_PR_HEAD=PASS
+MISSION_LOCK_OBSERVED_PR_HEAD=PASS
+SCHEMA_ENUM_COMPATIBILITY=PASS
+PLAN_RETEST_REFERENCE=03
+ADR_INDEX_RETEST_REFERENCE=03
+TRACEABILITY_MATRIX_RETEST_REFERENCE=03
+REQUIREMENT_TRACEABILITY=218/218
+DEPENDS_ON_CYCLE_COUNT=0
+FOUR_FSMS=PASS
+DIVERGENT_IDEMPOTENCY_COLLISION=PASS_BLOCKED
+OPEN_REVIEW_THREADS_AT_RETEST=0
+CI_WORKFLOWS_AT_RETEST=9_OF_9_SUCCESS
+```
+
+## ⚠️ Autorização de merge
+
+A autorização humana anterior estava vinculada ao HEAD `decb578bd9b4c4bbe9d62947359eb59569d89020`. Ela não foi consumida porque o merge foi interrompido antes da integração. As correções exigidas alteraram o HEAD.
+
+```text
+PREVIOUS_MERGE_AUTHORIZATION_CONSUMED=NO
+PREVIOUS_MERGE_AUTHORIZATION_VALID_FOR_NEW_HEAD=NO
+MERGE_EXECUTED=NO
+NEW_HUMAN_MERGE_AUTHORIZATION_REQUIRED=YES
+```
+
+## 🗺️ Mapa da campanha
+
+```text
+AUDITORIA MESTRA
+      ✅ concluída
+      ↓
+PTM V2.5 / V2.6 / V2.7
+      ✅ aprovadas
+      ↓
+CONSOLIDAÇÃO CRUZADA
+      ✅ concluída
+      ↓
+ADRs P0 — LEA-26 / LEA-27
+      ✅ 12/12 ADRs
+      ✅ rastreabilidade 218/218
+      ✅ grafo acíclico
+      ✅ quatro FSMs
+      ✅ idempotência divergente bloqueada
+      ✅ compatibilidade do schema 1.0.3
+      ✅ autoridade das fontes atualizada
+      ✅ LEA-27 Reteste 03 PASS
+      🟧 nova autorização humana de merge
+      ↓
+DOCUMENTO MESTRE
+      ⛔ não autorizado
+      ↓
+ARQUITETURA V1.0 CONGELADA
+      ⬜ não iniciada
+      ↓
+PRONTIDÃO PARA IMPLEMENTAÇÃO
+      ⬜ não iniciada
 ```
 
 ## 🧱 ADRs P0
@@ -91,7 +118,7 @@ MAJOR_04_IDEMPOTENCY_COLLISION=PASS
 | [ADR-0011](docs/architecture/adrs/ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência e reconciliação | proposto remediado |
 | [ADR-0012](docs/architecture/adrs/ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | proposto |
 
-## 🔗 Métricas preservadas
+## 🔗 Métricas
 
 ```text
 REQUIREMENT_ROWS=218
@@ -103,11 +130,6 @@ CANONICAL_DOMAIN_COVERAGE=16/16
 HANDOFF_REFERENCE_COVERAGE=12/12
 DEPENDS_ON_NODE_COUNT=12
 DEPENDS_ON_CYCLE_COUNT=0
-COMMAND_FSM=DEFINED
-AUTHORIZATION_GRANT_FSM=DEFINED
-SESSION_ARMING_FSM=DEFINED
-EXECUTION_ATTEMPT_FSM=DEFINED
-SAME_KEY_AND_DIFFERENT_CANONICAL_FINGERPRINT=BLOCK_CONFLICT_AND_AUDIT
 ```
 
 ## 🎛️ Política A+B
@@ -122,31 +144,22 @@ LIVE_WITHOUT_ALL_GATES=BLOCKED
 
 Nenhuma sessão LIVE, operação real ou implementação foi autorizada.
 
-## 🧾 Fontes operacionais
+## 🧾 Evidências
 
-- `PROJECT_RUNTIME_STATE.yaml`;
-- `docs/protocols/PROJECT_RUNTIME_STATE_SCHEMA.yaml`;
-- `PROJECT_STATE.md`;
-- `PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md`;
-- `docs/history/reviews/REMEDIACAO_SCHEMA_E_FONTES_ADRS_P0_LEA-26_20260718.md`;
-- PR #46 vivo;
-- Linear LEA-26 e LEA-27.
+- [Remediação do schema e das fontes](docs/history/reviews/REMEDIACAO_SCHEMA_E_FONTES_ADRS_P0_LEA-26_20260718.md)
+- [Reteste 03 — PASS](docs/history/reviews/REVISAO_CRITICA_RETESTE_03_ADRS_P0_LEA-27_20260718.md)
 
-Plano, índice, matriz e apêndice preservam o conteúdo arquitetural. Status operacionais antigos nesses artefatos não substituem as fontes acima.
-
-## 🗺️ Próxima sequência
+## 🛣️ Próxima sequência
 
 ```text
-1. concluir remediação do schema e das fontes
-2. responder e resolver as duas threads
-3. confirmar CI 9/9
-4. executar LEA-27 Reteste 03
-5. obter PASS sem achados
-6. solicitar nova autorização humana para o novo HEAD
-7. integrar PR #46
-8. publicar recibo pós-merge
+1. confirmar HEAD final, CI e threads
+2. solicitar nova autorização humana para o HEAD final
+3. integrar o PR #46
+4. publicar recibo pós-merge
+5. sincronizar GitHub e Linear
+6. decidir ADRs P1/P2 e Documento Mestre
 ```
 
 ```text
-NEXT_ACTION=COMPLETE_REMEDIATION_AND_EXECUTE_LEA_27_RETEST_03
+NEXT_ACTION=CONFIRM_FINAL_HEAD_CI_THREADS_AND_REQUEST_NEW_HUMAN_MERGE_AUTHORIZATION
 ```
