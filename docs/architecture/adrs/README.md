@@ -12,23 +12,26 @@ P1_P2_ADR_SET=P1_P2_ARCHITECTURE_V1_COMPLEMENT
 P1_P2_ADR_COUNT=6/6
 P1_COUNT=5/5
 P2_COUNT=1/1
-P1_P2_ADR_SET_STATUS=MERGED_PENDING_POST_MERGE_CONFIRMATION
+P1_P2_ADR_SET_STATUS=PUBLISHED_REVIEWED_P1_P2_BASE
 P1_P2_BUILDER_ISSUE=LEA-30
 P1_P2_REVIEW_ISSUE=LEA-31
 P1_P2_CRITICAL_REVIEW=PASS_RETEST_02
 P1_P2_MAIN_PULL_REQUEST=49
 P1_P2_MAIN_PR_MERGE_COMMIT=915ad721a9fd264fe186fae0c810dfb0af957b9c
 P1_P2_POST_MERGE_RECEIPT_PR=50
+P1_P2_POST_MERGE_RECEIPT_MERGE_COMMIT=e2040a8a6c6b86faf4b644c3beeb4510f6100535
+P1_P2_FINAL_CONFIRMATION_PR=51
 P1_P2_DEFERRED_REQUIREMENTS=31/31
 SCHEMA_CONTRACT_ALIGNMENT=PASS
 MISSION_GATES=7/7
+MISSION_CLOSURE=PASS
 
 IMPLEMENTATION_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
 ```
 
-Os ADRs P1/P2 foram integrados na `main` pelo PR #49 e aguardam a conclusão do recibo pós-merge PR #50.
+Os 18 ADRs da Arquitetura V1.0 estão publicados como base documental revisada: 12 P0 e seis P1/P2. Isso não autoriza implementação nem início automático do Documento Mestre.
 
 ## Índice P0 publicado
 
@@ -47,16 +50,16 @@ Os ADRs P1/P2 foram integrados na `main` pelo PR #49 e aguardam a conclusão do 
 | [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | publicado P0 remediado |
 | [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | publicado P0 |
 
-## Índice P1/P2 integrado
+## Índice P1/P2 publicado
 
 | ADR | Prioridade | Decisão | Candidato | Estado |
 |---|---|---|---|---|
-| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | integrado, aguardando confirmação |
-| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | integrado, aguardando confirmação |
-| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | integrado, aguardando confirmação |
-| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | integrado, aguardando confirmação |
-| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | integrado, aguardando confirmação |
-| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | integrado, aguardando confirmação |
+| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | publicado |
+| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | publicado |
+| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | publicado |
+| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | publicado |
+| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | publicado |
+| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | publicado |
 
 ## Grafo autoritativo `DEPENDS_ON`
 
@@ -90,6 +93,7 @@ DEPENDS_ON_DAG=PASS
 - [Apêndice individual P1/P2 31/31](APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md)
 - [Reteste 02 — PASS](../../history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md)
 - [Recibo pós-merge](../../history/receipts/RECIBO_POS_MERGE_LEA-30_LEA-31_PR-49_20260718.md)
+- [Confirmação final](../../history/receipts/CONFIRMACAO_FINAL_LEA-30_PR-50_20260718.md)
 
 ```text
 CANONICAL_REQUIREMENT_ROWS=218
@@ -104,11 +108,11 @@ P1_P2_DEFERRED_MISASSIGNED=0
 ## Próximo gate
 
 ```text
-BUILDER_ISSUE=LEA-30_IN_PROGRESS_POST_MERGE_CONFIRMATION
-INDEPENDENT_REVIEW_ISSUE=LEA-31_DONE_PASS_RETEST_02
-POST_MERGE_RECEIPT_PR=50
-POST_MERGE_CONFIRMATION=IN_PROGRESS
+ACTIVE_MISSION=NONE
+LAST_COMPLETED_MISSION=LEA-30
+LAST_COMPLETED_REVIEW=LEA-31_RETEST_02_PASS
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
+NEXT_ACTION=AWAIT_EXPLICIT_DOCUMENT_MASTER_AUTHORIZATION
 ```
