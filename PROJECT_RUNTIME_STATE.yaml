@@ -7,25 +7,28 @@ observed_main_head: "c339ef253c2558300388901a67faf18734e2735f"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-26"
-active_stage: "ADR_P0_READY_FOR_INDEPENDENT_REVIEW"
+active_stage: "ADR_P0_REMEDIATED_READY_FOR_RETEST_01"
 active_linear_issue: "LEA-26"
 active_review_issue: "LEA-27"
 active_pull_request: 46
 working_branch: "leonpcsn/lea-26-adrs-p0-arquitetura-v1"
-observed_pr_head: "1ee5c0641cab92ed184797776504ab7091fe9972"
-pr_mode: "ready_for_independent_review"
-active_checkpoint: "docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md"
+observed_pr_head: "c1c694f70d036104fee7b91addf7b68cc5d5ba58"
+remediation_content_head: "c1c694f70d036104fee7b91addf7b68cc5d5ba58"
+current_pr_head_source: "LIVE_GITHUB_QUERY_AT_RETEST_START"
+pr_mode: "draft_pending_final_sync_then_ready_for_review"
+active_checkpoint: "docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md"
 
-current_gate: "A7_INDEPENDENT_CRITICAL_REVIEW"
+current_gate: "A7_INDEPENDENT_CRITICAL_REVIEW_RETEST_01"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_LEA_27_INDEPENDENT_CRITICAL_REVIEW_ON_PR_46"
+next_action: "EXECUTE_LEA_27_RETEST_01_ON_FINAL_LIVE_PR_46_HEAD"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
+  - "INDEPENDENT_CRITICAL_RETEST_01_REQUIRED"
+  - "MERGE_REQUIRES_PASS_AND_NEW_HUMAN_AUTHORIZATION"
 
 transition_id: "LEA-26-T01"
 transition_status: "READY_FOR_INDEPENDENT_REVIEW"
 from_state: "CROSS_CONSOLIDATION_COMPLETE"
-to_state: "ADR_P0_PROPOSED_FOR_REVIEW"
+to_state: "ADR_P0_REMEDIATED_PROPOSED_FOR_REVIEW"
 baseline_main_sha: "c339ef253c2558300388901a67faf18734e2735f"
 baseline_state_revision: 8
 bound_transition_id: "LEA-26-T01"
@@ -35,23 +38,23 @@ post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
 github_sync_status: "PASS"
-linear_sync_status: "PASS"
-readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-18T07:59:00Z"
+linear_sync_status: "PENDING_RETEST_REQUEST"
+readme_sync_status: "PASS_IN_PR_46"
+last_sync_at_utc: "2026-07-18T14:20:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-26"
-  session_id: "lea26-adrs-p0-20260718"
+  session_id: "lea26-adrs-p0-retest01-20260718"
   base_sha: "c339ef253c2558300388901a67faf18734e2735f"
-  observed_pr_head: "1ee5c0641cab92ed184797776504ab7091fe9972"
+  observed_pr_head: "c1c694f70d036104fee7b91addf7b68cc5d5ba58"
   state_revision_snapshot: 9
   transition_id_snapshot: "LEA-26-T01"
-  started_at_utc: "2026-07-18T07:43:57Z"
+  started_at_utc: "2026-07-18T14:07:26Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T07:59:00Z"
+  heartbeat_at_utc: "2026-07-18T14:20:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -85,13 +88,12 @@ source_authority:
   automation_policy: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   adr_mission_plan: "docs/architecture/PLANO_MISSAO_ADRS_P0_LEA-26_20260718.md"
   adr_index: "docs/architecture/adrs/README.md"
-  adr_traceability: "docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md"
+  adr_traceability_summary: "docs/architecture/adrs/MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md"
+  adr_traceability_individual: "docs/architecture/adrs/APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md"
   builder_self_review: "docs/history/reviews/AUTO_REVISAO_BUILDER_ADRS_P0_LEA-26_20260718.md"
-  adr_candidate_catalog: "docs/architecture/CATALOGO_DECISOES_CANDIDATAS_ADR_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
-  domain_boundary_map: "docs/architecture/MAPA_UNIFICADO_DOMINIOS_FRONTEIRAS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
-  consolidated_traceability: "docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
-  individual_requirement_index: "docs/architecture/APENDICE_INDICE_INDIVIDUAL_218_REQUISITOS_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md"
-  task_status_and_dependencies: "Linear LEA-26 In Progress and LEA-27 Todo"
+  remediation_report: "docs/history/reviews/REMEDIACAO_ADRS_P0_LEA-26_POS_LEA-27_20260718.md"
+  failed_review_report: "docs/history/reviews/REVISAO_CRITICA_ADRS_P0_LEA-27_20260718.md"
+  task_status_and_dependencies: "Linear LEA-26 In Progress and LEA-27 Retest 01 pending"
   unmerged_work: "PR #46"
   consolidated_code_and_docs: "GitHub main at c339ef253c2558300388901a67faf18734e2735f"
 
@@ -99,12 +101,16 @@ safety:
   manifest_documentation_drift: false
   execution_status: "AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
-  independent_critical_review: "PENDING_LEA_27"
-  previous_independent_review_status: "NOT_STARTED_FOR_LEA_26"
+  independent_critical_review: "FAIL_INITIAL_REVIEW_REMEDIATED_PENDING_RETEST_01"
+  previous_independent_review_status: "FAIL_ON_HEAD_2c9c2432058c5f119bd1802c3ba00e845c6a5ca0"
   open_critical_findings: 0
-  open_major_findings: 0
-  open_minor_findings: 0
-  retest_required: false
+  open_major_findings_pending_independent_retest: 4
+  open_minor_findings_pending_independent_retest: 1
+  builder_remediated_major_findings: 4
+  builder_remediated_minor_findings: 1
+  builder_open_findings: 0
+  retest_required: true
+  retest_sequence: 1
   documentation_only: true
   policy_a_b_alignment: true
   mode_a_authorized: true
@@ -119,6 +125,17 @@ safety:
   a5_cross_adr_consistency_builder_pass: true
   a6_builder_self_review_pass_preliminary: true
   a7_independent_critical_review_pass: false
+  requirement_rows: 218
+  unique_requirement_ids: 218
+  duplicate_requirement_ids: 0
+  orphan_requirement_ids: 0
+  unjustified_no_p0_mapping: 0
+  depends_on_cycle_count: 0
+  command_fsm_defined: true
+  authorization_grant_fsm_defined: true
+  session_arming_fsm_defined: true
+  execution_attempt_fsm_defined: true
+  divergent_idempotency_key_blocked: true
   p0_candidate_count: 12
   p0_adr_count: 12
   p1_candidate_count_remaining: 5
@@ -134,6 +151,6 @@ safety:
   ready_for_merge: false
   ready_for_document_master: false
   current_product_issue: "LEA-26"
-  current_product_issue_status: "IN_PROGRESS_READY_FOR_REVIEW"
+  current_product_issue_status: "IN_PROGRESS_REMEDIATED_READY_FOR_RETEST_01"
   current_review_issue: "LEA-27"
-  current_review_issue_status: "TODO"
+  current_review_issue_status: "DONE_FAIL_PENDING_REOPEN_FOR_RETEST_01"
