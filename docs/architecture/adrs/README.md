@@ -6,61 +6,57 @@
 P0_ADR_SET=P0_ARCHITECTURE_V1
 P0_ADR_COUNT=12/12
 P0_ADR_SET_STATUS=PUBLISHED_REVIEWED_P0_BASE
-P0_BUILDER_ISSUE=LEA-26
-P0_REVIEW_ISSUE=LEA-27
-P0_MAIN_PULL_REQUEST=46
 P0_CRITICAL_REVIEW=PASS_RETEST_03
 
 P1_P2_ADR_SET=P1_P2_ARCHITECTURE_V1_COMPLEMENT
 P1_P2_ADR_COUNT=6/6
 P1_COUNT=5/5
 P2_COUNT=1/1
-P1_P2_ADR_SET_STATUS=REVIEWED_PASS_APPROVED_FOR_MERGE
+P1_P2_ADR_SET_STATUS=MERGED_PENDING_POST_MERGE_CONFIRMATION
 P1_P2_BUILDER_ISSUE=LEA-30
 P1_P2_REVIEW_ISSUE=LEA-31
-P1_P2_INITIAL_REVIEW=FAIL_3_MAJOR
-P1_P2_RETEST_01=FAIL_1_MAJOR
-P1_P2_RETEST_02=PASS
 P1_P2_CRITICAL_REVIEW=PASS_RETEST_02
+P1_P2_MAIN_PULL_REQUEST=49
+P1_P2_MAIN_PR_MERGE_COMMIT=915ad721a9fd264fe186fae0c810dfb0af957b9c
+P1_P2_POST_MERGE_RECEIPT_PR=50
 P1_P2_DEFERRED_REQUIREMENTS=31/31
 SCHEMA_CONTRACT_ALIGNMENT=PASS
 MISSION_GATES=7/7
 
 IMPLEMENTATION_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
-MERGE_AUTHORIZED=YES_DOCUMENTATION_ONLY_PR_49
 LIVE_MODE_ARMED=NO
 ```
 
-Os 12 ADRs P0 permanecem publicados. Os seis ADRs P1/P2 foram aprovados no Reteste 02 e aguardam integração documental e confirmação pós-merge.
+Os ADRs P1/P2 foram integrados na `main` pelo PR #49 e aguardam a conclusão do recibo pós-merge PR #50.
 
 ## Índice P0 publicado
 
-| ADR | Decisão | Candidato | Domínios primários | Estado do conjunto |
+| ADR | Decisão | Estado |
+|---|---|---|
+| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | publicado P0 |
+| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | publicado P0 |
+| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | publicado P0 |
+| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | publicado P0 |
+| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | publicado P0 |
+| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | publicado P0 |
+| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | publicado P0 |
+| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | publicado P0 remediado |
+| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | publicado P0 remediado |
+| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | publicado P0 remediado |
+| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | publicado P0 remediado |
+| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | publicado P0 |
+
+## Índice P1/P2 integrado
+
+| ADR | Prioridade | Decisão | Candidato | Estado |
 |---|---|---|---|---|
-| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | ADR-CAND-001 | DOM-01 | publicado P0 |
-| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | ADR-CAND-002 | DOM-03 | publicado P0 |
-| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | ADR-CAND-004 | DOM-01, DOM-03 | publicado P0 |
-| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | ADR-CAND-005 | DOM-05 | publicado P0 |
-| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | ADR-CAND-006 | DOM-06 | publicado P0 |
-| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | ADR-CAND-008 | DOM-11 | publicado P0 |
-| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | ADR-CAND-009 | DOM-12 | publicado P0 |
-| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | ADR-CAND-010 | DOM-13, DOM-15 | publicado P0 remediado |
-| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | ADR-CAND-011 | DOM-14 | publicado P0 remediado |
-| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | ADR-CAND-012 | DOM-16 | publicado P0 remediado |
-| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | ADR-CAND-014 | DOM-15 | publicado P0 remediado |
-| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | ADR-CAND-015 | DOM-16 | publicado P0 |
-
-## Índice P1/P2 aprovado para merge
-
-| ADR | Prioridade | Decisão | Candidato | Domínios primários | Estado |
-|---|---|---|---|---|---|
-| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | DOM-03 | aprovado para merge documental |
-| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | DOM-08 | aprovado para merge documental |
-| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | DOM-15 | aprovado para merge documental |
-| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | DOM-13, DOM-15 | aprovado para merge documental |
-| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | DOM-09, DOM-11, DOM-12 | aprovado para merge documental |
-| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | DOM-16 | aprovado para merge documental |
+| [ADR-0013](ADR-0013-MIGRATIONS-COMPATIBILIDADE-E-IMPORTACAO-DO-LEGADO.md) | P1 | migrations e importação idempotente | ADR-CAND-003 | integrado, aguardando confirmação |
+| [ADR-0014](ADR-0014-RETENCAO-DE-FRAMES-E-EVIDENCIAS-VISUAIS.md) | P1 | retenção visual mínima | ADR-CAND-007 | integrado, aguardando confirmação |
+| [ADR-0015](ADR-0015-SERIALIZACAO-IDEMPOTENCIA-E-CIRCUIT-BREAKER.md) | P1 | serialização e circuit breaker | ADR-CAND-013 | integrado, aguardando confirmação |
+| [ADR-0016](ADR-0016-RELOGIOS-DEADLINES-E-IDENTIDADE-DE-PROCESSO.md) | P1 | relógios e identidade de processo | ADR-CAND-016 | integrado, aguardando confirmação |
+| [ADR-0017](ADR-0017-THRESHOLDS-E-LIMITES-NUMERICOS.md) | P2 | thresholds versionados | ADR-CAND-017 | integrado, aguardando confirmação |
+| [ADR-0018](ADR-0018-ESTRATEGIA-DE-TESTES-E-EVIDENCIA-POR-CAMADA.md) | P1 | testes e evidência por camada | ADR-CAND-018 | integrado, aguardando confirmação |
 
 ## Grafo autoritativo `DEPENDS_ON`
 
@@ -90,11 +86,10 @@ DEPENDS_ON_DAG=PASS
 
 ## Rastreabilidade
 
-- [Matriz P0 resumida](MATRIZ_RASTREABILIDADE_ADRS_P0_LEA-26_20260718.md)
-- [Apêndice individual P0 218/218](APENDICE_RASTREABILIDADE_INDIVIDUAL_218_ADRS_P0_LEA-26_20260718.md)
 - [Matriz P1/P2](MATRIZ_RASTREABILIDADE_ADRS_P1_P2_LEA-30_20260718.md)
 - [Apêndice individual P1/P2 31/31](APENDICE_RASTREABILIDADE_INDIVIDUAL_ADRS_P1_P2_LEA-30_20260718.md)
 - [Reteste 02 — PASS](../../history/reviews/REVISAO_CRITICA_RETESTE_02_ADRS_P1_P2_LEA-31_20260718.md)
+- [Recibo pós-merge](../../history/receipts/RECIBO_POS_MERGE_LEA-30_LEA-31_PR-49_20260718.md)
 
 ```text
 CANONICAL_REQUIREMENT_ROWS=218
@@ -109,12 +104,10 @@ P1_P2_DEFERRED_MISASSIGNED=0
 ## Próximo gate
 
 ```text
-BUILDER_ISSUE=LEA-30_IN_PROGRESS_MERGE_AUTHORIZED
-BUILDER_GATES=7/7
+BUILDER_ISSUE=LEA-30_IN_PROGRESS_POST_MERGE_CONFIRMATION
 INDEPENDENT_REVIEW_ISSUE=LEA-31_DONE_PASS_RETEST_02
-ADR_P1_P2_CRITICAL_REVIEW=PASS
-MERGE_AUTHORIZED=YES_DOCUMENTATION_ONLY_PR_49
-POST_MERGE_CONFIRMATION_REQUIRED=YES
+POST_MERGE_RECEIPT_PR=50
+POST_MERGE_CONFIRMATION=IN_PROGRESS
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
