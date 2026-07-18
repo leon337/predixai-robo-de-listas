@@ -1,39 +1,40 @@
 # ADRs — PredixAI Robô de Listas
 
-## Estado da missão LEA-26
+## Estado do conjunto P0
 
 ```text
 ADR_SET=P0_ARCHITECTURE_V1
 ADR_COUNT=12/12
-ADR_STATUS=PROPOSED_FOR_REVIEW
+ADR_SET_STATUS=MERGED_REVIEWED_P0_BASE
+ADR_FILE_LIFECYCLE=PROPOSED_DOCUMENTS_INTEGRATED_AS_APPROVED_P0_BASE
 BUILDER_ISSUE=LEA-26
 REVIEW_ISSUE=LEA-27
-TRANSITION_ID=LEA-26-T01
+MAIN_PULL_REQUEST=46
+MAIN_PR_MERGE_COMMIT=ff726709d13b8acca0961cc17160e38430c6d26f
 RETEST_SEQUENCE=03_PASS
 ADR_P0_CRITICAL_REVIEW=PASS
 IMPLEMENTATION_AUTHORIZED=NO
-MERGE_AUTHORIZED=NO
 DOCUMENT_MASTER_START_AUTHORIZED=NO
 ```
 
-Este índice define conteúdo arquitetural. O estado operacional atual é controlado por `PROJECT_RUNTIME_STATE.yaml`, `PROJECT_STATE.md`, PR #46 e Linear.
+O conjunto P0 foi revisado e integrado documentalmente. Os arquivos individuais preservam o histórico de proposta; o recibo pós-merge registra a aprovação do conjunto como base para uma futura missão do Documento Mestre. Nenhum ADR autoriza implementação ou sessão LIVE.
 
 ## Índice
 
-| ADR | Decisão | Candidato | Domínios primários | Estado |
+| ADR | Decisão | Candidato | Domínios primários | Estado do conjunto |
 |---|---|---|---|---|
-| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | ADR-CAND-001 | DOM-01 | proposto |
-| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | ADR-CAND-002 | DOM-03 | proposto |
-| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | ADR-CAND-004 | DOM-01, DOM-03 | proposto |
-| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | ADR-CAND-005 | DOM-05 | proposto |
-| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | ADR-CAND-006 | DOM-06 | proposto |
-| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | ADR-CAND-008 | DOM-11 | proposto |
-| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | ADR-CAND-009 | DOM-12 | proposto |
-| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | ADR-CAND-010 | DOM-13, DOM-15 | proposto remediado |
-| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | ADR-CAND-011 | DOM-14 | proposto remediado |
-| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | ADR-CAND-012 | DOM-16 | proposto remediado |
-| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | ADR-CAND-014 | DOM-15 | proposto remediado |
-| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | ADR-CAND-015 | DOM-16 | proposto |
+| [ADR-0001](ADR-0001-SERVIDOR-E-AUTORIDADE-DE-ESTADO.md) | servidor e autoridade global | ADR-CAND-001 | DOM-01 | integrado P0 |
+| [ADR-0002](ADR-0002-PERSISTENCIA-E-ESCRITOR-UNICO.md) | SQLite V1 e escritor único | ADR-CAND-002 | DOM-03 | integrado P0 |
+| [ADR-0003](ADR-0003-CONTRATOS-REST-EVENTOS-E-VERSIONAMENTO.md) | REST JSON, SSE e versionamento | ADR-CAND-004 | DOM-01, DOM-03 | integrado P0 |
+| [ADR-0004](ADR-0004-IDENTIDADE-PAREAMENTO-E-CLIENTES.md) | identidade e pareamento local | ADR-CAND-005 | DOM-05 | integrado P0 |
+| [ADR-0005](ADR-0005-PERFIS-ROIS-E-ALVO-LOGICO.md) | perfis, ROIs e alvo lógico | ADR-CAND-006 | DOM-06 | integrado P0 |
+| [ADR-0006](ADR-0006-MOTORES-A-H-E-ENVELOPE-DE-ANALISE.md) | motores A–H determinísticos | ADR-CAND-008 | DOM-11 | integrado P0 |
+| [ADR-0007](ADR-0007-ESTRATEGIAS-E-LIFECYCLE-DE-SINAIS.md) | estratégias e lifecycle de sinais | ADR-CAND-009 | DOM-12 | integrado P0 |
+| [ADR-0008](ADR-0008-MAQUINA-DE-ESTADOS-DE-COMANDO-E-EXECUCAO.md) | quatro FSMs de execução | ADR-CAND-010 | DOM-13, DOM-15 | integrado P0 remediado |
+| [ADR-0009](ADR-0009-ADAPTADORES-E-SEPARACAO-DOS-MODOS-A-B.md) | adaptadores e Modos A/B | ADR-CAND-011 | DOM-14 | integrado P0 remediado |
+| [ADR-0010](ADR-0010-KILL-SWITCH-DOMINANTE.md) | kill switch dominante | ADR-CAND-012 | DOM-16 | integrado P0 remediado |
+| [ADR-0011](ADR-0011-RECIBO-E-RECONCILIACAO-MULTIDIMENSIONAL.md) | idempotência, recibo e reconciliação | ADR-CAND-014 | DOM-15 | integrado P0 remediado |
+| [ADR-0012](ADR-0012-OBSERVABILIDADE-AUDITORIA-E-REDACTION.md) | observabilidade e auditoria | ADR-CAND-015 | DOM-16 | integrado P0 |
 
 ## Semântica das relações
 
@@ -58,34 +59,8 @@ ADR-0010=ADR-0001|ADR-0002
 ADR-0009=ADR-0005|ADR-0008|ADR-0010
 ADR-0011=ADR-0002|ADR-0008|ADR-0009|ADR-0010
 ADR-0012=ADR-0001|ADR-0002|ADR-0003|ADR-0008|ADR-0010|ADR-0011
-```
-
-```text
-TOPOLOGICAL_ORDER=ADR-0001|ADR-0002|ADR-0003|ADR-0004|ADR-0005|ADR-0006|ADR-0007|ADR-0008|ADR-0010|ADR-0009|ADR-0011|ADR-0012
 DEPENDS_ON_CYCLE_COUNT=0
 DEPENDS_ON_DAG=PASS
-```
-
-## Invariantes do conjunto
-
-```text
-SERVER_STATE=GLOBAL_AUTHORITY
-CLIENT_STATE=LOCAL_VIEW
-SINGLE_WRITE_BOUNDARY=SERVER
-SIGNAL!=COMMAND
-COMMAND!=GRANT
-GRANT!=ATTEMPT
-ATTEMPT!=CONFIRMED_EFFECT
-IMMUTABLE_FIELDS!=IMMUTABLE_LIFECYCLE_STATE
-COORDINATE!=TARGET_AUTHORIZATION
-ADAPTER_RECEIPT!=GLOBAL_TRUTH
-TIMEOUT!=NO_EFFECT
-UNKNOWN_EFFECT=CORRELATED_ACTION_BLOCK
-KILL_SWITCH=DOMINANT
-RESTART=NO_AUTOMATIC_REDISPATCH_OR_REARM
-MODE_A=AUTHORIZED_BY_EXPLICIT_MISSION_AND_TARGET
-MODE_B=SUPPORTED_BY_SEPARATE_LIVE_GATE
-MODE_B_DEFAULT=DISABLED
 ```
 
 ## Rastreabilidade
@@ -103,16 +78,12 @@ CANONICAL_DOMAIN_COVERAGE=16/16
 HANDOFF_REFERENCE_COVERAGE=12/12
 ```
 
-O apêndice preserva evidência de conteúdo. Qualquer referência operacional histórica nele é superada pelo manifesto, pelo estado humano, pelo PR vivo e pelo Linear.
-
 ## Próximo gate
 
 ```text
-A7_INDEPENDENT_CRITICAL_REVIEW=PASS_RETEST_03
-ADR_P0_CRITICAL_REVIEW=PASS
-DOCUMENTAL_READY_FOR_MERGE=YES
-MERGE_AUTHORIZED=NO
+POST_MERGE_RECEIPT=IN_PUBLICATION
+ADRS_P1_P2_DECISION=PENDING
 DOCUMENT_MASTER_START_AUTHORIZED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+LIVE_MODE_ARMED=NO
 ```
-
-O novo HEAD final sincronizado exige nova autorização humana explícita de merge.
