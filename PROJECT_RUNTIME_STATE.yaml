@@ -17,13 +17,13 @@ pr_mode: "independent_critical_retest_04"
 active_checkpoint: "docs/history/reviews/REMEDIACAO_RETESTE_03_CONSOLIDACAO_CRUZADA_LEA-18_20260717.md"
 
 current_gate: "G7_INDEPENDENT_CRITICAL_REVIEW"
-gate_status: "RETEST_04_REQUESTED"
+gate_status: "IN_PROGRESS"
 next_action: "EXECUTE_LEA_19_INDEPENDENT_RETEST_04_ON_PR_40"
 blockers:
   - "INDEPENDENT_CRITICAL_RETEST_04_REQUIRED"
 
 transition_id: "LEA-18-T01"
-transition_status: "AWAITING_INDEPENDENT_RETEST_04"
+transition_status: "READY_FOR_INDEPENDENT_REVIEW"
 from_state: "PTM_V2_7_DOCUMENTALLY_DEFINITIVE"
 to_state: "CROSS_CONSOLIDATION_AWAITING_INDEPENDENT_RETEST_04"
 baseline_main_sha: "98bb1d33b9d8eca702fb4e52bdde02686021c766"
@@ -34,10 +34,10 @@ main_pr_merge_commit: null
 post_merge_receipt_pr: null
 post_merge_receipt_merge_commit: null
 
-github_sync_status: "PASS_PENDING_PR_METADATA_CONFIRMATION"
-linear_sync_status: "PASS_LEA_19_REOPENED_FOR_RETEST_04"
-readme_sync_status: "SNAPSHOT_UPDATE_REQUIRED_AFTER_FINAL_RETEST_HANDOFF"
-last_sync_at_utc: "2026-07-18T05:40:00Z"
+github_sync_status: "PASS"
+linear_sync_status: "PASS"
+readme_sync_status: "PENDING"
+last_sync_at_utc: "2026-07-18T05:45:00Z"
 
 mission_lock:
   locked: true
@@ -51,13 +51,14 @@ mission_lock:
   transition_id_snapshot: "LEA-18-T01"
   started_at_utc: "2026-07-17T11:02:35Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-18T05:40:00Z"
+  heartbeat_at_utc: "2026-07-18T05:45:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
 test_code_change_authorized: false
 sql_authorized: false
 migration_authorized: false
+real_click_authorized: false
 merge_authorized: false
 cross_consolidation_authorized: true
 adrs_start_authorized: false
@@ -95,7 +96,7 @@ source_authority:
 
 safety:
   manifest_documentation_drift: false
-  execution_status: "AWAITING_INDEPENDENT_RETEST_04"
+  execution_status: "AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
   independent_critical_review: "RETEST_04_REQUESTED_LEA_19"
   previous_independent_review_status: "FAIL_RETEST_03"
