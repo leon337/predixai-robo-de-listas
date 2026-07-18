@@ -4,12 +4,14 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch oficial: `main`
-- HEAD-base confirmado: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
+- Baseline da missão: `98bb1d33b9d8eca702fb4e52bdde02686021c766`
+- HEAD observado da `main`: `236bc5df7f675ca5cf56d80c5812bd911d224651`
 - Versão do legado: `V2.4.3-R1`
 - Missão ativa: `LEA-18 — Consolidação cruzada das PTMs V2.5, V2.6 e V2.7`
 - Revisão ativa: `LEA-19 — Reteste 04 independente do PR #40`
 - Branch de trabalho: `leonpcsn/lea-18-consolidacao-cruzada-das-ptms-v25-v26-e-v27`
 - PR ativo: `#40`, Draft, remediado para Reteste 04
+- HEAD observado antes desta sincronização: `592bd48b5a705c1206f3e325c1064af295791855`
 - Merge: não autorizado
 - ADRs: não autorizados
 
@@ -35,8 +37,16 @@ MIGRATION_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO
 ADRS_START_AUTHORIZED=NO
-REAL_FINANCIAL_EFFECT=PROHIBITED
+MODE_A_POLICY=AUTHORIZED
+MODE_B_ARCHITECTURAL_SUPPORT=AUTHORIZED
+MODE_B_DEFAULT=DISABLED
+LIVE_MODE_ARMED=NO
+FINANCIAL_EFFECT=BLOCKED_UNTIL_ALL_LIVE_GATES_PASS
 ```
+
+A política A+B é normativa. Análise de gráficos, captura, OCR, replay, movimento de ponteiro, teclado, preenchimento de campos, clique e autenticação controlada são capacidades autorizadas no Modo A. O Modo B é suportado pela arquitetura, mas permanece desligado até todos os gates LIVE técnicos, comerciais, legais e de conformidade serem aprovados.
+
+Esta missão é exclusivamente documental: ela não executa a aplicação, não arma o Modo B e não produz efeito financeiro.
 
 ## Gates
 
@@ -91,6 +101,7 @@ DUPLICATE_REQUIREMENT_IDS=0
 ORPHAN_REQUIREMENT_IDS=0
 NEW_REQUIREMENT_IDS=0
 UNRESOLVED_NORMATIVE_CONFLICTS=0
+POLICY_A_B_ALIGNMENT=PASS_BUILDER
 ADRS_CREATED=NO
 DOCUMENTAL_BLOCKERS=0
 ```
@@ -104,9 +115,14 @@ O builder não emite o Boss Gate final. A consolidação permanece não definiti
 - ✅ matriz consolidada `218/218` corrigida;
 - ✅ índice individual corrigido;
 - ✅ auditoria estrutural V2.7 `32/32`;
-- ✅ auditoria funcional V2.7 `52/52`;
+- ✅ auditoria funcional V2.7 `52/52` com relatório individual;
 - ✅ remediação de `MAJOR-07`, `MAJOR-08` e `MINOR-04`;
+- ✅ alinhamento da LEA-18 à política normativa A+B;
 - 🟧 Reteste 04 independente `LEA-19`.
+
+## Evidência funcional
+
+`docs/history/reviews/REMEDIACAO_RETESTE_03_AUDITORIA_IDS_FUNCIONAIS_V2.7_LEA-18_20260718.md`
 
 ## Condição para avançar
 
@@ -122,4 +138,4 @@ GITHUB_LINEAR_ALIGNMENT=PASS
 
 ## Próxima ação
 
-Executar o Reteste 04 da `LEA-19` no novo HEAD do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
+Executar o Reteste 04 da `LEA-19` no HEAD final do PR `#40`. Não realizar merge nem iniciar ADRs antes do resultado final e de autorização humana posterior.
