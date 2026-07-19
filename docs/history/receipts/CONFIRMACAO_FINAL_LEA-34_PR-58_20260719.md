@@ -14,7 +14,7 @@ MAIN_DOCUMENT_MERGE_COMMIT=50b90e123b2e1e3a54fb4e0de612c9b7c777bb07
 POST_MERGE_CONFIRMATION_PR=58
 POST_MERGE_CONFIRMATION_HEAD=808060beed94c98eb96921e778c446c11cde646f
 POST_MERGE_CONFIRMATION_MERGE_COMMIT=510a5f969dce77e1befdd8d8a23c299d7e90f5c6
-FINAL_CONFIRMATION_PR=TO_BE_CREATED
+FINAL_CONFIRMATION_PR=59
 STATE_REVISION=19
 TRANSITION_ID=LEA-34-T01
 DOCUMENTATION_ONLY=YES
@@ -69,4 +69,4 @@ NEXT_ACTION=AWAIT_EXPLICIT_ARCHITECTURE_FREEZE_MISSION_AUTHORIZATION
 AUTOMATIC_ADVANCE=NO
 ```
 
-A LEA-34 está tecnicamente pronta para fechamento após a integração desta confirmação final. O congelamento da Arquitetura V1.0 constitui etapa separada e permanece proibido sem autorização humana posterior.
+A integração do PR `#59` conclui documentalmente a LEA-34. O congelamento da Arquitetura V1.0 constitui etapa separada e permanece proibido sem autorização humana posterior.
