@@ -17,6 +17,23 @@ def test_health_endpoint_reports_safe_idle() -> None:
     assert payload["trace_id"]
 
 
+def test_health_trace_id_correlates_with_audit_event() -> None:
+    app = create_app(ServerConfig())
+    with TestClient(app) as client:
+        response = client.get("/api/v1/health")
+        payload = response.json()
+        events = app.state.service.audit.snapshot()
+
+    correlated = [
+        event
+        for event in events
+        if event.event == "health_snapshot_returned"
+        and event.trace_id == payload["trace_id"]
+        and event.reason_code == payload["reason_code"]
+    ]
+    assert len(correlated) == 1
+
+
 def test_capabilities_are_fail_closed() -> None:
     with TestClient(create_app(ServerConfig())) as client:
         response = client.get("/api/v1/capabilities")
