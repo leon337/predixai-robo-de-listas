@@ -8,34 +8,36 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=LEA-34 — Documento Mestre da Arquitetura V1.0
-FASE=DOCUMENT_MASTER_BUILDER_DRAFT
-GATE=DOCUMENT_MASTER_BUILDER_DRAFT_IN_PROGRESS
-LINEAR=LEA-34_IN_PROGRESS
+MISSÃO_BUILDER=LEA-34 — Documento Mestre da Arquitetura V1.0
+REVISÃO_ATIVA=LEA-35 — Documento Mestre V1.0-RC
+FASE=DOCUMENT_MASTER_INDEPENDENT_CRITICAL_REVIEW
+GATE=INDEPENDENT_CRITICAL_REVIEW_IN_PROGRESS
 PULL_REQUEST=56_DRAFT
 BRANCH=leonpcsn/lea-34-documento-mestre-arquitetura-v1
 BASE_MAIN_SHA=65b18341c06a391ea48ae5029102ad7a095c3340
-OBSERVED_PR_HEAD_SNAPSHOT=178c8e9b17fae49a35a3958eef3ac5482bdccb28
+OBSERVED_PR_HEAD_SNAPSHOT=8812c765516d05507bf2fbe264385ccbd48eb90b
 STATE_REVISION=19
 TRANSITION_ID=LEA-34-T01
-TRANSITION_STATUS=IN_PROGRESS
-SNAPSHOT_AT_UTC=2026-07-19T01:54:00Z
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+SNAPSHOT_AT_UTC=2026-07-19T02:06:00Z
 STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 DOCUMENTO_MESTRE_AUTORIZADO=YES
+MERGE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-## 🟧 Documento Mestre em construção
+## 🟧 Boss Gate do Documento Mestre
 
-| Entrega | Estado |
+| Entrega ou gate | Estado |
 |---|---|
-| plano da missão | ✅ publicado na branch |
+| plano da missão | ✅ publicado |
 | Documento Mestre V1.0 | ✅ Draft do builder |
 | matriz de rastreabilidade | ✅ 218/218 preliminar |
-| auto-revisão do builder | ⬜ pendente |
-| CI no HEAD final | ⬜ pendente |
-| revisão crítica independente | ⬜ obrigatória |
+| 16 domínios e 12 handoffs | ✅ explícitos |
+| auto-revisão do builder | ✅ `PASS_PRELIMINARY` |
+| CI do pacote preliminar | ✅ 9/9 |
+| revisão crítica independente | 🟧 LEA-35 em andamento |
 | merge | ⛔ não solicitado |
 
 ## 📊 Cobertura preliminar
@@ -43,16 +45,19 @@ LIVE_MODE_ARMED=NO
 ```text
 CANONICAL_DOMAINS=16/16
 MANDATORY_HANDOFFS=12/12
+HANDOFF_CONTRACTS=12/12
+HANDOFF_FAILURE_BEHAVIOR=12/12
 PTM_V2_5_REQUIREMENTS=56/56
 PTM_V2_6_REQUIREMENTS=78/78
 PTM_V2_7_REQUIREMENTS=84/84
 TOTAL_REQUIREMENTS=218/218
 ADRS_REFERENCED=18/18
 FUTURE_TEST_FAMILIES=16
+TEST_CODE_CREATED=NO
 TEST_RUNTIME_EXECUTED=NO
 ```
 
-As contagens são do builder e dependem de validação independente.
+As contagens são do builder e dependem da decisão independente da LEA-35.
 
 ## 🧱 Arquitetura consolidada
 
@@ -73,8 +78,10 @@ CONSOLIDAÇÃO CRUZADA                    ✅
 18 ADRs ACCEPTED                        ✅
 BOSS GATE PRÉ-DOCUMENTO MESTRE          ✅ LEA-32 RETESTE 01
 REMEDIAÇÃO E CONFIRMAÇÃO                ✅ LEA-33
-DOCUMENTO MESTRE                        🟧 LEA-34 / PR #56 DRAFT
-REVISÃO CRÍTICA DO DOCUMENTO MESTRE     ⬜
+DRAFT DO DOCUMENTO MESTRE               ✅ LEA-34 / PR #56
+REVISÃO CRÍTICA DO DOCUMENTO MESTRE     🟧 LEA-35
+REMEDIAÇÃO/RETESTE, SE NECESSÁRIOS      ⬜
+MERGE E CONFIRMAÇÃO PÓS-MERGE           ⬜
 CONGELAMENTO DA ARQUITETURA V1.0        ⬜
 PRONTIDÃO PARA IMPLEMENTAÇÃO            ⬜
 ```
@@ -83,8 +90,11 @@ PRONTIDÃO PARA IMPLEMENTAÇÃO            ⬜
 
 - [Plano da missão](docs/architecture/PLANO_MISSAO_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md)
 - [Documento Mestre da Arquitetura V1.0](docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md)
-- [Matriz de rastreabilidade do Documento Mestre](docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md)
-- [Matriz de prontidão pré-Documento Mestre](docs/architecture/MATRIZ_PRONTIDAO_DOCUMENTO_MESTRE_RETESTE_01_LEA-32_20260718.md)
+- [Matriz de rastreabilidade](docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md)
+- [Apêndice de domínios e handoffs](docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md)
+- [Auto-revisão do builder](docs/history/reviews/AUTO_REVISAO_BUILDER_DOCUMENTO_MESTRE_LEA-34_20260718.md)
+- [Prompt da revisão independente](docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_DOCUMENTO_MESTRE_LEA-35_20260718.md)
+- [Matriz de prontidão anterior](docs/architecture/MATRIZ_PRONTIDAO_DOCUMENTO_MESTRE_RETESTE_01_LEA-32_20260718.md)
 - [Índice dos ADRs](docs/architecture/adrs/README.md)
 
 ## 🔒 Limites ativos
@@ -96,9 +106,10 @@ SQL_CREATED=NO
 MIGRATION_CREATED=NO
 RUNTIME_EXECUTED=NO
 REAL_CLICK_EXECUTED=NO
+MERGE_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
+ARCHITECTURE_FREEZE_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
-MERGE_AUTHORIZATION=NOT_REQUESTED
 ```
 
 ```text
@@ -107,11 +118,12 @@ TEST_SPEC_CREATED!=TEST_RUNTIME_EXECUTED
 CONTROLLED_UI_ACTION!=LIVE_FINANCIAL_AUTHORIZATION
 MODE_B_SUPPORTED!=MODE_B_ARMED
 DOCUMENT_MASTER_DRAFT!=ARCHITECTURE_FROZEN
+INDEPENDENT_REVIEW_PASS!=MERGE_AUTHORIZATION
 ```
 
 ## Próxima ação
 
 ```text
-NEXT_ACTION=EXECUTE_BUILDER_SELF_REVIEW_AND_PREPARE_INDEPENDENT_CRITICAL_REVIEW
+NEXT_ACTION=FIX_FINAL_REVIEW_HEAD_AND_EXECUTE_LEA_35_INDEPENDENT_CRITICAL_REVIEW
 AUTOMATIC_MERGE=NO
 ```
