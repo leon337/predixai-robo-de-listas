@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from threading import Lock
+from uuid import uuid4
 
 from server.adapters import NullAdapter
 from server.audit import InMemoryAuditSink
@@ -51,11 +52,19 @@ class SafeServerService:
         with self._lock:
             state = self._state
             reason = self._reason
-        return HealthResponse(
+        trace_id = uuid4().hex
+        response = HealthResponse(
             state=state,
             mode=self.config.mode,
             reason_code=reason,
+            trace_id=trace_id,
         )
+        self.audit.record(
+            "health_snapshot_returned",
+            reason.value,
+            trace_id=trace_id,
+        )
+        return response
 
     def capabilities(self) -> CapabilitySnapshot:
         return CapabilitySnapshot(mode=self.config.mode)
