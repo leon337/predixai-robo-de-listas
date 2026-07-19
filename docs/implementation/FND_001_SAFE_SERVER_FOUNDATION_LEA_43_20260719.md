@@ -59,9 +59,23 @@ SIGNAL_ENGINE=NO
 2. rejeição de modo diferente de `NULL`;
 3. rejeição de host externo e porta privilegiada;
 4. saúde em `SAFE_IDLE` após startup;
-5. capacidades fail-closed;
-6. adaptador `NULL` sem efeito externo;
-7. varredura do pacote novo contra imports e marcadores proibidos.
+5. correlação ponta a ponta entre `HealthResponse.trace_id` e o evento de auditoria correspondente;
+6. capacidades fail-closed;
+7. adaptador `NULL` sem efeito externo;
+8. varredura do pacote novo contra imports e marcadores proibidos.
+
+## Remediação LEA-44
+
+```text
+LEA_44_F01=REMEDIATED
+LEA_44_F02=REMEDIATED
+RETEST_REQUIRED=YES
+MERGE_AUTHORIZED=NO
+```
+
+- `LEA-44-F01`: o serviço gera um único `trace_id` por leitura de saúde e o reutiliza na resposta e no evento `health_snapshot_returned`;
+- `LEA-44-F02`: o manifesto registra PR #64, LEA-44, modo Draft, HEAD observado e estado de reteste;
+- o teste de integração exige igualdade de `trace_id` e `reason_code` entre resposta e auditoria.
 
 ## Rollback
 
