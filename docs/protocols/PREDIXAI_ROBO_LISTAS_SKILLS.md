@@ -4,6 +4,8 @@
 
 As Skills são comandos curtos que acionam protocolos completos sem depender de checkpoint colado, ZIP ou memória informal de outro chat.
 
+Aplicar também `docs/protocols/PROTOCOLO_EXECUCAO_PROLONGADA_COMANDOS_COMPOSTOS.md` quando uma mensagem combinar Skills ou solicitar execução de múltiplas unidades na mesma interação.
+
 ## Regra universal de pré-escrita
 
 Antes de qualquer escrita externa, a sessão captura expectativas efêmeras e consulta os valores atuais:
@@ -68,7 +70,16 @@ INICIAR_CREATES_BRANCH=NO
 INICIAR_WRITES_GITHUB=NO
 INICIAR_WRITES_LINEAR=NO
 INICIAR_WRITES_EXTERNAL_SYSTEMS=NO
-INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
+INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES_WHEN_STANDALONE
+```
+
+Quando o comando for composto, a fase `iniciar` permanece somente leitura, mas a sessão prossegue para a Skill seguinte após validar estado, escopo e autorizações:
+
+```text
+COMPOSITE_EXAMPLE=@GitHub_@Linear_iniciar_e_revisar_LEA_35
+INICIAR_PHASE_READ_ONLY=YES
+COMPOSITE_COMMAND_CONTINUES_TO_NEXT_SKILL=YES
+SUBSEQUENT_SKILL_SCOPE_VALIDATION=REQUIRED
 ```
 
 Informar `README_SYNC_STATUS=PASS|WARN|FAIL` quando a primeira página estiver divergente.
@@ -76,6 +87,70 @@ Informar `README_SYNC_STATUS=PASS|WARN|FAIL` quando a primeira página estiver d
 ### `continuar`
 
 Executar a próxima unidade autorizada da missão. Capturar expectativas de pré-escrita, consultar valores atuais e respeitar o `transition_id`. Quando alterar estado visível, incluir o README na sincronização.
+
+`continuar` não deve encerrar a resposta após uma unidade quando o comando solicitar explicitamente `fluxo` ou `campanha`; nesse caso, avançar pela fila até o gate objetivo ou parada obrigatória.
+
+### `fluxo`
+
+Executar uma cadeia ordenada de unidades relacionadas em uma única interação.
+
+Sintaxe:
+
+```text
+@GitHub @Linear iniciar e executar fluxo <MISSÃO> até <GATE_ALVO>
+```
+
+Parâmetros opcionais:
+
+```text
+OBJETIVO=<resultado verificável>
+ORÇAMENTO_DE_UNIDADES=8..20
+PERMITIDO=<ações autorizadas>
+PROIBIDO=<ações bloqueadas>
+PARAR_EM=<gates obrigatórios>
+ENTREGA=<artefatos esperados>
+```
+
+Regras:
+
+```text
+DEFAULT_WORK_UNIT_BUDGET=12
+STOP_AFTER_EACH_SUBTASK=NO
+CONTINUE_QUEUE_AUTOMATICALLY=YES
+ASK_CONFIRMATION_BETWEEN_AUTHORIZED_REVERSIBLE_TASKS=NO
+BACKGROUND_EXECUTION=NO
+CHECKPOINT_ON_CONTEXT_OR_CONNECTOR_LIMIT=YES
+```
+
+Fila padrão:
+
+```text
+RECONSTRUIR
+→ VALIDAR
+→ INVESTIGAR
+→ PLANEJAR
+→ REGISTRAR_LINEAR
+→ PREPARAR_BRANCH
+→ PRODUZIR
+→ AUTO_REVISAR
+→ VALIDAR_CI
+→ PUBLICAR_PR
+→ SINCRONIZAR
+→ PREPARAR_BOSS_GATE
+→ CHECKPOINT_OU_ENTREGA
+```
+
+### `campanha`
+
+Executar um fluxo amplo, normalmente entre 10 e 20 unidades verificáveis, mantendo a mesma missão, o mesmo escopo e os mesmos gates.
+
+Sintaxe:
+
+```text
+@GitHub @Linear iniciar e executar campanha <MISSÃO> até <GATE_ALVO>
+```
+
+`campanha` não significa execução ilimitada, segundo plano ou autorização geral. Ela deve parar em qualquer gate humano, atualização concorrente, state drift, falha de conector sem fallback seguro, revisão independente, merge, custo, decisão legal/comercial, ação irreversível, mudança de escopo, código não autorizado ou conclusão da missão.
 
 ### `missão`
 
@@ -200,17 +275,39 @@ Mostrar contexto, conectores, sincronização, lock consultivo, state drift, REA
 
 Registrar decisão humana, justificativa, impacto e continuidade sem enfraquecer gates técnicos. Atualizar o painel quando a decisão alterar estado público.
 
+## Comandos compostos canônicos
+
+### Curto
+
+```text
+@GitHub @Linear iniciar e revisar LEA-35
+```
+
+### Fluxo documental
+
+```text
+@GitHub @Linear iniciar e executar fluxo LEA-XX até READY_FOR_INDEPENDENT_REVIEW, com até 12 unidades. Investigue, planeje, documente, valide, publique PR Draft, sincronize GitHub e Linear e prepare o Boss Gate. Pare antes de revisão independente, merge, código, SQL, migration, runtime, custo ou decisão irreversível.
+```
+
+### Campanha documental
+
+```text
+@GitHub @Linear iniciar e executar campanha LEA-XX até READY_FOR_INDEPENDENT_REVIEW. Continue automaticamente entre tarefas reversíveis e retorne somente em bloqueio, gate humano, checkpoint obrigatório ou conclusão.
+```
+
 ## Autonomia padrão
 
 ```text
 CONTINUE_AUTOMATICALLY=YES
-STOP_ONLY_ON=CRITICAL_BLOCKER|CONCURRENT_UPDATE|STATE_DRIFT|CONNECTOR_FAILURE|INDEPENDENT_REVIEW|MERGE_AUTHORIZATION|IRREVERSIBLE_ACTION|COST|LEGAL_OR_COMMERCIAL_DECISION|SCOPE_CHANGE|UNAUTHORIZED_CODE_CHANGE|MISSION_COMPLETE
+STOP_ONLY_ON=CRITICAL_BLOCKER|CONCURRENT_UPDATE|STATE_DRIFT|CONNECTOR_FAILURE|INDEPENDENT_REVIEW|MERGE_AUTHORIZATION|IRREVERSIBLE_ACTION|COST|LEGAL_OR_COMMERCIAL_DECISION|SCOPE_CHANGE|UNAUTHORIZED_CODE_CHANGE|UNAUTHORIZED_RUNTIME|MISSION_COMPLETE|CONTEXT_LIMIT
 ```
+
+Comando geral de autonomia não equivale a autorização de merge, código, SQL, migration, custo, congelamento, implementação ou Modo LIVE.
 
 ## Modos de resposta
 
 - rápido: `estado`, `saúde`, `painel`, `fontes`, `roadmap`;
-- missão: `iniciar`, `missão`, `continuar`, `mini`;
+- missão: `iniciar`, `missão`, `continuar`, `mini`, `fluxo`, `campanha`;
 - crítico: `revisar`, `validar`, `riscos`, `evidências`;
 - entrega: `checkpoint`, `handoff`, `fechar`, `sincronizar`.
 
