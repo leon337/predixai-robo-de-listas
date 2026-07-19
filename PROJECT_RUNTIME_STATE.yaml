@@ -12,7 +12,7 @@ active_linear_issue: "LEA-43"
 active_review_issue: "LEA-44"
 active_pull_request: 64
 working_branch: "leonpcsn/lea-43-fnd-001-safe-server-foundation"
-observed_pr_head: "10c246183dd3c85eef1c0482dbfcaa459de5e3aa"
+observed_pr_head: "7bba409b7a908ea5820c2d427d5a09e74d51a5cd"
 pr_mode: "DRAFT"
 current_gate: "FND_001_INDEPENDENT_RETEST"
 gate_status: "REMEDIATED_AWAITING_RETEST"
@@ -92,7 +92,7 @@ mission_lock:
   owner: "LEA-43"
   session_id: "lea43-lea44-remediation-20260719"
   base_sha: "861db10366e3c9f20b8452535427755a273899a4"
-  observed_pr_head: "10c246183dd3c85eef1c0482dbfcaa459de5e3aa"
+  observed_pr_head: "7bba409b7a908ea5820c2d427d5a09e74d51a5cd"
   state_revision_snapshot: 25
   transition_id_snapshot: "LEA-43-T01"
   started_at_utc: "2026-07-19T21:39:10Z"
