@@ -1,0 +1,68 @@
+# LEA-40 — Plano de revisão de prontidão para implementação
+
+```text
+MISSION=LEA-40
+BASE_MAIN_SHA=cb2f180aabce484f6830594cf1e4d9211743e472
+BASE_STATE_REVISION=21
+ARCHITECTURE_V1_FROZEN=YES
+DECISION=PENDING
+IMPLEMENTATION_AUTHORIZED=NO
+```
+
+## Objetivo
+
+Determinar, com evidência reproduzível, se o PredixAI Robô de Listas está pronto para iniciar a primeira missão de implementação da Arquitetura V1.0.
+
+## Saídas permitidas
+
+```text
+GO
+GO_WITH_CONDITIONS
+NO_GO
+```
+
+A decisão desta missão não autoriza código automaticamente. Uma revisão crítica independente e uma autorização humana separada continuam obrigatórias.
+
+## Fontes
+
+1. `PROJECT_RUNTIME_STATE.yaml`;
+2. `PROJECT_STATE.md`;
+3. Documento Mestre da Arquitetura V1.0;
+4. matriz consolidada de 218 requisitos;
+5. mapa dos 16 domínios e 12 handoffs;
+6. 18 ADRs `ACCEPTED`;
+7. política A+B;
+8. estrutura real do repositório, dependências, scripts e testes;
+9. estado da LEA-40 no Linear.
+
+## Gates
+
+```text
+G1_FROZEN_BASELINE=PASS|FAIL
+G2_FIRST_INCREMENT_DEFINED=PASS|FAIL
+G3_STACK_AND_REPOSITORY_FIT=PASS|FAIL
+G4_TEST_STRATEGY_DEFINED=PASS|FAIL
+G5_LOCAL_ENVIRONMENT_READY=PASS|FAIL
+G6_SECURITY_AND_SIMULATION_BOUNDARY=PASS|FAIL
+G7_DEPENDENCIES_AND_ROLLBACK=PASS|FAIL
+G8_ACCEPTANCE_CRITERIA=PASS|FAIL
+G9_GITHUB_LINEAR_STATE_SYNC=PASS|FAIL
+G10_READINESS_DECISION=GO|GO_WITH_CONDITIONS|NO_GO
+```
+
+## Restrições
+
+```text
+APPLICATION_CODE_CHANGE_AUTHORIZED=NO
+TEST_CODE_CHANGE_AUTHORIZED=NO
+SQL_AUTHORIZED=NO
+MIGRATION_AUTHORIZED=NO
+RUNTIME_EXECUTION_AUTHORIZED=NO
+REAL_CLICK_AUTHORIZED=NO
+LIVE_MODE_ARMED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+```
+
+## Processo
+
+INVESTIGAR → MAPEAR LACUNAS → DEFINIR PRIMEIRO INCREMENTO → DEFINIR TESTES E ACEITE → CLASSIFICAR RISCOS → EMITIR DECISÃO CANDIDATA → REVISÃO CRÍTICA INDEPENDENTE → AUTORIZAÇÃO HUMANA.
