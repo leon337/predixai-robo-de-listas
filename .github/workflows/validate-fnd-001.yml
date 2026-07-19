@@ -1,0 +1,32 @@
+name: Validar FND-001
+
+on:
+  pull_request:
+    paths:
+      - "server/**"
+      - "tests/server/**"
+      - "requirements-server.txt"
+      - "requirements-dev.txt"
+      - ".github/workflows/validate-fnd-001.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Instalar dependências isoladas
+        run: python -m pip install -r requirements-dev.txt
+      - name: Testes FND-001
+        run: python -m pytest -q tests/server
+      - name: Ruff
+        run: ruff check server tests/server
+      - name: Mypy
+        run: mypy server --ignore-missing-imports
