@@ -4,13 +4,12 @@
 
 - Repositório: `leon337/predixai-robo-de-listas`
 - Branch consolidada de entrada: `main`
-- Baseline de entrada validada: `a778f443f1d7c566bc11793ad86f605f4ef83e98`
+- Baseline de entrada: `a778f443f1d7c566bc11793ad86f605f4ef83e98`
 - Versão real: `V2.4.3-R1`
-- Missão ativa: `LEA-38 — Congelamento da Arquitetura V1.0`
-- Missão anterior: `LEA-34 — Documento Mestre`, concluída
-- Revisão anterior: `LEA-35 — Done / PASS`
+- Missão builder: `LEA-38 — Congelamento da Arquitetura V1.0`
+- Revisão independente: `LEA-39 — revisão crítica do PR #60`
 - Branch de trabalho: `leonpcsn/lea-38-congelamento-arquitetura-v1`
-- Pull request: ainda não criado
+- Pull request: `#60`, aberto e Draft
 - Arquitetura V1.0: aprovada e integrada, ainda não congelada
 - Implementação: não autorizada
 
@@ -19,27 +18,24 @@
 ```text
 STATE_REVISION=20
 TRANSITION_ID=LEA-38-T01
-TRANSITION_STATUS=IN_PROGRESS
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
 FROM_STATE=DOCUMENT_MASTER_COMPLETE_AWAITING_ARCHITECTURE_FREEZE_AUTHORIZATION
 TO_STATE=ARCHITECTURE_V1_FREEZE_CANDIDATE_READY_FOR_INDEPENDENT_REVIEW
-CURRENT_GATE=BUILD_FREEZE_CANDIDATE_PACKAGE
+CURRENT_GATE=INDEPENDENT_CRITICAL_REVIEW_LEA_39
 GATE_STATUS=IN_PROGRESS
-EXECUTION_STATUS=AUTHORIZED_DOCUMENTATION_ONLY
+EXECUTION_STATUS=AWAITING_INDEPENDENT_REVIEW
 MISSION_LOCK=LOCKED_ADVISORY
 ```
 
-Leo autorizou a retomada do trabalho em 19/07/2026. O roadmap oficial determina que o estágio seguinte é o congelamento da Arquitetura V1.0. A autorização inicia a missão de preparação; não permite ao builder declarar sozinho o status final `FROZEN`.
-
-## Objetivo
-
-Fixar uma baseline imutável da arquitetura aprovada, inventariar os artefatos canônicos e definir o controle de mudanças. O pacote deverá passar por revisão crítica independente antes de qualquer merge ou declaração final de congelamento.
+Leo autorizou a retomada do roadmap em 19/07/2026. A missão LEA-38 prepara o congelamento, mas o builder não pode declarar sozinho o status final `FROZEN`.
 
 ## Baseline candidata
 
 ```text
 BASELINE_COMMIT=a778f443f1d7c566bc11793ad86f605f4ef83e98
+PR_60_REVIEW_TARGET_HEAD_SNAPSHOT=33f267817713ccd8d3cc746fd2a173b6e0e8dd00
 DOCUMENT_MASTER=INTEGRATED_AND_CONFIRMED
-INDEPENDENT_REVIEW_LEA_35=PASS
+PREVIOUS_REVIEW_LEA_35=PASS
 REQUIREMENTS=218/218
 CANONICAL_DOMAINS=16/16
 MANDATORY_HANDOFFS=12/12
@@ -47,44 +43,43 @@ ADRS=18/18_ACCEPTED
 OPEN_BLOCKING_FINDINGS=0
 ```
 
-## Entregas em construção
+## Entregas publicadas no PR #60
 
 1. `docs/architecture/PLANO_MISSAO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md`;
 2. `docs/architecture/PACOTE_CANDIDATO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md`;
 3. `docs/architecture/POLITICA_CONTROLE_MUDANCAS_ARQUITETURA_V1_LEA-38_20260719.md`;
-4. auto-revisão preliminar do builder;
-5. prompt e issue de revisão crítica independente;
-6. sincronização do manifesto, estado humano, tronco, README, GitHub e Linear.
+4. auto-revisão preliminar registrada no corpo do PR;
+5. manifesto, estado humano, tronco e README sincronizados;
+6. prompt formal incorporado à issue `LEA-39`.
 
-## Gates da missão
+## Gates do builder
 
 ```text
-BASELINE_MAIN_PINNED=PASS_BUILDER
+BASELINE_MAIN_PINNED=PASS
 DOCUMENT_MASTER_INTEGRATED=PASS
-CANONICAL_ARTIFACT_INVENTORY=PASS_BUILDER
+CANONICAL_ARTIFACT_INVENTORY=PASS
 REQUIREMENTS_BASELINE=218/218
 CANONICAL_DOMAINS=16/16
 MANDATORY_HANDOFFS=12/12
 ADRS_BASELINE=18/18_ACCEPTED
-CHANGE_CONTROL_POLICY=PASS_BUILDER
-IMPLEMENTATION_BOUNDARY=PASS_BUILDER
-STATE_AND_README_SYNC=IN_PROGRESS
-BUILDER_SELF_REVIEW=NOT_STARTED
-INDEPENDENT_CRITICAL_REVIEW=NOT_STARTED
+CHANGE_CONTROL_POLICY=PASS
+IMPLEMENTATION_BOUNDARY=PASS
+STATE_AND_README_SYNC=PASS
+BUILDER_SELF_REVIEW=PASS_PRELIMINARY_IN_PR
+INDEPENDENT_CRITICAL_REVIEW=IN_PROGRESS_LEA_39
 ARCHITECTURE_V1_FROZEN=NO
 ```
 
-## Critério de congelamento
+## Boss Gate independente
+
+A LEA-39 deve validar autoridade, lifecycle do Documento Mestre, inventário de artefatos, cobertura, política A+B, controle de mudanças, limites de implementação e sincronização das fontes.
 
 ```text
-INDEPENDENT_CRITICAL_REVIEW=PASS_REQUIRED
-CRITICAL_FINDINGS=0_REQUIRED
-MAJOR_FINDINGS=0_REQUIRED
-OPEN_BLOCKING_FINDINGS=0_REQUIRED
-HUMAN_MERGE_AUTHORIZATION=REQUIRED
-FREEZE_PR_MERGED=YES_REQUIRED
-POST_MERGE_CONFIRMATION=PASS_REQUIRED
-OFFICIAL_SOURCES_RECORD_FROZEN=YES_REQUIRED
+INDEPENDENT_REVIEW_DECISION=PASS|PASS_WITH_CONDITIONS|FAIL
+CRITICAL_FINDINGS=0_REQUIRED_FOR_PASS
+MAJOR_FINDINGS=0_REQUIRED_FOR_PASS
+OPEN_BLOCKING_FINDINGS=0_REQUIRED_FOR_PASS
+MERGE_AUTHORIZATION=NOT_GRANTED
 ```
 
 ## Limites preservados
@@ -111,8 +106,8 @@ MODE_B_SUPPORTED!=MODE_B_ARMED
 ## Próxima ação
 
 ```text
-NEXT_ACTION=COMPLETE_BUILDER_PACKAGE_OPEN_PR_AND_PREPARE_INDEPENDENT_REVIEW
-AUTOMATIC_ADVANCE=YES_UNTIL_INDEPENDENT_REVIEW_GATE
+NEXT_ACTION=EXECUTE_LEA_39_INDEPENDENT_CRITICAL_REVIEW_OF_PR_60
+AUTOMATIC_ADVANCE=NO_AT_INDEPENDENT_REVIEW_GATE
 AUTOMATIC_MERGE=NO
 AUTOMATIC_IMPLEMENTATION=NO
 ```
