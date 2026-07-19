@@ -12,7 +12,7 @@ active_linear_issue: "LEA-34"
 active_review_issue: "LEA-35"
 active_pull_request: 58
 working_branch: "leonpcsn/lea-34-confirmacao-pos-merge"
-observed_pr_head: "9d55da1e56a8321d4665e9a46b47636e9706ea58"
+observed_pr_head: "2a7cc1ef239ffa221d707aa458ce581cc90ba81a"
 pr_mode: "READY"
 current_gate: "POST_MERGE_CONFIRMATION_INTEGRATION"
 gate_status: "IN_PROGRESS"
@@ -42,10 +42,10 @@ review_target_head: "a8ce01aa747046518d1da3e445a1f8c47fbe39ef"
 review_decision: "PASS"
 review_completed_at_utc: "2026-07-19T10:25:01Z"
 
- github_sync_status: "IN_PROGRESS"
+github_sync_status: "IN_PROGRESS"
 linear_sync_status: "PASS"
 readme_sync_status: "IN_PROGRESS"
-last_sync_at_utc: "2026-07-19T11:26:00Z"
+last_sync_at_utc: "2026-07-19T11:27:00Z"
 
 mission_lock:
   locked: true
@@ -54,12 +54,12 @@ mission_lock:
   owner: "LEA-34"
   session_id: "lea34-post-merge-confirmation-20260719"
   base_sha: "50b90e123b2e1e3a54fb4e0de612c9b7c777bb07"
-  observed_pr_head: "9d55da1e56a8321d4665e9a46b47636e9706ea58"
+  observed_pr_head: "2a7cc1ef239ffa221d707aa458ce581cc90ba81a"
   state_revision_snapshot: 19
   transition_id_snapshot: "LEA-34-T01"
   started_at_utc: "2026-07-19T11:23:22Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-19T11:26:00Z"
+  heartbeat_at_utc: "2026-07-19T11:27:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
