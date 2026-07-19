@@ -42,7 +42,7 @@ O commit `a778f443f1d7c566bc11793ad86f605f4ef83e98` é a âncora imutável de en
 
 | Papel | Caminho | Blob SHA na baseline |
 |---|---|---|
-| Documento Mestre | `docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md` | `e6fac689de56295e1146d46ecdcb564c3e6ef159` |
+| Documento Mestre | `docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md` | `aa707fbd64835d393956fa1dfa33b0c93a69ae37` |
 | matriz do Documento Mestre | `docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md` | `946f3a921579c2ebee95a3d867a02759684e875e` |
 | apêndice normativo | `docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md` | `f23f83aeb794f12b0fbbf5b8937b714f069aca46` |
 | matriz consolidada 218/218 | `docs/architecture/MATRIZ_CONSOLIDADA_REQUISITOS_RASTREABILIDADE_PTM_V2.5_V2.6_V2.7_LEA-18_20260717.md` | `3914816e5b76d61d44fe613c478d548506031064` |
