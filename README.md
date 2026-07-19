@@ -8,74 +8,52 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_BUILDER=LEA-34 — Documento Mestre da Arquitetura V1.0
-REVISÃO=LEA-35 — PASS
-FASE=DOCUMENT_MASTER_POST_REVIEW_PRE_MERGE
-ESTADO=READY_FOR_MERGE_AUTHORIZATION
-GATE=HUMAN_MERGE_AUTHORIZATION_PENDING
-PULL_REQUEST=56_DRAFT_OPEN_MERGEABLE
-BRANCH=leonpcsn/lea-34-documento-mestre-arquitetura-v1
-BASE_MAIN_SHA=65b18341c06a391ea48ae5029102ad7a095c3340
-REVIEW_HEAD=a8ce01aa747046518d1da3e445a1f8c47fbe39ef
+MISSÃO=LEA-34 — Documento Mestre da Arquitetura V1.0
+REVISÃO=LEA-35 — DONE / PASS
+FASE=DOCUMENT_MASTER_POST_MERGE_CONFIRMATION
+ESTADO=MERGED_PENDING_POST_MERGE_CONFIRMATION
+GATE=POST_MERGE_CONFIRMATION_INTEGRATION
+MAIN_HEAD=50b90e123b2e1e3a54fb4e0de612c9b7c777bb07
+MAIN_PR=56_MERGED
+CONFIRMATION_PR=58_OPEN
 STATE_REVISION=19
 TRANSITION_ID=LEA-34-T01
-TRANSITION_STATUS=PARTIAL
-SNAPSHOT_AT_UTC=2026-07-19T11:07:00Z
+SNAPSHOT_AT_UTC=2026-07-19T11:26:00Z
 STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
-MERGE_AUTORIZADO=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
 ARQUITETURA_CONGELADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-## ✅ Boss Gate do Documento Mestre
+## ✅ Documento Mestre
 
 | Entrega ou gate | Estado |
 |---|---|
-| plano da missão | ✅ publicado |
-| Documento Mestre V1.0 | ✅ Draft do builder |
+| Documento Mestre V1.0 | ✅ integrado |
 | matriz de rastreabilidade | ✅ `218/218` |
 | domínios e handoffs | ✅ `16/16` e `12/12` |
 | ADRs referenciados | ✅ `18/18 ACCEPTED` |
-| auto-revisão do builder | ✅ `PASS_PRELIMINARY` |
-| CI do HEAD revisado | ✅ `9/9` |
 | revisão crítica independente | ✅ `LEA-35 PASS` |
-| achados bloqueantes abertos | ✅ `0` |
-| sincronização pós-revisão | ✅ concluída |
-| autorização humana de merge | ⏳ pendente |
-| merge | ⛔ não executado |
+| achados bloqueantes | ✅ `0` |
+| CI do PR principal | ✅ `9/9` |
+| autorização humana | ✅ concedida e consumida |
+| merge do PR #56 | ✅ `50b90e1…` |
+| confirmação do HEAD da main | ✅ |
+| recibo pós-merge | 🟧 PR #58 |
+| fechamento da LEA-34 | ⏳ após integração do recibo |
 
-## 📊 Resultado independente
-
-```text
-G1_AUTHORITY_AND_STATE=PASS
-G2_MASTER_STRUCTURE=PASS
-G3_CANONICAL_DOMAINS=16/16
-G4_MANDATORY_HANDOFFS=12/12
-G5_REQUIREMENT_TRACEABILITY=218/218
-G6_ADR_REFERENCES=18/18
-G7_POLICY_A_B_ALIGNMENT=PASS
-G8_TEST_EVIDENCE_BOUNDARY=PASS
-G9_IMPLEMENTATION_BOUNDARY=PASS
-G10_README_AND_STATE_SYNC=PASS
-CRITICAL_FINDINGS=0
-MAJOR_FINDINGS=0
-MINOR_FINDINGS=0
-OPEN_BLOCKING_FINDINGS=0
-ADVISORY_FINDINGS=1_NON_BLOCKING
-RETEST_REQUIRED=NO
-```
-
-`ADVISORY-01`: os IDs individuais de testes ficam para o plano de implementação. As 16 famílias `T-*` são vínculos arquiteturais futuros; nenhum teste runtime foi executado.
-
-## 🧱 Arquitetura consolidada
+## 📊 Cobertura confirmada
 
 ```text
-DOMÍNIOS=DOM-01..DOM-16
-HANDOFFS=H-01..H-12
-REQUISITOS=218/218
-ADRS=ADR-0001..ADR-0018_ACCEPTED
-POLÍTICA_AUTOMAÇÃO=A+B_COM_MODO_B_DESLIGADO
+CANONICAL_DOMAINS=16/16
+MANDATORY_HANDOFFS=12/12
+TOTAL_REQUIREMENTS=218/218
+DUPLICATE_REQUIREMENT_IDS=0
+ORPHAN_REQUIREMENT_IDS=0
+NEW_REQUIREMENT_IDS=0
+ADRS_REFERENCED=18/18_ACCEPTED
+FUTURE_TEST_FAMILIES=16
+TEST_RUNTIME_EXECUTED=NO
 ```
 
 ## 🗺️ Mapa da campanha
@@ -85,29 +63,24 @@ AUDITORIA MESTRA                         ✅
 PTM V2.5 / V2.6 / V2.7                  ✅
 CONSOLIDAÇÃO CRUZADA                    ✅
 18 ADRs ACCEPTED                        ✅
-BOSS GATE PRÉ-DOCUMENTO MESTRE          ✅ LEA-32 RETESTE 01
-REMEDIAÇÃO E CONFIRMAÇÃO                ✅ LEA-33
-DRAFT DO DOCUMENTO MESTRE               ✅ LEA-34 / PR #56
+BOSS GATE PRÉ-DOCUMENTO MESTRE          ✅
+DOCUMENTO MESTRE                        ✅ PR #56 MERGED
 REVISÃO CRÍTICA DO DOCUMENTO MESTRE     ✅ LEA-35 PASS
-SINCRONIZAÇÃO PÓS-REVISÃO               ✅
-DECISÃO HUMANA DE MERGE                 ⏳
-MERGE E CONFIRMAÇÃO PÓS-MERGE           ⬜
-CONGELAMENTO DA ARQUITETURA V1.0        ⬜
+CONFIRMAÇÃO PÓS-MERGE                   🟧 PR #58
+FECHAMENTO DA LEA-34                    ⏳
+CONGELAMENTO DA ARQUITETURA V1.0        ⏳ AUTORIZAÇÃO POSTERIOR
 PRONTIDÃO PARA IMPLEMENTAÇÃO            ⬜
 ```
 
-## 🧾 Artefatos da missão
+## 🧾 Artefatos
 
-- [Plano da missão](docs/architecture/PLANO_MISSAO_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md)
 - [Documento Mestre da Arquitetura V1.0](docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md)
 - [Matriz de rastreabilidade](docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md)
 - [Apêndice de domínios e handoffs](docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md)
 - [Auto-revisão do builder](docs/history/reviews/AUTO_REVISAO_BUILDER_DOCUMENTO_MESTRE_LEA-34_20260718.md)
-- [Prompt da revisão independente](docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_DOCUMENTO_MESTRE_LEA-35_20260718.md)
-- [Checkpoint pós-revisão](docs/history/ptp/CHECKPOINT_LEA-34_LEA-35_READY_FOR_MERGE_AUTHORIZATION_20260719.md)
+- [Checkpoint pré-merge](docs/history/ptp/CHECKPOINT_LEA-34_LEA-35_READY_FOR_MERGE_AUTHORIZATION_20260719.md)
+- [Recibo pós-merge](docs/history/receipts/RECIBO_POS_MERGE_LEA-34_PR-56_20260719.md)
 - [Índice dos ADRs](docs/architecture/adrs/README.md)
-
-A evidência formal do `PASS` está registrada no review do PR `#56` e na issue Linear `LEA-35`.
 
 ## 🔒 Limites ativos
 
@@ -118,17 +91,13 @@ SQL_CREATED=NO
 MIGRATION_CREATED=NO
 RUNTIME_EXECUTED=NO
 REAL_CLICK_EXECUTED=NO
-MERGE_AUTHORIZED=NO
-MERGE_EXECUTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
 ARCHITECTURE_FREEZE_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
 ```
 
 ```text
-INDEPENDENT_REVIEW_PASS!=MERGE_AUTHORIZATION
-MERGEABLE!=MERGE_AUTHORIZED
-ARCHITECTURE_ACCEPTED!=ARCHITECTURE_FROZEN
+DOCUMENT_MASTER_MERGED!=ARCHITECTURE_FROZEN
 ARCHITECTURE_ACCEPTED!=IMPLEMENTATION_AUTHORIZED
 TEST_SPEC_CREATED!=TEST_RUNTIME_EXECUTED
 MODE_B_SUPPORTED!=MODE_B_ARMED
@@ -137,7 +106,6 @@ MODE_B_SUPPORTED!=MODE_B_ARMED
 ## Próxima ação
 
 ```text
-NEXT_ACTION=AWAIT_EXPLICIT_HUMAN_MERGE_AUTHORIZATION_FOR_PR_56
-PR_MODE=DRAFT
-AUTOMATIC_MERGE=NO
+NEXT_ACTION=VALIDATE_AND_INTEGRATE_POST_MERGE_CONFIRMATION_PR_58
+AFTER_INTEGRATION=FINAL_CONFIRMATION_AND_LEA_34_CLOSURE
 ```
