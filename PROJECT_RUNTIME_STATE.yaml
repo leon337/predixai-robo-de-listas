@@ -7,18 +7,18 @@ observed_main_head: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-38 — Congelamento da Arquitetura V1.0"
-active_stage: "ARCHITECTURE_FREEZE_INDEPENDENT_CRITICAL_REVIEW"
+active_stage: "ARCHITECTURE_FREEZE_REMEDIATION_AWAITING_RETEST"
 active_linear_issue: "LEA-38"
 active_review_issue: "LEA-39"
 active_pull_request: 60
 working_branch: "leonpcsn/lea-38-congelamento-arquitetura-v1"
-observed_pr_head: "33f267817713ccd8d3cc746fd2a173b6e0e8dd00"
+observed_pr_head: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
 pr_mode: "DRAFT"
-current_gate: "INDEPENDENT_CRITICAL_REVIEW_LEA_39"
+current_gate: "LEA_39_REMEDIATION_AND_RETEST"
 gate_status: "IN_PROGRESS"
-next_action: "EXECUTE_LEA_39_INDEPENDENT_CRITICAL_REVIEW_OF_PR_60"
+next_action: "EXECUTE_LEA_39_INDEPENDENT_RETEST_ON_REMEDIATED_PR_60_HEAD"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_PENDING"
+  - "LEA_39_RETEST_REQUIRED_AFTER_F01_F02_REMEDIATION"
 
 transition_id: "LEA-38-T01"
 transition_status: "READY_FOR_INDEPENDENT_REVIEW"
@@ -40,27 +40,38 @@ post_merge_receipt_merge_commit: null
 final_confirmation_pr: null
 final_confirmation_merge_commit: null
 freeze_baseline_commit: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
-freeze_candidate_status: "READY_FOR_INDEPENDENT_REVIEW"
+freeze_candidate_status: "REMEDIATED_AWAITING_INDEPENDENT_RETEST"
 architecture_v1_status: "APPROVED_INTEGRATED_NOT_YET_FROZEN"
+initial_review_target_snapshot: "33f267817713ccd8d3cc746fd2a173b6e0e8dd00"
+reviewed_head_before_remediation: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
+initial_snapshot_superseded: true
+review_decision: "FAIL"
+critical_findings: 0
+major_findings: 2
+open_blocking_findings: 2
+retest_required: true
+remediated_findings:
+  - "LEA-39-F01"
+  - "LEA-39-F02"
 
-github_sync_status: "PASS"
-linear_sync_status: "PASS"
-readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-19T12:10:00Z"
+ github_sync_status: "PASS"
+linear_sync_status: "PENDING"
+readme_sync_status: "PENDING"
+last_sync_at_utc: "2026-07-19T13:00:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-38"
-  session_id: "lea38-architecture-freeze-review-handoff-20260719"
+  session_id: "lea38-lea39-remediation-20260719"
   base_sha: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
-  observed_pr_head: "33f267817713ccd8d3cc746fd2a173b6e0e8dd00"
+  observed_pr_head: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
   state_revision_snapshot: 20
   transition_id_snapshot: "LEA-38-T01"
   started_at_utc: "2026-07-19T11:55:58Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-19T12:10:00Z"
+  heartbeat_at_utc: "2026-07-19T13:00:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -88,19 +99,20 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
-  task_status_and_dependencies: "Linear LEA-38 In Progress; LEA-39 In Progress independent review"
+  task_status_and_dependencies: "Linear LEA-38 In Progress; LEA-39 FAIL awaiting retest"
   mission_plan: "docs/architecture/PLANO_MISSAO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md"
   freeze_candidate_package: "docs/architecture/PACOTE_CANDIDATO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md"
   change_control_policy: "docs/architecture/POLITICA_CONTROLE_MUDANCAS_ARQUITETURA_V1_LEA-38_20260719.md"
+  lifecycle_certificate: "docs/architecture/CERTIFICADO_LIFECYCLE_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-39_20260719.md"
   builder_self_review: "PR #60 body"
-  independent_review_prompt: "Linear LEA-39 description"
+  independent_review_prompt: "Linear LEA-39 description and formal FAIL result"
   master_document: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md"
   master_traceability: "docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md"
   domain_handoff_appendix: "docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md"
   adr_index: "docs/architecture/adrs/README.md"
   policy_a_b: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   consolidated_architecture: "GitHub main at a778f443f1d7c566bc11793ad86f605f4ef83e98"
-  unmerged_work: "PR #60 at observed head 33f267817713ccd8d3cc746fd2a173b6e0e8dd00"
+  unmerged_work: "PR #60 remediation branch; final retest head pending"
 
 safety:
   manifest_documentation_drift: false
@@ -133,7 +145,7 @@ safety:
   builder_self_review_evidence: "PR #60 body"
   independent_review_prompt_created: true
   independent_review_prompt_evidence: "Linear LEA-39"
-  independent_critical_review: "IN_PROGRESS_LEA_39"
+  independent_critical_review: "FAIL_LEA_39_REMEDIATED_AWAITING_RETEST"
   architecture_v1_frozen: false
   ready_for_independent_review: true
   ready_for_merge_authorization: false
