@@ -43,7 +43,7 @@ review_decision: "PASS"
 review_completed_at_utc: "2026-07-19T10:25:01Z"
 post_review_sync_scope: "LIVE_STATE_AND_CHECKPOINT_ONLY"
 
- github_sync_status: "PASS"
+github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
 last_sync_at_utc: "2026-07-19T11:07:00Z"
