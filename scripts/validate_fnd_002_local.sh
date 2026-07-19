@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 EXPECTED_REPO="leon337/predixai-robo-de-listas"
 EXPECTED_BRANCH="leonpcsn/lea-46-fnd-002-safe-runtime-read-model"
-EXPECTED_HEAD="3b7b9332a32be4f779b1629ce40daac7fd5399aa"
+EXPECTED_HEAD="${FND002_EXPECTED_HEAD:-}"
 REPORT_DIR="reports/local"
 TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 REPORT_FILE="${REPORT_DIR}/FND_002_LOCAL_VALIDATION_${TIMESTAMP}.txt"
@@ -37,6 +37,9 @@ log "REPOSITORY_ROOT=$REPO_ROOT"
 log "EXPECTED_REPOSITORY=$EXPECTED_REPO"
 log "EXPECTED_BRANCH=$EXPECTED_BRANCH"
 log "EXPECTED_HEAD=$EXPECTED_HEAD"
+
+[[ -n "$EXPECTED_HEAD" ]] || fail "defina FND002_EXPECTED_HEAD com o HEAD fornecido no handoff"
+[[ "$EXPECTED_HEAD" =~ ^[0-9a-f]{40}$ ]] || fail "FND002_EXPECTED_HEAD deve ser um SHA Git completo de 40 caracteres"
 
 REMOTE_URL="$(git remote get-url origin 2>/dev/null || true)"
 log "ORIGIN_URL=$REMOTE_URL"
