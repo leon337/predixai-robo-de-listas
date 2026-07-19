@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 24
+state_revision: 25
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,20 +7,21 @@ observed_main_head: "861db10366e3c9f20b8452535427755a273899a4"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-43 — FND-001 Safe Server Foundation"
-active_stage: "FND_001_BUILD_AND_VALIDATE"
+active_stage: "FND_001_REMEDIATED_AWAITING_INDEPENDENT_RETEST"
 active_linear_issue: "LEA-43"
-active_review_issue: null
-active_pull_request: null
+active_review_issue: "LEA-44"
+active_pull_request: 64
 working_branch: "leonpcsn/lea-43-fnd-001-safe-server-foundation"
-observed_pr_head: null
-pr_mode: "DRAFT_PENDING_CREATION"
-current_gate: "FND_001_BUILD_AND_VALIDATE"
-gate_status: "IN_PROGRESS"
-next_action: "COMPLETE_BUILD_TESTS_AND_PUBLISH_DRAFT_PR"
-blockers: []
+observed_pr_head: "10c246183dd3c85eef1c0482dbfcaa459de5e3aa"
+pr_mode: "DRAFT"
+current_gate: "FND_001_INDEPENDENT_RETEST"
+gate_status: "REMEDIATED_AWAITING_RETEST"
+next_action: "RETEST_LEA_44_ON_REMEDIATED_HEAD"
+blockers:
+  - "LEA_44_INDEPENDENT_RETEST_REQUIRED"
 
 transition_id: "LEA-43-T01"
-transition_status: "IN_PROGRESS"
+transition_status: "REMEDIATED_AWAITING_INDEPENDENT_RETEST"
 from_state: "IMPLEMENTATION_READINESS_GO_WITH_CONDITIONS_INTEGRATED"
 to_state: "FND_001_READY_FOR_INDEPENDENT_REVIEW"
 baseline_main_sha: "861db10366e3c9f20b8452535427755a273899a4"
@@ -29,19 +30,27 @@ bound_transition_id: "LEA-43-T01"
 previous_transition_id: "LEA-40-T01"
 
 builder_issue: "LEA-43"
-review_issue: null
+review_issue: "LEA-44"
+implementation_pull_request: 64
+initial_review_head: "0170e0b5817240b2f8d0336612ebaf961ca78f6f"
+reviewed_head_before_remediation: "0170e0b5817240b2f8d0336612ebaf961ca78f6f"
+remediation_observed_head: "10c246183dd3c85eef1c0482dbfcaa459de5e3aa"
+independent_review_decision: "PASS_WITH_CONDITIONS"
+critical_findings: 0
+major_findings: 0
+open_blocking_findings: 0
+retest_required: true
+independent_review_required: true
+remediated_findings:
+  - "LEA-44-F01"
+  - "LEA-44-F02"
+
 readiness_pull_request: 62
 readiness_pr_head: "693cd378cb9fbd1275ff26efa7f97a86f50ea156"
 readiness_merge_commit: "37ab4ce45ecc1252b9b2d6b01204165fb8864908"
 readiness_decision: "GO_WITH_CONDITIONS"
-independent_review_decision: "PASS_WITH_CONDITIONS"
 first_increment: "FND-001_SAFE_SERVER_FOUNDATION"
 first_increment_mode: "NULL_ONLY"
-critical_findings: 0
-major_findings: 0
-open_blocking_findings: 0
-retest_required: false
-independent_review_required: true
 
 architecture_v1_status: "FROZEN"
 architecture_v1_frozen: true
@@ -52,15 +61,16 @@ adrs: "18/18_ACCEPTED"
 
 fnd_001_gates:
   baseline: "PASS"
-  modular_structure: "IN_PROGRESS"
-  fail_closed_config: "IN_PROGRESS"
-  null_adapter_only: "IN_PROGRESS"
-  health_and_capabilities: "IN_PROGRESS"
-  audit_and_traceability: "IN_PROGRESS"
-  negative_security_tests: "IN_PROGRESS"
-  legacy_isolation_and_rollback: "PASS_INITIAL"
-  ci: "PENDING_PR"
-  ready_for_independent_review: "NO"
+  modular_structure: "PASS"
+  fail_closed_config: "PASS"
+  null_adapter_only: "PASS"
+  health_and_capabilities: "PASS"
+  audit_and_traceability: "REMEDIATED_AWAITING_RETEST"
+  negative_security_tests: "PASS"
+  legacy_isolation_and_rollback: "PASS"
+  dependency_and_ci_quality: "PASS_10_OF_10_BEFORE_REMEDIATION"
+  github_linear_state_sync: "REMEDIATED_AWAITING_RETEST"
+  ready_for_independent_review: "YES"
 
 conditions:
   - "PYNPUT_AND_REAL_CLICK_QUARANTINED"
@@ -70,24 +80,24 @@ conditions:
   - "NO_ANDROID_SIGNAL_ENGINE_OR_EXECUTION_IN_FND_001"
   - "ROLLBACK_BY_PR_REVERT_AND_LEGACY_ENTRYPOINT_PRESERVATION"
 
-github_sync_status: "PASS_BRANCH_FND_001"
-linear_sync_status: "PASS_LEA_43_IN_PROGRESS"
-readme_sync_status: "PENDING_FND_001_PR"
-last_sync_at_utc: "2026-07-19T21:39:10Z"
+github_sync_status: "PASS_PR_64_REMEDIATED"
+linear_sync_status: "PASS_LEA_43_LEA_44_RETEST_PENDING"
+readme_sync_status: "PENDING_FND_001_MERGE"
+last_sync_at_utc: "2026-07-19T21:55:00Z"
 
 mission_lock:
   locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
   owner: "LEA-43"
-  session_id: "lea43-fnd001-20260719"
+  session_id: "lea43-lea44-remediation-20260719"
   base_sha: "861db10366e3c9f20b8452535427755a273899a4"
-  observed_pr_head: null
-  state_revision_snapshot: 24
+  observed_pr_head: "10c246183dd3c85eef1c0482dbfcaa459de5e3aa"
+  state_revision_snapshot: 25
   transition_id_snapshot: "LEA-43-T01"
   started_at_utc: "2026-07-19T21:39:10Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-19T21:39:10Z"
+  heartbeat_at_utc: "2026-07-19T21:55:00Z"
 
 implementation_authorized: true
 code_change_authorized: true
@@ -108,17 +118,18 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
-  task_status_and_dependencies: "Linear LEA-43 In Progress"
+  task_status_and_dependencies: "Linear LEA-43 In Progress; LEA-44 Done awaiting retest"
   implementation_plan: "docs/implementation/FND_001_SAFE_SERVER_FOUNDATION_LEA_43_20260719.md"
+  independent_review: "Linear LEA-44 and PR #64 review"
   readiness_report: "docs/architecture/REVISAO_PRONTIDAO_IMPLEMENTACAO_LEA-40_20260719.md"
   master_document: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md"
   consolidated_architecture: "GitHub main at 861db10366e3c9f20b8452535427755a273899a4"
-  unmerged_work: "LEA-43 FND-001 implementation branch"
+  unmerged_work: "PR #64 FND-001 remediation branch"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "FND_001_BUILD_IN_PROGRESS"
+  execution_status: "FND_001_REMEDIATED_AWAITING_INDEPENDENT_RETEST"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
@@ -137,11 +148,11 @@ safety:
   migration_created: false
   runtime_executed: false
   first_increment_defined: true
-  ready_for_independent_review: false
-  ready_for_independent_retest: false
+  ready_for_independent_review: true
+  ready_for_independent_retest: true
   ready_for_implementation: true
   transition_complete: false
   last_completed_product_issue: "LEA-40"
   last_completed_product_issue_status: "DONE_AFTER_POST_MERGE_CONFIRMATION"
   current_product_issue: "LEA-43"
-  current_review_issue: "NONE"
+  current_review_issue: "LEA-44"
