@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from enum import StrEnum
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -11,6 +12,13 @@ from server.contracts import API_VERSION, AdapterMode, ReasonCode, RuntimeState
 from server.service import SafeServerService
 
 MAX_AUDIT_PAGE_SIZE = 100
+
+
+class DiagnosticStatus(StrEnum):
+    SAFE = "SAFE"
+    DEGRADED = "DEGRADED"
+    STOPPED = "STOPPED"
+    UNSAFE = "UNSAFE"
 
 
 class RuntimeSnapshot(BaseModel):
@@ -49,7 +57,7 @@ class DiagnosticSnapshot(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     api_version: str = API_VERSION
-    status: str
+    status: DiagnosticStatus
     mode: AdapterMode
     state: RuntimeState
     audit_event_count: int
@@ -65,11 +73,11 @@ class SafeRuntimeReadModel:
         self._service = service
 
     def runtime(self) -> RuntimeSnapshot:
-        health = self._service.health()
+        state, reason = self._service.state_snapshot()
         return RuntimeSnapshot(
-            state=health.state,
-            mode=health.mode,
-            reason_code=health.reason_code,
+            state=state,
+            mode=self._service.config.mode,
+            reason_code=reason,
             audit_enabled=self._service.config.audit_enabled,
         )
 
@@ -95,12 +103,23 @@ class SafeRuntimeReadModel:
 
     def diagnostics(self) -> DiagnosticSnapshot:
         events = self._service.audit.snapshot()
+        state, _reason = self._service.state_snapshot()
         return DiagnosticSnapshot(
-            status="SAFE",
+            status=self._diagnostic_status(state),
             mode=self._service.config.mode,
-            state=self._service.state,
+            state=state,
             audit_event_count=len(events),
         )
+
+    @staticmethod
+    def _diagnostic_status(state: RuntimeState) -> DiagnosticStatus:
+        mapping = {
+            RuntimeState.SAFE_IDLE: DiagnosticStatus.SAFE,
+            RuntimeState.DEGRADED: DiagnosticStatus.DEGRADED,
+            RuntimeState.STOPPED: DiagnosticStatus.STOPPED,
+            RuntimeState.BOOTING: DiagnosticStatus.UNSAFE,
+        }
+        return mapping.get(state, DiagnosticStatus.UNSAFE)
 
     @staticmethod
     def _to_view(item: AuditEvent) -> AuditEventView:
