@@ -12,7 +12,7 @@ active_linear_issue: "LEA-40"
 active_review_issue: "LEA-41"
 active_pull_request: 62
 working_branch: "leonpcsn/lea-40-revisao-prontidao-implementacao"
-observed_pr_head: "f47644d642cee8dfedf538aa78ec6dc6dfe660fa"
+observed_pr_head: "449abb377a847b65d7b0d076c4972c9c110022a7"
 pr_mode: "DRAFT"
 current_gate: "READINESS_INDEPENDENT_CRITICAL_RETEST"
 gate_status: "IN_PROGRESS"
@@ -86,7 +86,7 @@ mission_lock:
   owner: "LEA-40"
   session_id: "lea40-lea41-remediation-20260719"
   base_sha: "cb2f180aabce484f6830594cf1e4d9211743e472"
-  observed_pr_head: "f47644d642cee8dfedf538aa78ec6dc6dfe660fa"
+  observed_pr_head: "449abb377a847b65d7b0d076c4972c9c110022a7"
   state_revision_snapshot: 22
   transition_id_snapshot: "LEA-40-T01"
   started_at_utc: "2026-07-19T18:02:10Z"
