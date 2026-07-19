@@ -5,8 +5,11 @@ from server.config import ServerConfig
 
 
 def test_runtime_snapshot_is_null_only_and_read_only() -> None:
-    with TestClient(create_app(ServerConfig())) as client:
+    app = create_app(ServerConfig())
+    with TestClient(app) as client:
+        before = len(app.state.service.audit.snapshot())
         response = client.get("/api/v1/runtime")
+        after = len(app.state.service.audit.snapshot())
 
     assert response.status_code == 200
     payload = response.json()
@@ -14,13 +17,16 @@ def test_runtime_snapshot_is_null_only_and_read_only() -> None:
     assert payload["mode"] == "NULL"
     assert payload["external_effects"] is False
     assert "command" not in payload
+    assert after == before
 
 
-def test_audit_events_are_paginated_and_redacted() -> None:
+def test_audit_events_are_paginated_redacted_and_pure() -> None:
     app = create_app(ServerConfig())
     with TestClient(app) as client:
         client.get("/api/v1/health")
+        before = len(app.state.service.audit.snapshot())
         response = client.get("/api/v1/audit/events", params={"offset": 0, "limit": 1})
+        after = len(app.state.service.audit.snapshot())
 
     assert response.status_code == 200
     payload = response.json()
@@ -33,6 +39,7 @@ def test_audit_events_are_paginated_and_redacted() -> None:
         "trace_id",
         "timestamp_utc",
     }
+    assert after == before
 
 
 def test_audit_endpoint_rejects_unsafe_limits() -> None:
@@ -58,9 +65,12 @@ def test_audit_filter_is_exact_and_bounded() -> None:
     assert all(item["event"] == "health_snapshot_returned" for item in payload["items"])
 
 
-def test_diagnostics_remain_fail_closed() -> None:
-    with TestClient(create_app(ServerConfig())) as client:
+def test_diagnostics_are_safe_only_in_safe_idle() -> None:
+    app = create_app(ServerConfig())
+    with TestClient(app) as client:
+        before = len(app.state.service.audit.snapshot())
         response = client.get("/api/v1/diagnostics")
+        after = len(app.state.service.audit.snapshot())
 
     assert response.status_code == 200
     payload = response.json()
@@ -69,6 +79,29 @@ def test_diagnostics_remain_fail_closed() -> None:
     assert payload["external_effects"] is False
     assert payload["database"] is False
     assert payload["live_mode"] is False
+    assert after == before
+
+
+def test_diagnostics_report_degraded_state() -> None:
+    app = create_app(ServerConfig())
+    with TestClient(app) as client:
+        app.state.service.degrade()
+        response = client.get("/api/v1/diagnostics")
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "DEGRADED"
+    assert response.json()["state"] == "DEGRADED"
+
+
+def test_diagnostics_report_stopped_state() -> None:
+    app = create_app(ServerConfig())
+    with TestClient(app) as client:
+        app.state.service.stop()
+        response = client.get("/api/v1/diagnostics")
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "STOPPED"
+    assert response.json()["state"] == "STOPPED"
 
 
 def test_read_endpoints_do_not_accept_mutation_methods() -> None:
