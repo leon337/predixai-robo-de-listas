@@ -39,7 +39,35 @@ INICIAR_MODE=READ_ONLY
 FULL_HISTORY_READ_ON_START=NO
 INICIAR_EXECUTES_WORK=NO
 INICIAR_WRITES_EXTERNAL_SYSTEMS=NO
-INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES
+INICIAR_ENDS_AFTER_STATE_RECONSTRUCTION=YES_WHEN_STANDALONE
+```
+
+### Comandos compostos e execução prolongada
+
+Aplicar `docs/protocols/PROTOCOLO_EXECUCAO_PROLONGADA_COMANDOS_COMPOSTOS.md` quando a mensagem combinar Skills ou solicitar múltiplas unidades na mesma interação.
+
+Em novo chat dependente das fontes operacionais, usar o prefixo:
+
+```text
+@GitHub @Linear
+```
+
+Exemplos canônicos:
+
+```text
+@GitHub @Linear iniciar e revisar LEA-35
+@GitHub @Linear iniciar e executar fluxo LEA-XX até GATE_ALVO
+@GitHub @Linear iniciar e executar campanha LEA-XX até GATE_ALVO
+```
+
+A fase `iniciar` permanece somente leitura. Em comando composto, após reconstruir e validar o estado, a sessão prossegue para a Skill subsequente explicitamente solicitada.
+
+```text
+COMPOSITE_COMMAND_SUPPORTED=YES
+LONG_RUNNING_MODE=FOREGROUND_MULTI_STEP
+BACKGROUND_EXECUTION=NO
+AUTOMATIC_CONTINUATION_WITHIN_AUTHORIZED_SCOPE=YES
+GENERAL_AUTONOMY_COMMAND_DOES_NOT_AUTHORIZE_MERGE_CODE_COST_OR_LIVE=YES
 ```
 
 ## 4. Autoridade por domínio
@@ -125,6 +153,8 @@ RECONSTRUIR ESTADO
 ## 8. Limites de autonomia
 
 O sistema continua automaticamente dentro de missão autorizada e reversível. Deve parar por atualização concorrente, state drift, falha de conector, revisão crítica independente, autorização de merge, bloqueio técnico real, custo, decisão legal ou comercial, ação irreversível, mudança de escopo, código não autorizado ou missão concluída.
+
+Quando `fluxo` ou `campanha` estiver explicitamente solicitado, o sistema não deve parar após cada subtarefa reversível. Deve continuar pela fila autorizada até o gate objetivo, uma parada obrigatória ou necessidade de checkpoint por limite de contexto/conector.
 
 ## 9. Revisão crítica
 
