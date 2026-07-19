@@ -11,22 +11,22 @@ MAIN_PR_HEAD=594ce8c6dd2ef50a2ee18551eaac95d65692b28f
 ARCHITECTURE_REVIEW_HEAD=a8ce01aa747046518d1da3e445a1f8c47fbe39ef
 MAIN_PR_MERGE_COMMIT=50b90e123b2e1e3a54fb4e0de612c9b7c777bb07
 MERGED_AT_UTC=2026-07-19T11:23:22Z
+POST_MERGE_CONFIRMATION_PR=58
 TRANSITION_ID=LEA-34-T01
 STATE_REVISION=19
 DOCUMENTATION_ONLY=YES
-POST_MERGE_CONFIRMATION_PR=TO_BE_CREATED
 ```
 
 ## 2. Autorização
 
-Leo autorizou explicitamente retirar o PR `#56` do modo Draft e executar o merge documental em 19/07/2026. A integração foi protegida pelo HEAD exato `594ce8c6dd2ef50a2ee18551eaac95d65692b28f`.
+Leo autorizou explicitamente retirar o PR `#56` do modo Draft, executar o merge documental e continuar pela confirmação pós-merge em 19/07/2026. A integração principal foi protegida pelo HEAD exato `594ce8c6dd2ef50a2ee18551eaac95d65692b28f`.
 
 ```text
 HUMAN_MERGE_AUTHORIZATION=GRANTED
-AUTHORIZATION_SCOPE=PR_56_DOCUMENTATION_ONLY
+AUTHORIZATION_SCOPE=PR_56_AND_POST_MERGE_DOCUMENTAL_CONFIRMATION
 AUTHORIZED_HEAD=594ce8c6dd2ef50a2ee18551eaac95d65692b28f
-AUTHORIZATION_CONSUMED=YES
-PR_READY_FOR_REVIEW=YES
+AUTHORIZATION_CONSUMED_FOR_PR_56=YES
+POST_MERGE_FLOW_AUTHORIZED=YES
 ```
 
 ## 3. Resultado confirmado
@@ -62,16 +62,17 @@ LIVE_MODE_ARMED=NO
 
 ## 5. Estado pós-merge
 
-O Documento Mestre da Arquitetura V1.0, a matriz de rastreabilidade, o apêndice, os 18 ADRs referenciados e as fontes vivas do PR `#56` foram integrados à `main` no commit `50b90e1…`.
+O Documento Mestre da Arquitetura V1.0, sua matriz de rastreabilidade, o apêndice, os 18 ADRs referenciados e as fontes vivas foram integrados à `main` no commit `50b90e1…`.
 
-O merge não congela a Arquitetura V1.0 e não autoriza implementação. A LEA-34 somente será encerrada após este recibo e as projeções finais serem integrados e validados.
+O merge não congela a Arquitetura V1.0 e não autoriza implementação. O PR `#58` registra este recibo e sincroniza o estado pós-merge antes do fechamento da LEA-34.
 
 ```text
 MAIN_PR_MERGED=YES
+POST_MERGE_CONFIRMATION_PR=58
 POST_MERGE_CONFIRMATION=IN_PROGRESS
 LEA_35_STATUS=DONE_PASS
 LEA_34_STATUS=IN_PROGRESS_POST_MERGE_CONFIRMATION
 ARCHITECTURE_FREEZE=NOT_STARTED
 IMPLEMENTATION_AUTHORIZED=NO
-NEXT_ACTION=PUBLISH_AND_VALIDATE_POST_MERGE_CONFIRMATION
+NEXT_ACTION=VALIDATE_AND_INTEGRATE_PR_58
 ```
