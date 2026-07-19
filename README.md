@@ -8,43 +8,65 @@
 
 ```text
 VERSÃO_REAL=V2.4.3-R1
-MISSÃO_ATIVA=NONE
-ÚLTIMA_MISSÃO=LEA-34 — Documento Mestre da Arquitetura V1.0
-REVISÃO=LEA-35 — DONE / PASS
-FASE=DOCUMENT_MASTER_COMPLETE_AWAITING_ARCHITECTURE_FREEZE_AUTHORIZATION
-GATE=POST_MERGE_CONFIRMATION_PASS
-MAIN_DOCUMENT_PR=56_MERGED
-POST_MERGE_CONFIRMATION_PR=58_MERGED
-FINAL_CONFIRMATION_PR=59
-LAST_CONFIRMED_MAIN_HEAD=510a5f969dce77e1befdd8d8a23c299d7e90f5c6
-STATE_REVISION=19
-TRANSITION_ID=LEA-34-T01
-TRANSITION_STATUS=COMPLETE
-SNAPSHOT_AT_UTC=2026-07-19T11:33:00Z
-STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
+MISSÃO_BUILDER=LEA-38 — Congelamento da Arquitetura V1.0
+REVISÃO=LEA-39 — FAIL remediado, aguardando reteste
+FASE=ARCHITECTURE_V1_FREEZE_REMEDIATION_AWAITING_RETEST
+GATE=LEA_39_REMEDIATION_AND_RETEST
+BASE_MAIN_SHA=a778f443f1d7c566bc11793ad86f605f4ef83e98
+BRANCH=leonpcsn/lea-38-congelamento-arquitetura-v1
+PULL_REQUEST=60_DRAFT_OPEN
+INITIAL_REVIEW_TARGET_SNAPSHOT=33f267817713ccd8d3cc746fd2a173b6e0e8dd00
+ORIGINAL_REVIEWED_HEAD=6137267e70bcafecde5acb4b2d6e8a5da857eeca
+INITIAL_SNAPSHOT_SUPERSEDED=YES
+STATE_REVISION=20
+TRANSITION_ID=LEA-38-T01
+TRANSITION_STATUS=READY_FOR_INDEPENDENT_REVIEW
+ARQUITETURA_V1_CONGELADA=NO
 IMPLEMENTAÇÃO_AUTORIZADA=NO
-ARQUITETURA_CONGELADA=NO
 LIVE_MODE_ARMED=NO
 ```
 
-## ✅ Documento Mestre concluído
+## 🧊 Congelamento da Arquitetura V1.0
 
 | Entrega ou gate | Estado |
 |---|---|
-| Documento Mestre V1.0 | ✅ integrado |
-| matriz de rastreabilidade | ✅ `218/218` |
+| baseline de entrada | ✅ `a778f443…` |
+| Documento Mestre integrado | ✅ |
+| revisão LEA-35 | ✅ PASS |
+| requisitos | ✅ `218/218` |
 | domínios e handoffs | ✅ `16/16` e `12/12` |
-| ADRs referenciados | ✅ `18/18 ACCEPTED` |
-| revisão crítica independente | ✅ `LEA-35 PASS` |
-| achados bloqueantes | ✅ `0` |
-| CI documental | ✅ `9/9` |
-| merge do PR #56 | ✅ `50b90e1…` |
-| recibo pós-merge | ✅ PR #58 |
-| sincronização das fontes vivas | ✅ |
-| fechamento da LEA-34 | ✅ PASS |
-| congelamento da Arquitetura V1.0 | ⏳ não autorizado |
+| ADRs | ✅ `18/18 ACCEPTED` |
+| pacote candidato | ✅ PR #60 |
+| política de controle de mudanças | ✅ |
+| revisão crítica original | 🟥 `FAIL` |
+| LEA-39-F01 lifecycle | ✅ remediado por certificado normativo |
+| LEA-39-F02 snapshot | ✅ remediado |
+| reteste crítico independente | 🟧 aguardando |
+| congelamento final | ⛔ não declarado |
 
-## 📊 Cobertura confirmada
+## Resultado da revisão original
+
+```text
+INDEPENDENT_REVIEW_DECISION=FAIL
+CRITICAL_FINDINGS=0
+MAJOR_FINDINGS=2
+OPEN_BLOCKING_FINDINGS=2
+RETEST_REQUIRED=YES
+```
+
+## Remediações publicadas
+
+```text
+LEA_39_F01=REMEDIATED
+LEA_39_F02=REMEDIATED
+LIFECYCLE_CERTIFICATE=docs/architecture/CERTIFICADO_LIFECYCLE_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-39_20260719.md
+DOCUMENT_STATUS_EFFECTIVE=APPROVED_INTEGRATED_PENDING_ARCHITECTURE_FREEZE
+ARCHITECTURAL_CONTENT_CHANGED=NO
+REMEDIATION_HEAD_BEFORE_FINAL_SYNC=97bf274564e87715484da680bda72e4117dfb138
+FINAL_RETEST_HEAD=PUBLISHED_IN_PR_AND_LINEAR
+```
+
+## 📊 Cobertura preservada
 
 ```text
 CANONICAL_DOMAINS=16/16
@@ -66,22 +88,27 @@ PTM V2.5 / V2.6 / V2.7                  ✅
 CONSOLIDAÇÃO CRUZADA                    ✅
 18 ADRs ACCEPTED                        ✅
 BOSS GATE PRÉ-DOCUMENTO MESTRE          ✅
-DOCUMENTO MESTRE                        ✅ LEA-34 / PR #56
+DOCUMENTO MESTRE                        ✅ LEA-34
 REVISÃO CRÍTICA DO DOCUMENTO MESTRE     ✅ LEA-35 PASS
-CONFIRMAÇÃO PÓS-MERGE                   ✅ PR #58
-FECHAMENTO DA LEA-34                    ✅ PR #59
-CONGELAMENTO DA ARQUITETURA V1.0        ⏳ AUTORIZAÇÃO POSTERIOR
+CONFIRMAÇÃO E FECHAMENTO                ✅ PRs #58/#59
+PACOTE CANDIDATO DE CONGELAMENTO        ✅ LEA-38 / PR #60
+REVISÃO CRÍTICA ORIGINAL                🟥 LEA-39 FAIL
+REMEDIAÇÃO F01 E F02                    ✅
+RETESTE CRÍTICO INDEPENDENTE            🟧
+MERGE E CONFIRMAÇÃO DO CONGELAMENTO     ⬜
 PRONTIDÃO PARA IMPLEMENTAÇÃO            ⬜
+GO | GO_WITH_CONDITIONS | NO_GO         ⬜
 ```
 
-## 🧾 Artefatos finais
+## 🧾 Artefatos da missão
 
+- [Plano da missão](docs/architecture/PLANO_MISSAO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md)
+- [Pacote candidato de congelamento](docs/architecture/PACOTE_CANDIDATO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md)
+- [Política de controle de mudanças](docs/architecture/POLITICA_CONTROLE_MUDANCAS_ARQUITETURA_V1_LEA-38_20260719.md)
+- [Certificado normativo de lifecycle](docs/architecture/CERTIFICADO_LIFECYCLE_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-39_20260719.md)
 - [Documento Mestre da Arquitetura V1.0](docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md)
 - [Matriz de rastreabilidade](docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md)
 - [Apêndice de domínios e handoffs](docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md)
-- [Checkpoint pré-merge](docs/history/ptp/CHECKPOINT_LEA-34_LEA-35_READY_FOR_MERGE_AUTHORIZATION_20260719.md)
-- [Recibo pós-merge](docs/history/receipts/RECIBO_POS_MERGE_LEA-34_PR-56_20260719.md)
-- [Confirmação final](docs/history/receipts/CONFIRMACAO_FINAL_LEA-34_PR-58_20260719.md)
 - [Índice dos ADRs](docs/architecture/adrs/README.md)
 
 ## 🔒 Limites ativos
@@ -94,21 +121,14 @@ MIGRATION_CREATED=NO
 RUNTIME_EXECUTED=NO
 REAL_CLICK_EXECUTED=NO
 IMPLEMENTATION_AUTHORIZED=NO
-ARCHITECTURE_FREEZE_AUTHORIZED=NO
+ARCHITECTURE_FREEZE_FINALIZATION_AUTHORIZED=NO
 LIVE_MODE_ARMED=NO
-```
-
-```text
-DOCUMENT_MASTER_COMPLETE!=ARCHITECTURE_FROZEN
-ARCHITECTURE_ACCEPTED!=IMPLEMENTATION_AUTHORIZED
-TEST_SPEC_CREATED!=TEST_RUNTIME_EXECUTED
-MODE_B_SUPPORTED!=MODE_B_ARMED
 ```
 
 ## Próxima ação
 
 ```text
-NEXT_ACTION=AWAIT_EXPLICIT_ARCHITECTURE_FREEZE_MISSION_AUTHORIZATION
-AUTOMATIC_ARCHITECTURE_FREEZE=NO
+NEXT_ACTION=EXECUTE_LEA_39_INDEPENDENT_RETEST_ON_REMEDIATED_PR_60_HEAD
+AUTOMATIC_MERGE=NO
 AUTOMATIC_IMPLEMENTATION=NO
 ```

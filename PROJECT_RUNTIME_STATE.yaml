@@ -1,67 +1,77 @@
 schema_version: "1.0.3"
-state_revision: 19
+state_revision: 20
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "510a5f969dce77e1befdd8d8a23c299d7e90f5c6"
+observed_main_head: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
 real_version: "V2.4.3-R1"
 
-active_mission: "NONE"
-active_stage: "DOCUMENT_MASTER_COMPLETE_AWAITING_ARCHITECTURE_FREEZE_AUTHORIZATION"
-active_linear_issue: null
-active_review_issue: "LEA-35"
-active_pull_request: null
-working_branch: null
-observed_pr_head: null
-pr_mode: null
-current_gate: "POST_MERGE_CONFIRMATION"
-gate_status: "PASS"
-next_action: "AWAIT_EXPLICIT_ARCHITECTURE_FREEZE_MISSION_AUTHORIZATION"
+active_mission: "LEA-38 — Congelamento da Arquitetura V1.0"
+active_stage: "ARCHITECTURE_FREEZE_REMEDIATION_AWAITING_RETEST"
+active_linear_issue: "LEA-38"
+active_review_issue: "LEA-39"
+active_pull_request: 60
+working_branch: "leonpcsn/lea-38-congelamento-arquitetura-v1"
+observed_pr_head: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
+pr_mode: "DRAFT"
+current_gate: "LEA_39_REMEDIATION_AND_RETEST"
+gate_status: "IN_PROGRESS"
+next_action: "EXECUTE_LEA_39_INDEPENDENT_RETEST_ON_REMEDIATED_PR_60_HEAD"
 blockers:
-  - "ARCHITECTURE_FREEZE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
+  - "LEA_39_RETEST_REQUIRED_AFTER_F01_F02_REMEDIATION"
 
-transition_id: "LEA-34-T01"
-transition_status: "COMPLETE"
-from_state: "PRE_DOCUMENT_MASTER_READY_AWAITING_EXPLICIT_AUTHORIZATION"
-to_state: "DOCUMENT_MASTER_COMPLETE_AWAITING_ARCHITECTURE_FREEZE_AUTHORIZATION"
-baseline_main_sha: "65b18341c06a391ea48ae5029102ad7a095c3340"
-baseline_state_revision: 18
-bound_transition_id: "LEA-34-T01"
-previous_transition_id: "LEA-32-T01"
-previous_final_confirmation_pr: 55
-previous_final_confirmation_merge_commit: "65b18341c06a391ea48ae5029102ad7a095c3340"
+transition_id: "LEA-38-T01"
+transition_status: "READY_FOR_INDEPENDENT_REVIEW"
+from_state: "DOCUMENT_MASTER_COMPLETE_AWAITING_ARCHITECTURE_FREEZE_AUTHORIZATION"
+to_state: "ARCHITECTURE_V1_FREEZE_CANDIDATE_READY_FOR_INDEPENDENT_REVIEW"
+baseline_main_sha: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
+baseline_state_revision: 19
+bound_transition_id: "LEA-38-T01"
+previous_transition_id: "LEA-34-T01"
+previous_final_confirmation_pr: 59
+previous_final_confirmation_merge_commit: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
 
-main_pr: 56
-main_pr_head_snapshot: "594ce8c6dd2ef50a2ee18551eaac95d65692b28f"
-main_pr_merge_commit: "50b90e123b2e1e3a54fb4e0de612c9b7c777bb07"
-post_merge_receipt_pr: 58
-post_merge_receipt_merge_commit: "510a5f969dce77e1befdd8d8a23c299d7e90f5c6"
-final_confirmation_pr: 59
+builder_issue: "LEA-38"
+review_issue: "LEA-39"
+freeze_pull_request: 60
+freeze_pr_merge_commit: null
+post_merge_receipt_pr: null
+post_merge_receipt_merge_commit: null
+final_confirmation_pr: null
 final_confirmation_merge_commit: null
-review_issue: "LEA-35"
-review_target_head_source: "GITHUB_API"
-review_target_head: "a8ce01aa747046518d1da3e445a1f8c47fbe39ef"
-review_decision: "PASS"
-review_completed_at_utc: "2026-07-19T10:25:01Z"
+freeze_baseline_commit: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
+freeze_candidate_status: "REMEDIATED_AWAITING_INDEPENDENT_RETEST"
+architecture_v1_status: "APPROVED_INTEGRATED_NOT_YET_FROZEN"
+initial_review_target_snapshot: "33f267817713ccd8d3cc746fd2a173b6e0e8dd00"
+reviewed_head_before_remediation: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
+initial_snapshot_superseded: true
+review_decision: "FAIL"
+critical_findings: 0
+major_findings: 2
+open_blocking_findings: 2
+retest_required: true
+remediated_findings:
+  - "LEA-39-F01"
+  - "LEA-39-F02"
 
 github_sync_status: "PASS"
 linear_sync_status: "PASS"
 readme_sync_status: "PASS"
-last_sync_at_utc: "2026-07-19T11:33:00Z"
+last_sync_at_utc: "2026-07-19T13:20:00Z"
 
 mission_lock:
-  locked: false
+  locked: true
   enforcement: "ADVISORY"
   concurrency_model: "OPTIMISTIC"
-  owner: "NONE"
-  session_id: "lea34-final-confirmation-20260719"
-  base_sha: "510a5f969dce77e1befdd8d8a23c299d7e90f5c6"
-  observed_pr_head: null
-  state_revision_snapshot: 19
-  transition_id_snapshot: "LEA-34-T01"
-  started_at_utc: "2026-07-19T11:31:08Z"
+  owner: "LEA-38"
+  session_id: "lea38-lea39-remediation-20260719"
+  base_sha: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
+  observed_pr_head: "6137267e70bcafecde5acb4b2d6e8a5da857eeca"
+  state_revision_snapshot: 20
+  transition_id_snapshot: "LEA-38-T01"
+  started_at_utc: "2026-07-19T11:55:58Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-19T11:33:00Z"
+  heartbeat_at_utc: "2026-07-19T13:20:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -71,8 +81,10 @@ migration_authorized: false
 real_click_authorized: false
 merge_authorized: false
 document_master_start_authorized: true
-remediation_start_authorized: false
+architecture_freeze_mission_authorized: true
 architecture_freeze_authorized: false
+architecture_freeze_finalization_authorized: false
+readiness_review_authorized: false
 
 mode_a_policy_authorized: true
 mode_b_architectural_support_authorized: true
@@ -87,40 +99,31 @@ source_authority:
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   public_projection: "README.md"
-  task_status_and_dependencies: "Linear LEA-34 Done; LEA-35 Done PASS"
-  mission_plan: "docs/architecture/PLANO_MISSAO_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md"
+  task_status_and_dependencies: "Linear LEA-38 In Progress; LEA-39 FAIL awaiting retest"
+  mission_plan: "docs/architecture/PLANO_MISSAO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md"
+  freeze_candidate_package: "docs/architecture/PACOTE_CANDIDATO_CONGELAMENTO_ARQUITETURA_V1_LEA-38_20260719.md"
+  change_control_policy: "docs/architecture/POLITICA_CONTROLE_MUDANCAS_ARQUITETURA_V1_LEA-38_20260719.md"
+  lifecycle_certificate: "docs/architecture/CERTIFICADO_LIFECYCLE_DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-39_20260719.md"
+  builder_self_review: "PR #60 body"
+  independent_review_prompt: "Linear LEA-39 description and formal FAIL result"
   master_document: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md"
   master_traceability: "docs/architecture/MATRIZ_RASTREABILIDADE_DOCUMENTO_MESTRE_LEA-34_20260718.md"
   domain_handoff_appendix: "docs/architecture/APENDICE_DOMINIOS_HANDOFFS_DOCUMENTO_MESTRE_LEA-34_20260718.md"
-  independent_review_evidence: "PR #56 review and Linear LEA-35 formal PASS"
-  pre_merge_checkpoint: "docs/history/ptp/CHECKPOINT_LEA-34_LEA-35_READY_FOR_MERGE_AUTHORIZATION_20260719.md"
-  post_merge_receipt: "docs/history/receipts/RECIBO_POS_MERGE_LEA-34_PR-56_20260719.md"
-  final_confirmation: "docs/history/receipts/CONFIRMACAO_FINAL_LEA-34_PR-58_20260719.md"
-  reviewed_architecture: "PR #56 content at a8ce01aa747046518d1da3e445a1f8c47fbe39ef"
-  consolidated_architecture: "GitHub main after PR #58 at 510a5f969dce77e1befdd8d8a23c299d7e90f5c6"
-  unmerged_work: "none_after_final_confirmation_integration"
+  adr_index: "docs/architecture/adrs/README.md"
+  policy_a_b: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
+  consolidated_architecture: "GitHub main at a778f443f1d7c566bc11793ad86f605f4ef83e98"
+  unmerged_work: "PR #60 remediation branch; final retest head published in PR and Linear"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "COMPLETE"
+  execution_status: "AWAITING_INDEPENDENT_REVIEW"
   automatic_advance: false
-  independent_critical_review: "PASS_LEA_35"
-  reviewed_main_head: "510a5f969dce77e1befdd8d8a23c299d7e90f5c6"
-  reviewed_product_content_head: "a8ce01aa747046518d1da3e445a1f8c47fbe39ef"
-  critical_findings: 0
-  major_findings: 0
-  minor_findings: 0
-  advisory_findings: 1
-  open_blocking_findings: 0
-  retest_required: false
+  previous_document_master_review: "PASS_LEA_35"
+  previous_open_blocking_findings: 0
   documentation_only: true
-  policy_a_b_alignment: "PASS"
-  current_runtime_execution_authorized: false
-  mode_a_authorized: true
-  mode_b_supported: true
-  mode_b_armed: false
-  live_without_all_gates_blocked: true
+  baseline_commit_pinned: true
+  baseline_commit: "a778f443f1d7c566bc11793ad86f605f4ef83e98"
   requirement_rows: 218
   unique_requirement_ids: 218
   duplicate_requirement_ids: 0
@@ -131,23 +134,24 @@ safety:
   total_adr_count: 18
   adr_files_accepted_status_count: 18
   future_test_family_count: 16
-  test_runtime_executed: false
   application_code_changed: false
   test_code_changed: false
   sql_created: false
   migration_created: false
-  ci_status_main_pr_head: "PASS_9_OF_9"
-  ci_status_post_merge_confirmation_head: "PASS_9_OF_9"
-  main_pr_merged: true
-  post_merge_receipt_recorded: true
-  post_merge_receipt_merged: true
-  final_confirmation_recorded: true
+  runtime_executed: false
+  freeze_candidate_package_created: true
+  change_control_policy_created: true
+  builder_self_review_created: true
+  builder_self_review_evidence: "PR #60 body"
+  independent_review_prompt_created: true
+  independent_review_prompt_evidence: "Linear LEA-39"
+  independent_critical_review: "FAIL_LEA_39_REMEDIATED_AWAITING_RETEST"
+  architecture_v1_frozen: false
+  ready_for_independent_review: true
   ready_for_merge_authorization: false
   ready_for_merge: false
-  ready_for_architecture_freeze_authorization: true
-  transition_complete: true
+  transition_complete: false
   last_completed_product_issue: "LEA-34"
   last_completed_product_issue_status: "DONE"
-  current_product_issue: "NONE"
-  current_review_issue: "LEA-35"
-  current_review_issue_status: "DONE_PASS"
+  current_product_issue: "LEA-38"
+  current_review_issue: "LEA-39"
