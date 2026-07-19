@@ -54,10 +54,10 @@ remediated_findings:
   - "LEA-39-F01"
   - "LEA-39-F02"
 
- github_sync_status: "PASS"
-linear_sync_status: "PENDING"
-readme_sync_status: "PENDING"
-last_sync_at_utc: "2026-07-19T13:00:00Z"
+github_sync_status: "PASS"
+linear_sync_status: "PASS"
+readme_sync_status: "PASS"
+last_sync_at_utc: "2026-07-19T13:20:00Z"
 
 mission_lock:
   locked: true
@@ -71,7 +71,7 @@ mission_lock:
   transition_id_snapshot: "LEA-38-T01"
   started_at_utc: "2026-07-19T11:55:58Z"
   expires_at_utc: null
-  heartbeat_at_utc: "2026-07-19T13:00:00Z"
+  heartbeat_at_utc: "2026-07-19T13:20:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -112,7 +112,7 @@ source_authority:
   adr_index: "docs/architecture/adrs/README.md"
   policy_a_b: "docs/protocols/POLITICA_AUTOMACAO_AMBIENTE_CONTROLADO.md"
   consolidated_architecture: "GitHub main at a778f443f1d7c566bc11793ad86f605f4ef83e98"
-  unmerged_work: "PR #60 remediation branch; final retest head pending"
+  unmerged_work: "PR #60 remediation branch; final retest head published in PR and Linear"
 
 safety:
   manifest_documentation_drift: false
