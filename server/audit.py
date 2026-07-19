@@ -13,9 +13,7 @@ class AuditEvent:
     event: str
     reason_code: str
     trace_id: str = field(default_factory=lambda: uuid4().hex)
-    timestamp_utc: str = field(
-        default_factory=lambda: datetime.now(timezone.utc).isoformat()
-    )
+    timestamp_utc: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
 class InMemoryAuditSink:
@@ -26,10 +24,10 @@ class InMemoryAuditSink:
         self._events: list[AuditEvent] = []
         self._lock = Lock()
 
-    def record(self, event: str, reason_code: str) -> AuditEvent | None:
+    def record(self, event: str, reason_code: str, trace_id: str | None = None) -> AuditEvent | None:
         if not self._enabled:
             return None
-        item = AuditEvent(event=event, reason_code=reason_code)
+        item = AuditEvent(event=event, reason_code=reason_code, trace_id=trace_id or uuid4().hex)
         with self._lock:
             self._events.append(item)
         return item
