@@ -7,10 +7,14 @@ REVIEW_ISSUE=LEA-53
 REPOSITORY=leon337/predixai-robo-de-listas
 PULL_REQUEST=70_DRAFT
 BASE_MAIN_SHA=0d68ba5238cb12ba6414ee8a6b80da4a9166b42e
+REVIEWED_HEAD=12ba5e4565bac26f4b4790e7a9339d1d5e889696
 PREVIOUS_REVIEW_HEAD=8019c392fbeef515eb58604698a501b74735e48a
 PREVIOUS_DECISION=FAIL
 RETEST_HEAD=OBTER_DO_PR_DRAFT_E_FIXAR_EXTERNAMENTE
-RETEST_FINDINGS=LEA-53-F01,LEA-53-F02,LEA-53-F03
+RETEST_FINDINGS=LEA-53-F04,LEA-53-F05
+F01_F02_F03=PASS_PRESERVED
+HEAD_PIN_AUTHORITY=GITHUB_PR_70_AND_LINEAR_LEA_53
+SELF_REFERENCE_POLICY=CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT
 DOCUMENTATION_ONLY=YES
 MERGE_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
@@ -22,6 +26,9 @@ LIVE_MODE_ARMED=NO
 
 1. `PROJECT_RUNTIME_STATE.yaml`:
    - `observed_main_head`, `baseline_main_sha` e `safety.baseline_commit` iguais a `0d68ba...`;
+   - `previous_candidate_head=8ea79ca0daf318507c4c28766174cd3747fddce9`;
+   - autoridade do HEAD atual definida externamente no PR #70 e na LEA-53;
+   - não exigir que o commit contenha o próprio SHA, pois isso é autorreferencial;
    - `requirements_mapped_to_increment=218/218_INTEGRATED`;
    - LEA-52 e LEA-53 como missões ativas de builder/review;
    - implementação, FND-003, merge e LIVE não autorizados.
