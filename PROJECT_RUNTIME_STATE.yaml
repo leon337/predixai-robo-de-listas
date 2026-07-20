@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 29
+state_revision: 30
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,20 +7,21 @@ observed_main_head: "0968ae86e92e7b640cbcc77941d49a9474839650"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-50 — Document Master Executive Remediation"
-active_stage: "BUILDER_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
+active_stage: "REMEDIATION_COMPLETE_AWAITING_INDEPENDENT_RETEST"
 active_linear_issue: "LEA-50"
 active_review_issue: "LEA-51"
 active_pull_request: 69
 working_branch: "leonpcsn/lea-50-roadmap-implementacao-v1"
-observed_pr_head: null
+observed_pr_head: "cb7eb26e6e9336fb45bc958c3d54bdab359b1431"
 pr_mode: "DRAFT"
-current_gate: "AWAITING_INDEPENDENT_CRITICAL_REVIEW"
-gate_status: "BUILDER_CANDIDATE"
-next_action: "EXECUTE_INDEPENDENT_CRITICAL_REVIEW_ON_PINNED_HEAD"
-blockers: []
+current_gate: "LEA_51_RETEST_REQUIRED"
+gate_status: "BUILDER_REMEDIATION_CANDIDATE"
+next_action: "EXECUTE_LEA_51_RETEST_ON_PINNED_HEAD"
+blockers:
+  - "INDEPENDENT_RETEST_REQUIRED_TO_CLOSE_LEA-51-F01_F02_F03"
 
 transition_id: "LEA-50-T01"
-transition_status: "IN_PROGRESS_AWAITING_INDEPENDENT_REVIEW"
+transition_status: "IN_PROGRESS_AWAITING_LEA_51_RETEST"
 from_state: "FND_002_INTEGRATED_AWAITING_NEXT_INCREMENT_DEFINITION"
 to_state: "DOCUMENT_MASTER_EXECUTIVE_COMPLETENESS_CANDIDATE"
 baseline_main_sha: "0968ae86e92e7b640cbcc77941d49a9474839650"
@@ -28,23 +29,37 @@ baseline_state_revision: 28
 bound_transition_id: "LEA-50-T01"
 previous_transition_id: "LEA-48-T01"
 
-builder_issue: "LEA-46"
-review_issue: "LEA-47"
-post_merge_issue: "LEA-48"
-implementation_pull_request: 66
-implementation_pr_head: "92b2155b083a0db524735dc6c8bdbacbba043f27"
-implementation_merge_commit: "6b8b54e8d26169d0db20612c88866ea699437a58"
-independent_review_decision: "PASS"
+builder_issue: "LEA-50"
+review_issue: "LEA-51"
+post_merge_issue: null
+implementation_pull_request: 69
+implementation_pr_head: "cb7eb26e6e9336fb45bc958c3d54bdab359b1431"
+implementation_merge_commit: null
+independent_review_decision: "FAIL"
 critical_findings: 0
-major_findings: 0
-open_blocking_findings: 0
-retest_required: false
+major_findings: 3
+open_blocking_findings: 3
+retest_required: true
 independent_review_required: true
 remediated_findings:
-  - "LEA-47-F01"
-  - "LEA-47-F02"
-  - "LEA-47-F03"
-post_merge_confirmation: "PASS"
+  - "LEA-51-F01_BUILDER_REMEDIATION_CANDIDATE"
+  - "LEA-51-F02_BUILDER_REMEDIATION_CANDIDATE"
+  - "LEA-51-F03_BUILDER_REMEDIATION_CANDIDATE"
+post_merge_confirmation: null
+
+fnd_002_history:
+  builder_issue: "LEA-46"
+  review_issue: "LEA-47"
+  post_merge_issue: "LEA-48"
+  implementation_pull_request: 66
+  implementation_pr_head: "92b2155b083a0db524735dc6c8bdbacbba043f27"
+  implementation_merge_commit: "6b8b54e8d26169d0db20612c88866ea699437a58"
+  independent_review_decision: "PASS"
+  critical_findings: 0
+  major_findings: 0
+  open_blocking_findings: 0
+  retest_required: false
+  post_merge_confirmation: "PASS"
 
 architecture_v1_status: "FROZEN"
 architecture_v1_frozen: true
@@ -54,7 +69,7 @@ mandatory_handoffs: "12/12"
 adrs: "18/18_ACCEPTED"
 
 roadmap_authority: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md"
-roadmap_status: "CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
+roadmap_status: "CANDIDATE_AWAITING_INDEPENDENT_RETEST"
 document_master_executive_completeness: "CANDIDATE"
 implementation_increment_count: 18
 requirements_mapped_to_increment: "218/218_CANDIDATE"
@@ -85,9 +100,9 @@ conditions:
   - "ROLLBACK_BY_PR_REVERT"
 
 github_sync_status: "PASS_DRAFT_PR_69_HEAD_AUTHORITY_LIVE_GITHUB"
-linear_sync_status: "PASS_LEA_50_LEA_51_HEAD_AUTHORITY_LIVE_LINEAR"
+linear_sync_status: "PENDING_REMEDIATION_HEAD_PUBLICATION_TO_LEA_50_LEA_51"
 readme_sync_status: "PASS_CANDIDATE_BRANCH"
-last_sync_at_utc: "2026-07-20T19:00:00Z"
+last_sync_at_utc: "2026-07-20T20:00:00Z"
 
 implementation_authorized: false
 code_change_authorized: false

@@ -1,5 +1,7 @@
 # RELATÓRIO DE VALIDAÇÃO DOCUMENTAL — LEA-50
 
+> `STATUS=SUPERSEDED_AFTER_LEA_51_FAIL` — este registro preserva a execução histórica anterior. As métricas amplas abaixo não devem ser usadas como prova atual; a evidência vigente está em `RELATORIO_REMEDIACAO_VALIDACAO_LEA_50_POS_LEA_51_20260720.md`.
+
 ```text
 REPOSITORY=leon337/predixai-robo-de-listas
 BASE_MAIN_SHA=0968ae86e92e7b640cbcc77941d49a9474839650
@@ -45,4 +47,3 @@ RUNTIME_EXECUTED=NO
 ## Limite da evidência
 
 O resultado comprova consistência estrutural da candidatura e não substitui revisão crítica independente. Não houve execução do runtime do produto nem teste local de incremento futuro.
-
