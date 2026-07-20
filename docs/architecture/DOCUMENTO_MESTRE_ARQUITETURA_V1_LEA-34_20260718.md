@@ -624,3 +624,158 @@ POST_MERGE_CONFIRMATION=REQUIRED
 ```
 
 Este Draft somente pode ser promovido após validação da matriz, CI documental e revisão crítica independente.
+
+## DM-24 — Mapa canônico de desenvolvimento
+
+Esta seção é a autoridade canônica da sequência de desenvolvimento. Os anexos de DM-33 detalham a matriz, o catálogo, o grafo e as políticas, mas não constituem roadmap paralelo e não podem substituir, contradizer ou ampliar este Documento Mestre.
+
+```text
+ROADMAP_AUTHORITY=DOCUMENTO_MESTRE
+ROADMAP_STATUS=CANDIDATE_AWAITING_INDEPENDENT_REVIEW
+ARCHITECTURE_V1_CHANGED=NO
+IMPLEMENTATION_AUTHORIZED=NO
+NEXT_CODE_INCREMENT_AUTHORIZED=NO
+```
+
+| Ordem | ID e nome | Objetivo executivo | Depende de | Modo máximo | Situação | Gate de entrada | Gate de saída | Próxima etapa |
+|---:|---|---|---|---|---|---|---|---|
+| 1 | `FND-001` Safe Server Foundation | autoridade modular, contratos, fail-closed e adaptador NULL | Arquitetura V1.0 | `NULL_ONLY` | integrada | baseline congelada + autorização consumida | `FND-001_EXIT_PASS` | FND-002 |
+| 2 | `FND-002` Safe Runtime Read Model | leitura de estado, auditoria e diagnóstico sem mutação | FND-001 | `NULL_ONLY` | integrada | FND-001 PASS + autorização consumida | `FND-002_EXIT_PASS` | FND-003 |
+| 3 | `FND-003` Identity, Configuration and Client Trust | identidade, segredos, pareamento, revogação e presença | FND-002 | `NULL_ONLY` | candidata, não autorizada | predecessor PASS + missão humana | `FND-003_EXIT_PASS` | DAT-001 |
+| 4 | `DAT-001` Durable State and Legacy Migration | escritor único, persistência, eventos, backup, restore e importação | FND-003 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `DAT-001_EXIT_PASS` | LST-001 |
+| 5 | `LST-001` Lists and Scheduling | listas, itens, revisões e agenda sem efeito | DAT-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `LST-001_EXIT_PASS` | PRF-001 |
+| 6 | `PRF-001` Profiles, ROIs and Logical Geometry | perfis, ROIs, calibração e identidade lógica | LST-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `PRF-001_EXIT_PASS` | OBS-001 |
+| 7 | `OBS-001` Authorized Observation Session | sessão vinculada a contexto, perfil e fonte autorizada | PRF-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `OBS-001_EXIT_PASS` | CAP-001 |
+| 8 | `CAP-001` Frame Capture and Provenance | hash, origem, sequência, ROI, linhagem e retenção | OBS-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `CAP-001_EXIT_PASS` | VAL-001 |
+| 9 | `VAL-001` Visual Quality Gate | checks de qualidade, elegibilidade, blockers e caps | CAP-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `VAL-001_EXIT_PASS` | MAP-001 |
+| 10 | `MAP-001` Estimated Data Extraction | extração estimada com mapping, incerteza e linhagem | VAL-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `MAP-001_EXIT_PASS` | ANA-001 |
+| 11 | `ANA-001` Deterministic Engines A-H | motores determinísticos sobre snapshot elegível | MAP-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `ANA-001_EXIT_PASS` | SIG-001 |
+| 12 | `SIG-001` Strategy and Signal Lifecycle | estratégia, candidatos, sinais, expiração e invalidação | ANA-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `SIG-001_EXIT_PASS` | CMD-001 |
+| 13 | `CMD-001` Command, Grant and Policy Engine | comando imutável, grant, revogação e revalidação | SIG-001 | `NULL_ONLY` | bloqueada | predecessor PASS + missão humana | `CMD-001_EXIT_PASS` | ADP-001 |
+| 14 | `ADP-001` Allowlisted Target and Simulated Adapter | alvo allowlisted e adaptadores NULL/SIMULATED | CMD-001 | `SIMULATED` | bloqueada | predecessor + gate SIMULATED + missão humana | `ADP-001_EXIT_PASS` | EXE-001 |
+| 15 | `EXE-001` Simulated Dispatch, Receipt and Recovery | dispatch simulado, idempotência, recibo e recovery | ADP-001 | `SIMULATED` | bloqueada | predecessor PASS + missão humana | `EXE-001_EXIT_PASS` | SEC-001 |
+| 16 | `SEC-001` Containment, Observability and Cumulative Simulation | contenção, auditoria, provas negativas e E2E acumulado | EXE-001 | `SIMULATED` | bloqueada | predecessor PASS + missão humana | `SEC-001_EXIT_PASS` | CUI-001 |
+| 17 | `CUI-001` Controlled UI Capability | UI em alvo próprio/controlado, sem corretora ou efeito financeiro | SEC-001 | `CONTROLLED_UI` | bloqueada | missão própria + revisão independente + autorização humana | `CUI-001_EXIT_PASS` | LIV-GATE-001 |
+| 18 | `LIV-GATE-001` Future LIVE_GATED Change Control | decisão futura técnica, comercial, jurídica, regulatória e humana | CUI-001 | `LIVE_GATED_CAPABILITY_ONLY` | bloqueada sem liberação automática | change control futuro completo | `FUTURE_LIVE_DECISION_RECORDED` | nenhuma automática |
+
+```text
+INCREMENT_COUNT=18
+COMPLETED_INCREMENTS=2
+NEXT_INCREMENT=FND-003
+NEXT_INCREMENT_AUTHORIZED=NO
+AMBIGUOUS_NEXT_INCREMENT=0
+```
+
+## DM-25 — Regras de decomposição incremental
+
+Cada incremento deve ter fundamento em requisito, domínio, handoff e ADR existentes; resultado testável; escopo e fora de escopo; dependências; modo máximo; gates objetivos; testes; validação local; evidência; rollback; versão e próximo incremento inequívoco. Ausência de fundamento normativo bloqueia a unidade.
+
+```text
+DESENVOLVER_PEQUENO
+→ TESTAR_NOVA_ETAPA
+→ TESTAR_ETAPAS_ANTERIORES
+→ TESTAR_INTEGRAÇÕES_AFETADAS
+→ TESTAR_FLUXO_COMPLETO_ACUMULADO
+→ SINCRONIZAR_REPOSITÓRIO_LOCAL
+→ EXECUTAR_TESTE_LOCAL
+→ GERAR_RELATÓRIO_TXT
+→ CORRIGIR_SE_NECESSÁRIO
+→ REVISAR
+→ INTEGRAR
+→ LIBERAR_PRÓXIMA_ETAPA
+```
+
+## DM-26 — Grafo macro de precedência
+
+A precedência normativa é linear para que exista uma única próxima unidade liberável. Paralelismo interno só pode ocorrer como submissão da mesma missão, sem abrir duas próximas autoridades de incremento.
+
+```text
+FND-001→FND-002→FND-003→DAT-001→LST-001→PRF-001
+→OBS-001→CAP-001→VAL-001→MAP-001→ANA-001→SIG-001
+→CMD-001→ADP-001→EXE-001→SEC-001→CUI-001→LIV-GATE-001
+
+DEPENDENCY_CYCLES=0
+MISSING_DEPENDENCIES=0
+UNKNOWN_INCREMENT_REFERENCES=0
+AMBIGUOUS_NEXT_INCREMENT=0
+```
+
+## DM-27 — Política de versionamento
+
+FND-001 e FND-002 mantêm a versão operacional histórica `V2.4.3-R1`; sufixos de evidência não as renumeram. Incrementos futuros usam pre-releases previstos no catálogo. Promoção exige commit, PR, issue Linear, requisitos cobertos, testes, relatório local e referência de rollback.
+
+```text
+VERSION_PROMOTION_REQUIRES=ALL_MANDATORY_GATES_PASS
+TAG_CANDIDATE_BEFORE_LOCAL_AND_INDEPENDENT_PASS=NO
+INTEGRATED_VERSION_REQUIRES=AUTHORIZED_MERGE_PLUS_POST_MERGE_RECEIPT
+```
+
+## DM-28 — Sincronização e validação local
+
+Cada missão de incremento deve entregar um script all-in-one fail-closed para Linux Mint. Leo executa um único comando e não cria branch, commit, push, PR, stash nem resolve divergência Git no fluxo normal.
+
+```text
+LOCAL_SYNC_COMMAND=bash scripts/local_validate_<incremento>.sh --expected-commit <CANDIDATE_HEAD>
+EXPECTED_COMMIT=FIXED_AT_CANDIDATE_HEAD
+REPORT_PATH=reports/local/<incremento>_<commit>.txt
+MISSING_REAL_LOCAL_EVIDENCE=⏳ AGUARDANDO EXECUÇÃO DO LEO
+```
+
+## DM-29 — Testes cumulativos e regressão
+
+Na etapa N, executar testes da nova etapa, toda regressão de 1 a N-1, integrações afetadas e o fluxo acumulado de 1 a N. Teste antigo não pode ser removido, desabilitado ou ignorado para permitir avanço.
+
+```text
+STAGE_N_CAN_ADVANCE_ONLY_IF=
+STAGES_1_TO_N_PASS
+AND CUMULATIVE_INTEGRATION_PASS
+AND LOCAL_TEST_PASS
+AND TECHNICAL_DEBT_GATE_PASS
+```
+
+Conclusão também exige `CODE_COMPLETE`, unitários, integração, regressão anterior, fluxo cumulativo, provas negativas, CI, revisão crítica independente, Linux Mint, relatório TXT e sincronização GitHub–Linear em `PASS`.
+
+## DM-30 — Gates NULL_ONLY, SIMULATED, CONTROLLED_UI e LIVE_GATED
+
+```text
+NULL_ONLY→SIMULATED→CONTROLLED_UI→LIVE_GATED
+REAL_FINANCIAL_EFFECT=NO
+BROKER_CONNECTION=NO
+REAL_CLICK=NO
+LIVE_MODE_ARMED=NO
+```
+
+Cada elevação exige missão própria, revisão crítica independente e autorização humana. `LIVE_GATED` é capacidade arquitetural futura e não é liberação automática do mapa. Requer decisões técnica, comercial, jurídica, regulatória e de conformidade.
+
+## DM-31 — Rollback e controle de dívida técnica
+
+Cada incremento reverte pelo PR, restaura a referência do predecessor e reexecuta regressão cumulativa. Dívida deve existir no Linear com risco, origem, impacto, responsável, gate de correção e decisão explícita. Dívida crítica ou bloqueadora impede avanço; dívida silenciosa é proibida.
+
+```text
+INCREMENT_WITHOUT_ROLLBACK=0
+CRITICAL_OR_BLOCKING_TECHNICAL_DEBT=BLOCKS_ADVANCE
+TECHNICAL_DEBT_GATE=PASS_REQUIRED
+```
+
+## DM-32 — Controle de mudanças do mapa
+
+Alteração de ordem, ID, dependência, modo, gate, requisito ou anexo normativo exige missão documental, justificativa rastreável, revisão crítica independente e autorização humana antes do merge. Se a mudança exigir alterar a Arquitetura V1.0, registrar `BLOCKED_BY_ARCHITECTURE_CHANGE_REQUIRED`, identificar impactos e abrir change control; nenhuma solução silenciosa é permitida.
+
+```text
+ARCHITECTURE_V1_CHANGED=NO
+NEW_REQUIREMENTS_CREATED=0
+NEW_DOMAINS_CREATED=0
+NEW_HANDOFFS_CREATED=0
+NEW_ADRS_CREATED=0
+```
+
+## DM-33 — Índice de anexos normativos
+
+Todos os anexos abaixo declaram `DOCUMENT_TYPE=NORMATIVE_ANNEX`, `PARENT_AUTHORITY=DOCUMENTO_MESTRE`, `CAN_OVERRIDE_MASTER=NO` e `REQUIRED_FOR_MASTER_VALIDITY=YES`:
+
+1. `ANEXO_NORMATIVO_MATRIZ_218_REQUISITOS_INCREMENTOS_LEA_50_20260720.md` — cadeia verificável requisito → incremento → teste → gate → versão;
+2. `ANEXO_NORMATIVO_CATALOGO_INCREMENTOS_LEA_50_20260720.md` — decomposição executiva completa dos 18 incrementos;
+3. `ANEXO_NORMATIVO_GRAFO_PRECEDENCIA_INCREMENTOS_LEA_50_20260720.md` — dependências, estados e liberação de capacidades;
+4. `ANEXO_NORMATIVO_POLITICAS_EXECUCAO_INCREMENTAL_LEA_50_20260720.md` — regressão, sincronização local, versionamento e dívida técnica.
+
+O Documento Mestre prevalece. Anexo divergente invalida a candidatura até remediação; nunca prevalece sobre o mestre.
