@@ -30,6 +30,11 @@ class SafeServerService:
         with self._lock:
             return self._state
 
+    def state_snapshot(self) -> tuple[RuntimeState, ReasonCode]:
+        """Retorna estado e razão sem registrar auditoria nem alterar o runtime."""
+        with self._lock:
+            return self._state, self._reason
+
     def start(self) -> None:
         with self._lock:
             self._state = RuntimeState.SAFE_IDLE
@@ -49,9 +54,7 @@ class SafeServerService:
         self.audit.record("server_stopped", self._reason.value)
 
     def health(self) -> HealthResponse:
-        with self._lock:
-            state = self._state
-            reason = self._reason
+        state, reason = self.state_snapshot()
         trace_id = uuid4().hex
         response = HealthResponse(
             state=state,

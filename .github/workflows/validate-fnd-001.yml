@@ -5,6 +5,7 @@ on:
     paths:
       - "server/**"
       - "tests/server/**"
+      - "scripts/validate_fnd_002_local.sh"
       - "requirements-server.txt"
       - "requirements-dev.txt"
       - ".github/workflows/validate-fnd-001.yml"
@@ -22,6 +23,8 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+      - name: Validar sintaxe do executor local
+        run: bash -n scripts/validate_fnd_002_local.sh
       - name: Instalar dependências isoladas
         run: python -m pip install -r requirements-dev.txt
       - name: Testes FND-001
