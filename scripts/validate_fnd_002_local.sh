@@ -9,6 +9,26 @@ TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 REPORT_FILE="${REPORT_DIR}/FND_002_LOCAL_VALIDATION_${TIMESTAMP}.txt"
 VENV_DIR=".venv-fnd002"
 
+command -v git >/dev/null 2>&1 || { echo "git não encontrado" >&2; exit 1; }
+command -v python3 >/dev/null 2>&1 || { echo "python3 não encontrado" >&2; exit 1; }
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "Execute dentro do repositório local." >&2
+  exit 1
+}
+cd "$REPO_ROOT"
+
+# A árvore precisa ser validada antes de o próprio executor criar relatório ou venv.
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "RESULT=FAIL" >&2
+  echo "ERROR=árvore de trabalho contém alterações locais; faça commit, stash ou descarte antes de validar" >&2
+  git status --short >&2
+  exit 1
+fi
+
+mkdir -p "$REPORT_DIR"
+: > "$REPORT_FILE"
+
 log() {
   printf '%s\n' "$*" | tee -a "$REPORT_FILE"
 }
@@ -18,17 +38,6 @@ fail() {
   log "ERROR=$*"
   exit 1
 }
-
-command -v git >/dev/null 2>&1 || { echo "git não encontrado" >&2; exit 1; }
-command -v python3 >/dev/null 2>&1 || { echo "python3 não encontrado" >&2; exit 1; }
-
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || {
-  echo "Execute dentro do repositório local." >&2
-  exit 1
-}
-cd "$REPO_ROOT"
-mkdir -p "$REPORT_DIR"
-: > "$REPORT_FILE"
 
 log "MISSION=FND-002_SAFE_RUNTIME_READ_MODEL"
 log "MODE=NULL_ONLY"
@@ -47,10 +56,6 @@ case "$REMOTE_URL" in
   *github.com/leon337/predixai-robo-de-listas* ) ;;
   * ) fail "origin não corresponde ao repositório oficial" ;;
 esac
-
-if [[ -n "$(git status --porcelain)" ]]; then
-  fail "árvore de trabalho contém alterações locais; faça commit, stash ou descarte antes de validar"
-fi
 
 CURRENT_HEAD="$(git rev-parse HEAD)"
 CURRENT_BRANCH="$(git branch --show-current)"
