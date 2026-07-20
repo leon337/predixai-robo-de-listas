@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 33
+state_revision: 34
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,18 +7,20 @@ observed_main_head: "0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-52 — Post-Merge Operational State Reconciliation"
-active_stage: "REMEDIATED_AWAITING_LEA_53_RETEST"
+active_stage: "F04_F05_REMEDIATED_AWAITING_FINAL_RETEST"
 active_linear_issue: "LEA-52"
 active_review_issue: "LEA-53"
 active_pull_request: 70
 working_branch: "leonpcsn/lea-52-post-merge-state-sync"
-observed_pr_head: "8019c392fbeef515eb58604698a501b74735e48a"
+previous_candidate_head: "8ea79ca0daf318507c4c28766174cd3747fddce9"
+review_head_pin_authority: "EXTERNAL_GITHUB_PR_70_AND_LINEAR_LEA_53"
+review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
 pr_mode: "DRAFT"
 current_gate: "AWAITING_LEA_53_RETEST"
 gate_status: "BUILDER_REMEDIATION_CANDIDATE"
 next_action: "EXECUTE_LEA_53_RETEST_ON_NEW_PINNED_HEAD"
 blockers:
-  - "LEA_53_RETEST_REQUIRED_TO_CLOSE_F01_F02_F03"
+  - "FINAL_INDEPENDENT_RETEST_REQUIRED_TO_CONFIRM_F04_F05"
 
 transition_id: "LEA-52-T01"
 transition_status: "IN_PROGRESS_AWAITING_INDEPENDENT_RETEST"
@@ -37,15 +39,17 @@ implementation_pr_head: "12ba5e4565bac26f4b4790e7a9339d1d5e889696"
 implementation_merge_commit: "0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
 independent_review_decision: "FAIL_REMEDIATED_AWAITING_RETEST"
 critical_findings: 0
-major_findings: 3
-open_blocking_findings: 3
+major_findings: 2
+open_blocking_findings: 2
 retest_required: true
 independent_review_required: true
 last_independent_retest_head: "12ba5e4565bac26f4b4790e7a9339d1d5e889696"
 remediated_findings:
-  - "LEA-53-F01_BUILDER_REMEDIATION_CANDIDATE"
-  - "LEA-53-F02_BUILDER_REMEDIATION_CANDIDATE"
-  - "LEA-53-F03_BUILDER_REMEDIATION_CANDIDATE"
+  - "LEA-53-F01_PASS_CONFIRMED_BY_RETEST"
+  - "LEA-53-F02_PASS_CONFIRMED_BY_RETEST"
+  - "LEA-53-F03_PASS_CONFIRMED_BY_RETEST"
+  - "LEA-53-F04_PR_DRAFT_FIXED_EXTERNALLY"
+  - "LEA-53-F05_SELF_REFERENCE_MODEL_CORRECTED"
 post_merge_confirmation: "PASS_PR_69_MAIN_0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
 
 lea_50_history:
@@ -99,7 +103,7 @@ conditions:
 github_sync_status: "PASS_PR_69_MERGED_PR_70_DRAFT_REMEDIATION_PENDING_RETEST"
 linear_sync_status: "PASS_LEA_50_DONE_LEA_51_DONE_LEA_52_IN_PROGRESS_LEA_53_IN_PROGRESS"
 readme_sync_status: "PASS_REMEDIATED_CANDIDATE_BRANCH"
-last_sync_at_utc: "2026-07-20T22:40:00Z"
+last_sync_at_utc: "2026-07-20T23:58:00Z"
 
 implementation_authorized: false
 code_change_authorized: false
@@ -126,7 +130,7 @@ source_authority:
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "LEA_53_FINDINGS_REMEDIATED_AWAITING_RETEST"
+  execution_status: "F04_F05_REMEDIATED_AWAITING_FINAL_RETEST"
   automatic_advance: false
   documentation_only: true
   baseline_commit_pinned: true
