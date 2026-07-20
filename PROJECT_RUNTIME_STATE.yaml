@@ -10,9 +10,9 @@ active_mission: "LEA-52 — Post-Merge Operational State Reconciliation"
 active_stage: "BUILDER_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
 active_linear_issue: "LEA-52"
 active_review_issue: "LEA-53"
-active_pull_request: null
+active_pull_request: 70
 working_branch: "leonpcsn/lea-52-post-merge-state-sync"
-observed_pr_head: null
+observed_pr_head: "4a9e0fb0dadc42d7c15c5bafeb0dd91fbce08b9e"
 pr_mode: "DRAFT"
 current_gate: "AWAITING_LEA_53_INDEPENDENT_REVIEW"
 gate_status: "BUILDER_CANDIDATE"
@@ -110,7 +110,7 @@ conditions:
   - "LOCAL_TEST_REPORT_TXT_REQUIRED"
   - "ROLLBACK_BY_PR_REVERT"
 
-github_sync_status: "PASS_PR_69_MERGED_MAIN_0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
+github_sync_status: "PASS_PR_69_MERGED_PR_70_DRAFT_REVIEW_HEAD_AUTHORITY_LIVE_GITHUB"
 linear_sync_status: "PASS_LEA_50_DONE_LEA_51_DONE_LEA_52_IN_PROGRESS_LEA_53_TODO"
 readme_sync_status: "PASS_CANDIDATE_BRANCH"
 last_sync_at_utc: "2026-07-20T20:00:00Z"
