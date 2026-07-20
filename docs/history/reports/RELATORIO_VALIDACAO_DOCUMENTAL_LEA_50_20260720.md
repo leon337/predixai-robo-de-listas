@@ -1,0 +1,49 @@
+# RELATÓRIO DE VALIDAÇÃO DOCUMENTAL — LEA-50
+
+> `STATUS=SUPERSEDED_AFTER_LEA_51_FAIL` — este registro preserva a execução histórica anterior. As métricas amplas abaixo não devem ser usadas como prova atual; a evidência vigente está em `RELATORIO_REMEDIACAO_VALIDACAO_LEA_50_POS_LEA_51_20260720.md`.
+
+```text
+REPOSITORY=leon337/predixai-robo-de-listas
+BASE_MAIN_SHA=0968ae86e92e7b640cbcc77941d49a9474839650
+BRANCH=leonpcsn/lea-50-roadmap-implementacao-v1
+VALIDATOR=scripts/validate_lea50_documental.py
+EXECUTED_AT=2026-07-20
+VALIDATION=PASS_BUILDER_CANDIDATE
+INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+```
+
+## Evidência reproduzível
+
+```bash
+python3 scripts/validate_lea50_documental.py
+```
+
+```text
+REQUIREMENTS=218/218
+DOMAINS=16/16
+HANDOFFS=12/12
+ADRS=18/18
+INCREMENT_COUNT=18
+DEPENDENCY_CYCLES=0
+MISSING_DEPENDENCIES=0
+ORPHAN_REQUIREMENTS=0
+UNMAPPED_REQUIREMENTS=0
+DUPLICATE_REQUIREMENT_IDS=0
+UNKNOWN_INCREMENT_REFERENCES=0
+INCREMENTS_WITHOUT_NORMATIVE_BASIS=0
+INCREMENTS_WITHOUT_TEST=0
+INCREMENTS_WITHOUT_LOCAL_VALIDATION=0
+INCREMENTS_WITHOUT_ROLLBACK=0
+GATES_WITHOUT_OBJECTIVE_CRITERIA=0
+AMBIGUOUS_NEXT_INCREMENT=0
+ARCHITECTURE_CHANGE=NO
+APPLICATION_CODE_CHANGED=NO
+TEST_CODE_CHANGED=NO
+SQL_CREATED=NO
+MIGRATION_CREATED=NO
+RUNTIME_EXECUTED=NO
+```
+
+## Limite da evidência
+
+O resultado comprova consistência estrutural da candidatura e não substitui revisão crítica independente. Não houve execução do runtime do produto nem teste local de incremento futuro.
