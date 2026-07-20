@@ -19,7 +19,8 @@ CATALOG = ARCH / "ANEXO_NORMATIVO_CATALOGO_INCREMENTOS_LEA_50_20260720.md"
 GRAPH = ARCH / "ANEXO_NORMATIVO_GRAFO_PRECEDENCIA_INCREMENTOS_LEA_50_20260720.md"
 POLICY = ARCH / "ANEXO_NORMATIVO_POLITICAS_EXECUCAO_INCREMENTAL_LEA_50_20260720.md"
 RUNTIME_STATE = ROOT / "PROJECT_RUNTIME_STATE.yaml"
-LAST_RETEST_HEAD = "8aebab96d7ca98b183e5973384df2cba28eabd83"
+REVIEWED_HEAD = "12ba5e4565bac26f4b4790e7a9339d1d5e889696"
+INTEGRATED_MAIN_SHA = "0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
 
 REQ_PATTERN = r"(?:PTM-V(?:25|26|27)-\d{3}[A-E]?|V(?:25|26|27)-[A-Z]{2,4}-\d{3})"
 ADR_PATTERN = re.compile(r"ADR-\d{4}")
@@ -258,20 +259,21 @@ if product_changes:
 if sql_migration_changes:
     fail(f"SQL_MIGRATION_PATH_CHANGES:{sql_migration_changes}")
 
-# F01: valida a projeção do último HEAD efetivamente retestado e o estado vivo do Linear.
+# LEA-52: valida a projeção documental do resultado integrado da LEA-50/LEA-51.
 runtime_text = RUNTIME_STATE.read_text()
 runtime_expectations = (
-    f'observed_pr_head: "{LAST_RETEST_HEAD}"',
-    f'implementation_pr_head: "{LAST_RETEST_HEAD}"',
-    f'last_independent_retest_head: "{LAST_RETEST_HEAD}"',
-    'task_status_and_dependencies: "Linear LEA-50 In Progress; LEA-51 In Progress awaiting final independent retest"',
-    'ready_for_independent_retest: true',
-    'current_product_issue: "LEA-50"',
-    'current_review_issue: "LEA-51"',
+    f'observed_main_head: "{INTEGRATED_MAIN_SHA}"',
+    f'implementation_pr_head: "{REVIEWED_HEAD}"',
+    f'implementation_merge_commit: "{INTEGRATED_MAIN_SHA}"',
+    'post_merge_confirmation: "PASS_PR_69_MAIN_0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"',
+    'roadmap_status: "INTEGRATED_APPROVED_BY_INDEPENDENT_REVIEW"',
+    'task_status_and_dependencies: "Linear LEA-50 Done; LEA-51 Done; LEA-52 In Progress; LEA-53 Todo"',
+    'current_product_issue: "LEA-52"',
+    'current_review_issue: "LEA-53"',
 )
 missing_state = [item for item in runtime_expectations if item not in runtime_text]
 if missing_state:
-    fail(f"F01_OPERATIONAL_STATE:{missing_state}")
+    fail(f"POST_MERGE_OPERATIONAL_STATE:{missing_state}")
 
 print("VALIDATION=PASS")
 print("VALIDATOR_SCOPE=DOCUMENT_STRUCTURE_AND_REPOSITORY_DIFF_ONLY")
@@ -305,5 +307,6 @@ print("ARCHITECTURE_DECISION_BASELINE_INFERENCE=UNCHANGED_WITHIN_MECHANICALLY_CH
 print("APPLICATION_PRODUCT_PATH_CHANGES=0")
 print("SQL_MIGRATION_PATH_CHANGES=0")
 print("PRODUCT_RUNTIME_EXECUTED_BY_VALIDATOR=NO")
-print("F01_OPERATIONAL_STATE_PROJECTION=PASS")
-print(f"LAST_INDEPENDENT_RETEST_HEAD={LAST_RETEST_HEAD}")
+print("POST_MERGE_OPERATIONAL_STATE_PROJECTION=PASS")
+print(f"REVIEWED_HEAD={REVIEWED_HEAD}")
+print(f"INTEGRATED_MAIN_SHA={INTEGRATED_MAIN_SHA}")
