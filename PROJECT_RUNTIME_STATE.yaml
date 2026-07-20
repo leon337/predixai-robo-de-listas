@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 30
+state_revision: 31
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,18 +7,18 @@ observed_main_head: "0968ae86e92e7b640cbcc77941d49a9474839650"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-50 — Document Master Executive Remediation"
-active_stage: "REMEDIATION_COMPLETE_AWAITING_INDEPENDENT_RETEST"
+active_stage: "F01_REMEDIATION_COMPLETE_AWAITING_FINAL_INDEPENDENT_RETEST"
 active_linear_issue: "LEA-50"
 active_review_issue: "LEA-51"
 active_pull_request: 69
 working_branch: "leonpcsn/lea-50-roadmap-implementacao-v1"
-observed_pr_head: "cb7eb26e6e9336fb45bc958c3d54bdab359b1431"
+observed_pr_head: "8aebab96d7ca98b183e5973384df2cba28eabd83"
 pr_mode: "DRAFT"
-current_gate: "LEA_51_RETEST_REQUIRED"
-gate_status: "BUILDER_REMEDIATION_CANDIDATE"
-next_action: "EXECUTE_LEA_51_RETEST_ON_PINNED_HEAD"
+current_gate: "FINAL_LEA_51_RETEST_REQUIRED"
+gate_status: "F01_BUILDER_REMEDIATION_CANDIDATE"
+next_action: "EXECUTE_FINAL_LEA_51_RETEST_ON_NEW_PINNED_HEAD"
 blockers:
-  - "INDEPENDENT_RETEST_REQUIRED_TO_CLOSE_LEA-51-F01_F02_F03"
+  - "INDEPENDENT_RETEST_REQUIRED_TO_CLOSE_LEA-51-F01"
 
 transition_id: "LEA-50-T01"
 transition_status: "IN_PROGRESS_AWAITING_LEA_51_RETEST"
@@ -33,18 +33,19 @@ builder_issue: "LEA-50"
 review_issue: "LEA-51"
 post_merge_issue: null
 implementation_pull_request: 69
-implementation_pr_head: "cb7eb26e6e9336fb45bc958c3d54bdab359b1431"
+implementation_pr_head: "8aebab96d7ca98b183e5973384df2cba28eabd83"
 implementation_merge_commit: null
 independent_review_decision: "FAIL"
 critical_findings: 0
-major_findings: 3
-open_blocking_findings: 3
+major_findings: 1
+open_blocking_findings: 1
 retest_required: true
 independent_review_required: true
+last_independent_retest_head: "8aebab96d7ca98b183e5973384df2cba28eabd83"
 remediated_findings:
   - "LEA-51-F01_BUILDER_REMEDIATION_CANDIDATE"
-  - "LEA-51-F02_BUILDER_REMEDIATION_CANDIDATE"
-  - "LEA-51-F03_BUILDER_REMEDIATION_CANDIDATE"
+  - "LEA-51-F02_PASS_CONFIRMED_BY_RETEST"
+  - "LEA-51-F03_PASS_CONFIRMED_BY_RETEST"
 post_merge_confirmation: null
 
 fnd_002_history:
@@ -100,7 +101,7 @@ conditions:
   - "ROLLBACK_BY_PR_REVERT"
 
 github_sync_status: "PASS_DRAFT_PR_69_HEAD_AUTHORITY_LIVE_GITHUB"
-linear_sync_status: "PENDING_REMEDIATION_HEAD_PUBLICATION_TO_LEA_50_LEA_51"
+linear_sync_status: "PASS_LEA_50_LEA_51_IN_PROGRESS_RETEST_HEAD_AUTHORITY_LIVE_LINEAR"
 readme_sync_status: "PASS_CANDIDATE_BRANCH"
 last_sync_at_utc: "2026-07-20T20:00:00Z"
 
@@ -120,16 +121,16 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-50 In Progress; LEA-51 Todo awaiting independent review"
+  task_status_and_dependencies: "Linear LEA-50 In Progress; LEA-51 In Progress awaiting final independent retest"
   implementation_plan: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md DM-24..DM-33"
-  independent_review: "Linear LEA-51 + docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_LEA_50_20260720.md"
+  independent_review: "Linear LEA-51 + docs/history/reviews/PROMPT_RETESTE_INDEPENDENTE_LEA_51_POS_REMEDIACAO_20260720.md"
   post_merge_receipt: "docs/implementation/RECIBO_POS_MERGE_PR_66_FND_002_20260720.md"
   consolidated_architecture: "GitHub main at 0968ae86e92e7b640cbcc77941d49a9474839650"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "ROADMAP_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
+  execution_status: "F01_REMEDIATION_CANDIDATE_AWAITING_FINAL_INDEPENDENT_RETEST"
   automatic_advance: false
   documentation_only: true
   baseline_commit_pinned: true
@@ -140,12 +141,12 @@ safety:
   migration_created: false
   runtime_executed: false
   ready_for_independent_review: true
-  ready_for_independent_retest: false
+  ready_for_independent_retest: true
   ready_for_implementation: false
   transition_complete: false
   local_repository_update_required: true
   local_test_report_required: true
   local_execution_evidence_provided: true
   local_execution_result: "PASS"
-  current_product_issue: "NONE"
-  current_review_issue: "NONE"
+  current_product_issue: "LEA-50"
+  current_review_issue: "LEA-51"

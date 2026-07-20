@@ -6,11 +6,11 @@
 REPOSITORY=leon337/predixai-robo-de-listas
 MAIN_HEAD=0968ae86e92e7b640cbcc77941d49a9474839650
 VERSION=V2.4.3-R1
-STATE_REVISION=30
+STATE_REVISION=31
 TRANSITION_ID=LEA-50-T01
-TRANSITION_STATUS=IN_PROGRESS_AWAITING_LEA_51_RETEST
-CURRENT_GATE=LEA_51_RETEST_REQUIRED
-GATE_STATUS=BUILDER_REMEDIATION_CANDIDATE
+TRANSITION_STATUS=IN_PROGRESS_AWAITING_FINAL_LEA_51_RETEST
+CURRENT_GATE=FINAL_LEA_51_RETEST_REQUIRED
+GATE_STATUS=F01_BUILDER_REMEDIATION_CANDIDATE
 ```
 
 ## Posição atual
@@ -95,7 +95,7 @@ REAL_FINANCIAL_EFFECT=NO
 
 ## LEA-50 — candidatura remediada
 
-O primeiro exame independente da LEA-51 falhou com três achados major. A candidatura foi remediada: o estado ativo foi separado do histórico da FND-002, todas as referências de ADR foram normalizadas e o validador passou a distinguir especificação, materialização e prova de execução. O resultado ainda não é definitivo: exige reteste independente sobre o novo HEAD exato do PR Draft.
+O reteste independente no HEAD `8aebab96d7ca98b183e5973384df2cba28eabd83` confirmou `PASS` para F02 e F03, mas manteve F01 como único achado major. A projeção operacional foi então corrigida para refletir o HEAD retestado e a situação real da LEA-51. O resultado ainda não é definitivo: exige reteste final independente sobre o novo HEAD exato do PR Draft.
 
 ```text
 ROADMAP_AUTHORITY=DOCUMENTO_MESTRE
@@ -112,6 +112,12 @@ ROLLBACK_EXECUTION_PROOF=NOT_EXECUTED_DOCUMENTATION_ONLY
 GATE_RESULTS_PROVEN_BY_DOCUMENTAL_RUN=0_OF_18
 PR_DRAFT=69
 INDEPENDENT_REVIEW_ISSUE=LEA-51
+LAST_RETEST_HEAD=8aebab96d7ca98b183e5973384df2cba28eabd83
+LAST_RETEST_DECISION=FAIL
+OPEN_BLOCKING_FINDINGS=1
+F02=PASS_CONFIRMED_BY_RETEST
+F03=PASS_CONFIRMED_BY_RETEST
+F01=BUILDER_REMEDIATION_CANDIDATE
 ```
 
 ## Próxima etapa
@@ -120,7 +126,7 @@ INDEPENDENT_REVIEW_ISSUE=LEA-51
 ACTIVE_MISSION=LEA-50
 NEXT_INCREMENT=FND-003
 NEXT_INCREMENT_AUTHORIZED=NO
-NEXT_ACTION=EXECUTE_LEA_51_RETEST_ON_PINNED_HEAD
+NEXT_ACTION=EXECUTE_FINAL_LEA_51_RETEST_ON_NEW_PINNED_HEAD
 AUTOMATIC_IMPLEMENTATION=NO
 IMPLEMENTATION_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO

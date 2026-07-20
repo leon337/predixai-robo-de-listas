@@ -6,9 +6,9 @@ REPOSITORY=leon337/predixai-robo-de-listas
 PULL_REQUEST=69
 BRANCH=leonpcsn/lea-50-roadmap-implementacao-v1
 REVIEW_HEAD=OBTER_DO_HEAD_ATUAL_DO_PR_69_E_FIXAR_NO_COMENTARIO_DE_INICIO
-PREVIOUS_REVIEW_HEAD=cb7eb26e6e9336fb45bc958c3d54bdab359b1431
-PREVIOUS_DECISION=FAIL
-RETEST_FINDINGS=LEA-51-F01,LEA-51-F02,LEA-51-F03
+PREVIOUS_REVIEW_HEAD=8aebab96d7ca98b183e5973384df2cba28eabd83
+PREVIOUS_DECISION=FAIL_ONE_MAJOR
+RETEST_FINDINGS=LEA-51-F01
 BUILDER_MUST_DIFFER_FROM_REVIEWER=YES
 MERGE_AUTHORIZED=NO
 IMPLEMENTATION_AUTHORIZED=NO
@@ -26,24 +26,16 @@ IMPLEMENTATION_AUTHORIZED=NO
 
 - `builder_issue=LEA-50`;
 - `review_issue=LEA-51`;
-- `observed_pr_head=cb7eb26e6e9336fb45bc958c3d54bdab359b1431` como snapshot do HEAD anteriormente revisado;
+- `observed_pr_head=8aebab96d7ca98b183e5973384df2cba28eabd83` como snapshot do último HEAD efetivamente retestado;
+- `implementation_pr_head=8aebab96d7ca98b183e5973384df2cba28eabd83`;
+- LEA-50 e LEA-51 em `In Progress` nas projeções operacionais;
+- `ready_for_independent_retest=true`, `current_product_issue=LEA-50` e `current_review_issue=LEA-51`;
 - histórico de LEA-46/47/48 e PR #66 isolado em `fnd_002_history`;
 - novo HEAD de reteste fixado externamente no GitHub e Linear.
 
-## LEA-51-F02
+## Achados já aprovados no reteste anterior
 
-- cada referência da coluna `ADR` da matriz usa `ADR-NNNN`;
-- cada referência `ADRS=` do catálogo usa `ADR-NNNN`;
-- todas pertencem ao conjunto `ADR-0001` a `ADR-0018`;
-- nenhuma lista contém duplicação.
-
-## LEA-51-F03
-
-- o validador distingue `LOCAL_VALIDATION_SPECS`, scripts materializados e execução local;
-- rollback é validado como especificação, com execução marcada como não realizada;
-- gates têm tokens mensuráveis, com resultados não declarados como provados;
-- a arquitetura é comparada mecanicamente ao baseline e descrita como inferência limitada;
-- o validador não declara execução do produto nem aprovação sem evidência.
+- `LEA-51-F02=PASS` e `LEA-51-F03=PASS` foram confirmados no HEAD `8aebab96d7ca98b183e5973384df2cba28eabd83` e só devem ser reabertos se houver regressão objetiva.
 
 ## Saída esperada do revisor
 

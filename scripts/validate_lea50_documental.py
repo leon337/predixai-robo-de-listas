@@ -18,6 +18,8 @@ MATRIX = ARCH / "ANEXO_NORMATIVO_MATRIZ_218_REQUISITOS_INCREMENTOS_LEA_50_202607
 CATALOG = ARCH / "ANEXO_NORMATIVO_CATALOGO_INCREMENTOS_LEA_50_20260720.md"
 GRAPH = ARCH / "ANEXO_NORMATIVO_GRAFO_PRECEDENCIA_INCREMENTOS_LEA_50_20260720.md"
 POLICY = ARCH / "ANEXO_NORMATIVO_POLITICAS_EXECUCAO_INCREMENTAL_LEA_50_20260720.md"
+RUNTIME_STATE = ROOT / "PROJECT_RUNTIME_STATE.yaml"
+LAST_RETEST_HEAD = "8aebab96d7ca98b183e5973384df2cba28eabd83"
 
 REQ_PATTERN = r"(?:PTM-V(?:25|26|27)-\d{3}[A-E]?|V(?:25|26|27)-[A-Z]{2,4}-\d{3})"
 ADR_PATTERN = re.compile(r"ADR-\d{4}")
@@ -79,7 +81,7 @@ def canonical_adr_list(value: str, context: str, accepted: set[str]) -> list[str
     return refs
 
 
-for path in (MASTER, INDEX, MATRIX, CATALOG, GRAPH, POLICY):
+for path in (MASTER, INDEX, MATRIX, CATALOG, GRAPH, POLICY, RUNTIME_STATE):
     if not path.is_file():
         fail(f"MISSING_FILE:{path.relative_to(ROOT)}")
 
@@ -256,6 +258,21 @@ if product_changes:
 if sql_migration_changes:
     fail(f"SQL_MIGRATION_PATH_CHANGES:{sql_migration_changes}")
 
+# F01: valida a projeção do último HEAD efetivamente retestado e o estado vivo do Linear.
+runtime_text = RUNTIME_STATE.read_text()
+runtime_expectations = (
+    f'observed_pr_head: "{LAST_RETEST_HEAD}"',
+    f'implementation_pr_head: "{LAST_RETEST_HEAD}"',
+    f'last_independent_retest_head: "{LAST_RETEST_HEAD}"',
+    'task_status_and_dependencies: "Linear LEA-50 In Progress; LEA-51 In Progress awaiting final independent retest"',
+    'ready_for_independent_retest: true',
+    'current_product_issue: "LEA-50"',
+    'current_review_issue: "LEA-51"',
+)
+missing_state = [item for item in runtime_expectations if item not in runtime_text]
+if missing_state:
+    fail(f"F01_OPERATIONAL_STATE:{missing_state}")
+
 print("VALIDATION=PASS")
 print("VALIDATOR_SCOPE=DOCUMENT_STRUCTURE_AND_REPOSITORY_DIFF_ONLY")
 print("REQUIREMENTS=218/218")
@@ -288,3 +305,5 @@ print("ARCHITECTURE_DECISION_BASELINE_INFERENCE=UNCHANGED_WITHIN_MECHANICALLY_CH
 print("APPLICATION_PRODUCT_PATH_CHANGES=0")
 print("SQL_MIGRATION_PATH_CHANGES=0")
 print("PRODUCT_RUNTIME_EXECUTED_BY_VALIDATOR=NO")
+print("F01_OPERATIONAL_STATE_PROJECTION=PASS")
+print(f"LAST_INDEPENDENT_RETEST_HEAD={LAST_RETEST_HEAD}")
