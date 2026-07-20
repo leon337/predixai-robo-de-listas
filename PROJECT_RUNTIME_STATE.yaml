@@ -9,11 +9,11 @@ real_version: "V2.4.3-R1"
 active_mission: "LEA-50 — Document Master Executive Remediation"
 active_stage: "BUILDER_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
 active_linear_issue: "LEA-50"
-active_review_issue: null
-active_pull_request: null
+active_review_issue: "LEA-51"
+active_pull_request: 69
 working_branch: "leonpcsn/lea-50-roadmap-implementacao-v1"
 observed_pr_head: null
-pr_mode: null
+pr_mode: "DRAFT"
 current_gate: "AWAITING_INDEPENDENT_CRITICAL_REVIEW"
 gate_status: "BUILDER_CANDIDATE"
 next_action: "EXECUTE_INDEPENDENT_CRITICAL_REVIEW_ON_PINNED_HEAD"
@@ -84,8 +84,8 @@ conditions:
   - "LOCAL_TEST_REPORT_TXT_REQUIRED"
   - "ROLLBACK_BY_PR_REVERT"
 
-github_sync_status: "PENDING_FINAL_COMMIT_AND_DRAFT_PR"
-linear_sync_status: "LEA_50_IN_PROGRESS_REVIEW_ISSUE_PENDING"
+github_sync_status: "DRAFT_PR_69_OPEN_FINAL_HEAD_TO_BE_PINNED_EXTERNALLY"
+linear_sync_status: "LEA_50_IN_PROGRESS_LEA_51_CREATED_FINAL_HEAD_TO_BE_PINNED"
 readme_sync_status: "PASS_CANDIDATE_BRANCH"
 last_sync_at_utc: "2026-07-20T19:00:00Z"
 
@@ -105,9 +105,9 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-50 In Progress; independent review issue pending"
+  task_status_and_dependencies: "Linear LEA-50 In Progress; LEA-51 Todo blocked by builder finalization"
   implementation_plan: "docs/architecture/DOCUMENTO_MESTRE_ARQUITETURA_V1_LEA-34_20260718.md DM-24..DM-33"
-  independent_review: "docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_LEA_50_20260720.md"
+  independent_review: "Linear LEA-51 + docs/history/reviews/PROMPT_REVISAO_INDEPENDENTE_LEA_50_20260720.md"
   post_merge_receipt: "docs/implementation/RECIBO_POS_MERGE_PR_66_FND_002_20260720.md"
   consolidated_architecture: "GitHub main at 0968ae86e92e7b640cbcc77941d49a9474839650"
 

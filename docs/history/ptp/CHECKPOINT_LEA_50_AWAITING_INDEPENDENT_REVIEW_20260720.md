@@ -7,6 +7,8 @@ STATUS=BUILDER_CANDIDATE_AWAITING_INDEPENDENT_REVIEW
 REPOSITORY=leon337/predixai-robo-de-listas
 BASE_MAIN_SHA=0968ae86e92e7b640cbcc77941d49a9474839650
 BRANCH=leonpcsn/lea-50-roadmap-implementacao-v1
+PR_DRAFT=69
+LINEAR_REVIEW_ISSUE=LEA-51
 ROADMAP_AUTHORITY=DOCUMENTO_MESTRE
 INCREMENT_COUNT=18
 REQUIREMENTS_MAPPED=218_OF_218_CANDIDATE
@@ -40,4 +42,3 @@ MERGE_AUTHORIZED=NO
 ## Próxima ação
 
 Executar revisão crítica independente sobre o HEAD exato fixado na issue Linear e no PR Draft. O builder não pode revisar, aprovar, promover o PR ou fazer merge.
-
