@@ -94,6 +94,40 @@ def _hash_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _safe_absolute_path(path: Path, *, symlink_reason: str) -> Path:
+    """Normaliza sem seguir links e rejeita links em qualquer componente existente."""
+    candidate = Path(os.path.abspath(os.fspath(path.expanduser())))
+    for component in (*reversed(candidate.parents), candidate):
+        if component.is_symlink():
+            raise PersistenceError(symlink_reason)
+    return candidate
+
+
+def _publish_new_file(temporary: Path, destination: Path, *, occupied_reason: str) -> None:
+    """Publica sem substituir um destino criado entre a validação e a publicação."""
+    try:
+        os.link(temporary, destination, follow_symlinks=False)
+    except FileExistsError as exc:
+        raise PersistenceError(occupied_reason) from exc
+    temporary.unlink()
+
+
+def _copy_file_exclusive(source: Path, destination: Path, *, occupied_reason: str) -> None:
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        descriptor = os.open(destination, flags, 0o600)
+    except FileExistsError as exc:
+        raise PersistenceError(occupied_reason) from exc
+    try:
+        with source.open("rb") as input_stream, os.fdopen(descriptor, "wb") as output_stream:
+            shutil.copyfileobj(input_stream, output_stream)
+    except Exception:
+        destination.unlink(missing_ok=True)
+        raise
+
+
 def _sql_statements(script: str) -> Iterator[str]:
     statement = ""
     for line in script.splitlines():
@@ -390,16 +424,23 @@ class SQLitePersistence:
         )
 
     def backup_to(self, destination: Path) -> BackupReceipt:
-        destination = destination.resolve()
-        if destination.exists() or destination.is_symlink():
+        destination = _safe_absolute_path(
+            destination, symlink_reason="BACKUP_SYMLINK_REJECTED"
+        )
+        if destination.exists():
             raise PersistenceError("BACKUP_DESTINATION_MUST_BE_NEW")
         destination.parent.mkdir(parents=True, exist_ok=True)
+        destination = _safe_absolute_path(
+            destination, symlink_reason="BACKUP_SYMLINK_REJECTED"
+        )
         temporary = destination.with_suffix(destination.suffix + ".tmp")
-        if temporary.exists():
+        if temporary.exists() or temporary.is_symlink():
             raise PersistenceError("BACKUP_TEMPORARY_PATH_OCCUPIED")
+        created_temporary = False
         try:
             with self._writer_lock, self._connect(read_only=True) as source:
                 target = sqlite3.connect(temporary)
+                created_temporary = True
                 try:
                     source.backup(target)
                     target.commit()
@@ -407,17 +448,25 @@ class SQLitePersistence:
                         raise PersistenceError("BACKUP_INTEGRITY_CHECK_FAILED")
                 finally:
                     target.close()
-            temporary.replace(destination)
-            os.chmod(destination, 0o600)
+            os.chmod(temporary, 0o600)
+            backup_hash = _hash_file(temporary)
+            schema_version = self.schema_version()
+            _publish_new_file(
+                temporary,
+                destination,
+                occupied_reason="BACKUP_DESTINATION_MUST_BE_NEW",
+            )
+            created_temporary = False
             return BackupReceipt(
                 source_path=str(self.database_path),
                 backup_path=str(destination),
-                sha256=_hash_file(destination),
+                sha256=backup_hash,
                 integrity_check="ok",
-                schema_version=self.schema_version(),
+                schema_version=schema_version,
             )
         finally:
-            temporary.unlink(missing_ok=True)
+            if created_temporary:
+                temporary.unlink(missing_ok=True)
 
     @classmethod
     def restore_to_new_database(
@@ -427,11 +476,15 @@ class SQLitePersistence:
         *,
         expected_sha256: str,
     ) -> BackupReceipt:
-        backup_path = backup_path.resolve()
-        destination = destination.resolve()
-        if not backup_path.is_file() or backup_path.is_symlink():
+        backup_path = _safe_absolute_path(
+            backup_path, symlink_reason="RESTORE_BACKUP_SYMLINK_REJECTED"
+        )
+        destination = _safe_absolute_path(
+            destination, symlink_reason="RESTORE_DESTINATION_SYMLINK_REJECTED"
+        )
+        if not backup_path.is_file():
             raise PersistenceError("RESTORE_BACKUP_INVALID")
-        if destination.exists() or destination.is_symlink():
+        if destination.exists():
             raise PersistenceError("RESTORE_DESTINATION_MUST_BE_NEW")
         if _hash_file(backup_path) != expected_sha256:
             raise PersistenceError("RESTORE_BACKUP_HASH_MISMATCH")
@@ -446,26 +499,40 @@ class SQLitePersistence:
         finally:
             source.close()
         destination.parent.mkdir(parents=True, exist_ok=True)
+        destination = _safe_absolute_path(
+            destination, symlink_reason="RESTORE_DESTINATION_SYMLINK_REJECTED"
+        )
         temporary = destination.with_suffix(destination.suffix + ".tmp")
+        if temporary.exists() or temporary.is_symlink():
+            raise PersistenceError("RESTORE_TEMPORARY_PATH_OCCUPIED")
+        created_temporary = False
         try:
-            shutil.copy2(backup_path, temporary)
-            temporary.replace(destination)
-            os.chmod(destination, 0o600)
-            restored = cls(destination)
+            _copy_file_exclusive(
+                backup_path,
+                temporary,
+                occupied_reason="RESTORE_TEMPORARY_PATH_OCCUPIED",
+            )
+            created_temporary = True
+            restored = cls(temporary)
             if restored.health()["integrity_check"] != "ok":
                 raise PersistenceError("RESTORE_DESTINATION_INTEGRITY_FAILED")
+            restored_hash = _hash_file(temporary)
+            _publish_new_file(
+                temporary,
+                destination,
+                occupied_reason="RESTORE_DESTINATION_MUST_BE_NEW",
+            )
+            created_temporary = False
             return BackupReceipt(
                 source_path=str(backup_path),
                 backup_path=str(destination),
-                sha256=_hash_file(destination),
+                sha256=restored_hash,
                 integrity_check="ok",
                 schema_version=schema_version,
             )
-        except Exception:
-            temporary.unlink(missing_ok=True)
-            if destination.exists():
-                destination.unlink()
-            raise
+        finally:
+            if created_temporary:
+                temporary.unlink(missing_ok=True)
 
     def rollback_latest_if_empty(self) -> None:
         with self._writer_lock, self._connect() as connection:
