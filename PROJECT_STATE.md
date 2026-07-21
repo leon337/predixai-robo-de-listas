@@ -55,6 +55,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próximo gate
 
-Validar o CI do estado final com o PR #72 pronto para revisão. O merge continua
-dependente de autorização humana explícita. A LST-001 permanece bloqueada até a
-confirmação pós-merge em transição separada.
+O PR #72 está pronto para revisão e aguarda autorização humana explícita de
+merge. O CI do HEAD corrente deve ser lido diretamente no GitHub. A LST-001
+permanece bloqueada até a confirmação pós-merge em transição separada.
