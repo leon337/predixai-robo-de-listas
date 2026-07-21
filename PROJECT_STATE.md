@@ -4,50 +4,52 @@
 
 ```text
 REPOSITORY=leon337/predixai-robo-de-listas
-MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
-INSTALLED_VERSION=V2.4.3-R1
-DAT_001_VERSION_TARGET=V2.5.0-alpha.2
-STATE_REVISION=39
-TRANSITION_ID=LEA-59-T01
-ACTIVE_MISSION=LEA-59
-PREMERGE_RETEST=LEA-66_DONE_PASS
-PR=72
-PR_MODE=DRAFT
-REMEDIATION_CODE_HEAD=508748322205bae8c1372a3e6af7504bbffec703
-FINAL_RETEST_HEAD=4798cea7e66ac0dd250cfd07465cdcea27430357
-CURRENT_GATE=AWAITING_DOCUMENTATION_SYNC_CI_THEN_MERGE_DECISION
+MAIN_HEAD=bd2db3772898c46d9422818b780e91b5f132941e
+MAIN_INSTALLED_VERSION=V2.4.3-R1
+CANDIDATE_VERSION=V2.5.0-alpha.2
+STATE_REVISION=40
+TRANSITION_ID=LEA-101-T01
+ACTIVE_MISSION=LEA-101
+INDEPENDENT_REVIEW=LEA-102_TODO
+PR_DRAFT=73
+CODE_HEAD=d6fb5569925313cc82bba83ace05ade19bfe0c53
+CURRENT_GATE=CI_AND_INDEPENDENT_REVIEW_LEA_102
 ```
 
-O reteste independente pré-merge da LEA-66 foi concluído com `PASS` sobre o
-HEAD exato `4798cea7e66ac0dd250cfd07465cdcea27430357`. A validação local no Linux
-Mint, a suíte independente e os 12 workflows foram aprovados. A `main`
-permanece inalterada e o PR #72 continua Draft, sem autorização de merge.
+A DAT-001 foi integrada no PR #72 e a `main` avançou para
+`bd2db3772898c46d9422818b780e91b5f132941e`. A verificação local mostrou uma
+divergência objetiva: o código do incremento estava integrado, porém o arquivo
+`VERSION` e o launcher continuavam identificados como V2.4.3.
 
-## Evidência consolidada
+A autorização humana iniciou exclusivamente o hotfix LEA-101. A candidata promove
+a identificação para V2.5.0-alpha.2 sem alterar o runtime validado da DAT-001.
+
+## Entrega candidata
+
+- `VERSION` promovido para `2.5.0-alpha.2`;
+- nova entrada `app/bootstrap_v250_alpha2_entry.py`;
+- `run.sh` direcionado para a nova entrada;
+- delegação explícita ao runtime estável `bootstrap_v23_entry.run`;
+- três testes de regressão para versão, launcher e entrada;
+- PR #73 mantido em Draft;
+- revisão independente LEA-102 criada.
+
+## Validação
 
 ```text
-LOCAL_LINUX_MINT=PASS_85
-CI_FINAL_HEAD=PASS_12_OF_12
-INDEPENDENT_PYTEST=PASS_85
-INDEPENDENT_RUFF=PASS
-INDEPENDENT_MYPY=PASS_12_SOURCE_FILES
-PR72_PREMERGE_F01=PASS
-PR72_PREMERGE_F02=PASS
-INDEPENDENT_DECISION=PASS
-REPORT_SHA256=21bb35057bbd845370152d1a28a6c3a0db7194d7217dead9cc1af240bf6821f2
-SIDECAR_MATCH=YES
-NULL_ONLY=PRESERVED
+PREVIOUS_CUMULATIVE_TESTS=PASS_85
+NEW_REGRESSION_TESTS=3
+EXPECTED_CUMULATIVE_TESTS=PASS_88
+RUFF=REQUIRED
+MYPY=REQUIRED
+GITHUB_ACTIONS=AWAITING_FINAL_HEAD
+INDEPENDENT_REVIEW=LEA-102_TODO
 ```
 
 ## Limites preservados
 
 ```text
 MODE_MAX=NULL_ONLY
-PRODUCTION_DATABASE=NO
-EXISTING_REAL_DATA_MUTATION=NO
-IRREVERSIBLE_MIGRATION=NO
-DESTRUCTIVE_MIGRATION=NO
-LEGACY_CUTOVER=NO
 LST_001_AUTHORIZED=NO
 SIMULATED_MODE=NO
 CONTROLLED_UI=NO
@@ -60,6 +62,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próximo gate
 
-Concluir a sincronização documental no PR #72, confirmar o CI do novo HEAD
-documental e preparar a decisão humana de merge. O PR permanece Draft até
-autorização explícita; LST-001 continua bloqueado.
+Confirmar CI do HEAD final do PR #73, fixar o mesmo SHA externamente no GitHub e
+na LEA-102 e executar a revisão independente. Não promover nem mesclar sem nova
+autorização humana explícita.
