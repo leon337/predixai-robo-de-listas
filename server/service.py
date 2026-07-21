@@ -14,6 +14,7 @@ from server.contracts import (
     ReasonCode,
     RuntimeState,
 )
+from server.identity import IdentityService
 
 
 class SafeServerService:
@@ -21,6 +22,10 @@ class SafeServerService:
         self.config = config
         self.adapter = NullAdapter()
         self.audit = InMemoryAuditSink(enabled=config.audit_enabled)
+        self.identity = IdentityService(
+            pairing_ttl_seconds=config.pairing_ttl_seconds,
+            session_ttl_seconds=config.session_ttl_seconds,
+        )
         self._state = RuntimeState.BOOTING
         self._reason = ReasonCode.CONFIG_FAIL_CLOSED
         self._lock = Lock()

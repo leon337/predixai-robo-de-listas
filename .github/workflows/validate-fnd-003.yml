@@ -1,0 +1,37 @@
+name: Validar FND-003
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "server/**"
+      - "tests/**"
+      - "scripts/validate_fnd_003_local.sh"
+      - "requirements-server.txt"
+      - "requirements-dev.txt"
+      - ".github/workflows/validate-fnd-003.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Validar sintaxe do executor Linux Mint
+        run: bash -n scripts/validate_fnd_003_local.sh
+      - name: Instalar dependências isoladas
+        run: python -m pip install -r requirements-dev.txt
+      - name: Testes cumulativos
+        run: python -m pytest -q
+      - name: Ruff
+        run: ruff check server tests/server
+      - name: Mypy
+        run: mypy server --ignore-missing-imports

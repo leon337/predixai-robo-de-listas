@@ -1,0 +1,52 @@
+# CHECKPOINT — FND-003 aguardando revisão LEA-55
+
+```text
+REPOSITORY=leon337/predixai-robo-de-listas
+BASE_MAIN_SHA=4d62143e32ac289ba71dbd14e6da07fd7e938ec9
+BUILDER_ISSUE=LEA-54
+REVIEW_ISSUE=LEA-55
+PULL_REQUEST=71_DRAFT
+BRANCH=leonpcsn/fnd-003-identity-configuration-client-trust
+REVIEW_HEAD=PINNED_EXTERNALLY_IN_PR_71_AND_LINEAR_LEA_55
+MODE_MAX=NULL_ONLY
+VERSION_TARGET=V2.5.0-alpha.1
+```
+
+## Resultado do builder
+
+```text
+UNIT_INTEGRATION_REGRESSION_CUMULATIVE=PASS_53_TESTS
+RUFF=PASS
+MYPY=PASS
+GITHUB_ACTIONS=PASS_11_OF_11
+DIFF_CHECK=PASS
+PYTHON_COMPILE_AND_AST=PASS
+LOCAL_LINUX_MINT_TEST=⏳ AGUARDANDO EXECUÇÃO DO LEO
+LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
+ARCHITECTURE_CHANGE=NO
+SQL_OR_MIGRATION=NO
+BROKER_CONNECTION=NO
+REAL_CLICK=NO
+REAL_FINANCIAL_EFFECT=NO
+SIMULATED_MODE=NO
+CONTROLLED_UI=NO
+LIVE_MODE_ARMED=NO
+```
+
+O primeiro workflow FND-003 confirmou os 53 testes e falhou somente porque o Ruff
+foi inicialmente aplicado a um teste legado fora do escopo, já existente e não
+alterado. O segundo candidato preservou a suíte cumulativa completa e restringiu
+somente a análise estática à fundação `server` e `tests/server`, como nas fundações
+anteriores. O reteste concluiu com onze workflows aprovados.
+
+## Gate
+
+```text
+BUILDER_STATUS=COMPLETE
+ROADMAP_INCREMENT_STATUS=CANDIDATE
+INDEPENDENT_CRITICAL_REVIEW=REQUIRED
+MERGE_AUTHORIZED=NO
+NEXT_INCREMENT=DAT-001
+NEXT_INCREMENT_AUTHORIZED=NO
+NEXT_GATE=LEA_55_INDEPENDENT_CRITICAL_REVIEW
+```
