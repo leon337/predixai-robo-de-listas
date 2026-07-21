@@ -24,12 +24,17 @@ do próprio commit dentro deste documento.
 2. Confirmar que `run.sh` executa `app/bootstrap_v250_alpha2_entry.py`.
 3. Confirmar que a entrada nova é sintaticamente válida e delega exclusivamente para
    `bootstrap_v23_entry.run`.
-4. Confirmar que nenhuma lógica de runtime, corretora, clique, efeito financeiro,
+4. Revisar `scripts/validate_version_floor.py` e comprovar precedência SemVer,
+   rejeição de versões inválidas e comparação correta entre prerelease e release.
+5. Confirmar que os oito workflows históricos preservam suas verificações funcionais
+   e alteram somente a validação de versão para pisos SemVer.
+6. Confirmar que nenhuma lógica de runtime, corretora, clique, efeito financeiro,
    SIMULATED, CONTROLLED_UI ou LIVE foi adicionada.
-5. Executar toda a suíte cumulativa e confirmar os três testes novos.
-6. Executar Ruff e Mypy.
-7. Confirmar CI do HEAD final, PR Draft e alinhamento GitHub–Linear–documentação.
-8. Publicar PASS ou FAIL no PR #73 e na LEA-102.
+7. Executar toda a suíte cumulativa e confirmar oito testes novos: três de promoção e
+   cinco do validador SemVer.
+8. Executar Ruff e Mypy e confirmar todos os workflows do HEAD final.
+9. Confirmar PR Draft e alinhamento GitHub–Linear–documentação.
+10. Publicar PASS ou FAIL no PR #73 e na LEA-102.
 
 ## Limites
 
