@@ -7,32 +7,36 @@ REPOSITORY=leon337/predixai-robo-de-listas
 MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
 INSTALLED_VERSION=V2.4.3-R1
 DAT_001_VERSION_TARGET=V2.5.0-alpha.2
-STATE_REVISION=38
+STATE_REVISION=39
 TRANSITION_ID=LEA-59-T01
 ACTIVE_MISSION=LEA-59
-PREMERGE_RETEST=LEA-66_TODO
+PREMERGE_RETEST=LEA-66_DONE_PASS
 PR=72
 PR_MODE=DRAFT
 REMEDIATION_CODE_HEAD=508748322205bae8c1372a3e6af7504bbffec703
-FINAL_RETEST_HEAD=EXTERNAL_GITHUB_PR_AND_LINEAR_LEA_66
-CURRENT_GATE=AWAITING_LOCAL_REVALIDATION_THEN_LEA_66
+FINAL_RETEST_HEAD=4798cea7e66ac0dd250cfd07465cdcea27430357
+CURRENT_GATE=AWAITING_DOCUMENTATION_SYNC_CI_THEN_MERGE_DECISION
 ```
 
-A revisão humana pré-merge encontrou dois bloqueadores adicionais na importação
-legado. A remediação foi publicada e passou no CI, mas ainda exige validação no
-Linux Mint e reteste independente pela LEA-66. A `main` permanece inalterada.
+O reteste independente pré-merge da LEA-66 foi concluído com `PASS` sobre o
+HEAD exato `4798cea7e66ac0dd250cfd07465cdcea27430357`. A validação local no Linux
+Mint, a suíte independente e os 12 workflows foram aprovados. A `main`
+permanece inalterada e o PR #72 continua Draft, sem autorização de merge.
 
-## Evidência do builder
+## Evidência consolidada
 
 ```text
-LOCAL_LINUX_MINT=PENDING_FOR_FINAL_RETEST_HEAD
-CI_REMEDIATION_CODE_HEAD=PASS_12_OF_12
-PYTEST=PASS_85
-RUFF=PASS
-MYPY=PASS_12_SOURCE_FILES
-PR72_PREMERGE_F01=REMEDIATED_AWAITING_LEA_66
-PR72_PREMERGE_F02=REMEDIATED_AWAITING_LEA_66
-INDEPENDENT_DECISION=PENDING
+LOCAL_LINUX_MINT=PASS_85
+CI_FINAL_HEAD=PASS_12_OF_12
+INDEPENDENT_PYTEST=PASS_85
+INDEPENDENT_RUFF=PASS
+INDEPENDENT_MYPY=PASS_12_SOURCE_FILES
+PR72_PREMERGE_F01=PASS
+PR72_PREMERGE_F02=PASS
+INDEPENDENT_DECISION=PASS
+REPORT_SHA256=21bb35057bbd845370152d1a28a6c3a0db7194d7217dead9cc1af240bf6821f2
+SIDECAR_MATCH=YES
+NULL_ONLY=PRESERVED
 ```
 
 ## Limites preservados
@@ -56,6 +60,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próximo gate
 
-Validar o HEAD documental final no Linux Mint e anexar o TXT e o sidecar
-SHA-256. Depois, executar a LEA-66 sobre o HEAD fixado. O PR #72 permanece Draft,
-e merge e LST-001 continuam bloqueados.
+Concluir a sincronização documental no PR #72, confirmar o CI do novo HEAD
+documental e preparar a decisão humana de merge. O PR permanece Draft até
+autorização explícita; LST-001 continua bloqueado.
