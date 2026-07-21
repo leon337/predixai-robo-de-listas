@@ -14,11 +14,11 @@ MISSÃO_ATIVA=LEA-59 — DAT-001
 REVISÃO_FINAL=LEA-63 — PASS
 BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
 PR=72
-PR_MODE=DRAFT_PENDING_SYNC_CI_AND_PROMOTION
+PR_MODE=READY_FOR_REVIEW
 REVIEWED_HEAD=2f871007dfda0c4cfe4bc111f8d9574342baf7df
 STATE_REVISION=37
-FASE=FINAL_SYNC
-GATE=READY_FOR_MERGE_AUTHORIZATION_AFTER_SYNC_CI
+FASE=READY_FOR_REVIEW
+GATE=AWAITING_EXPLICIT_HUMAN_MERGE_AUTHORIZATION
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
 SNAPSHOT_AT=2026-07-21T08:15:00Z
@@ -34,7 +34,7 @@ STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 | FND-001, FND-002 e FND-003 | ✅ integradas |
 | DAT-001 — estado durável e migração legada | ✅ candidata validada: 82 testes, CI `12/12` |
 | LEA-63 — reteste independente final | ✅ `PASS` |
-| PR #72 | 🟨 sincronização final antes da promoção |
+| PR #72 | ✅ pronto para decisão humana de merge |
 | LST-001 | ⛔ não autorizado |
 
 ## Evidência DAT-001
@@ -76,5 +76,5 @@ MERGE_AUTHORIZED=NO
 
 ## Próxima ação
 
-Validar o CI do commit documental de sincronização e marcar o PR #72 como pronto
-para revisão. O merge continuará aguardando autorização humana explícita.
+Validar o CI do estado final pronto para revisão. O merge continuará aguardando
+autorização humana explícita.
