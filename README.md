@@ -7,18 +7,16 @@
 ## Estado atual
 
 ```text
-VERSÃO_INSTALADA=V2.4.3-R1
-DAT_001_VERSION_TARGET=V2.5.0-alpha.2
-MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
-MISSÃO_ATIVA=LEA-59 — DAT-001
-RETESTE_PRÉ_MERGE=LEA-66 — DONE/PASS
-BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
-PR=72
+MAIN_HEAD=bd2db3772898c46d9422818b780e91b5f132941e
+MAIN_INSTALLED_VERSION=V2.4.3-R1
+CANDIDATE_VERSION=V2.5.0-alpha.2
+MISSÃO_ATIVA=LEA-101 — promoção de versão
+REVISÃO_INDEPENDENTE=LEA-102 — TODO
+BRANCH=leonpcsn/lea-101-hotfix-promote-installed-version-to-v250-alpha2
+PR=73
 PR_MODE=DRAFT
-FINAL_RETEST_HEAD=4798cea7e66ac0dd250cfd07465cdcea27430357
-STATE_REVISION=39
-FASE=PREMERGE_DOCUMENTATION_SYNC
-GATE=AWAITING_DOCUMENTATION_SYNC_CI_THEN_MERGE_DECISION
+STATE_REVISION=40
+GATE=CI_AND_INDEPENDENT_REVIEW_LEA_102
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
 STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
@@ -31,42 +29,43 @@ STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 | Documento Mestre e mapa canônico | ✅ integrados |
 | Requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
 | FND-001, FND-002 e FND-003 | ✅ integradas |
-| DAT-001 — estado durável e migração legada | ✅ reteste pré-merge aprovado |
-| LEA-66 — reteste pré-merge | ✅ `DONE/PASS` |
-| PR #72 | ⏳ Draft; aguardando sincronização/CI e decisão humana |
+| DAT-001 — estado durável e migração legada | ✅ integrada no PR #72 |
+| LEA-101 — promoção para V2.5.0-alpha.2 | 🟨 candidata publicada |
+| LEA-102 — revisão independente | ⏳ aguardando HEAD final e CI |
+| PR #73 | ⏳ Draft; sem autorização de merge |
 | LST-001 | ⛔ não autorizado |
 
-## Evidência DAT-001
+## Hotfix de versão
+
+A DAT-001 foi integrada com sucesso, mas a aplicação continuou exibindo V2.4.3
+porque `VERSION` e `run.sh` não foram promovidos. O PR #73 corrige exclusivamente
+essa divergência:
 
 ```text
-LOCAL_LINUX_MINT=PASS_85
-CI_FINAL_HEAD=PASS_12_OF_12
-INDEPENDENT_PYTEST=PASS_85
-RUFF=PASS
-MYPY=PASS_12_SOURCE_FILES
-PR72_PREMERGE_F01=PASS
-PR72_PREMERGE_F02=PASS
-INDEPENDENT_DECISION=PASS
-REPORT_SHA256=21bb35057bbd845370152d1a28a6c3a0db7194d7217dead9cc1af240bf6821f2
-SIDECAR_MATCH=YES
-NULL_ONLY=PRESERVED
+VERSION=2.5.0-alpha.2
+ENTRYPOINT=app/bootstrap_v250_alpha2_entry.py
+STABLE_RUNTIME_DELEGATE=bootstrap_v23_entry.run
+BEHAVIORAL_RUNTIME_CHANGE=NO
+NEW_REGRESSION_TESTS=3
 ```
 
-A entrega introduz persistência SQLite local V1, escritor único, versão otimista,
-comandos idempotentes, outbox atômico, migrations reversíveis, backup/restore
-verificável e importação legada para staging. A remediação pré-merge rejeita
-fontes simbólicas antes da normalização e serializa retries concorrentes da mesma
-fonte sem duplicar staging ou ledger.
+A nova entrada é um adaptador fino: preserva o runtime validado e altera somente a
+identificação pública da versão.
+
+## DAT-001 integrada
+
+```text
+DAT_001_MERGE_COMMIT=bd2db3772898c46d9422818b780e91b5f132941e
+LOCAL_LINUX_MINT=PASS_85
+CI=PASS_12_OF_12
+INDEPENDENT_DECISION=PASS
+NULL_ONLY=PRESERVED
+```
 
 ## Limites
 
 ```text
 MODE_MAX=NULL_ONLY
-PRODUCTION_DATABASE=NO
-EXISTING_REAL_DATA_MUTATION=NO
-IRREVERSIBLE_MIGRATION=NO
-DESTRUCTIVE_MIGRATION=NO
-LEGACY_CUTOVER=NO
 LST_001_AUTHORIZED=NO
 SIMULATED_MODE=NO
 CONTROLLED_UI=NO
@@ -79,6 +78,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próxima ação
 
-Concluir a sincronização documental, confirmar o CI do novo HEAD documental e
-preparar a decisão humana de merge. O PR permanece Draft e sem autorização de
-merge.
+Confirmar o CI do HEAD final do PR #73, fixar o mesmo SHA no PR e na LEA-102 e
+executar a revisão independente. Não promover nem mesclar sem autorização humana
+explícita.
