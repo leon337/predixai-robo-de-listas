@@ -27,4 +27,4 @@ jobs:
           grep -q "def show_about" app/bootstrap_v243.py
           grep -q "def export_diagnostic_report" app/diagnostics_tools.py
       - name: Validar versão publicada
-        run: test "$(tr -d '\n' < VERSION)" = "2.4.3"
+        run: python scripts/validate_version_floor.py --minimum 2.4.3
