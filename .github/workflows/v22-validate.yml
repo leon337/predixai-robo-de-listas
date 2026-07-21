@@ -23,13 +23,7 @@ jobs:
       - name: Validar scripts shell
         run: bash -n run.sh install.sh install_desktop.sh
       - name: Validar compatibilidade V2.2+
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          version = tuple(int(part) for part in Path('VERSION').read_text().strip().split('.'))
-          assert version >= (2, 2, 0), version
-          print('VERSION_COMPATIBILITY=PASS')
-          PY
+        run: python scripts/validate_version_floor.py --minimum 2.2.0
       - name: Validar configuração de exemplo
         run: |
           python - <<'PY'
