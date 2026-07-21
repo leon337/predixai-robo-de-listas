@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from server import persistence as persistence_package
 from server.config import ServerConfig
 from server.contracts import ReasonCode, RuntimeState
 from server.persistence import PersistenceError, SQLitePersistence
@@ -170,6 +171,31 @@ def test_backup_rejects_symlinked_parent_directory(tmp_path: Path) -> None:
         store.backup_to(linked_directory / "backup.db")
 
     assert not (redirected_directory / "backup.db").exists()
+
+
+def test_backup_fails_closed_when_symlink_wins_destination_creation_race(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    store = SQLitePersistence(tmp_path / "state.db")
+    store.initialize()
+    destination = tmp_path / "backup.db"
+    redirected = tmp_path / "redirected.db"
+    original_open = persistence_package.store.os.open
+
+    def inject_symlink_before_open(
+        path: str | bytes | Path, flags: int, mode: int = 0o777
+    ) -> int:
+        if Path(path) == destination and not destination.is_symlink():
+            destination.symlink_to(redirected)
+        return original_open(path, flags, mode)
+
+    monkeypatch.setattr(persistence_package.store.os, "open", inject_symlink_before_open)
+
+    with pytest.raises(PersistenceError, match="BACKUP_DESTINATION_MUST_BE_NEW"):
+        store.backup_to(destination)
+
+    assert destination.is_symlink()
+    assert not redirected.exists()
 
 
 def test_local_validator_binds_report_to_exact_remote_head_and_sha256() -> None:
