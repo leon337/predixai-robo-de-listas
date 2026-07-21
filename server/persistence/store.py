@@ -583,9 +583,13 @@ class SQLitePersistence:
         *,
         importer_version: str = "1.0.0",
     ) -> LegacyImportResult:
-        source_path = source_path.resolve()
-        evidence_dir = evidence_dir.resolve()
-        if not source_path.is_file() or source_path.is_symlink():
+        source_path = _safe_absolute_path(
+            source_path, symlink_reason="LEGACY_SOURCE_INVALID"
+        )
+        evidence_dir = _safe_absolute_path(
+            evidence_dir, symlink_reason="LEGACY_EVIDENCE_SYMLINK_REJECTED"
+        )
+        if not source_path.is_file():
             raise PersistenceError("LEGACY_SOURCE_INVALID")
         raw = source_path.read_bytes()
         source_hash = _hash_bytes(raw)
@@ -596,12 +600,35 @@ class SQLitePersistence:
             return existing
 
         evidence_dir.mkdir(parents=True, exist_ok=True)
-        source_backup = evidence_dir / f"legacy_source_{source_hash}.json"
-        if not source_backup.exists():
-            temporary = source_backup.with_suffix(".tmp")
-            temporary.write_bytes(raw)
-            temporary.replace(source_backup)
-            os.chmod(source_backup, 0o600)
+        source_backup = _safe_absolute_path(
+            evidence_dir / f"legacy_source_{source_hash}.json",
+            symlink_reason="LEGACY_SOURCE_BACKUP_SYMLINK_REJECTED",
+        )
+        source_temporary = source_backup.with_name(
+            f".{source_backup.name}.{uuid4().hex}.tmp"
+        )
+        temporary_created = False
+        try:
+            _write_bytes_exclusive(
+                raw,
+                source_temporary,
+                occupied_reason="LEGACY_SOURCE_BACKUP_TEMPORARY_OCCUPIED",
+            )
+            temporary_created = True
+            _publish_new_file(
+                source_temporary,
+                source_backup,
+                occupied_reason="LEGACY_SOURCE_BACKUP_ALREADY_EXISTS",
+            )
+            temporary_created = False
+        except PersistenceError as exc:
+            if exc.reason_code != "LEGACY_SOURCE_BACKUP_ALREADY_EXISTS":
+                raise
+            if source_backup.is_symlink():
+                raise PersistenceError("LEGACY_SOURCE_BACKUP_SYMLINK_REJECTED") from exc
+        finally:
+            if temporary_created:
+                source_temporary.unlink(missing_ok=True)
         if _hash_file(source_backup) != source_hash:
             raise PersistenceError("LEGACY_SOURCE_BACKUP_HASH_MISMATCH")
 
@@ -624,6 +651,14 @@ class SQLitePersistence:
         with self._writer_lock, self._connect() as connection:
             try:
                 connection.execute("BEGIN IMMEDIATE")
+                existing = self._existing_import_on_connection(connection, idempotency_key)
+                if existing is not None:
+                    connection.execute("COMMIT")
+                    try:
+                        Path(database_receipt.backup_path).unlink(missing_ok=True)
+                    except OSError:
+                        pass
+                    return existing
                 connection.execute(
                     "INSERT INTO migration_runs(run_id, idempotency_key, source_hash, "
                     "importer_version, target_schema_version, source_backup_path, "
@@ -669,23 +704,29 @@ class SQLitePersistence:
 
     def _existing_import(self, idempotency_key: str) -> LegacyImportResult | None:
         with self._connect(read_only=True) as connection:
-            row = connection.execute(
-                "SELECT * FROM migration_runs WHERE idempotency_key = ?", (idempotency_key,)
-            ).fetchone()
-            if row is None:
-                return None
-            counts = json.loads(row["counts_json"])
-            return LegacyImportResult(
-                run_id=row["run_id"],
-                idempotency_key=row["idempotency_key"],
-                source_hash=row["source_hash"],
-                status=row["status"],
-                inventory_count=int(counts["inventory"]),
-                accepted_count=int(counts["accepted"]),
-                rejected_count=int(counts["rejected"]),
-                source_backup_path=row["source_backup_path"],
-                database_backup_path=row["database_backup_path"],
-            )
+            return self._existing_import_on_connection(connection, idempotency_key)
+
+    @staticmethod
+    def _existing_import_on_connection(
+        connection: sqlite3.Connection, idempotency_key: str
+    ) -> LegacyImportResult | None:
+        row = connection.execute(
+            "SELECT * FROM migration_runs WHERE idempotency_key = ?", (idempotency_key,)
+        ).fetchone()
+        if row is None:
+            return None
+        counts = json.loads(row["counts_json"])
+        return LegacyImportResult(
+            run_id=row["run_id"],
+            idempotency_key=row["idempotency_key"],
+            source_hash=row["source_hash"],
+            status=row["status"],
+            inventory_count=int(counts["inventory"]),
+            accepted_count=int(counts["accepted"]),
+            rejected_count=int(counts["rejected"]),
+            source_backup_path=row["source_backup_path"],
+            database_backup_path=row["database_backup_path"],
+        )
 
     @staticmethod
     def _transform_legacy(raw: bytes) -> tuple[list[tuple[str, str, str, str, str | None]], list[str]]:
