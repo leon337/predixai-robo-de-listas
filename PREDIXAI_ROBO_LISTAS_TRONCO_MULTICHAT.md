@@ -49,8 +49,8 @@ ARCHITECTURE_CHANGE=NO
 ✅ FND-001 integrada
 ✅ FND-002 integrada
 ✅ LEA-52/LEA-53 e PR #70 concluídos
-🟨 LEA-54 — FND-003 em implementação e validação
-⏳ LEA-55 — revisão crítica independente preparada
+✅ LEA-54 — candidato FND-003 publicado no PR Draft #71
+⏳ LEA-55 — revisão crítica independente aguardando execução
 ⬜ DAT-001 — não autorizado
 ```
 
@@ -83,7 +83,10 @@ NEXT_INCREMENT_AUTHORIZED=NO
 ## Próxima ação
 
 ```text
-NEXT_ACTION=PUBLISH_DRAFT_PR_AND_PIN_REVIEW_HEAD_IN_GITHUB_AND_LEA_55
+PULL_REQUEST=71_DRAFT
+CI_STATUS=PASS_11_OF_11
+CUMULATIVE_TESTS=PASS_53_TESTS
+NEXT_ACTION=EXECUTE_LEA_55_ON_EXTERNALLY_PINNED_PR_HEAD
 LOCAL_TEST_COMMAND=./scripts/validate_fnd_003_local.sh --expected-commit <REVIEW_HEAD>
 LOCAL_LINUX_MINT_RESULT=AWAITING_LEO_EXECUTION
 AUTOMATIC_ADVANCE=NO

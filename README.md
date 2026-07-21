@@ -13,7 +13,7 @@ MAIN_HEAD=4d62143e32ac289ba71dbd14e6da07fd7e938ec9
 MISSÃO_ATIVA=LEA-54 — FND-003
 REVISÃO=LEA-55 — PREPARADA
 BRANCH=leonpcsn/fnd-003-identity-configuration-client-trust
-PR_DRAFT=AGUARDANDO_PUBLICAÇÃO
+PR_DRAFT=71
 STATE_REVISION=35
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
@@ -27,8 +27,9 @@ MERGE_AUTORIZADO=NO
 | requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
 | FND-001 e FND-002 | ✅ integradas |
 | LEA-52 / LEA-53 / PR #70 | ✅ concluídos |
-| FND-003 — configuração, identidade e confiança | 🟨 implementação candidata |
-| LEA-55 — revisão independente | ⏳ preparada |
+| FND-003 — configuração, identidade e confiança | ✅ candidata no PR Draft #71 |
+| CI do candidato | ✅ `11/11`, `53 testes`, Ruff e Mypy |
+| LEA-55 — revisão independente | ⏳ aguardando execução |
 | DAT-001 | ⛔ não autorizado |
 
 ## FND-003
@@ -71,5 +72,5 @@ NEXT_INCREMENT_AUTHORIZED=NO
 
 ## Próxima ação
 
-Publicar o PR Draft, fixar o HEAD candidato no GitHub e na LEA-55 e aguardar a
-revisão crítica independente. O builder deve parar antes do merge.
+Executar a LEA-55 no HEAD candidato fixado externamente no GitHub e no Linear. O
+builder deve permanecer parado antes do merge.
