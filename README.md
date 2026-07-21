@@ -11,13 +11,18 @@ VERSÃO_INSTALADA=V2.4.3-R1
 DAT_001_VERSION_TARGET=V2.5.0-alpha.2
 MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
 MISSÃO_ATIVA=LEA-59 — DAT-001
-REVISÃO=LEA-60 — PREPARADA E BLOQUEADA ATÉ O CANDIDATO
+REVISÃO_FINAL=LEA-63 — PASS
 BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
-PR_DRAFT=72
-VALIDATED_CODE_HEAD=390911d9bd7810c683a02337fe12722c9e0fc180
-STATE_REVISION=36
+PR=72
+PR_MODE=DRAFT_PENDING_SYNC_CI_AND_PROMOTION
+REVIEWED_HEAD=2f871007dfda0c4cfe4bc111f8d9574342baf7df
+STATE_REVISION=37
+FASE=FINAL_SYNC
+GATE=READY_FOR_MERGE_AUTHORIZATION_AFTER_SYNC_CI
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
+SNAPSHOT_AT=2026-07-21T08:15:00Z
+STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 ```
 
 ## Campanha
@@ -25,32 +30,30 @@ MERGE_AUTORIZADO=NO
 | Entrega ou gate | Estado |
 |---|---|
 | Documento Mestre e mapa canônico | ✅ integrados |
-| requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
+| Requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
 | FND-001, FND-002 e FND-003 | ✅ integradas |
-| DAT-001 — estado durável e migração legada | ✅ candidata no PR Draft #72; CI `12/12`, 77 testes |
-| LEA-60 — revisão independente | ⏳ preparada, aguardando HEAD final |
+| DAT-001 — estado durável e migração legada | ✅ candidata validada: 82 testes, CI `12/12` |
+| LEA-63 — reteste independente final | ✅ `PASS` |
+| PR #72 | 🟨 sincronização final antes da promoção |
 | LST-001 | ⛔ não autorizado |
 
-## DAT-001
-
-A entrega introduz somente persistência SQLite local V1: escritor único, versão
-otimista, comandos idempotentes, eventos versionados em outbox atômico, migrations
-reversíveis, backup/restore verificável e importação legada para staging.
-
-Importação não significa cutover: os dados permanecem não autoritativos até uma
-missão posterior expressamente autorizada. Nenhum banco de produção ou dado real
-existente é alterado.
-
-Validação Linux Mint prevista:
-
-```bash
-./scripts/local_validate_dat_001.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
-```
+## Evidência DAT-001
 
 ```text
-LOCAL_LINUX_MINT_TEST=⏳ AGUARDANDO EXECUÇÃO DO LEO
-LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
+LOCAL_LINUX_MINT=PASS_82
+CI_REVIEWED_HEAD=PASS_12_OF_12
+RUFF=PASS
+MYPY=PASS_12_SOURCE_FILES
+LEA_62_F01_RETEST=PASS
+REPORT_SHA256=edf4b4b684bd29d7a6dd5dedef82689e3dbad294e903eb95c339a82fffab6de6
+SIDECAR_MATCH=YES
+INDEPENDENT_DECISION=PASS
 ```
+
+A entrega introduz persistência SQLite local V1, escritor único, versão otimista,
+comandos idempotentes, outbox atômico, migrations reversíveis, backup/restore
+verificável e importação legada para staging. A remediação final elimina a janela
+de corrida na criação do backup com abertura exclusiva e proteção contra links.
 
 ## Limites
 
@@ -60,6 +63,7 @@ PRODUCTION_DATABASE=NO
 EXISTING_REAL_DATA_MUTATION=NO
 IRREVERSIBLE_MIGRATION=NO
 DESTRUCTIVE_MIGRATION=NO
+LEGACY_CUTOVER=NO
 LST_001_AUTHORIZED=NO
 SIMULATED_MODE=NO
 CONTROLLED_UI=NO
@@ -72,5 +76,5 @@ MERGE_AUTHORIZED=NO
 
 ## Próxima ação
 
-Executar o validador Linux Mint no HEAD final externamente fixado e entregar o TXT
-à LEA-60. O builder para antes da revisão, promoção ou merge.
+Validar o CI do commit documental de sincronização e marcar o PR #72 como pronto
+para revisão. O merge continuará aguardando autorização humana explícita.
