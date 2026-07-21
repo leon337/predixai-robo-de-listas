@@ -7,26 +7,25 @@ observed_main_head: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-59 — DAT-001 Durable State and Legacy Migration"
-active_stage: "BUILDER_IMPLEMENTATION_AND_VALIDATION"
+active_stage: "CANDIDATE_AWAITING_LOCAL_TEST_AND_INDEPENDENT_CRITICAL_REVIEW"
 active_linear_issue: "LEA-59"
 active_review_issue: "LEA-60"
-active_pull_request: null
+active_pull_request: 72
 working_branch: "leonpcsn/dat-001-durable-state-legacy-migration"
 review_head_pin_authority: "EXTERNAL_GITHUB_DRAFT_PR_AND_LINEAR_LEA_60"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
-pr_mode: "DRAFT_PENDING_CREATION"
-current_gate: "BUILDER_VALIDATION_DAT_001"
-gate_status: "IMPLEMENTATION_IN_PROGRESS"
-next_action: "COMPLETE_VALIDATION_PUBLISH_DRAFT_PR_AND_PIN_HEAD"
+pr_mode: "DRAFT"
+current_gate: "LOCAL_LINUX_MINT_AND_INDEPENDENT_CRITICAL_REVIEW_LEA_60"
+gate_status: "BUILDER_PASS_CI_12_OF_12_AT_VALIDATED_CODE_HEAD"
+next_action: "RUN_LOCAL_VALIDATOR_THEN_EXECUTE_LEA_60_ON_EXTERNALLY_PINNED_HEAD"
 blockers:
-  - "PYPI_DEPENDENCY_DOWNLOAD_REQUIRES_EXPLICIT_ENVIRONMENT_APPROVAL"
   - "LOCAL_LINUX_MINT_REPORT_PENDING_LEO_EXECUTION"
   - "INDEPENDENT_CRITICAL_REVIEW_LEA_60_REQUIRED"
 
 transition_id: "LEA-59-T01"
-transition_status: "DAT_001_AUTHORIZED_AND_IN_PROGRESS"
+transition_status: "BUILDER_COMPLETE_AWAITING_LOCAL_TEST_AND_INDEPENDENT_REVIEW"
 from_state: "FND_003_POST_MERGE_CONFIRMATION_PASS"
-to_state: "DAT_001_CANDIDATE_AWAITING_BUILDER_VALIDATION"
+to_state: "DAT_001_CANDIDATE_AWAITING_LOCAL_TEST_AND_INDEPENDENT_REVIEW"
 baseline_main_sha: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
 baseline_state_revision: 35
 bound_transition_id: "LEA-59-T01"
@@ -40,10 +39,11 @@ major_findings: null
 open_blocking_findings: null
 retest_required: false
 independent_review_required: true
-implementation_pull_request: null
-ci_status: "PENDING_DRAFT_PR"
-cumulative_tests: "PENDING_ENVIRONMENT_DEPENDENCIES"
-static_validation: "COMPILEALL_PASS_DIFF_CHECK_PASS_BASH_SYNTAX_PASS"
+implementation_pull_request: 72
+validated_code_head: "390911d9bd7810c683a02337fe12722c9e0fc180"
+ci_status: "PASS_12_OF_12_AT_VALIDATED_CODE_HEAD"
+cumulative_tests: "PASS_77_TESTS_INCLUDING_PREVIOUS_53"
+static_validation: "RUFF_PASS_MYPY_PASS_COMPILEALL_PASS_DIFF_CHECK_PASS_BASH_SYNTAX_PASS"
 
 fnd_003_history:
   builder_issue: "LEA-54"
@@ -126,18 +126,18 @@ conditions:
   - "LOCAL_TEST_REPORT_TXT_REQUIRED"
   - "INDEPENDENT_REVIEW_REQUIRED"
 
-github_sync_status: "BRANCH_LOCAL_AWAITING_PUBLICATION"
+github_sync_status: "PASS_PR_72_DRAFT_CI_12_OF_12_AT_VALIDATED_CODE_HEAD"
 linear_sync_status: "PASS_LEA_59_IN_PROGRESS_LEA_60_TODO_BLOCKED"
 last_sync_at_utc: "2026-07-21T02:39:00Z"
 
-implementation_authorized: true
-authorized_increment: "DAT-001_ONLY"
-code_change_authorized: true
-test_code_change_authorized: true
-sql_authorized: true
-migration_authorized: true
-runtime_execution_authorized: true
-runtime_execution_scope: "LOCAL_TEMPORARY_DATABASES_AND_TESTS_ONLY"
+implementation_authorized: false
+authorized_increment: "DAT-001_CANDIDATE_DELIVERED"
+code_change_authorized: false
+test_code_change_authorized: false
+sql_authorized: false
+migration_authorized: false
+runtime_execution_authorized: false
+runtime_execution_scope: "LOCAL_VALIDATOR_ONLY_AFTER_BUILDER_HANDOFF"
 production_database_authorized: false
 existing_real_data_mutation_authorized: false
 irreversible_migration_authorized: false
@@ -163,7 +163,7 @@ source_authority:
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "DAT_001_BUILDER_IN_PROGRESS"
+  execution_status: "DAT_001_CANDIDATE_AWAITING_LOCAL_TEST_AND_INDEPENDENT_REVIEW"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
@@ -180,8 +180,8 @@ safety:
   controlled_ui: false
   simulated_mode: false
   live_mode_armed: false
-  ready_for_independent_review: false
-  transition_complete: false
+  ready_for_independent_review: true
+  transition_complete: true
   local_repository_update_required: true
   local_test_report_required: true
   local_execution_evidence_provided: false

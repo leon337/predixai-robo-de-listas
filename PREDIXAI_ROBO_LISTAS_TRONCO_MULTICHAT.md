@@ -52,7 +52,7 @@ ARCHITECTURE_CHANGE=NO
 ✅ FND-001 integrada
 ✅ FND-002 integrada
 ✅ FND-003 integrada, testada localmente e confirmada pós-merge
-🟨 LEA-59 — DAT-001 em implementação e validação
+✅ LEA-59 — candidato DAT-001 publicado no PR Draft #72; CI 12/12
 ⏳ LEA-60 — revisão independente preparada, aguardando HEAD final
 ⬜ LST-001 — não autorizado
 ```
@@ -95,9 +95,11 @@ MERGE_AUTHORIZED=NO
 ## Próxima ação
 
 ```text
-PR_DRAFT=PENDING
-CI_STATUS=PENDING
-NEXT_ACTION=COMPLETE_VALIDATION_PUBLISH_DRAFT_AND_PIN_HEAD
+PR_DRAFT=72
+VALIDATED_CODE_HEAD=390911d9bd7810c683a02337fe12722c9e0fc180
+CI_STATUS=PASS_12_OF_12
+CUMULATIVE_TESTS=PASS_77_INCLUDING_PREVIOUS_53
+NEXT_ACTION=RUN_LOCAL_VALIDATOR_AND_EXECUTE_LEA_60
 LOCAL_TEST_COMMAND=./scripts/local_validate_dat_001.sh --expected-commit <REVIEW_HEAD>
 LOCAL_LINUX_MINT_RESULT=AWAITING_LEO_EXECUTION
 AUTOMATIC_ADVANCE=NO

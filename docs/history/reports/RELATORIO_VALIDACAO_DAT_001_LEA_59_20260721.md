@@ -13,16 +13,19 @@ BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
 PYTHON_COMPILEALL=PASS
 BASH_SYNTAX=PASS
 GIT_DIFF_CHECK=PASS
-PYTEST=NOT_EXECUTED_DEPENDENCIES_UNAVAILABLE
-RUFF=NOT_EXECUTED_DEPENDENCIES_UNAVAILABLE
-MYPY=NOT_EXECUTED_DEPENDENCIES_UNAVAILABLE
-CI=PENDING_DRAFT_PR
-BUILDER_VALIDATION=INCOMPLETE
+PULL_REQUEST=72_DRAFT
+VALIDATED_CODE_HEAD=390911d9bd7810c683a02337fe12722c9e0fc180
+WORKFLOW_RUN_DAT_001=29796794825
+PYTEST=PASS_77_TESTS_INCLUDING_PREVIOUS_53
+RUFF=PASS
+MYPY=PASS_12_SOURCE_FILES
+CI=PASS_12_OF_12
+BUILDER_VALIDATION=PASS_BY_GITHUB_ACTIONS
 ```
 
-O ambiente isolado não contém FastAPI, Pytest, Ruff ou Mypy. O download do PyPI
-foi bloqueado pela política de rede e não é declarado como PASS. A execução completa
-deve ser comprovada no CI e no Linux Mint antes da revisão independente.
+O ambiente isolado do builder não contém FastAPI, Pytest, Ruff ou Mypy e o download
+do PyPI foi bloqueado. A execução completa foi comprovada pelo GitHub Actions no
+HEAD indicado. A evidência Linux Mint continua obrigatória e não é inferida do CI.
 
 ## Provas previstas
 

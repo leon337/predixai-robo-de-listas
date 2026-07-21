@@ -13,7 +13,8 @@ MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
 MISSÃO_ATIVA=LEA-59 — DAT-001
 REVISÃO=LEA-60 — PREPARADA E BLOQUEADA ATÉ O CANDIDATO
 BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
-PR_DRAFT=PENDENTE
+PR_DRAFT=72
+VALIDATED_CODE_HEAD=390911d9bd7810c683a02337fe12722c9e0fc180
 STATE_REVISION=36
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
@@ -26,7 +27,7 @@ MERGE_AUTORIZADO=NO
 | Documento Mestre e mapa canônico | ✅ integrados |
 | requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
 | FND-001, FND-002 e FND-003 | ✅ integradas |
-| DAT-001 — estado durável e migração legada | 🟨 em implementação na LEA-59 |
+| DAT-001 — estado durável e migração legada | ✅ candidata no PR Draft #72; CI `12/12`, 77 testes |
 | LEA-60 — revisão independente | ⏳ preparada, aguardando HEAD final |
 | LST-001 | ⛔ não autorizado |
 
@@ -71,5 +72,5 @@ MERGE_AUTHORIZED=NO
 
 ## Próxima ação
 
-Validar o candidato, abrir PR Draft e fixar seu HEAD no GitHub e na LEA-60. O
-builder deve parar antes da revisão, promoção ou merge.
+Executar o validador Linux Mint no HEAD final externamente fixado e entregar o TXT
+à LEA-60. O builder para antes da revisão, promoção ou merge.

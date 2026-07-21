@@ -10,6 +10,14 @@ on:
       - "requirements-server.txt"
       - "requirements-dev.txt"
       - ".github/workflows/validate-dat-001.yml"
+      - "PROJECT_RUNTIME_STATE.yaml"
+      - "PROJECT_STATE.md"
+      - "README.md"
+      - "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
+      - "docs/implementation/DAT_001_*"
+      - "docs/history/ptp/*DAT_001*"
+      - "docs/history/reports/*DAT_001*"
+      - "docs/history/reviews/*DAT_001*"
   workflow_dispatch:
 
 permissions:
