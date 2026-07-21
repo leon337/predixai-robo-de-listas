@@ -1,5 +1,5 @@
 schema_version: "1.0.3"
-state_revision: 37
+state_revision: 38
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,43 +7,44 @@ observed_main_head: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
 real_version: "V2.4.3-R1"
 
 active_mission: "LEA-59 — DAT-001 Durable State and Legacy Migration"
-active_stage: "READY_FOR_MERGE_AUTHORIZATION"
+active_stage: "PREMERGE_REMEDIATION_AWAITING_LOCAL_VALIDATION"
 active_linear_issue: "LEA-59"
-active_review_issue: "LEA-63"
+active_review_issue: "LEA-66"
 active_pull_request: 72
 working_branch: "leonpcsn/dat-001-durable-state-legacy-migration"
-review_head_pin_authority: "EXTERNAL_GITHUB_PR_AND_LINEAR_LEA_63"
+review_head_pin_authority: "EXTERNAL_GITHUB_PR_AND_LINEAR_LEA_66"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
-pr_mode: "READY_FOR_REVIEW"
-current_gate: "AWAITING_EXPLICIT_HUMAN_MERGE_AUTHORIZATION"
-gate_status: "INDEPENDENT_RETEST_PASS_AND_PR_READY; CI_STATUS_READ_EXTERNALLY"
-next_action: "AWAIT_EXPLICIT_HUMAN_MERGE_DECISION"
+pr_mode: "DRAFT"
+current_gate: "AWAITING_LOCAL_REVALIDATION_THEN_LEA_66"
+gate_status: "PREMERGE_REMEDIATION_CI_PASS; LOCAL_AND_INDEPENDENT_RETEST_PENDING"
+next_action: "RUN_LOCAL_VALIDATION_AT_FINAL_RETEST_HEAD"
 blockers:
-  - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
+  - "PR72_PREMERGE_F01_F02_AWAITING_INDEPENDENT_RETEST"
+  - "MERGE_BLOCKED_UNTIL_LEA_66_PASS"
   - "LST_001_NOT_AUTHORIZED"
 
 transition_id: "LEA-59-T01"
-transition_status: "READY_FOR_MERGE_AUTHORIZATION"
+transition_status: "PREMERGE_REMEDIATION_IN_PROGRESS"
 from_state: "FND_003_POST_MERGE_CONFIRMATION_PASS"
-to_state: "DAT_001_READY_FOR_MERGE_AUTHORIZATION"
+to_state: "DAT_001_PREMERGE_REMEDIATION"
 baseline_main_sha: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
 baseline_state_revision: 35
 bound_transition_id: "LEA-59-T01"
 previous_transition_id: "LEA-54-T01"
 
 builder_issue: "LEA-59"
-review_issue: "LEA-63"
+review_issue: "LEA-66"
 previous_review_issue: "LEA-62"
-independent_review_decision: "PASS"
-critical_findings: 0
+independent_review_decision: "PENDING_LEA_66"
+critical_findings: 2
 major_findings: 0
-open_blocking_findings: 0
-retest_required: false
+open_blocking_findings: 2
+retest_required: true
 independent_review_required: true
 implementation_pull_request: 72
-validated_code_head: "2f871007dfda0c4cfe4bc111f8d9574342baf7df"
-ci_status: "PASS_12_OF_12_AT_REVIEWED_HEAD"
-cumulative_tests: "PASS_82_TESTS_INCLUDING_PREVIOUS_53"
+validated_code_head: "508748322205bae8c1372a3e6af7504bbffec703"
+ci_status: "PASS_12_OF_12_AT_REMEDIATION_CODE_HEAD"
+cumulative_tests: "PASS_85_TESTS_INCLUDING_PREVIOUS_53"
 static_validation: "RUFF_PASS_MYPY_PASS_12_SOURCE_FILES"
 
 fnd_003_history:
@@ -69,10 +70,15 @@ dat_001:
   first_review_issue: "LEA-60"
   first_final_retest_issue: "LEA-62"
   final_retest_issue: "LEA-63"
-  reviewed_head: "2f871007dfda0c4cfe4bc111f8d9574342baf7df"
-  final_decision: "PASS"
-  local_linux_mint_result: "PASS_82"
-  local_report_sha256: "edf4b4b684bd29d7a6dd5dedef82689e3dbad294e903eb95c339a82fffab6de6"
+  premerge_retest_issue: "LEA-66"
+  previous_reviewed_head: "2f871007dfda0c4cfe4bc111f8d9574342baf7df"
+  remediation_code_head: "508748322205bae8c1372a3e6af7504bbffec703"
+  final_retest_head: "EXTERNAL_GITHUB_PR_AND_LINEAR_LEA_66"
+  final_decision: "PENDING_LEA_66"
+  previous_local_linux_mint_result: "PASS_82_AT_2F871007"
+  previous_local_report_sha256: "edf4b4b684bd29d7a6dd5dedef82689e3dbad294e903eb95c339a82fffab6de6"
+  premerge_local_linux_mint_result: "PENDING_AT_FINAL_RETEST_HEAD"
+  premerge_local_report_sha256: "PENDING"
   sidecar_match: true
   rollback_reference: "RESTORE_TO_NEW_DATABASE_FROM_VERIFIED_BACKUP; DOWN_MIGRATION_ONLY_IF_EMPTY"
   legacy_cutover: "NOT_AUTHORIZED"
@@ -96,9 +102,9 @@ conditions:
   - "LEGACY_STAGING_WITHOUT_AUTHORITY_CUTOVER"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-github_sync_status: "PASS_PR_72_READY; CI_STATUS_READ_EXTERNALLY_FROM_GITHUB"
-linear_sync_status: "LEA_63_DONE_PASS; LEA_59_READY_FOR_MERGE_AUTHORIZATION"
-last_sync_at_utc: "2026-07-21T08:15:00Z"
+github_sync_status: "PR_72_DRAFT; REMEDIATION_CODE_HEAD_CI_PASS_12_OF_12"
+linear_sync_status: "LEA_59_IN_PROGRESS; LEA_66_TODO"
+last_sync_at_utc: "2026-07-21T08:57:00Z"
 
 implementation_authorized: false
 authorized_increment: "DAT-001_CANDIDATE_DELIVERED"
@@ -124,14 +130,14 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-59 and LEA-63"
-  independent_review: "Linear LEA-63 PASS"
+  task_status_and_dependencies: "Linear LEA-59 and LEA-66"
+  independent_review: "Linear LEA-66 PENDING"
   consolidated_architecture: "GitHub main at f0faa79c157cbfeae75b620eddb9ccade6000a36"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "DAT_001_PASS_PR_READY_AWAITING_HUMAN_MERGE_DECISION"
+  execution_status: "DAT_001_PREMERGE_REMEDIATION_AWAITING_LOCAL_AND_INDEPENDENT_RETEST"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
@@ -148,11 +154,11 @@ safety:
   controlled_ui: false
   simulated_mode: false
   live_mode_armed: false
-  ready_for_independent_review: false
+  ready_for_independent_review: true
   transition_complete: false
   local_repository_update_required: true
   local_test_report_required: true
-  local_execution_evidence_provided: true
-  local_execution_result: "PASS_82_AT_REVIEWED_HEAD_WITH_SHA256_MATCH"
+  local_execution_evidence_provided: false
+  local_execution_result: "PENDING_AT_FINAL_RETEST_HEAD"
   current_product_issue: "LEA-59"
-  current_review_issue: "LEA-63"
+  current_review_issue: "LEA-66"
