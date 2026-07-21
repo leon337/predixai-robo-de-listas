@@ -513,9 +513,12 @@ class SQLitePersistence:
                 occupied_reason="RESTORE_TEMPORARY_PATH_OCCUPIED",
             )
             created_temporary = True
-            restored = cls(temporary)
-            if restored.health()["integrity_check"] != "ok":
-                raise PersistenceError("RESTORE_DESTINATION_INTEGRITY_FAILED")
+            verification = sqlite3.connect(f"file:{temporary}?mode=ro", uri=True)
+            try:
+                if cls.integrity_check(verification) != "ok":
+                    raise PersistenceError("RESTORE_DESTINATION_INTEGRITY_FAILED")
+            finally:
+                verification.close()
             restored_hash = _hash_file(temporary)
             _publish_new_file(
                 temporary,
