@@ -23,6 +23,9 @@ class ServerConfig(BaseModel):
     pairing_ttl_seconds: int = 120
     session_ttl_seconds: int = 300
     admin_secret: SecretStr | None = None
+    database_path: Path | None = None
+    database_busy_timeout_ms: int = 5000
+    database_wal_enabled: bool = True
 
     @field_validator("host")
     @classmethod
@@ -45,6 +48,13 @@ class ServerConfig(BaseModel):
             raise ValueError("TTL deve estar entre 30 e 3600 segundos")
         return value
 
+    @field_validator("database_busy_timeout_ms")
+    @classmethod
+    def database_timeout_must_be_bounded(cls, value: int) -> int:
+        if not 100 <= value <= 30000:
+            raise ValueError("timeout SQLite deve estar entre 100 e 30000 ms")
+        return value
+
 FILE_KEYS = {
     "host",
     "port",
@@ -53,6 +63,9 @@ FILE_KEYS = {
     "identity_enabled",
     "pairing_ttl_seconds",
     "session_ttl_seconds",
+    "database_path",
+    "database_busy_timeout_ms",
+    "database_wal_enabled",
 }
 
 ENV_KEYS = {
@@ -63,6 +76,9 @@ ENV_KEYS = {
     "PREDIXAI_IDENTITY_ENABLED": "identity_enabled",
     "PREDIXAI_PAIRING_TTL_SECONDS": "pairing_ttl_seconds",
     "PREDIXAI_SESSION_TTL_SECONDS": "session_ttl_seconds",
+    "PREDIXAI_DATABASE_PATH": "database_path",
+    "PREDIXAI_DATABASE_BUSY_TIMEOUT_MS": "database_busy_timeout_ms",
+    "PREDIXAI_DATABASE_WAL_ENABLED": "database_wal_enabled",
 }
 
 
@@ -88,6 +104,21 @@ def _load_authorized_file(path: Path) -> dict[str, Any]:
     if unknown:
         raise ValueError(f"campos não autorizados na configuração: {sorted(unknown)}")
     return payload
+
+
+def _resolve_database_path(value: Any) -> Path | None:
+    if value in {None, ""}:
+        return None
+    candidate = Path(str(value)).expanduser()
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    candidate = candidate.resolve()
+    authorized_dir = (Path.cwd() / "data").resolve()
+    if not candidate.is_relative_to(authorized_dir):
+        raise ValueError("database_path deve apontar para o diretório data/")
+    if candidate.suffix.lower() not in {".db", ".sqlite", ".sqlite3"}:
+        raise ValueError("database_path deve usar extensão SQLite autorizada")
+    return candidate
 
 
 def load_config(
@@ -127,6 +158,11 @@ def load_config(
             identity_enabled=_parse_bool("identity_enabled", values.get("identity_enabled", True)),
             pairing_ttl_seconds=int(values.get("pairing_ttl_seconds", 120)),
             session_ttl_seconds=int(values.get("session_ttl_seconds", 300)),
+            database_path=_resolve_database_path(values.get("database_path")),
+            database_busy_timeout_ms=int(values.get("database_busy_timeout_ms", 5000)),
+            database_wal_enabled=_parse_bool(
+                "database_wal_enabled", values.get("database_wal_enabled", True)
+            ),
             admin_secret=SecretStr(env["PREDIXAI_ADMIN_SECRET"])
             if env.get("PREDIXAI_ADMIN_SECRET")
             else None,

@@ -1,0 +1,40 @@
+name: Validar DAT-001
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "server/**"
+      - "tests/**"
+      - "scripts/local_validate_dat_001.sh"
+      - "requirements-server.txt"
+      - "requirements-dev.txt"
+      - ".github/workflows/validate-dat-001.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Validar executor Linux Mint e migrations SQL
+        run: |
+          bash -n scripts/local_validate_dat_001.sh
+          test -s server/persistence/migrations/0001_initial.up.sql
+          test -s server/persistence/migrations/0001_initial.down.sql
+      - name: Instalar dependências isoladas
+        run: python -m pip install -r requirements-dev.txt
+      - name: Testes cumulativos
+        run: python -m pytest -q
+      - name: Ruff
+        run: ruff check server tests/server
+      - name: Mypy
+        run: mypy server --ignore-missing-imports

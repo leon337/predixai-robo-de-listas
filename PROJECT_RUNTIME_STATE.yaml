@@ -1,48 +1,61 @@
 schema_version: "1.0.3"
-state_revision: 35
+state_revision: 36
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "4d62143e32ac289ba71dbd14e6da07fd7e938ec9"
+observed_main_head: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
 real_version: "V2.4.3-R1"
 
-active_mission: "LEA-54 — FND-003 Identity, Configuration and Client Trust"
-active_stage: "CANDIDATE_AWAITING_INDEPENDENT_CRITICAL_REVIEW"
-active_linear_issue: "LEA-54"
-active_review_issue: "LEA-55"
-active_pull_request: 71
-working_branch: "leonpcsn/fnd-003-identity-configuration-client-trust"
-review_head_pin_authority: "EXTERNAL_GITHUB_DRAFT_PR_AND_LINEAR_LEA_55"
+active_mission: "LEA-59 — DAT-001 Durable State and Legacy Migration"
+active_stage: "BUILDER_IMPLEMENTATION_AND_VALIDATION"
+active_linear_issue: "LEA-59"
+active_review_issue: "LEA-60"
+active_pull_request: null
+working_branch: "leonpcsn/dat-001-durable-state-legacy-migration"
+review_head_pin_authority: "EXTERNAL_GITHUB_DRAFT_PR_AND_LINEAR_LEA_60"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
-pr_mode: "DRAFT"
-current_gate: "INDEPENDENT_CRITICAL_REVIEW_LEA_55"
-gate_status: "BUILDER_PASS_CI_11_OF_11"
-next_action: "EXECUTE_LEA_55_ON_EXTERNALLY_PINNED_PR_HEAD"
+pr_mode: "DRAFT_PENDING_CREATION"
+current_gate: "BUILDER_VALIDATION_DAT_001"
+gate_status: "IMPLEMENTATION_IN_PROGRESS"
+next_action: "COMPLETE_VALIDATION_PUBLISH_DRAFT_PR_AND_PIN_HEAD"
 blockers:
-  - "INDEPENDENT_CRITICAL_REVIEW_REQUIRED"
+  - "PYPI_DEPENDENCY_DOWNLOAD_REQUIRES_EXPLICIT_ENVIRONMENT_APPROVAL"
   - "LOCAL_LINUX_MINT_REPORT_PENDING_LEO_EXECUTION"
+  - "INDEPENDENT_CRITICAL_REVIEW_LEA_60_REQUIRED"
 
-transition_id: "LEA-54-T01"
-transition_status: "BUILDER_COMPLETE_AWAITING_INDEPENDENT_REVIEW"
-from_state: "FND_003_HUMAN_AUTHORIZATION_RECEIVED"
-to_state: "FND_003_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
-baseline_main_sha: "4d62143e32ac289ba71dbd14e6da07fd7e938ec9"
-baseline_state_revision: 34
-bound_transition_id: "LEA-54-T01"
-previous_transition_id: "LEA-52-T01"
+transition_id: "LEA-59-T01"
+transition_status: "DAT_001_AUTHORIZED_AND_IN_PROGRESS"
+from_state: "FND_003_POST_MERGE_CONFIRMATION_PASS"
+to_state: "DAT_001_CANDIDATE_AWAITING_BUILDER_VALIDATION"
+baseline_main_sha: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
+baseline_state_revision: 35
+bound_transition_id: "LEA-59-T01"
+previous_transition_id: "LEA-54-T01"
 
-builder_issue: "LEA-54"
-review_issue: "LEA-55"
+builder_issue: "LEA-59"
+review_issue: "LEA-60"
 independent_review_decision: "PENDING"
 critical_findings: null
 major_findings: null
 open_blocking_findings: null
 retest_required: false
 independent_review_required: true
-implementation_pull_request: 71
-ci_status: "PASS_11_OF_11"
-cumulative_tests: "PASS_53_TESTS"
-static_validation: "RUFF_PASS_MYPY_PASS"
+implementation_pull_request: null
+ci_status: "PENDING_DRAFT_PR"
+cumulative_tests: "PENDING_ENVIRONMENT_DEPENDENCIES"
+static_validation: "COMPILEALL_PASS_DIFF_CHECK_PASS_BASH_SYNTAX_PASS"
+
+fnd_003_history:
+  builder_issue: "LEA-54"
+  review_issue: "LEA-55"
+  implementation_pull_request: 71
+  reviewed_head: "60b76e4f4be499f9721868b3b86bb9b17d06d52d"
+  independent_review_decision: "PASS"
+  local_linux_mint_result: "PASS_53_TESTS"
+  local_report_sha256: "8dd275c71acfd2fa13cf628e07c76630cce0cb1136e32a6bec70ae2733e25017"
+  merge_method: "SQUASH"
+  merge_commit: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
+  post_merge_confirmation: "PASS"
 
 lea_52_history:
   builder_issue: "LEA-52"
@@ -50,53 +63,42 @@ lea_52_history:
   pull_request: 70
   reviewed_head: "9ee783c7b09c7fbb5b1e6d85974310d97f05de9b"
   independent_review_decision: "PASS"
-  merge_method: "MERGE"
   merge_commit: "4d62143e32ac289ba71dbd14e6da07fd7e938ec9"
   post_merge_confirmation: "PASS"
 
-lea_50_history:
-  builder_issue: "LEA-50"
-  review_issue: "LEA-51"
-  pull_request: 69
-  reviewed_head: "12ba5e4565bac26f4b4790e7a9339d1d5e889696"
-  independent_review_decision: "PASS"
-  merge_method: "SQUASH"
-  merge_commit: "0d68ba5238cb12ba6414ee8a6b80da4a9166b42e"
-  post_merge_confirmation: "PASS"
-
-fnd_002_history:
-  builder_issue: "LEA-46"
-  review_issue: "LEA-47"
-  post_merge_issue: "LEA-48"
-  implementation_pull_request: 66
-  implementation_pr_head: "92b2155b083a0db524735dc6c8bdbacbba043f27"
-  implementation_merge_commit: "6b8b54e8d26169d0db20612c88866ea699437a58"
-  independent_review_decision: "PASS"
-  post_merge_confirmation: "PASS"
-
-fnd_003:
-  increment: "FND-003"
-  version_target: "V2.5.0-alpha.1"
+dat_001:
+  increment: "DAT-001"
+  version_target: "V2.5.0-alpha.2"
   mode_max: "NULL_ONLY"
-  domains: ["DOM-02", "DOM-05"]
-  handoffs: ["H-09"]
+  domains: ["DOM-03"]
+  handoffs: ["H-11"]
   requirements:
-    - "PTM-V25-002"
-    - "PTM-V25-008"
-    - "PTM-V25-009"
-    - "PTM-V25-016"
-    - "PTM-V25-017"
-    - "PTM-V27-020"
-  adrs:
-    - "ADR-0001"
-    - "ADR-0002"
-    - "ADR-0003"
-    - "ADR-0004"
-    - "ADR-0008"
-    - "ADR-0012"
-  local_sync_command: "./scripts/validate_fnd_003_local.sh --expected-commit <REVIEW_HEAD>"
+    - "PTM-V25-003"
+    - "PTM-V25-014A"
+    - "PTM-V25-014B"
+    - "PTM-V25-014C"
+    - "PTM-V25-014D"
+    - "PTM-V25-014E"
+    - "PTM-V26-023"
+    - "PTM-V26-027"
+    - "PTM-V27-029"
+    - "V25-DB-001"
+    - "V25-DB-002"
+    - "V25-DB-003"
+    - "V25-DB-004"
+    - "V25-DB-005"
+    - "V25-LEG-001"
+    - "V25-LEG-002"
+    - "V25-LEG-003"
+    - "V25-LEG-004"
+    - "V25-LEG-005"
+    - "V25-LEG-006"
+  adrs: ["ADR-0001", "ADR-0002", "ADR-0003", "ADR-0013"]
+  local_sync_command: "./scripts/local_validate_dat_001.sh --expected-commit <REVIEW_HEAD>"
   local_report: "AWAITING_LEO_LINUX_MINT_EXECUTION"
-  rollback_reference: "REVERT_FUTURE_MERGE_COMMIT_ONLY_WITH_HUMAN_AUTHORIZATION"
+  rollback_reference: "RESTORE_TO_NEW_DATABASE_FROM_VERIFIED_BACKUP; DOWN_MIGRATION_ONLY_IF_EMPTY"
+  legacy_cutover: "NOT_AUTHORIZED"
+  authoritative_lists_created: false
 
 architecture_v1_status: "FROZEN"
 architecture_v1_frozen: true
@@ -112,30 +114,34 @@ document_master_executive_completeness: "INTEGRATED"
 implementation_increment_count: 18
 requirements_mapped_to_increment: "218/218_INTEGRATED"
 dependency_cycles: 0
-current_increment: "FND-003"
-next_increment: "DAT-001"
+current_increment: "DAT-001"
+next_increment: "LST-001"
 next_code_increment_authorized: false
 
 conditions:
   - "NULL_ADAPTER_ONLY"
-  - "IDENTIFIED_READ_ONLY_CLIENT_WITHOUT_COMMAND_GRANT"
-  - "NO_DATABASE_SQL_OR_MIGRATIONS"
-  - "LOCAL_REPOSITORY_UPDATE_REQUIRED_PER_INCREMENT"
+  - "LOCAL_SQLITE_TEMPORARY_OR_CANDIDATE_DATABASE_ONLY"
+  - "NO_PRODUCTION_OR_EXISTING_REAL_DATA_MUTATION"
+  - "LEGACY_STAGING_WITHOUT_AUTHORITY_CUTOVER"
   - "LOCAL_TEST_REPORT_TXT_REQUIRED"
-  - "ROLLBACK_BY_PR_REVERT"
+  - "INDEPENDENT_REVIEW_REQUIRED"
 
-github_sync_status: "PASS_PR_71_DRAFT_CI_11_OF_11"
-linear_sync_status: "PASS_LEA_54_IN_PROGRESS_LEA_55_TODO"
-last_sync_at_utc: "2026-07-21T01:15:00Z"
+github_sync_status: "BRANCH_LOCAL_AWAITING_PUBLICATION"
+linear_sync_status: "PASS_LEA_59_IN_PROGRESS_LEA_60_TODO_BLOCKED"
+last_sync_at_utc: "2026-07-21T02:39:00Z"
 
-implementation_authorized: false
-authorized_increment: "FND-003_CANDIDATE_DELIVERED"
-code_change_authorized: false
-test_code_change_authorized: false
-sql_authorized: false
-migration_authorized: false
-runtime_execution_authorized: false
-runtime_execution_scope: "NONE_AFTER_BUILDER_HANDOFF"
+implementation_authorized: true
+authorized_increment: "DAT-001_ONLY"
+code_change_authorized: true
+test_code_change_authorized: true
+sql_authorized: true
+migration_authorized: true
+runtime_execution_authorized: true
+runtime_execution_scope: "LOCAL_TEMPORARY_DATABASES_AND_TESTS_ONLY"
+production_database_authorized: false
+existing_real_data_mutation_authorized: false
+irreversible_migration_authorized: false
+destructive_migration_authorized: false
 simulated_mode_authorized: false
 controlled_ui_authorized: false
 broker_connection_authorized: false
@@ -149,34 +155,36 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-54 In Progress; LEA-55 Todo"
-  implementation_plan: "Documento Mestre DM-24..DM-33 e catálogo FND-003"
-  independent_review: "Linear LEA-55"
-  consolidated_architecture: "GitHub main at 4d62143e32ac289ba71dbd14e6da07fd7e938ec9"
+  task_status_and_dependencies: "Linear LEA-59 In Progress; LEA-60 Todo blocked by LEA-59"
+  implementation_plan: "Documento Mestre DM-24..DM-33 e catálogo DAT-001"
+  independent_review: "Linear LEA-60"
+  consolidated_architecture: "GitHub main at f0faa79c157cbfeae75b620eddb9ccade6000a36"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "FND_003_CANDIDATE_AWAITING_INDEPENDENT_REVIEW"
+  execution_status: "DAT_001_BUILDER_IN_PROGRESS"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
-  baseline_commit: "4d62143e32ac289ba71dbd14e6da07fd7e938ec9"
+  baseline_commit: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
   application_code_changed: true
   test_code_changed: true
-  sql_created: false
-  migration_created: false
+  sql_created: true
+  migration_created: true
+  production_database: false
+  existing_real_data_mutation: false
   broker_connection: false
   real_click: false
   real_financial_effect: false
   controlled_ui: false
   simulated_mode: false
   live_mode_armed: false
-  ready_for_independent_review: true
-  transition_complete: true
+  ready_for_independent_review: false
+  transition_complete: false
   local_repository_update_required: true
   local_test_report_required: true
   local_execution_evidence_provided: false
   local_execution_result: "AWAITING_LEO_LINUX_MINT_EXECUTION"
-  current_product_issue: "LEA-54"
-  current_review_issue: "LEA-55"
+  current_product_issue: "LEA-59"
+  current_review_issue: "LEA-60"

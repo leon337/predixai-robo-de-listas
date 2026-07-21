@@ -45,7 +45,7 @@ def create_app(config: ServerConfig | None = None) -> FastAPI:
 
     app = FastAPI(
         title="PredixAI Safe Server",
-        version="2.5.0-alpha.1",
+        version="2.5.0-alpha.2",
         lifespan=lifespan,
     )
     app.state.service = service
@@ -58,6 +58,15 @@ def create_app(config: ServerConfig | None = None) -> FastAPI:
     @app.get("/api/v1/capabilities", response_model=CapabilitySnapshot)
     def capabilities() -> CapabilitySnapshot:
         return service.capabilities()
+
+    @app.get("/api/v1/persistence/health")
+    def persistence_health() -> dict[str, object]:
+        if service.persistence is None:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="PERSISTENCE_DISABLED",
+            )
+        return service.persistence.health()
 
     def require_identity_enabled() -> None:
         if not resolved_config.identity_enabled:

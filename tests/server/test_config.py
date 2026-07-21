@@ -62,3 +62,29 @@ def test_configuration_file_cannot_contain_secrets(tmp_path: Path) -> None:
 def test_identity_feature_flag_is_fail_closed() -> None:
     config = load_config({"PREDIXAI_IDENTITY_ENABLED": "false"})
     assert config.identity_enabled is False
+
+
+def test_database_configuration_is_local_typed_and_null_only(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    config = load_config(
+        {
+            "PREDIXAI_DATABASE_PATH": "data/runtime.sqlite3",
+            "PREDIXAI_DATABASE_BUSY_TIMEOUT_MS": "2000",
+            "PREDIXAI_DATABASE_WAL_ENABLED": "false",
+        }
+    )
+
+    assert config.database_path == (tmp_path / "data/runtime.sqlite3").resolve()
+    assert config.database_busy_timeout_ms == 2000
+    assert config.database_wal_enabled is False
+    assert config.mode is AdapterMode.NULL
+
+
+def test_database_configuration_rejects_path_outside_data(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    with pytest.raises(ValueError, match="diretório data"):
+        load_config({"PREDIXAI_DATABASE_PATH": "../outside.db"})

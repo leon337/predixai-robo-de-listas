@@ -1,20 +1,20 @@
 # PredixAI Robô de Listas
 
 > Painel operacional. A autoridade estruturada permanece em
-> `PROJECT_RUNTIME_STATE.yaml`; a autoridade do mapa de desenvolvimento permanece
-> no Documento Mestre da Arquitetura V1.0.
+> `PROJECT_RUNTIME_STATE.yaml`; o mapa de desenvolvimento permanece no Documento
+> Mestre da Arquitetura V1.0.
 
 ## Estado atual
 
 ```text
 VERSÃO_INSTALADA=V2.4.3-R1
-FND_003_VERSION_TARGET=V2.5.0-alpha.1
-MAIN_HEAD=4d62143e32ac289ba71dbd14e6da07fd7e938ec9
-MISSÃO_ATIVA=LEA-54 — FND-003
-REVISÃO=LEA-55 — PREPARADA
-BRANCH=leonpcsn/fnd-003-identity-configuration-client-trust
-PR_DRAFT=71
-STATE_REVISION=35
+DAT_001_VERSION_TARGET=V2.5.0-alpha.2
+MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
+MISSÃO_ATIVA=LEA-59 — DAT-001
+REVISÃO=LEA-60 — PREPARADA E BLOQUEADA ATÉ O CANDIDATO
+BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
+PR_DRAFT=PENDENTE
+STATE_REVISION=36
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
 ```
@@ -25,27 +25,25 @@ MERGE_AUTORIZADO=NO
 |---|---|
 | Documento Mestre e mapa canônico | ✅ integrados |
 | requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
-| FND-001 e FND-002 | ✅ integradas |
-| LEA-52 / LEA-53 / PR #70 | ✅ concluídos |
-| FND-003 — configuração, identidade e confiança | ✅ candidata no PR Draft #71 |
-| CI do candidato | ✅ `11/11`, `53 testes`, Ruff e Mypy |
-| LEA-55 — revisão independente | ⏳ aguardando execução |
-| DAT-001 | ⛔ não autorizado |
+| FND-001, FND-002 e FND-003 | ✅ integradas |
+| DAT-001 — estado durável e migração legada | 🟨 em implementação na LEA-59 |
+| LEA-60 — revisão independente | ⏳ preparada, aguardando HEAD final |
+| LST-001 | ⛔ não autorizado |
 
-## FND-003
+## DAT-001
 
-A entrega candidata adiciona configuração fail-closed, segredo administrativo
-somente por ambiente, pareamento local temporário e de uso único, identidade de
-dispositivo e operador, sessão curta com rotação/revogação, presença sem grant e
-consulta autenticada das capacidades seguras.
+A entrega introduz somente persistência SQLite local V1: escritor único, versão
+otimista, comandos idempotentes, eventos versionados em outbox atômico, migrations
+reversíveis, backup/restore verificável e importação legada para staging.
 
-O perfil emitido nesta etapa é exclusivamente `READ_ONLY`. Nenhum cliente pode se
-autoatribuir `ADMIN` ou habilitar comandos.
+Importação não significa cutover: os dados permanecem não autoritativos até uma
+missão posterior expressamente autorizada. Nenhum banco de produção ou dado real
+existente é alterado.
 
-Validação local prevista no Linux Mint:
+Validação Linux Mint prevista:
 
 ```bash
-./scripts/validate_fnd_003_local.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
+./scripts/local_validate_dat_001.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
 ```
 
 ```text
@@ -57,9 +55,11 @@ LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
 
 ```text
 MODE_MAX=NULL_ONLY
-DATABASE=NO
-SQL=NO
-MIGRATIONS=NO
+PRODUCTION_DATABASE=NO
+EXISTING_REAL_DATA_MUTATION=NO
+IRREVERSIBLE_MIGRATION=NO
+DESTRUCTIVE_MIGRATION=NO
+LST_001_AUTHORIZED=NO
 SIMULATED_MODE=NO
 CONTROLLED_UI=NO
 BROKER_CONNECTION=NO
@@ -67,10 +67,9 @@ REAL_CLICK=NO
 REAL_FINANCIAL_EFFECT=NO
 LIVE_MODE_ARMED=NO
 MERGE_AUTHORIZED=NO
-NEXT_INCREMENT_AUTHORIZED=NO
 ```
 
 ## Próxima ação
 
-Executar a LEA-55 no HEAD candidato fixado externamente no GitHub e no Linear. O
-builder deve permanecer parado antes do merge.
+Validar o candidato, abrir PR Draft e fixar seu HEAD no GitHub e na LEA-60. O
+builder deve parar antes da revisão, promoção ou merge.
