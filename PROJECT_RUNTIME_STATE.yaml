@@ -1,85 +1,76 @@
-schema_version: "1.0.3"
-state_revision: 39
+schema_version: "1.0.4"
+state_revision: 40
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
-observed_main_head: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
+observed_main_head: "bd2db3772898c46d9422818b780e91b5f132941e"
 real_version: "V2.4.3-R1"
+candidate_version: "V2.5.0-alpha.2"
 
-active_mission: "LEA-59 — DAT-001 Durable State and Legacy Migration"
-active_stage: "PREMERGE_DOCUMENTATION_SYNC"
-active_linear_issue: "LEA-59"
-active_review_issue: "LEA-66"
-active_pull_request: 72
-working_branch: "leonpcsn/dat-001-durable-state-legacy-migration"
-review_head_pin_authority: "GITHUB_PR_72_AND_LINEAR_LEA_66"
+active_mission: "LEA-101 — Promote installed version to V2.5.0-alpha.2"
+active_stage: "CANDIDATE_AWAITING_CI_AND_INDEPENDENT_REVIEW"
+active_linear_issue: "LEA-101"
+active_review_issue: "LEA-102"
+active_pull_request: 73
+working_branch: "leonpcsn/lea-101-hotfix-promote-installed-version-to-v250-alpha2"
+review_head_pin_authority: "GITHUB_PR_73_AND_LINEAR_LEA_102"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
 pr_mode: "DRAFT"
-current_gate: "AWAITING_DOCUMENTATION_SYNC_CI_THEN_MERGE_DECISION"
-gate_status: "LEA_66_PASS; DOCUMENTATION_SYNC_IN_PROGRESS; MERGE_NOT_AUTHORIZED"
-next_action: "CONFIRM_DOCUMENTATION_HEAD_CI_AND_PREPARE_HUMAN_MERGE_DECISION"
+current_gate: "CI_AND_INDEPENDENT_REVIEW_LEA_102"
+gate_status: "IMPLEMENTATION_PUBLISHED; FINAL_HEAD_CI_PENDING; REVIEW_PENDING"
+next_action: "PIN_FINAL_PR_HEAD_EXTERNALLY_AND_EXECUTE_LEA_102"
 blockers:
+  - "FINAL_HEAD_CI_REQUIRED"
+  - "INDEPENDENT_REVIEW_LEA_102_REQUIRED"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
   - "LST_001_NOT_AUTHORIZED"
 
-transition_id: "LEA-59-T01"
-transition_status: "PREMERGE_RETEST_PASS_AWAITING_MERGE_DECISION"
-from_state: "FND_003_POST_MERGE_CONFIRMATION_PASS"
-to_state: "DAT_001_PREMERGE_READY_FOR_HUMAN_DECISION"
-baseline_main_sha: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
-baseline_state_revision: 35
-bound_transition_id: "LEA-59-T01"
-previous_transition_id: "LEA-54-T01"
+transition_id: "LEA-101-T01"
+transition_status: "VERSION_PROMOTION_CANDIDATE_PUBLISHED"
+from_state: "DAT_001_POST_MERGE_WITH_VERSION_DISPLAY_DRIFT"
+to_state: "V2_5_0_ALPHA_2_VERSION_PROMOTION_CANDIDATE"
+baseline_main_sha: "bd2db3772898c46d9422818b780e91b5f132941e"
+baseline_state_revision: 39
+bound_transition_id: "LEA-101-T01"
+previous_transition_id: "LEA-59-T01"
 
-builder_issue: "LEA-59"
-review_issue: "LEA-66"
-previous_review_issue: "LEA-62"
-independent_review_decision: "PASS"
-critical_findings: 0
-major_findings: 0
-open_blocking_findings: 0
-retest_required: false
-independent_review_required: false
-implementation_pull_request: 72
-validated_code_head: "4798cea7e66ac0dd250cfd07465cdcea27430357"
-ci_status: "PASS_12_OF_12_AT_FINAL_RETEST_HEAD"
-cumulative_tests: "PASS_85"
-static_validation: "RUFF_PASS_MYPY_PASS_12_SOURCE_FILES"
+builder_issue: "LEA-101"
+review_issue: "LEA-102"
+independent_review_decision: "PENDING"
+critical_findings: null
+major_findings: null
+open_blocking_findings: null
+retest_required: null
+independent_review_required: true
+implementation_pull_request: 73
+implementation_code_head: "d6fb5569925313cc82bba83ace05ade19bfe0c53"
+ci_status: "AWAITING_FINAL_HEAD"
+cumulative_tests: "EXPECTED_PASS_88_INCLUDING_PREVIOUS_85"
+static_validation: "RUFF_AND_MYPY_REQUIRED"
 
-fnd_003_history:
-  builder_issue: "LEA-54"
-  review_issue: "LEA-55"
-  implementation_pull_request: 71
-  reviewed_head: "60b76e4f4be499f9721868b3b86bb9b17d06d52d"
-  independent_review_decision: "PASS"
-  local_linux_mint_result: "PASS_53_TESTS"
-  local_report_sha256: "8dd275c71acfd2fa13cf628e07c76630cce0cb1136e32a6bec70ae2733e25017"
-  merge_method: "SQUASH"
-  merge_commit: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
-  post_merge_confirmation: "PASS"
-
-dat_001:
-  increment: "DAT-001"
-  version_target: "V2.5.0-alpha.2"
-  mode_max: "NULL_ONLY"
-  domains: ["DOM-03"]
-  handoffs: ["H-11"]
-  adrs: ["ADR-0001", "ADR-0002", "ADR-0003", "ADR-0013"]
+dat_001_history:
   builder_issue: "LEA-59"
-  first_review_issue: "LEA-60"
-  first_final_retest_issue: "LEA-62"
-  final_retest_issue: "LEA-63"
-  premerge_retest_issue: "LEA-66"
-  previous_reviewed_head: "2f871007dfda0c4cfe4bc111f8d9574342baf7df"
-  remediation_code_head: "508748322205bae8c1372a3e6af7504bbffec703"
-  final_retest_head: "4798cea7e66ac0dd250cfd07465cdcea27430357"
-  final_decision: "PASS"
-  premerge_local_linux_mint_result: "PASS_85"
-  premerge_local_report_sha256: "21bb35057bbd845370152d1a28a6c3a0db7194d7217dead9cc1af240bf6821f2"
-  sidecar_match: true
-  rollback_reference: "RESTORE_TO_NEW_DATABASE_FROM_VERIFIED_BACKUP; DOWN_MIGRATION_ONLY_IF_EMPTY"
-  legacy_cutover: "NOT_AUTHORIZED"
-  authoritative_lists_created: false
+  final_review_issue: "LEA-66"
+  implementation_pull_request: 72
+  technical_retest_head: "4798cea7e66ac0dd250cfd07465cdcea27430357"
+  merged_head: "857dd44e3e7397a4cb4ebe7d915dc865620784e3"
+  merge_method: "SQUASH"
+  merge_commit: "bd2db3772898c46d9422818b780e91b5f132941e"
+  independent_review_decision: "PASS"
+  local_linux_mint_result: "PASS_85"
+  ci_result: "PASS_12_OF_12"
+  post_merge_confirmation: "PASS"
+  version_display_drift_detected: true
+
+version_promotion_hotfix:
+  target_version: "V2.5.0-alpha.2"
+  version_file: "2.5.0-alpha.2"
+  previous_entrypoint: "app/bootstrap_v23_entry.py"
+  candidate_entrypoint: "app/bootstrap_v250_alpha2_entry.py"
+  stable_runtime_delegate: "bootstrap_v23_entry.run"
+  behavioral_runtime_change: false
+  new_regression_tests: 3
+  rollback: "REVERT_PR_73"
 
 architecture_v1_status: "FROZEN"
 architecture_v1_frozen: true
@@ -88,25 +79,25 @@ canonical_domains: "16/16"
 mandatory_handoffs: "12/12"
 adrs: "18/18_ACCEPTED"
 architecture_change: false
-current_increment: "DAT-001"
+current_increment: "DAT-001_INTEGRATED"
 next_increment: "LST-001"
 next_code_increment_authorized: false
 
 conditions:
   - "NULL_ADAPTER_ONLY"
-  - "LOCAL_SQLITE_TEMPORARY_OR_CANDIDATE_DATABASE_ONLY"
-  - "NO_PRODUCTION_OR_EXISTING_REAL_DATA_MUTATION"
-  - "LEGACY_STAGING_WITHOUT_AUTHORITY_CUTOVER"
+  - "VERSION_IDENTITY_CHANGE_ONLY"
+  - "STABLE_RUNTIME_DELEGATION_REQUIRED"
+  - "NO_BROKER_OR_FINANCIAL_EFFECT"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-github_sync_status: "PR_72_DRAFT; LEA_66_PASS; DOCUMENTATION_SYNC_PUBLISHED"
-linear_sync_status: "LEA_59_IN_PROGRESS; LEA_66_DONE_PASS"
-last_sync_at_utc: "2026-07-21T09:30:00Z"
+github_sync_status: "PR_73_OPEN_DRAFT; FINAL_HEAD_CI_PENDING"
+linear_sync_status: "LEA_101_IN_PROGRESS; LEA_102_TODO"
+last_sync_at_utc: "2026-07-21T20:38:00Z"
 
-implementation_authorized: false
-authorized_increment: "DAT-001_CANDIDATE_DELIVERED"
-code_change_authorized: false
-test_code_change_authorized: false
+implementation_authorized: true
+authorized_increment: "VERSION_PROMOTION_HOTFIX_ONLY"
+code_change_authorized: true
+test_code_change_authorized: true
 sql_authorized: false
 migration_authorized: false
 runtime_execution_authorized: false
@@ -127,22 +118,22 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-59 and LEA-66"
-  independent_review: "Linear LEA-66 DONE/PASS"
-  consolidated_architecture: "GitHub main at f0faa79c157cbfeae75b620eddb9ccade6000a36"
+  task_status_and_dependencies: "Linear LEA-101 and LEA-102"
+  independent_review: "Linear LEA-102"
+  consolidated_architecture: "GitHub main at bd2db3772898c46d9422818b780e91b5f132941e"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "DAT_001_PREMERGE_RETEST_PASS_AWAITING_HUMAN_MERGE_DECISION"
+  execution_status: "VERSION_PROMOTION_CANDIDATE_AWAITING_REVIEW"
   automatic_advance: false
-  documentation_only: true
+  documentation_only: false
   baseline_commit_pinned: true
-  baseline_commit: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
+  baseline_commit: "bd2db3772898c46d9422818b780e91b5f132941e"
   application_code_changed: true
   test_code_changed: true
-  sql_created: true
-  migration_created: true
+  sql_created: false
+  migration_created: false
   production_database: false
   existing_real_data_mutation: false
   broker_connection: false
@@ -155,7 +146,6 @@ safety:
   transition_complete: false
   local_repository_update_required: true
   local_test_report_required: false
-  local_execution_evidence_provided: true
-  local_execution_result: "PASS_85"
-  current_product_issue: "LEA-59"
-  current_review_issue: "LEA-66"
+  local_execution_evidence_provided: false
+  current_product_issue: "LEA-101"
+  current_review_issue: "LEA-102"
