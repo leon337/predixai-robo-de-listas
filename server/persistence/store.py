@@ -128,6 +128,31 @@ def _copy_file_exclusive(source: Path, destination: Path, *, occupied_reason: st
         raise
 
 
+def _write_bytes_exclusive(content: bytes, destination: Path, *, occupied_reason: str) -> None:
+    """Materializa bytes em um arquivo novo sem seguir links nem reabrir o caminho."""
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        descriptor = os.open(destination, flags, 0o600)
+    except FileExistsError as exc:
+        raise PersistenceError(occupied_reason) from exc
+    identity = os.fstat(descriptor)
+    try:
+        with os.fdopen(descriptor, "wb") as output_stream:
+            output_stream.write(content)
+            output_stream.flush()
+            os.fsync(output_stream.fileno())
+    except Exception:
+        try:
+            current = destination.lstat()
+            if (current.st_dev, current.st_ino) == (identity.st_dev, identity.st_ino):
+                destination.unlink()
+        except FileNotFoundError:
+            pass
+        raise
+
+
 def _sql_statements(script: str) -> Iterator[str]:
     statement = ""
     for line in script.splitlines():
@@ -433,40 +458,28 @@ class SQLitePersistence:
         destination = _safe_absolute_path(
             destination, symlink_reason="BACKUP_SYMLINK_REJECTED"
         )
-        temporary = destination.with_suffix(destination.suffix + ".tmp")
-        if temporary.exists() or temporary.is_symlink():
-            raise PersistenceError("BACKUP_TEMPORARY_PATH_OCCUPIED")
-        created_temporary = False
-        try:
-            with self._writer_lock, self._connect(read_only=True) as source:
-                target = sqlite3.connect(temporary)
-                created_temporary = True
-                try:
-                    source.backup(target)
-                    target.commit()
-                    if self.integrity_check(target) != "ok":
-                        raise PersistenceError("BACKUP_INTEGRITY_CHECK_FAILED")
-                finally:
-                    target.close()
-            os.chmod(temporary, 0o600)
-            backup_hash = _hash_file(temporary)
-            schema_version = self.schema_version()
-            _publish_new_file(
-                temporary,
-                destination,
-                occupied_reason="BACKUP_DESTINATION_MUST_BE_NEW",
-            )
-            created_temporary = False
-            return BackupReceipt(
-                source_path=str(self.database_path),
-                backup_path=str(destination),
-                sha256=backup_hash,
-                integrity_check="ok",
-                schema_version=schema_version,
-            )
-        finally:
-            if created_temporary:
-                temporary.unlink(missing_ok=True)
+        with self._writer_lock, self._connect(read_only=True) as source:
+            target = sqlite3.connect(":memory:")
+            try:
+                source.backup(target)
+                target.commit()
+                if self.integrity_check(target) != "ok":
+                    raise PersistenceError("BACKUP_INTEGRITY_CHECK_FAILED")
+                serialized_backup = target.serialize()
+            finally:
+                target.close()
+        _write_bytes_exclusive(
+            serialized_backup,
+            destination,
+            occupied_reason="BACKUP_DESTINATION_MUST_BE_NEW",
+        )
+        return BackupReceipt(
+            source_path=str(self.database_path),
+            backup_path=str(destination),
+            sha256=_hash_bytes(serialized_backup),
+            integrity_check="ok",
+            schema_version=self.schema_version(),
+        )
 
     @classmethod
     def restore_to_new_database(
