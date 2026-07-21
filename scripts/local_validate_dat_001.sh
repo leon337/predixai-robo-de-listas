@@ -53,7 +53,7 @@ fi
 
 TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 REPORT_DIR="$REPO_ROOT/$REPORT_DIR_REL"
-REPORT_FILE="$REPORT_DIR/DAT_001_LOCAL_VALIDATION_${TIMESTAMP}.txt"
+REPORT_FILE="$REPORT_DIR/DAT_001_LOCAL_VALIDATION_${EXPECTED_COMMIT}_${TIMESTAMP}.txt"
 mkdir -p "$REPORT_DIR"
 : > "$REPORT_FILE"
 
@@ -94,8 +94,9 @@ git fetch --quiet origin \
   "refs/heads/$EXPECTED_BRANCH:refs/remotes/origin/$EXPECTED_BRANCH" || \
   fail "não foi possível atualizar a branch candidata"
 git cat-file -e "${EXPECTED_COMMIT}^{commit}" || fail "commit candidato inexistente"
-git merge-base --is-ancestor "$EXPECTED_COMMIT" "origin/$EXPECTED_BRANCH" || \
-  fail "commit candidato não pertence à branch autorizada"
+REMOTE_BRANCH_HEAD="$(git rev-parse "origin/$EXPECTED_BRANCH")"
+[[ "$REMOTE_BRANCH_HEAD" == "$EXPECTED_COMMIT" ]] || \
+  fail "HEAD remoto divergente: esperado=$EXPECTED_COMMIT atual=$REMOTE_BRANCH_HEAD"
 
 WORKTREE="$(mktemp -d -p /tmp predixai-dat001-XXXXXX)"
 rmdir "$WORKTREE"
@@ -103,7 +104,10 @@ git worktree add --quiet --detach "$WORKTREE" "$EXPECTED_COMMIT" || \
   fail "não foi possível criar checkout isolado"
 cd "$WORKTREE"
 
-[[ "$(git rev-parse HEAD)" == "$EXPECTED_COMMIT" ]] || fail "HEAD isolado divergente"
+VALIDATED_COMMIT="$(git rev-parse HEAD)"
+[[ "$VALIDATED_COMMIT" == "$EXPECTED_COMMIT" ]] || fail "HEAD isolado divergente"
+log "REMOTE_BRANCH_HEAD=$REMOTE_BRANCH_HEAD"
+log "VALIDATED_COMMIT=$VALIDATED_COMMIT"
 [[ -z "$(git status --porcelain)" ]] || fail "checkout isolado não está limpo"
 
 python3 - <<'PY' || fail "Python 3.11 ou superior é necessário"
@@ -189,4 +193,10 @@ log "ROLLBACK_REFERENCE=restore para banco novo a partir de backup verificado; m
 log "LOCAL_REPORT_TXT=$REPORT_FILE"
 log "FINISHED_AT_UTC=$(date -u +%Y%m%dT%H%M%SZ)"
 log "RESULT=PASS"
+REPORT_SHA256="$(sha256sum "$REPORT_FILE" | awk '{print $1}')"
+REPORT_SHA256_FILE="${REPORT_FILE}.sha256"
+printf '%s  %s\n' "$REPORT_SHA256" "$(basename "$REPORT_FILE")" > "$REPORT_SHA256_FILE"
+chmod 600 "$REPORT_SHA256_FILE"
+printf 'REPORT_SHA256=%s\n' "$REPORT_SHA256"
+printf 'REPORT_SHA256_FILE=%s\n' "$REPORT_SHA256_FILE"
 printf '\nValidação concluída. Relatório: %s\n' "$REPORT_FILE"
