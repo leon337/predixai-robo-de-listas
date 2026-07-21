@@ -13,7 +13,7 @@ ACTIVE_MISSION=LEA-101
 INDEPENDENT_REVIEW=LEA-102_TODO
 PR_DRAFT=73
 CODE_HEAD=d6fb5569925313cc82bba83ace05ade19bfe0c53
-CURRENT_GATE=CI_AND_INDEPENDENT_REVIEW_LEA_102
+CURRENT_GATE=FINAL_CI_AND_INDEPENDENT_REVIEW_LEA_102
 ```
 
 A DAT-001 foi integrada no PR #72 e a `main` avançou para
@@ -24,13 +24,20 @@ divergência objetiva: o código do incremento estava integrado, porém o arquiv
 A autorização humana iniciou exclusivamente o hotfix LEA-101. A candidata promove
 a identificação para V2.5.0-alpha.2 sem alterar o runtime validado da DAT-001.
 
+A primeira execução do CI revelou incompatibilidade nos validadores históricos: oito
+workflows tentavam converter prereleases SemVer em tuplas numéricas ou exigiam
+igualdade com V2.4.3. A remediação centralizou a comparação em um validador de piso
+SemVer e preservou todas as verificações funcionais anteriores.
+
 ## Entrega candidata
 
 - `VERSION` promovido para `2.5.0-alpha.2`;
 - nova entrada `app/bootstrap_v250_alpha2_entry.py`;
 - `run.sh` direcionado para a nova entrada;
 - delegação explícita ao runtime estável `bootstrap_v23_entry.run`;
-- três testes de regressão para versão, launcher e entrada;
+- três testes de regressão da promoção;
+- validador `scripts/validate_version_floor.py` com cinco testes;
+- oito workflows históricos remediados para pisos SemVer;
 - PR #73 mantido em Draft;
 - revisão independente LEA-102 criada.
 
@@ -38,8 +45,10 @@ a identificação para V2.5.0-alpha.2 sem alterar o runtime validado da DAT-001.
 
 ```text
 PREVIOUS_CUMULATIVE_TESTS=PASS_85
-NEW_REGRESSION_TESTS=3
-EXPECTED_CUMULATIVE_TESTS=PASS_88
+VERSION_PROMOTION_TESTS=3
+SEMVER_VALIDATOR_TESTS=5
+EXPECTED_CUMULATIVE_TESTS=PASS_93
+HISTORICAL_WORKFLOWS_REMEDIATED=8
 RUFF=REQUIRED
 MYPY=REQUIRED
 GITHUB_ACTIONS=AWAITING_FINAL_HEAD
