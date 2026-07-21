@@ -1,6 +1,7 @@
 .venv/
 .venv-fnd002/
 .venv-fnd003/
+.venv-dat001/
 __pycache__/
 *.py[cod]
 *.log
@@ -15,3 +16,11 @@ config/*.json
 Thumbs.db
 reports/local/FND_002_LOCAL_VALIDATION_*.txt
 reports/local/FND_003_LOCAL_VALIDATION_*.txt
+reports/local/DAT_001_LOCAL_VALIDATION_*.txt
+data/*.db
+data/*.db-*
+data/*.sqlite
+data/*.sqlite-*
+data/*.sqlite3
+data/*.sqlite3-*
+backups/local/

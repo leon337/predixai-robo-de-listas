@@ -15,6 +15,7 @@ from server.contracts import (
     RuntimeState,
 )
 from server.identity import IdentityService
+from server.persistence import SQLitePersistence
 
 
 class SafeServerService:
@@ -25,6 +26,15 @@ class SafeServerService:
         self.identity = IdentityService(
             pairing_ttl_seconds=config.pairing_ttl_seconds,
             session_ttl_seconds=config.session_ttl_seconds,
+        )
+        self.persistence = (
+            SQLitePersistence(
+                config.database_path,
+                busy_timeout_ms=config.database_busy_timeout_ms,
+                wal_enabled=config.database_wal_enabled,
+            )
+            if config.database_path is not None
+            else None
         )
         self._state = RuntimeState.BOOTING
         self._reason = ReasonCode.CONFIG_FAIL_CLOSED
@@ -41,6 +51,16 @@ class SafeServerService:
             return self._state, self._reason
 
     def start(self) -> None:
+        try:
+            if self.persistence is not None:
+                self.persistence.initialize()
+                self.persistence.assert_startup_ready()
+        except Exception:
+            with self._lock:
+                self._state = RuntimeState.DEGRADED
+                self._reason = ReasonCode.PERSISTENCE_FAIL_CLOSED
+            self.audit.record("persistence_startup_rejected", self._reason.value)
+            raise
         with self._lock:
             self._state = RuntimeState.SAFE_IDLE
             self._reason = ReasonCode.STARTUP_COMPLETE
@@ -75,4 +95,7 @@ class SafeServerService:
         return response
 
     def capabilities(self) -> CapabilitySnapshot:
-        return CapabilitySnapshot(mode=self.config.mode)
+        return CapabilitySnapshot(
+            mode=self.config.mode,
+            database=self.persistence is not None,
+        )

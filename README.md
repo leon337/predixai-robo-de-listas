@@ -1,22 +1,27 @@
 # PredixAI Robô de Listas
 
 > Painel operacional. A autoridade estruturada permanece em
-> `PROJECT_RUNTIME_STATE.yaml`; a autoridade do mapa de desenvolvimento permanece
-> no Documento Mestre da Arquitetura V1.0.
+> `PROJECT_RUNTIME_STATE.yaml`; o mapa de desenvolvimento permanece no Documento
+> Mestre da Arquitetura V1.0.
 
 ## Estado atual
 
 ```text
 VERSÃO_INSTALADA=V2.4.3-R1
-FND_003_VERSION_TARGET=V2.5.0-alpha.1
-MAIN_HEAD=4d62143e32ac289ba71dbd14e6da07fd7e938ec9
-MISSÃO_ATIVA=LEA-54 — FND-003
-REVISÃO=LEA-55 — PREPARADA
-BRANCH=leonpcsn/fnd-003-identity-configuration-client-trust
-PR_DRAFT=71
-STATE_REVISION=35
+DAT_001_VERSION_TARGET=V2.5.0-alpha.2
+MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
+MISSÃO_ATIVA=LEA-59 — DAT-001
+RETESTE_PRÉ_MERGE=LEA-66 — DONE/PASS
+BRANCH=leonpcsn/dat-001-durable-state-legacy-migration
+PR=72
+PR_MODE=DRAFT
+FINAL_RETEST_HEAD=4798cea7e66ac0dd250cfd07465cdcea27430357
+STATE_REVISION=39
+FASE=PREMERGE_DOCUMENTATION_SYNC
+GATE=AWAITING_DOCUMENTATION_SYNC_CI_THEN_MERGE_DECISION
 ARQUITETURA_V1_CONGELADA=YES
 MERGE_AUTORIZADO=NO
+STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 ```
 
 ## Campanha
@@ -24,42 +29,45 @@ MERGE_AUTORIZADO=NO
 | Entrega ou gate | Estado |
 |---|---|
 | Documento Mestre e mapa canônico | ✅ integrados |
-| requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
-| FND-001 e FND-002 | ✅ integradas |
-| LEA-52 / LEA-53 / PR #70 | ✅ concluídos |
-| FND-003 — configuração, identidade e confiança | ✅ candidata no PR Draft #71 |
-| CI do candidato | ✅ `11/11`, `53 testes`, Ruff e Mypy |
-| LEA-55 — revisão independente | ⏳ aguardando execução |
-| DAT-001 | ⛔ não autorizado |
+| Requisitos, domínios, handoffs e ADRs | ✅ `218/218`, `16/16`, `12/12`, `18/18` |
+| FND-001, FND-002 e FND-003 | ✅ integradas |
+| DAT-001 — estado durável e migração legada | ✅ reteste pré-merge aprovado |
+| LEA-66 — reteste pré-merge | ✅ `DONE/PASS` |
+| PR #72 | ⏳ Draft; aguardando sincronização/CI e decisão humana |
+| LST-001 | ⛔ não autorizado |
 
-## FND-003
-
-A entrega candidata adiciona configuração fail-closed, segredo administrativo
-somente por ambiente, pareamento local temporário e de uso único, identidade de
-dispositivo e operador, sessão curta com rotação/revogação, presença sem grant e
-consulta autenticada das capacidades seguras.
-
-O perfil emitido nesta etapa é exclusivamente `READ_ONLY`. Nenhum cliente pode se
-autoatribuir `ADMIN` ou habilitar comandos.
-
-Validação local prevista no Linux Mint:
-
-```bash
-./scripts/validate_fnd_003_local.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
-```
+## Evidência DAT-001
 
 ```text
-LOCAL_LINUX_MINT_TEST=⏳ AGUARDANDO EXECUÇÃO DO LEO
-LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
+LOCAL_LINUX_MINT=PASS_85
+CI_FINAL_HEAD=PASS_12_OF_12
+INDEPENDENT_PYTEST=PASS_85
+RUFF=PASS
+MYPY=PASS_12_SOURCE_FILES
+PR72_PREMERGE_F01=PASS
+PR72_PREMERGE_F02=PASS
+INDEPENDENT_DECISION=PASS
+REPORT_SHA256=21bb35057bbd845370152d1a28a6c3a0db7194d7217dead9cc1af240bf6821f2
+SIDECAR_MATCH=YES
+NULL_ONLY=PRESERVED
 ```
+
+A entrega introduz persistência SQLite local V1, escritor único, versão otimista,
+comandos idempotentes, outbox atômico, migrations reversíveis, backup/restore
+verificável e importação legada para staging. A remediação pré-merge rejeita
+fontes simbólicas antes da normalização e serializa retries concorrentes da mesma
+fonte sem duplicar staging ou ledger.
 
 ## Limites
 
 ```text
 MODE_MAX=NULL_ONLY
-DATABASE=NO
-SQL=NO
-MIGRATIONS=NO
+PRODUCTION_DATABASE=NO
+EXISTING_REAL_DATA_MUTATION=NO
+IRREVERSIBLE_MIGRATION=NO
+DESTRUCTIVE_MIGRATION=NO
+LEGACY_CUTOVER=NO
+LST_001_AUTHORIZED=NO
 SIMULATED_MODE=NO
 CONTROLLED_UI=NO
 BROKER_CONNECTION=NO
@@ -67,10 +75,10 @@ REAL_CLICK=NO
 REAL_FINANCIAL_EFFECT=NO
 LIVE_MODE_ARMED=NO
 MERGE_AUTHORIZED=NO
-NEXT_INCREMENT_AUTHORIZED=NO
 ```
 
 ## Próxima ação
 
-Executar a LEA-55 no HEAD candidato fixado externamente no GitHub e no Linear. O
-builder deve permanecer parado antes do merge.
+Concluir a sincronização documental, confirmar o CI do novo HEAD documental e
+preparar a decisão humana de merge. O PR permanece Draft e sem autorização de
+merge.
