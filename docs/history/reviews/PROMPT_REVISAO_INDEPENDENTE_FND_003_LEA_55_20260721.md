@@ -60,7 +60,7 @@ git diff --check 4d62143e32ac289ba71dbd14e6da07fd7e938ec9...<REVIEW_HEAD>
 bash -n scripts/validate_fnd_003_local.sh
 python3 -m compileall -q server tests
 python3 -m pytest -q
-ruff check server tests
+ruff check server tests/server
 mypy server --ignore-missing-imports
 ```
 

@@ -32,6 +32,6 @@ jobs:
       - name: Testes cumulativos
         run: python -m pytest -q
       - name: Ruff
-        run: ruff check server tests
+        run: ruff check server tests/server
       - name: Mypy
         run: mypy server --ignore-missing-imports

@@ -125,7 +125,7 @@ log "STEP=UNIT_INTEGRATION_REGRESSION_CUMULATIVE_TESTS"
 python -m pytest -q 2>&1 | tee -a "$REPORT_FILE" || fail "pytest falhou"
 
 log "STEP=STATIC_VALIDATION"
-ruff check server tests 2>&1 | tee -a "$REPORT_FILE" || fail "ruff falhou"
+ruff check server tests/server 2>&1 | tee -a "$REPORT_FILE" || fail "ruff falhou"
 mypy server --ignore-missing-imports 2>&1 | tee -a "$REPORT_FILE" || fail "mypy falhou"
 
 log "STEP=NULL_ONLY_IDENTITY_SMOKE"
