@@ -7,45 +7,47 @@ REPOSITORY=leon337/predixai-robo-de-listas
 MAIN_HEAD=f0faa79c157cbfeae75b620eddb9ccade6000a36
 INSTALLED_VERSION=V2.4.3-R1
 DAT_001_VERSION_TARGET=V2.5.0-alpha.2
-STATE_REVISION=36
-ACTIVE_MISSION=LEA-59
-INDEPENDENT_REVIEW=LEA-60_TODO_BLOCKED
+STATE_REVISION=37
+ACTIVE_MISSION=LEA-59_REMEDIATION
+PREVIOUS_REVIEW=LEA-60_FAIL
+FINAL_RETEST=LEA-62_TODO_BLOCKED
 PR_DRAFT=72
-VALIDATED_CODE_HEAD=390911d9bd7810c683a02337fe12722c9e0fc180
-CURRENT_GATE=LOCAL_LINUX_MINT_AND_INDEPENDENT_REVIEW_LEA_60
+REMEDIATED_CODE_HEAD=372aebc2ed3541ea0c778f5da9ab094bb9c02728
+FINAL_RETEST_HEAD=READ_EXTERNALLY_FROM_PR_AND_LEA_62
+CURRENT_GATE=LOCAL_LINUX_MINT_REVALIDATION_AND_FINAL_RETEST_LEA_62
 ```
 
-A FND-003 foi aprovada, integrada no PR #71 e sincronizada localmente. A decisão
-humana seguinte autorizou exclusivamente a DAT-001 em `NULL_ONLY`.
+A FND-003 permanece integrada na `main`. A DAT-001 foi revisada na LEA-60 sobre
+`541a68887e7d81245e3268c85d43fdefd6167c11` e recebeu `FAIL` pelos achados
+F01, F02 e F03. A remediação autorizada foi aplicada na mesma branch e no mesmo
+PR Draft, sem alterar a `main`.
 
-## Entrega em construção
+## Remediação LEA-60
 
-- persistência local SQLite V1 e boundary único de escrita;
-- controle otimista de versão, idempotência de comandos e outbox atômico;
-- migrations SQL `up` e `down`, com checksum e rollback limitado a banco vazio;
-- backup consistente, hash SHA-256, `integrity_check` e restore para destino novo;
-- inventário e importação legada para staging, com ledger e reconciliação;
-- fonte legada preservada e nenhuma lista autoritativa criada;
-- executor Linux Mint isolado e CI cumulativo preparados.
+- F01: restore usa criação exclusiva e preserva temporário preexistente;
+- F02: backup/restore rejeitam symlink no destino e em componentes ancestrais;
+- F03: validador exige igualdade com o HEAD remoto, inclui o commit no relatório
+  e gera arquivo lateral SHA-256;
+- quatro testes negativos foram adicionados;
+- nenhum cutover, lista autoritativa, conexão externa ou efeito financeiro foi criado.
 
-## Validação
+## Validação do builder
 
 ```text
-PYTHON_COMPILEALL=PASS
-GIT_DIFF_CHECK=PASS
-BASH_SYNTAX=PASS
-PYTEST=PASS_77_TESTS_INCLUDING_PREVIOUS_53
+PYTEST=PASS_81_TESTS_INCLUDING_PREVIOUS_53
 RUFF=PASS
 MYPY=PASS_12_SOURCE_FILES
-CI=PASS_12_OF_12_AT_VALIDATED_CODE_HEAD
-LOCAL_LINUX_MINT_TEST=⏳ AGUARDANDO EXECUÇÃO DO LEO
-LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
+CI=PASS_12_OF_12_AT_REMEDIATED_CODE_HEAD
+LOCAL_LINUX_MINT_PREVIOUS_HEAD=PASS_77_AT_541a68887e7d81245e3268c85d43fdefd6167c11
+LOCAL_LINUX_MINT_REMEDIATED_HEAD=AWAITING_LEO
+LOCAL_REPORT_SHA256=AWAITING_REMEDIATED_HEAD_EXECUTION
+INDEPENDENT_FINAL_RETEST=LEA-62_TODO_BLOCKED
 ```
 
-Comando único após o HEAD candidato ser publicado:
+Comando único após o HEAD final ser fixado externamente:
 
 ```bash
-./scripts/local_validate_dat_001.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
+./scripts/local_validate_dat_001.sh --expected-commit <FINAL_RETEST_HEAD>
 ```
 
 ## Limites preservados
@@ -69,5 +71,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próximo gate
 
-Executar o comando Linux Mint com o HEAD final fixado externamente, anexar o
-relatório TXT e então executar uma única revisão independente na LEA-60.
+Fixar externamente o HEAD final após o CI documental, executar novamente o
+validador Linux Mint, preservar o TXT e o arquivo `.sha256`, e então executar
+um único reteste final independente na LEA-62. Nenhum merge está autorizado.
