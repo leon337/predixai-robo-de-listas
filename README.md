@@ -76,5 +76,5 @@ MERGE_AUTHORIZED=NO
 
 ## Próxima ação
 
-Validar o CI do estado final pronto para revisão. O merge continuará aguardando
-autorização humana explícita.
+O PR #72 está pronto para revisão. O estado do CI deve ser lido diretamente no
+GitHub, e o merge permanece bloqueado até autorização humana explícita.
