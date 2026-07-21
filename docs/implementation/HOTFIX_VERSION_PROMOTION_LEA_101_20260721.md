@@ -16,13 +16,21 @@ A DAT-001 foi integrada na `main`, porém o arquivo `VERSION` e o launcher deskt
 continuaram apontando para V2.4.3. O código estava presente, mas a identificação
 visual e operacional permanecia na versão anterior.
 
+A primeira execução do CI do hotfix também revelou que oito workflows históricos
+interpretavam a versão dividindo apenas números por ponto. O prerelease SemVer
+`2.5.0-alpha.2` era rejeitado ou comparado por igualdade obsoleta.
+
 ## Correção
 
 - `VERSION` promovido para `2.5.0-alpha.2`;
 - nova entrada `app/bootstrap_v250_alpha2_entry.py`;
 - `run.sh` direcionado para a nova entrada;
 - runtime validado da V2.4.3 preservado por delegação explícita;
-- testes de regressão para versão, launcher e sintaxe/delegação.
+- três testes de regressão para versão, launcher e sintaxe/delegação;
+- validador central SemVer `scripts/validate_version_floor.py`;
+- cinco testes de precedência SemVer;
+- oito workflows históricos convertidos de parser numérico/igualdade para piso de
+  compatibilidade SemVer, sem remover as validações funcionais de cada versão.
 
 ## Decisão técnica
 
@@ -30,12 +38,19 @@ A nova entrada é um adaptador fino. Ela não duplica o bootstrap, não altera f
 inicialização e delega para `bootstrap_v23_entry.run`. Assim, a promoção corrige a
 identidade pública sem introduzir comportamento funcional fora do hotfix.
 
+Os workflows históricos continuam provando suas respectivas camadas, mas agora
+aceitam versões posteriores e prereleases válidos. A precedência segue SemVer:
+release é superior ao prerelease do mesmo núcleo, e identificadores prerelease são
+comparados de forma determinística.
+
 ## Validação
 
 ```text
-EXPECTED_PREVIOUS_TESTS=PASS_85
-NEW_REGRESSION_TESTS=3
-EXPECTED_CUMULATIVE_TESTS=PASS_88
+PREVIOUS_CUMULATIVE_TESTS=PASS_85
+VERSION_PROMOTION_TESTS=3
+SEMVER_VALIDATOR_TESTS=5
+EXPECTED_CUMULATIVE_TESTS=PASS_93
+HISTORICAL_WORKFLOWS_REMEDIATED=8
 RUFF=REQUIRED
 MYPY=REQUIRED
 CI=REQUIRED
@@ -58,4 +73,5 @@ MERGE_AUTHORIZED=NO
 ## Rollback
 
 Reverter integralmente o PR #73. O launcher volta a utilizar
-`app/bootstrap_v23_entry.py` e o arquivo `VERSION` volta a `2.4.3`.
+`app/bootstrap_v23_entry.py`, o arquivo `VERSION` volta a `2.4.3` e os workflows
+retornam aos validadores anteriores.
