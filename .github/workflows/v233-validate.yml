@@ -21,12 +21,7 @@ jobs:
       - name: Executar testes de versão
         run: python -m unittest tests/test_version_info.py
       - name: Validar versão 2.3.3 ou posterior
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          version = tuple(int(part) for part in Path('VERSION').read_text(encoding='utf-8').strip().split('.'))
-          assert version >= (2, 3, 3), version
-          PY
+        run: python scripts/validate_version_floor.py --minimum 2.3.3
       - name: Validar cabeçalho e histórico
         run: |
           grep -q "Versão instalada:" app/bootstrap_v233.py
