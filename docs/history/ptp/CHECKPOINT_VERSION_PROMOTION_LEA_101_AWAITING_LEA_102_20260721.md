@@ -18,10 +18,21 @@ MODE_MAX=NULL_ONLY
 - nova entrada de aplicação publicada;
 - `run.sh` atualizado;
 - runtime estável preservado por delegação;
-- três testes de regressão adicionados;
+- três testes de regressão da promoção adicionados;
+- parser central de piso SemVer criado com cinco testes;
+- oito workflows históricos remediados sem remover cobertura funcional;
 - documentação e autoridades de estado atualizadas;
 - PR Draft #73 aberto;
 - LEA-102 criada.
+
+## Evidência esperada
+
+```text
+PREVIOUS_CUMULATIVE_TESTS=PASS_85
+NEW_TESTS=8
+EXPECTED_CUMULATIVE_TESTS=PASS_93
+HISTORICAL_WORKFLOWS_REMEDIATED=8
+```
 
 ## Pendente
 
