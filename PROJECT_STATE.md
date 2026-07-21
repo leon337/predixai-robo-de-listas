@@ -12,9 +12,9 @@ TRANSITION_ID=LEA-59-T01
 ACTIVE_MISSION=LEA-59
 FINAL_RETEST=LEA-63_DONE_PASS
 PR=72
-PR_MODE=DRAFT_PENDING_SYNC_CI_AND_PROMOTION
+PR_MODE=READY_FOR_REVIEW
 REVIEWED_HEAD=2f871007dfda0c4cfe4bc111f8d9574342baf7df
-CURRENT_GATE=READY_FOR_MERGE_AUTHORIZATION_AFTER_SYNC_CI
+CURRENT_GATE=AWAITING_EXPLICIT_HUMAN_MERGE_AUTHORIZATION
 ```
 
 A DAT-001 concluiu a revisão independente final. A LEA-63 aprovou a remediação
@@ -55,7 +55,6 @@ MERGE_AUTHORIZED=NO
 
 ## Próximo gate
 
-Validar o CI do commit exclusivamente documental de sincronização e marcar o PR
-#72 como pronto para revisão. O merge continua dependente de autorização humana
-explícita. A LST-001 permanece bloqueada até a confirmação pós-merge em transição
-separada.
+Validar o CI do estado final com o PR #72 pronto para revisão. O merge continua
+dependente de autorização humana explícita. A LST-001 permanece bloqueada até a
+confirmação pós-merge em transição separada.
