@@ -16,14 +16,14 @@ review_head_pin_authority: "EXTERNAL_GITHUB_PR_AND_LINEAR_LEA_63"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
 pr_mode: "READY_FOR_REVIEW"
 current_gate: "AWAITING_EXPLICIT_HUMAN_MERGE_AUTHORIZATION"
-gate_status: "INDEPENDENT_RETEST_PASS_AND_PR_READY"
-next_action: "VALIDATE_FINAL_READY_STATE_CI_THEN_AWAIT_HUMAN_MERGE_DECISION"
+gate_status: "INDEPENDENT_RETEST_PASS_AND_PR_READY; CI_STATUS_READ_EXTERNALLY"
+next_action: "AWAIT_EXPLICIT_HUMAN_MERGE_DECISION"
 blockers:
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
   - "LST_001_NOT_AUTHORIZED"
 
 transition_id: "LEA-59-T01"
-transition_status: "READY_FOR_REVIEW_FINAL_CI_PENDING"
+transition_status: "READY_FOR_MERGE_AUTHORIZATION"
 from_state: "FND_003_POST_MERGE_CONFIRMATION_PASS"
 to_state: "DAT_001_READY_FOR_MERGE_AUTHORIZATION"
 baseline_main_sha: "f0faa79c157cbfeae75b620eddb9ccade6000a36"
@@ -96,8 +96,8 @@ conditions:
   - "LEGACY_STAGING_WITHOUT_AUTHORITY_CUTOVER"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-github_sync_status: "PASS_PR_72_READY; FINAL_READY_STATE_CI_PENDING"
-linear_sync_status: "LEA_63_DONE_PASS; LEA_59_AWAITING_FINAL_READY_STATE_CI"
+github_sync_status: "PASS_PR_72_READY; CI_STATUS_READ_EXTERNALLY_FROM_GITHUB"
+linear_sync_status: "LEA_63_DONE_PASS; LEA_59_READY_FOR_MERGE_AUTHORIZATION"
 last_sync_at_utc: "2026-07-21T08:15:00Z"
 
 implementation_authorized: false
@@ -131,7 +131,7 @@ source_authority:
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "DAT_001_PASS_PR_READY_FINAL_CI_PENDING"
+  execution_status: "DAT_001_PASS_PR_READY_AWAITING_HUMAN_MERGE_DECISION"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
