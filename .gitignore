@@ -1,5 +1,6 @@
 .venv/
 .venv-fnd002/
+.venv-fnd003/
 __pycache__/
 *.py[cod]
 *.log
@@ -13,3 +14,4 @@ config/*.json
 .DS_Store
 Thumbs.db
 reports/local/FND_002_LOCAL_VALIDATION_*.txt
+reports/local/FND_003_LOCAL_VALIDATION_*.txt

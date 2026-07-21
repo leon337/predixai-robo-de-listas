@@ -4,108 +4,74 @@
 
 ```text
 REPOSITORY=leon337/predixai-robo-de-listas
-MAIN_HEAD=0d68ba5238cb12ba6414ee8a6b80da4a9166b42e
-VERSION=V2.4.3-R1
-STATE_REVISION=33
-TRANSITION_ID=LEA-52-T01
-TRANSITION_STATUS=IN_PROGRESS_AWAITING_INDEPENDENT_RETEST
-CURRENT_GATE=AWAITING_LEA_53_RETEST
-GATE_STATUS=BUILDER_REMEDIATION_CANDIDATE
+MAIN_HEAD=4d62143e32ac289ba71dbd14e6da07fd7e938ec9
+INSTALLED_VERSION=V2.4.3-R1
+FND_003_VERSION_TARGET=V2.5.0-alpha.1
+STATE_REVISION=35
+TRANSITION_ID=LEA-54-T01
+CURRENT_GATE=BUILDER_IMPLEMENTATION_AND_VALIDATION
 ```
 
-## Posição atual
-
-A Arquitetura V1.0 permanece congelada. FND-001 e FND-002 estão integradas à `main` em modo `NULL_ONLY`.
-
-O mapa executivo do Documento Mestre foi aprovado pela LEA-51 e integrado pelo PR #69 por squash no commit `0d68ba5238cb12ba6414ee8a6b80da4a9166b42e`.
+LEA-52 e LEA-53 foram concluídas, e o PR #70 foi integrado em `4d62143...`.
+A autorização humana explícita iniciou somente a FND-003 em `NULL_ONLY`.
 
 ```text
-LEA_50_STATUS=DONE
-LEA_51_STATUS=DONE
-LEA_52_STATUS=IN_PROGRESS
-LEA_53_STATUS=IN_PROGRESS_AWAITING_RETEST
-PR_69=MERGED_BY_SQUASH
-REVIEWED_HEAD=12ba5e4565bac26f4b4790e7a9339d1d5e889696
-MERGE_COMMIT=0d68ba5238cb12ba6414ee8a6b80da4a9166b42e
-POST_MERGE_CONFIRMATION=PASS
-OPEN_BLOCKING_FINDINGS=3_REMEDIATED_AWAITING_RETEST
+ACTIVE_MISSION=LEA-54
+INDEPENDENT_REVIEW=LEA-55_TODO
+BRANCH=leonpcsn/fnd-003-identity-configuration-client-trust
+PR_DRAFT=AWAITING_PUBLICATION
+ARCHITECTURE_V1_CHANGED=NO
+NEXT_INCREMENT=DAT-001
+NEXT_INCREMENT_AUTHORIZED=NO
 ```
 
-## Baseline integrada
+## Entrega candidata FND-003
+
+- configuração resolvida com precedência defaults → JSON autorizado → ambiente;
+- segredo administrativo somente por ambiente e redigido por `SecretStr`;
+- desafio local temporário, armazenado como hash e de uso único;
+- identidade de dispositivo separada da identidade do operador;
+- sessão curta, rotativa e revogável;
+- perfil emitido exclusivamente `READ_ONLY`, sem autoelevação;
+- presença e reconexão sem grant;
+- consulta autenticada de capacidades `NULL_ONLY`.
+
+## Testes
 
 ```text
-ROADMAP_AUTHORITY=DOCUMENTO_MESTRE
-ROADMAP_STATUS=INTEGRATED_APPROVED_BY_INDEPENDENT_REVIEW
-DOCUMENT_MASTER_EXECUTIVE_COMPLETENESS=INTEGRATED
-INCREMENT_COUNT=18
-REQUIREMENTS_MAPPED=218_OF_218_INTEGRATED
-DEPENDENCY_CYCLES=0
-CANONICAL_DOMAINS=16_OF_16
-MANDATORY_HANDOFFS=12_OF_12
-ADRS=18_OF_18_ACCEPTED
+UNIT_TESTS=IMPLEMENTED
+INTEGRATION_TESTS=IMPLEMENTED
+SECURITY_NEGATIVE_TESTS=IMPLEMENTED
+PREVIOUS_STAGE_REGRESSION=CONFIGURED_IN_CI
+CUMULATIVE_FLOW_TEST=CONFIGURED_IN_CI
+LOCAL_LINUX_MINT_TEST=⏳ AGUARDANDO EXECUÇÃO DO LEO
+LOCAL_REPORT_TXT=⏳ AGUARDANDO EXECUÇÃO DO LEO
 ```
 
-## Política de desenvolvimento
+Comando único:
 
-```text
-DESENVOLVER_PEQUENO
-→ PUBLICAR_BRANCH
-→ ATUALIZAR_REPOSITORIO_LOCAL
-→ EXECUTAR_TESTES_NO_LINUX_MINT
-→ GERAR_RELATORIO_TXT
-→ CORRIGIR
-→ VERSIONAR
-→ REVISAR
-→ INTEGRAR
+```bash
+./scripts/validate_fnd_003_local.sh --expected-commit <HEAD_EXATO_DO_PR_DRAFT>
 ```
-
-Cada incremento futuro exige testes próprios, regressão acumulativa, validação local e relatório TXT antes do avanço.
 
 ## Limites preservados
 
 ```text
-MODE=NULL_ONLY
+MODE_MAX=NULL_ONLY
 DATABASE=NO
 SQL=NO
 MIGRATIONS=NO
-PERSISTENCIA_DURAVEL=NO
-ANDROID=NO
-OCR=NO
-SIGNAL_ENGINE=NO
-RUNTIME_MUTATION_COMMANDS=NO
+SIMULATED_MODE=NO
+CONTROLLED_UI=NO
 REAL_CLICK=NO
-BROKER=NO
-LIVE=NO
+BROKER_CONNECTION=NO
+LIVE_MODE_ARMED=NO
 REAL_FINANCIAL_EFFECT=NO
-IMPLEMENTATION_AUTHORIZED=NO
-FND_003_AUTHORIZED=NO
 MERGE_AUTHORIZED=NO
 ```
-
-## LEA-52 — remediação da reconciliação
-
-A primeira revisão independente LEA-53 identificou três divergências documentais:
-
-```text
-LEA_53_F01=REMEDIATED_CANDIDATE
-LEA_53_F02=REMEDIATED_CANDIDATE
-LEA_53_F03=REMEDIATED_CANDIDATE
-RETEST_REQUIRED=YES
-```
-
-A remediação alinha a baseline operacional ao merge do PR #69, promove a cobertura 218/218 de candidata para integrada, corrige README e tronco e amplia o validador para comparar as projeções documentais.
 
 ## Próxima etapa
 
-```text
-ACTIVE_MISSION=LEA-52
-ACTIVE_REVIEW=LEA-53
-STATE_SYNC_PR=70_DRAFT
-NEXT_INCREMENT=FND-003
-NEXT_INCREMENT_AUTHORIZED=NO
-NEXT_ACTION=EXECUTE_LEA_53_RETEST_ON_NEW_PINNED_HEAD
-AUTOMATIC_IMPLEMENTATION=NO
-IMPLEMENTATION_AUTHORIZED=NO
-MERGE_AUTHORIZED=NO
-LIVE_MODE_ARMED=NO
-```
+Publicar o PR Draft, fixar seu HEAD externamente no GitHub e na LEA-55 e aguardar
+revisão crítica independente. O builder não pode aprovar, promover ou integrar o
+próprio trabalho.
