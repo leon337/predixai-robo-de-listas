@@ -1,6 +1,8 @@
 import json
 import sqlite3
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from threading import Barrier
 
 import pytest
 
@@ -110,6 +112,100 @@ def test_unreconciled_legacy_import_blocks_next_startup(tmp_path: Path) -> None:
         RuntimeState.DEGRADED,
         ReasonCode.PERSISTENCE_FAIL_CLOSED,
     )
+
+
+def test_legacy_import_rejects_symlink_source_before_resolving(tmp_path: Path) -> None:
+    store = SQLitePersistence(tmp_path / "state.db")
+    store.initialize()
+    target = tmp_path / "legacy-target.json"
+    target.write_text(
+        json.dumps({"version": 4, "profiles": [], "history": []}),
+        encoding="utf-8",
+    )
+    source_link = tmp_path / "legacy-link.json"
+    source_link.symlink_to(target)
+
+    with pytest.raises(PersistenceError, match="LEGACY_SOURCE_INVALID"):
+        store.import_legacy_to_staging(source_link, tmp_path / "evidence")
+
+    assert not (tmp_path / "evidence").exists()
+
+
+def test_legacy_import_rejects_symlinked_source_parent(tmp_path: Path) -> None:
+    store = SQLitePersistence(tmp_path / "state.db")
+    store.initialize()
+    target_directory = tmp_path / "legacy-target"
+    target_directory.mkdir()
+    source = target_directory / "legacy.json"
+    source.write_text(
+        json.dumps({"version": 4, "profiles": [], "history": []}),
+        encoding="utf-8",
+    )
+    linked_directory = tmp_path / "legacy-linked"
+    linked_directory.symlink_to(target_directory, target_is_directory=True)
+
+    with pytest.raises(PersistenceError, match="LEGACY_SOURCE_INVALID"):
+        store.import_legacy_to_staging(
+            linked_directory / source.name, tmp_path / "evidence"
+        )
+
+    assert not (tmp_path / "evidence").exists()
+
+
+def test_same_source_legacy_import_is_idempotent_under_concurrency(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    database = tmp_path / "state.db"
+    store_a = SQLitePersistence(database)
+    store_a.initialize()
+    store_b = SQLitePersistence(database)
+    source = tmp_path / "legacy.json"
+    source.write_text(
+        json.dumps(
+            {
+                "version": 4,
+                "profiles": [{"id": "profile-1"}],
+                "history": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+    evidence = tmp_path / "evidence"
+    lookup_barrier = Barrier(2)
+    backup_exists_barrier = Barrier(2)
+    original_existing = SQLitePersistence._existing_import
+    original_exists = Path.exists
+
+    def synchronized_existing(
+        store: SQLitePersistence, idempotency_key: str
+    ) -> persistence_package.store.LegacyImportResult | None:
+        result = original_existing(store, idempotency_key)
+        lookup_barrier.wait(timeout=5)
+        return result
+
+    def synchronized_backup_exists(path: Path) -> bool:
+        exists = original_exists(path)
+        if path.parent == evidence and path.name.startswith("legacy_source_"):
+            backup_exists_barrier.wait(timeout=5)
+        return exists
+
+    monkeypatch.setattr(SQLitePersistence, "_existing_import", synchronized_existing)
+    monkeypatch.setattr(Path, "exists", synchronized_backup_exists)
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        results = list(
+            executor.map(
+                lambda store: store.import_legacy_to_staging(source, evidence),
+                (store_a, store_b),
+            )
+        )
+
+    assert results[0] == results[1]
+    with sqlite3.connect(database) as connection:
+        assert connection.execute("SELECT COUNT(*) FROM migration_runs").fetchone()[0] == 1
+        assert connection.execute("SELECT COUNT(*) FROM legacy_staging").fetchone()[0] == 1
+    assert len(list(evidence.glob("legacy_source_*.json"))) == 1
+    assert len(list(evidence.glob("database_before_import_*.db"))) == 1
 
 
 
