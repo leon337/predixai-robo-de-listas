@@ -626,9 +626,12 @@ class SQLitePersistence:
         ]
         for index, (kind, item) in enumerate(items):
             identifier = item.get("id") if isinstance(item, dict) else None
-            source_key = f"{kind}:{identifier or index}"
+            logical_key = f"{kind}:{identifier or index}"
+            source_key = (
+                logical_key if logical_key not in seen_keys else f"{logical_key}#{index}"
+            )
             reason: str | None = None
-            if source_key in seen_keys:
+            if logical_key in seen_keys:
                 reason = "DUPLICATE_SOURCE_KEY"
             elif not isinstance(item, dict):
                 reason = "LEGACY_ITEM_OBJECT_REQUIRED"
@@ -636,7 +639,7 @@ class SQLitePersistence:
                 reason = "LEGACY_ITEM_ID_REQUIRED"
             elif _contains_sensitive_key(item):
                 reason = "SENSITIVE_FIELD_REJECTED"
-            seen_keys.add(source_key)
+            seen_keys.add(logical_key)
             if reason:
                 safe_payload: Any = {"rejected": reason}
                 status = "REJECTED"
