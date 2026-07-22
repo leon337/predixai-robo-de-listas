@@ -1,5 +1,5 @@
-schema_version: "1.0.6"
-state_revision: 42
+schema_version: "1.0.7"
+state_revision: 43
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,26 +7,41 @@ observed_main_head: "40aca6ff9c470e44ea37e2d066092bc1349564fc"
 real_version: "V2.5.0-alpha.2"
 candidate_version: null
 
-active_mission: "LEA-146 — Post-merge local evidence and state reconciliation"
-active_stage: "DOCUMENTATION_RECONCILIATION_PUBLISHED_AWAITING_REVIEW"
+active_mission: "LEA-146 — Post-merge local evidence and state reconciliation remediation"
+active_stage: "LEA_147_FAIL_REMEDIATION"
 active_linear_issue: "LEA-146"
-active_review_issue: null
-active_pull_request: null
+active_review_issue: "LEA-147"
+active_pull_request: 74
 working_branch: "leonpcsn/lea-146-post-merge-local-evidence-reconciliation"
-pr_mode: "DRAFT_REQUIRED"
-current_gate: "DOCUMENTATION_RECONCILIATION_REVIEW"
-gate_status: "LOCAL_EVIDENCE_REGISTERED; GITHUB_STATE_RECONCILIATION_PUBLISHED"
-next_action: "OPEN_DRAFT_PR_AND_INDEPENDENT_REVIEW"
+pr_mode: "DRAFT"
+current_gate: "LEA_147_FAIL_REMEDIATION"
+gate_status: "F01_REMEDIATED; F02_BLOCKED_BY_BINARY_ATTACHMENT_TRANSPORT"
+next_action: "ATTACH_SEVEN_ORIGINAL_IMAGE_BINARIES_TO_LEA_146_THEN_PUBLISH_NEW_HEAD_AND_REQUEST_INDEPENDENT_RETEST"
 blockers:
-  - "DOCUMENTATION_REVIEW_REQUIRED"
+  - "LEA_147_F02_BINARY_CHAIN_OF_CUSTODY_REQUIRED"
+  - "LINEAR_SIGNED_UPLOAD_STORAGE_UNREACHABLE_FROM_EXECUTION_ENVIRONMENT"
+  - "GOOGLE_DRIVE_STORAGE_QUOTA_EXCEEDED"
+  - "DOCUMENTATION_RETEST_REQUIRED_AFTER_F02_REMEDIATION"
   - "LST_001_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-transition_id: "LEA-146-T01"
-transition_status: "POST_MERGE_LOCAL_EVIDENCE_RECONCILIATION"
-from_state: "LEA_101_DONE_LEA_124_DONE_PASS_PR_73_MERGED"
-to_state: "V250_ALPHA2_LOCALLY_CONFIRMED_NEXT_MISSION_DEFINED"
+transition_id: "LEA-146-T02"
+transition_status: "LEA_147_FAIL_REMEDIATION_IN_PROGRESS"
+from_state: "LEA_147_DONE_FAIL_F01_F02_OPEN"
+to_state: "F01_REMEDIATED_F02_ATTACHMENT_BLOCKED"
 baseline_main_sha: "40aca6ff9c470e44ea37e2d066092bc1349564fc"
-bound_transition_id: "LEA-146-T01"
+bound_transition_id: "LEA-146-T02"
+previous_transition_id: "LEA-146-T01"
+
+builder_issue: "LEA-146"
+failed_review_issue: "LEA-147"
+failed_review_head: "0ad9e511e9c0178078ce5223455773d1dd6dc894"
+failed_review_decision: "FAIL"
+failed_review_findings:
+  - "LEA-147-F01"
+  - "LEA-147-F02"
+open_blocking_findings: 1
+retest_required: true
+retest_issue: null
 
 previous_builder_issue: "LEA-101"
 previous_review_issue: "LEA-102"
@@ -36,6 +51,21 @@ previous_candidate_head: "c1218641cad884fe759238947c4f3f633fd17ffe"
 previous_merge_commit: "40aca6ff9c470e44ea37e2d066092bc1349564fc"
 previous_ci_result: "PASS_12_OF_12"
 previous_independent_decision: "PASS"
+
+lea_147_remediation:
+  f01_status: "REMEDIATED"
+  f01_changes:
+    - "ACTIVE_REVIEW_ISSUE_SET_TO_LEA_147"
+    - "ACTIVE_PULL_REQUEST_SET_TO_74"
+    - "PR_MODE_SET_TO_DRAFT"
+    - "CURRENT_GATE_SET_TO_LEA_147_FAIL_REMEDIATION"
+    - "NEXT_ACTION_UPDATED_TO_BINARY_ATTACHMENT_AND_RETEST"
+  f02_status: "BLOCKED"
+  f02_required_result: "SEVEN_ORIGINAL_BINARIES_ATTACHED_TO_LEA_146_AND_HASHES_RECALCULABLE"
+  f02_attempts:
+    - "LINEAR_SIGNED_UPLOAD_PREPARED_BUT_STORAGE_HOST_UNREACHABLE"
+    - "GOOGLE_DRIVE_UPLOAD_REJECTED_STORAGE_QUOTA_EXCEEDED"
+  f02_false_completion_forbidden: true
 
 local_evidence:
   source: "CAPTURAS_LOCAIS_FORNECIDAS_POR_LEO"
@@ -53,7 +83,9 @@ local_evidence:
   profile_compatibility: "PERFIL_PRONTO"
   image_count: 7
   image_binaries_versioned: false
+  image_binaries_attached_to_linear: false
   image_hashes_registered: true
+  chain_of_custody_status: "INCOMPLETE_BLOCKED_BY_ATTACHMENT_TRANSPORT"
 
 architecture_v1_status: "FROZEN"
 architecture_v1_frozen: true
@@ -78,9 +110,9 @@ conditions:
   - "NO_BROKER_OR_FINANCIAL_EFFECT"
   - "NEXT_INCREMENT_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-github_sync_status: "DOCUMENTATION_RECONCILIATION_BRANCH_PUBLISHED"
-linear_sync_status: "LEA_146_IN_PROGRESS"
-last_sync_at_utc: "2026-07-22T19:10:00Z"
+github_sync_status: "PR_74_OPEN_DRAFT; F01_REMEDIATED; F02_BLOCKED"
+linear_sync_status: "LEA_146_IN_PROGRESS; LEA_147_DONE_FAIL"
+last_sync_at_utc: "2026-07-22T20:40:00Z"
 
 documentation_only: true
 implementation_authorized: false
@@ -99,18 +131,18 @@ real_click_authorized: false
 live_mode_armed: false
 real_financial_effect_runtime_authorized: false
 financial_effect_status: "BLOCKED"
+merge_authorized: false
 
 source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
   local_evidence: "docs/history/reports/RELATORIO_EVIDENCIA_LOCAL_V250_ALPHA2_LEA_146_20260722.md"
-  task_status_and_dependencies: "Linear LEA-146"
+  task_status_and_dependencies: "Linear LEA-146 and LEA-147"
   consolidated_architecture: "GitHub main at 40aca6ff9c470e44ea37e2d066092bc1349564fc"
 
 safety:
-  manifest_documentation_drift: true
-  drift_reason: "RECONCILIATION_BRANCH_NOT_YET_MERGED"
+  manifest_documentation_drift: false
   execution_status: "NULL_ONLY"
   automatic_advance: false
   application_code_changed: false
@@ -127,4 +159,6 @@ safety:
   simulated_mode: false
   live_mode_armed: false
   local_execution_evidence_provided: true
+  evidence_chain_complete: false
   next_increment_authorized: false
+  ready_for_independent_retest: false
