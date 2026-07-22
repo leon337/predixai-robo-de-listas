@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valida uma versão SemVer atual contra o piso histórico informado."""
+"""Valida uma versão SemVer estrita contra o piso histórico informado."""
 from __future__ import annotations
 
 import argparse
@@ -10,20 +10,28 @@ from typing import TypeAlias
 Identifier: TypeAlias = int | str
 ParsedVersion: TypeAlias = tuple[tuple[int, int, int], tuple[Identifier, ...] | None]
 
+_PRERELEASE_IDENTIFIER = (
+    r"(?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)"
+)
+_BUILD_IDENTIFIER = r"[0-9A-Za-z-]+"
 _SEMVER = re.compile(
-    r"^[vV]?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
-    r"(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?"
-    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$"
+    r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
+    rf"(?:-({_PRERELEASE_IDENTIFIER}(?:\.{_PRERELEASE_IDENTIFIER})*))?"
+    rf"(?:\+{_BUILD_IDENTIFIER}(?:\.{_BUILD_IDENTIFIER})*)?$"
 )
 
 
 def parse_version(value: str) -> ParsedVersion:
-    """Converte uma versão SemVer em uma estrutura comparável."""
+    """Converte uma versão SemVer estrita em uma estrutura comparável."""
     match = _SEMVER.fullmatch(value.strip())
     if match is None:
         raise ValueError(f"versão SemVer inválida: {value!r}")
 
-    core = tuple(int(part) for part in match.group(1, 2, 3))
+    core = (
+        int(match.group(1)),
+        int(match.group(2)),
+        int(match.group(3)),
+    )
     prerelease_text = match.group(4)
     if prerelease_text is None:
         return core, None
@@ -52,7 +60,11 @@ def _compare_prerelease(
             return -1
         if isinstance(left_part, str) and isinstance(right_part, int):
             return 1
-        return 1 if left_part > right_part else -1
+        if isinstance(left_part, int) and isinstance(right_part, int):
+            return 1 if left_part > right_part else -1
+        if isinstance(left_part, str) and isinstance(right_part, str):
+            return 1 if left_part > right_part else -1
+        raise TypeError("identificador SemVer inesperado")
 
     if len(left) == len(right):
         return 0
