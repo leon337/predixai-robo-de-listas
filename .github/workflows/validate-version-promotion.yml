@@ -1,0 +1,49 @@
+name: Validar promoção V2.5.0-alpha.2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "VERSION"
+      - "run.sh"
+      - "app/bootstrap_v250_alpha2_entry.py"
+      - "scripts/validate_version_floor.py"
+      - "tests/test_version_floor.py"
+      - "tests/test_version_promotion.py"
+      - ".github/workflows/validate-version-promotion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Instalar dependências isoladas
+        run: python -m pip install -r requirements-dev.txt
+      - name: Testes cumulativos
+        run: python -m pytest -q
+      - name: Ruff — arquivos do hotfix
+        run: >-
+          ruff check
+          scripts/validate_version_floor.py
+          app/bootstrap_v250_alpha2_entry.py
+          tests/test_version_floor.py
+          tests/test_version_promotion.py
+      - name: Mypy — arquivos do hotfix
+        run: >-
+          mypy
+          scripts/validate_version_floor.py
+          app/bootstrap_v250_alpha2_entry.py
+          tests/test_version_floor.py
+          tests/test_version_promotion.py
+          --ignore-missing-imports
+      - name: Validar versão promovida
+        run: python scripts/validate_version_floor.py --minimum 2.5.0-alpha.2
