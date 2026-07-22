@@ -21,11 +21,7 @@ jobs:
       - name: Validar scripts shell
         run: bash -n run.sh install_desktop.sh
       - name: Validar versão V2.3 ou posterior
-        run: |
-          python - <<'PY'
-          version = tuple(int(part) for part in open('VERSION', encoding='utf-8').read().strip().split('.'))
-          assert version >= (2, 3, 0), version
-          PY
+        run: python scripts/validate_version_floor.py --minimum 2.3.0
       - name: Validar marcadores V2.3
         run: |
           grep -q "▲ PARA CIMA" app/bootstrap_v23.py

@@ -26,9 +26,4 @@ jobs:
           grep -q "run_startup_diagnostics" app/bootstrap_v23_entry.py
           grep -q "configure_logging" app/bootstrap_v23_entry.py
       - name: Validar versão 2.4.1 ou posterior
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          version = tuple(int(part) for part in Path('VERSION').read_text(encoding='utf-8').strip().split('.'))
-          assert version >= (2, 4, 1), version
-          PY
+        run: python scripts/validate_version_floor.py --minimum 2.4.1

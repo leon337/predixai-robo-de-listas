@@ -28,9 +28,4 @@ jobs:
           grep -q "_PREVIOUS_LOAD = cls._load_config" app/bootstrap_v242.py
           grep -q "_PREVIOUS_SAVE = cls._save_config" app/bootstrap_v242.py
       - name: Validar versão mínima
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          version = tuple(int(part) for part in Path('VERSION').read_text().strip().split('.'))
-          assert version >= (2, 4, 2), version
-          PY
+        run: python scripts/validate_version_floor.py --minimum 2.4.2
