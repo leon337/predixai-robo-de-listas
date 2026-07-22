@@ -1,5 +1,5 @@
-schema_version: "1.0.4"
-state_revision: 40
+schema_version: "1.0.5"
+state_revision: 41
 project: "PredixAI Robô de Listas"
 repository: "leon337/predixai-robo-de-listas"
 main_branch: "main"
@@ -7,48 +7,84 @@ observed_main_head: "bd2db3772898c46d9422818b780e91b5f132941e"
 real_version: "V2.4.3-R1"
 candidate_version: "V2.5.0-alpha.2"
 
-active_mission: "LEA-101 — Promote installed version to V2.5.0-alpha.2"
-active_stage: "CANDIDATE_AWAITING_FINAL_CI_AND_INDEPENDENT_REVIEW"
+active_mission: "LEA-101 — Remediate version promotion hotfix"
+active_stage: "REMEDIATION_PUBLISHED_AWAITING_FINAL_CI_AND_RETEST"
 active_linear_issue: "LEA-101"
-active_review_issue: "LEA-102"
+active_review_issue: "LEA-124"
+previous_review_issue: "LEA-102"
 active_pull_request: 73
 working_branch: "leonpcsn/lea-101-hotfix-promote-installed-version-to-v250-alpha2"
-review_head_pin_authority: "GITHUB_PR_73_AND_LINEAR_LEA_102"
+review_head_pin_authority: "GITHUB_PR_73_AND_LINEAR_LEA_124"
 review_head_self_reference_policy: "CURRENT_COMMIT_SHA_MUST_NOT_BE_EMBEDDED_IN_ITS_OWN_CONTENT"
 pr_mode: "DRAFT"
-current_gate: "FINAL_CI_AND_INDEPENDENT_REVIEW_LEA_102"
-gate_status: "IMPLEMENTATION_AND_CI_REMEDIATION_PUBLISHED; FINAL_HEAD_CI_PENDING"
-next_action: "PIN_FINAL_PR_HEAD_EXTERNALLY_AND_EXECUTE_LEA_102"
+current_gate: "FINAL_CI_AND_INDEPENDENT_RETEST_LEA_124"
+gate_status: "LEA_102_FAIL; F01_F02_REMEDIATED; FINAL_HEAD_CI_PENDING"
+next_action: "PIN_FINAL_PR_HEAD_EXTERNALLY_AND_EXECUTE_LEA_124"
 blockers:
   - "FINAL_HEAD_CI_REQUIRED"
-  - "INDEPENDENT_REVIEW_LEA_102_REQUIRED"
+  - "INDEPENDENT_RETEST_LEA_124_REQUIRED"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
   - "LST_001_NOT_AUTHORIZED"
 
-transition_id: "LEA-101-T01"
-transition_status: "VERSION_PROMOTION_CANDIDATE_WITH_SEMVER_CI_REMEDIATION"
-from_state: "DAT_001_POST_MERGE_WITH_VERSION_DISPLAY_DRIFT"
-to_state: "V2_5_0_ALPHA_2_VERSION_PROMOTION_CANDIDATE"
+transition_id: "LEA-101-T02"
+transition_status: "VERSION_PROMOTION_REMEDIATION_PUBLISHED"
+from_state: "LEA_102_DONE_FAIL"
+to_state: "VERSION_PROMOTION_REMEDIATED_AWAITING_RETEST"
 baseline_main_sha: "bd2db3772898c46d9422818b780e91b5f132941e"
 baseline_state_revision: 39
-bound_transition_id: "LEA-101-T01"
-previous_transition_id: "LEA-59-T01"
+bound_transition_id: "LEA-101-T02"
+previous_transition_id: "LEA-101-T01"
 
 builder_issue: "LEA-101"
-review_issue: "LEA-102"
-independent_review_decision: "PENDING"
+review_issue: "LEA-124"
+previous_independent_review:
+  issue: "LEA-102"
+  reviewed_head: "1914d7d4c7890d5084a96fc312731c1dbcf1ceae"
+  decision: "FAIL"
+  critical_findings: 0
+  major_findings: 2
+  open_blocking_findings: 2
+  findings: ["LEA-102-F01", "LEA-102-F02"]
+independent_review_decision: "PENDING_RETEST"
 critical_findings: null
 major_findings: null
 open_blocking_findings: null
-retest_required: null
+retest_required: true
 independent_review_required: true
 implementation_pull_request: 73
 implementation_code_head: "d6fb5569925313cc82bba83ace05ade19bfe0c53"
+first_review_head: "1914d7d4c7890d5084a96fc312731c1dbcf1ceae"
+final_retest_head: "READ_EXTERNALLY_FROM_PR_73_AND_LEA_124"
 ci_first_attempt: "FAIL_8_HISTORICAL_VERSION_PARSERS; PASS_DAT_001_AND_FND_003"
-ci_remediation: "SEMVER_VERSION_FLOOR_VALIDATOR_AND_8_WORKFLOW_UPDATES"
-ci_status: "AWAITING_FINAL_HEAD"
-cumulative_tests: "EXPECTED_PASS_93_INCLUDING_PREVIOUS_85"
-static_validation: "RUFF_AND_MYPY_REQUIRED"
+ci_second_attempt: "PASS_11_OF_11_AT_LEA_102_REVIEW_HEAD"
+ci_status: "AWAITING_FINAL_REMEDIATION_HEAD"
+cumulative_tests: "EXPECTED_PASS_96_INCLUDING_PREVIOUS_85"
+static_validation: "HOTFIX_RUFF_AND_MYPY_REQUIRED"
+
+lea_102_remediation:
+  f01_status: "REMEDIATED"
+  f01_changes:
+    - "STRICT_SEMVER_WITHOUT_V_PREFIX"
+    - "NUMERIC_PRERELEASE_LEADING_ZERO_REJECTED"
+    - "NEGATIVE_TESTS_EXPANDED"
+  f02_status: "REMEDIATED"
+  f02_workflow: ".github/workflows/validate-version-promotion.yml"
+  f02_ruff_scope:
+    - "scripts/validate_version_floor.py"
+    - "app/bootstrap_v250_alpha2_entry.py"
+    - "tests/test_version_floor.py"
+    - "tests/test_version_promotion.py"
+  f02_mypy_scope:
+    - "scripts/validate_version_floor.py"
+    - "app/bootstrap_v250_alpha2_entry.py"
+    - "tests/test_version_floor.py"
+    - "tests/test_version_promotion.py"
+  previous_tests: 93
+  new_negative_cases: 3
+  expected_cumulative_tests: 96
+  previous_workflows: 11
+  new_workflow: 1
+  expected_workflows: 12
 
 dat_001_history:
   builder_issue: "LEA-59"
@@ -73,9 +109,9 @@ version_promotion_hotfix:
   behavioral_runtime_change: false
   version_promotion_tests: 3
   semver_validator: "scripts/validate_version_floor.py"
-  semver_validator_tests: 5
+  semver_validator_tests_after_remediation: 8
   historical_workflows_remediated: 8
-  expected_cumulative_tests: 93
+  expected_cumulative_tests: 96
   rollback: "REVERT_PR_73"
 
 architecture_v1_status: "FROZEN"
@@ -93,18 +129,21 @@ conditions:
   - "NULL_ADAPTER_ONLY"
   - "VERSION_IDENTITY_CHANGE_ONLY"
   - "STABLE_RUNTIME_DELEGATION_REQUIRED"
+  - "STRICT_SEMVER_REQUIRED"
+  - "HOTFIX_STATIC_ANALYSIS_REQUIRED"
   - "HISTORICAL_CI_MUST_REMAIN_CUMULATIVE"
   - "NO_BROKER_OR_FINANCIAL_EFFECT"
   - "MERGE_REQUIRES_EXPLICIT_HUMAN_AUTHORIZATION"
 
-github_sync_status: "PR_73_OPEN_DRAFT; FINAL_HEAD_CI_PENDING"
-linear_sync_status: "LEA_101_IN_PROGRESS; LEA_102_TODO"
-last_sync_at_utc: "2026-07-21T20:45:00Z"
+github_sync_status: "PR_73_OPEN_DRAFT; REMEDIATION_PUBLISHED; FINAL_HEAD_CI_PENDING"
+linear_sync_status: "LEA_101_IN_PROGRESS; LEA_102_DONE_FAIL; LEA_124_TODO"
+last_sync_at_utc: "2026-07-22T09:55:00Z"
 
 implementation_authorized: true
-authorized_increment: "VERSION_PROMOTION_HOTFIX_ONLY"
+authorized_increment: "VERSION_PROMOTION_HOTFIX_REMEDIATION_ONLY"
 code_change_authorized: true
 test_code_change_authorized: true
+workflow_change_authorized: true
 sql_authorized: false
 migration_authorized: false
 runtime_execution_authorized: false
@@ -125,14 +164,14 @@ source_authority:
   operational_state: "PROJECT_RUNTIME_STATE.yaml"
   human_state: "PROJECT_STATE.md"
   roadmap_and_chat_sequence: "PREDIXAI_ROBO_LISTAS_TRONCO_MULTICHAT.md"
-  task_status_and_dependencies: "Linear LEA-101 and LEA-102"
-  independent_review: "Linear LEA-102"
+  task_status_and_dependencies: "Linear LEA-101, LEA-102 and LEA-124"
+  independent_review: "Linear LEA-124"
   consolidated_architecture: "GitHub main at bd2db3772898c46d9422818b780e91b5f132941e"
 
 safety:
   manifest_documentation_drift: false
   schema_contract_alignment: true
-  execution_status: "VERSION_PROMOTION_CANDIDATE_AWAITING_REVIEW"
+  execution_status: "VERSION_PROMOTION_REMEDIATED_AWAITING_RETEST"
   automatic_advance: false
   documentation_only: false
   baseline_commit_pinned: true
@@ -156,4 +195,4 @@ safety:
   local_test_report_required: false
   local_execution_evidence_provided: false
   current_product_issue: "LEA-101"
-  current_review_issue: "LEA-102"
+  current_review_issue: "LEA-124"
