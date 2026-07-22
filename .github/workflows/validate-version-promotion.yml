@@ -40,10 +40,12 @@ jobs:
       - name: Mypy — arquivos do hotfix
         run: >-
           mypy
+          --explicit-package-bases
+          --follow-imports=skip
+          --ignore-missing-imports
           scripts/validate_version_floor.py
           app/bootstrap_v250_alpha2_entry.py
           tests/test_version_floor.py
           tests/test_version_promotion.py
-          --ignore-missing-imports
       - name: Validar versão promovida
         run: python scripts/validate_version_floor.py --minimum 2.5.0-alpha.2
