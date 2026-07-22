@@ -21,6 +21,15 @@ def test_release_is_above_same_core_prerelease() -> None:
     assert compare_versions("2.5.0", "2.5.0-alpha.2") > 0
 
 
-def test_invalid_version_is_rejected() -> None:
+@pytest.mark.parametrize(
+    "value",
+    [
+        "2.5",
+        "2.5.0-alpha.01",
+        "v2.5.0",
+        "V2.5.0",
+    ],
+)
+def test_invalid_versions_are_rejected(value: str) -> None:
     with pytest.raises(ValueError):
-        parse_version("2.5")
+        parse_version(value)
