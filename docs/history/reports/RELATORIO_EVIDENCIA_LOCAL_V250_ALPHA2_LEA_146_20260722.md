@@ -1,4 +1,4 @@
-# RELATÓRIO DE EVIDÊNCIA LOCAL — V2.5.0-alpha.2
+# RELATÓRIO DE CONFIRMAÇÃO VISUAL LOCAL — V2.5.0-alpha.2
 
 ```text
 ISSUE=LEA-146
@@ -6,81 +6,82 @@ REPOSITORY=leon337/predixai-robo-de-listas
 MAIN_HEAD=40aca6ff9c470e44ea37e2d066092bc1349564fc
 VERSION=V2.5.0-alpha.2
 DATE=2026-07-22
-SOURCE=CAPTURAS_LOCAIS_FORNECIDAS_POR_LEO
+SOURCE=CAPTURAS_ENVIADAS_POR_LEO_NESTA_CONVERSA
 ENVIRONMENT=LINUX_MINT_DESKTOP
 MODE_BOUNDARY=NULL_ONLY
 LEA_147_DECISION=FAIL
 LEA_147_F01=REMEDIATED
-LEA_147_F02=BLOCKED_PENDING_BINARY_ATTACHMENTS
+LEA_147_F02=RESOLVED_BY_AUTHORIZED_SCOPE_SIMPLIFICATION
+RETEST_ISSUE=LEA-149
 ```
 
 ## Objetivo
 
-Registrar factualmente a atualização local pós-merge, a abertura da aplicação na versão correta e a recalibração de um perfil em ambiente fictício/demo.
+Registrar, de forma proporcional ao objetivo operacional, a confirmação visual local fornecida por Leo após o merge da V2.5.0-alpha.2.
 
-## Evidências observadas
+Este documento não constitui laudo forense, cadeia de custódia digital ou prova técnica automatizada. As capturas são usadas somente como corroboração visual do relato humano e do estado exibido pela interface.
 
-1. Aplicação aberta com título `PredixAI Robô de Listas — V2.5.0-alpha.2`.
-2. Cabeçalho e campo `Versão instalada` exibindo `2.5.0-alpha.2`.
-3. Perfil novo denominado `RECALIBRAGEM 1366X768`.
-4. Aplicação declarada no perfil: `TESTE CORRETOR FICTÍCIA`.
-5. Tela detectada: `1366x768 | 100%`.
-6. Coordenadas de `AÇÃO 1 / PARA CIMA` e `AÇÃO 2 / PARA BAIXO` registradas.
-7. Confirmação visual de teste controlado das duas coordenadas.
-8. Estado final da tela inicial: `Compatibilidade: perfil pronto`.
+## Decisão humana sobre o escopo da evidência
 
-## Inventário das capturas
+Leo autorizou explicitamente a simplificação documental da LEA-146.
 
-| Arquivo de origem no chat | Bytes | SHA-256 | Evidência principal |
-|---|---:|---|---|
-| `image-1784746863272.jpg` | `216794` | `49314bc90b0aed5fdfd8102a3526bc83da918d419d756a7ca5fc3a4ada85c339` | criação do perfil e detecção 1366x768 |
-| `image-1784746890377.jpg` | `199016` | `467ff3195c1cbb26c982e2476ee1ea5141b14d1fdc1a6452e14cba87470baf9f` | tela de calibração aberta |
-| `image-1784746937514.jpg` | `221653` | `8bf20957e13b1685ea38d10626361aa0f19a843a94185aa62cc35abca45891d2` | duas coordenadas registradas em ambiente fictício/demo |
-| `image-1784746953509.jpg` | `190630` | `b244fc9060560870af24c72b534d6cd03eb153d5d97d9cb3510e9846251158c5` | bloqueio por teste pendente antes da validação |
-| `image-1784746967611.jpg` | `200397` | `455b28501349f576decf802856f8321a507736f215ffc4bd6f8714f2e8544a17` | confirmação explícita antes do teste controlado |
-| `image-1784746981129.jpg` | `187456` | `4a0a68500cc95010c7a50cd9fcfec5cde7fb1d1dcba2ca5c898238d848873a20` | mensagem de teste concluído |
-| `image-1784746992821.jpg` | `242137` | `6ffd5c1b719ae779cc74acbb3576346aeb51c50ff47c8c0220c93ff01f26a635` | perfil pronto na tela inicial |
+```text
+CAPTURES_ROLE=LOCAL_VISUAL_CORROBORATION_REPORTED_BY_LEO
+PERSISTENT_IMAGE_BINARIES_REQUIRED=NO
+INDEPENDENT_HASH_RECALCULATION_REQUIRED=NO
+CHAIN_OF_CUSTODY_REQUIRED=NO
+FORENSIC_EVIDENCE_CLAIMED=NO
+```
 
-## Resultado visual local
+Consequentemente, a ausência dos binários em armazenamento persistente não é um bloqueio documental. Nomes internos de anexos e hashes locais deixam de ser critérios de aceite ou de revisão.
+
+## Confirmações visuais sustentadas pelas capturas
+
+1. A aplicação foi aberta com o título `PredixAI Robô de Listas — V2.5.0-alpha.2`.
+2. O cabeçalho e o campo `Versão instalada` exibiram `2.5.0-alpha.2`.
+3. Foi criado o perfil `RECALIBRAGEM 1366X768`.
+4. O perfil registrou a aplicação como `TESTE CORRETOR FICTÍCIA`.
+5. A tela foi detectada como `1366x768 | 100%`.
+6. Coordenadas para `AÇÃO 1 / PARA CIMA` e `AÇÃO 2 / PARA BAIXO` apareceram registradas.
+7. A interface exibiu a confirmação anterior ao teste controlado e a mensagem de conclusão das duas coordenadas.
+8. A tela inicial terminou com `Compatibilidade: perfil pronto`.
+
+## Relato humano associado
+
+Leo informou que executou o teste de clique no ambiente fictício/demo e que ele funcionou corretamente.
+
+```text
+CONTROLLED_CLICK_TEST_RESULT=PASS_REPORTED_BY_LEO
+ASSERTION_TYPE=HUMAN_REPORTED_LOCAL_RESULT
+AUTOMATED_TELEMETRY_OR_FORENSIC_PROOF=NO
+```
+
+O relato é registrado como confirmação operacional humana. Ele não deve ser reinterpretado como telemetria automatizada, auditoria de corretora ou autorização para operação real.
+
+## Resultado da confirmação local
 
 ```text
 LOCAL_MAIN_UPDATE=PASS
 LOCAL_VERSION_DISPLAY=PASS
 DESKTOP_LAUNCHER=PASS
-PROFILE_RECALIBRATION_1366X768=PASS
-COORDINATE_CAPTURE=PASS
+PROFILE_RECALIBRATION_1366X768=PASS_VISUALLY_CORROBORATED
+COORDINATE_CAPTURE=PASS_VISUALLY_CORROBORATED
 CONTROLLED_CLICK_TEST_IN_FICTITIOUS_OR_DEMO_ENVIRONMENT=PASS_REPORTED_BY_LEO
-PROFILE_COMPATIBILITY=READY
-LOCAL_VISUAL_EVIDENCE_RESULT=PASS
+PROFILE_COMPATIBILITY=READY_VISUALLY_CORROBORATED
+LOCAL_VISUAL_CONFIRMATION_RESULT=PASS
 ```
 
-## Cadeia de custódia
+## Limites
 
-A revisão LEA-147 concluiu que nomes e hashes sem acesso aos binários não permitem recálculo independente. O achado `LEA-147-F02` permanece aberto até que os sete arquivos originais sejam anexados à LEA-146 ou publicados em armazenamento verificável com acesso persistente.
-
-Tentativas realizadas pelo builder:
-
-```text
-LINEAR_SIGNED_UPLOAD=PREPARED
-LINEAR_STORAGE_UPLOAD=FAILED_HOST_UNREACHABLE_FROM_EXECUTION_ENVIRONMENT
-GOOGLE_DRIVE_UPLOAD=FAILED_STORAGE_QUOTA_EXCEEDED
-FALSE_ATTACHMENT_DECLARATION=PROHIBITED
-CHAIN_OF_CUSTODY_STATUS=INCOMPLETE
-```
-
-Os arquivos locais foram reencontrados e seus tamanhos e hashes foram recalculados, coincidindo com o inventário acima. Isso preserva a integridade local, mas não encerra F02 enquanto o revisor não puder obter os binários por uma fonte externa persistente.
-
-## Limites e interpretação
-
-- As capturas sustentam a confirmação local e visual descrita acima.
-- O teste foi relatado e mostrado em ambiente identificado como fictício/demo.
-- Esta evidência não autoriza execução de listas, corretora real, conta real, saldo real, efeito financeiro ou modo LIVE.
-- Os binários permanecem nas fontes da conversa e no ambiente local temporário; não estão declarados como anexados.
-- Reteste independente não deve ser solicitado antes da conclusão da cadeia de custódia.
+- Os binários das capturas não são versionados nem exigidos.
+- Não há alegação de cadeia de custódia ou recálculo independente de hashes.
+- As fotos não autorizam execução de listas, corretora real, conta real, saldo real, efeito financeiro ou modo LIVE.
+- O teste ocorreu em contexto identificado como fictício/demo.
+- O modo máximo do projeto continua `NULL_ONLY`.
 
 ## Próxima missão normativa
 
-O catálogo oficial define `LST-001 — Lists and Scheduling` como sucessor de `DAT-001`. A missão permanece candidata e não iniciada até autorização humana explícita e conclusão da reconciliação documental.
+O catálogo oficial define `LST-001 — Lists and Scheduling` como sucessor de `DAT-001`. A missão permanece candidata e não iniciada até conclusão da reconciliação documental e autorização humana explícita.
 
 ```text
 NEXT_MISSION_CANDIDATE=LST-001
@@ -89,4 +90,13 @@ MODE_MAX=NULL_ONLY
 REAL_CLICK_AUTHORIZED=NO
 REAL_FINANCIAL_EFFECT=NO
 LIVE_MODE_ARMED=NO
+```
+
+## Próximo gate
+
+```text
+NEXT_REVIEW=LEA-149
+RETEST_SCOPE=DOCUMENT_CONSISTENCY_AND_TRUTHFUL_EVIDENCE_CLASSIFICATION
+MERGE_AUTHORIZED=NO
+LST_001_AUTHORIZED=NO
 ```
