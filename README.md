@@ -8,13 +8,12 @@
 MAIN_HEAD=40aca6ff9c470e44ea37e2d066092bc1349564fc
 MAIN_INSTALLED_VERSION=V2.5.0-alpha.2
 MISSÃO_ATIVA=LEA-146 — evidência local e reconciliação pós-merge
-LEA_101=DONE
-LEA_102=DONE_FAIL
-LEA_124=DONE_PASS
+REVISÃO_ANTERIOR=LEA-147 — DONE/FAIL
+RETESTE_ATIVO=LEA-149 — TODO
 PR_73=MERGED
-PR_73_MERGE_COMMIT=40aca6ff9c470e44ea37e2d066092bc1349564fc
-STATE_REVISION=42
-GATE=DOCUMENTATION_RECONCILIATION_REVIEW
+PR_74=OPEN_DRAFT
+STATE_REVISION=44
+GATE=SIMPLIFIED_EVIDENCE_POLICY_RETEST
 ARQUITETURA_V1_CONGELADA=YES
 STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 ```
@@ -28,26 +27,42 @@ STATE_SOURCE=PROJECT_RUNTIME_STATE.yaml
 | FND-001, FND-002 e FND-003 | ✅ integradas |
 | DAT-001 — estado durável e migração legada | ✅ integrada |
 | V2.5.0-alpha.2 | ✅ promovida no PR #73 |
-| LEA-124 — reteste independente | ✅ `DONE/PASS` |
 | Validação local Linux Mint | ✅ versão, launcher e perfil confirmados |
-| LEA-146 — reconciliação documental | 🟨 em revisão |
+| LEA-147 — revisão documental | 🟥 `DONE/FAIL` |
+| LEA-146 — remediação documental | 🟨 publicada no PR #74 |
+| LEA-149 — reteste independente | ⏳ aguardando execução |
 | LST-001 — Lists and Scheduling | ⏳ candidata; não autorizada |
 
-## Evidência local
+## Confirmação visual local
 
 ```text
+EVIDENCE_CLASS=LOCAL_VISUAL_CORROBORATION_AND_HUMAN_REPORT
 LOCAL_MAIN_UPDATE=PASS
 LOCAL_VERSION_DISPLAY=PASS
 DESKTOP_LAUNCHER=PASS
 LOCAL_SCREEN=1366x768_100_PERCENT
 LOCAL_PROFILE=RECALIBRAGEM_1366X768
 LOCAL_APPLICATION_LABEL=TESTE_CORRETOR_FICTICIA
-COORDINATE_CAPTURE=PASS
+COORDINATE_CAPTURE=PASS_VISUALLY_CORROBORATED
 CONTROLLED_CLICK_TEST_IN_FICTITIOUS_OR_DEMO_ENVIRONMENT=PASS_REPORTED_BY_LEO
-PROFILE_COMPATIBILITY=PERFIL_PRONTO
+PROFILE_COMPATIBILITY=PERFIL_PRONTO_VISUALLY_CORROBORATED
 ```
 
 Relatório: `docs/history/reports/RELATORIO_EVIDENCIA_LOCAL_V250_ALPHA2_LEA_146_20260722.md`.
+
+## Política das capturas
+
+Leo autorizou a simplificação documental da LEA-146:
+
+```text
+CAPTURES_ROLE=LOCAL_VISUAL_CORROBORATION_REPORTED_BY_LEO
+PERSISTENT_IMAGE_BINARIES_REQUIRED=NO
+INDEPENDENT_HASH_RECALCULATION_REQUIRED=NO
+CHAIN_OF_CUSTODY_REQUIRED=NO
+FORENSIC_EVIDENCE_CLAIMED=NO
+```
+
+As fotos corroboram o estado visual e o relato local. Elas não são apresentadas como telemetria automatizada, laudo forense ou autorização operacional.
 
 ## Versão integrada
 
@@ -84,8 +99,9 @@ REAL_CLICK=NO
 REAL_FINANCIAL_EFFECT=NO
 LIVE_MODE_ARMED=NO
 NEXT_CODE_INCREMENT_AUTHORIZED=NO
+MERGE_AUTHORIZED=NO
 ```
 
 ## Próxima ação
 
-Revisar e integrar a reconciliação documental da LEA-146. Depois, submeter a LST-001 à autorização humana explícita sobre o HEAD confirmado da `main`.
+Executar a LEA-149 sobre o HEAD final exato do PR Draft #74. O reteste deve verificar consistência documental e classificação honesta da evidência, sem exigir binários persistentes, recálculo de hashes ou cadeia de custódia.
